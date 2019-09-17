@@ -9,7 +9,7 @@
 	},
 	"miniprogramRoot": "dist/",
 	"qcloudRoot": "server/",
-	"compileType": "miniprogram",
+	"compileType": "商家小程序",
 	"appid": "wx21d086fc220daa6b",
 	"projectname": "mpvue-shop",
 	"libVersion": "2.2.4",
