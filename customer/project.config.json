@@ -11,7 +11,7 @@
 	"qcloudRoot": "server/",
 	"compileType": "顾客小程序",
 	"appid": "wx21d086fc220daa6b",
-	"projectname": "mpvue-shop",
+	"projectname": "顾客小程序",
 	"libVersion": "2.2.4",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
