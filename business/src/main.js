@@ -65,13 +65,13 @@ export default {
           "text": "首页"
         },
         {
-          "pagePath": "pages/cart/main",
+          "pagePath": "pages/buy/main",
           "iconPath": "static/images/ic_menu_shoping_nor.png",
           "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
           "text": "我要采购"
         },
         {
-          "pagePath": "pages/topic/main",
+          "pagePath": "pages/order/main",
           "iconPath": "static/images/ic_menu_topic_nor.png",
           "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
           "text": "订单管理"
