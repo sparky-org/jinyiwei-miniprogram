@@ -1,93 +1,72 @@
 <template>
-  <div class="buy">
-    <div class="weui-panel weui-panel_access custom-title">
-      <div class="weui-panel__hd">今日上新</div>
-      <div class="weui-panel__bd">
-        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体</div>
-            <div class="weui-media-box__desc"><span>￥500</span><span>￥500</span><span><button <button type="default" size="mini">立即购买</button></span></div>
-          </div>
-        </navigator>
-        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">成的巨型球状天体由各种物质组成的巨型球状天体由</div>
-            <div class="weui-media-box__desc"><span>￥500</span><span>￥500</span><span><button <button type="default" size="mini">立即购买</button></span></div>
-          </div>
-        </navigator>
-      </div>
-      <!-- <div class="weui-panel__ft">
-        <div class="weui-cell weui-cell_access weui-cell_link">
-          <div class="weui-cell__bd">查看更多</div>
-          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+  <div class="order_list">
+
+    <div class="weui-form-preview">
+       <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">订 单 号</div>
+          <div class="weui-form-preview__value">1098002122221</div>
         </div>
-      </div> -->
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">采购内容</div>
+          <div class="weui-form-preview__value">樱桃x12&#12288;马莲花x20&#12288;桃子x101&#12288;樱桃x12&#12288;马莲花x20&#12288;桃子x101&#12288;樱桃x12&#12288;马莲花x20&#12288;桃子x101&#12288;</div>
+        </div>
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">供应商</div>
+          <div class="weui-form-preview__value">很长很长的名</div>
+        </div>
+      </div>
     </div>
 
-    <div class="weui-panel weui-panel_access custom-title">
-      <div class="weui-panel__hd">1月29日上新</div>
-      <div class="weui-panel__bd">
-        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体</div>
-            <div class="weui-media-box__desc"><span>￥500</span><span>￥500</span><span><button <button type="default" size="mini">立即购买</button></span></div>
-          </div>
-        </navigator>
-        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">成的巨型球状天体由各种物质组成的巨型球状天体由</div>
-            <div class="weui-media-box__desc"><span>￥500</span><span>￥500</span><span><button <button type="default" size="mini">立即购买</button></span></div>
-          </div>
-        </navigator>
-      </div>
-      <!-- <div class="weui-panel__ft">
-        <div class="weui-cell weui-cell_access weui-cell_link">
-          <div class="weui-cell__bd">查看更多</div>
-          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+    <div class="weui-form-preview">
+       <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">订 单 号</div>
+          <div class="weui-form-preview__value">1098002122221</div>
         </div>
-      </div> -->
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">采购内容</div>
+          <div class="weui-form-preview__value">樱桃x12&#12288;樱桃x12&#12288;马莲花x20&#12288;桃子x101&#12288;</div>
+        </div>
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">供应商</div>
+          <div class="weui-form-preview__value">很长很长的名字</div>
+        </div>
+      </div>
     </div>
 
-    <div class="weui-panel weui-panel_access custom-title">
-      <div class="weui-panel__hd">1月28日上新</div>
-      <div class="weui-panel__bd">
-        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体</div>
-            <div class="weui-media-box__desc"><span>￥500</span><span>￥500</span><span><button <button type="default" size="mini">立即购买</button></span></div>
-          </div>
-        </navigator>
-        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">成的巨型球状天体由各种物质组成的巨型球状天体由</div>
-            <div class="weui-media-box__desc"><span>￥500</span><span>￥12500</span><span><button <button type="default" size="mini">立即购买</button></span></div>
-          </div>
-        </navigator>
-      </div>
-      <!-- <div class="weui-panel__ft">
-        <div class="weui-cell weui-cell_access weui-cell_link">
-          <div class="weui-cell__bd">查看更多</div>
-          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+    <div class="weui-form-preview">
+       <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">订 单 号</div>
+          <div class="weui-form-preview__value">1098002122221</div>
         </div>
-      </div> -->
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">采购内容</div>
+          <div class="weui-form-preview__value">樱桃x12</div>
+        </div>
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">供应商</div>
+          <div class="weui-form-preview__value">很长很长的名字很长很长的名字很长很长的名字很长很长的名字很长很长的名字</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="weui-form-preview">
+       <div class="weui-form-preview__bd">
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">订 单 号</div>
+          <div class="weui-form-preview__value">1098002122221</div>
+        </div>
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">采购内容</div>
+          <div class="weui-form-preview__value">马莲花x20&#12288;桃子x101&#12288;</div>
+        </div>
+        <div class="weui-form-preview__item">
+          <div class="weui-form-preview__label">供应商</div>
+          <div class="weui-form-preview__value">很长很长的名字很长很长的名字很长很长的名字很长很长的名字很长很长的名字</div>
+        </div>
+      </div>
     </div>
 
   </div>
