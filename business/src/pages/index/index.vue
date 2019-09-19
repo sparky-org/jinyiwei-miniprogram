@@ -40,7 +40,7 @@ export default {
           url: '/pages/staffIndex/main'
         })
       }
-    }, 2000)
+    }, 0)
     this.getData();
   },
   data() {

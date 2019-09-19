@@ -14,7 +14,7 @@
 
 
     <div class="weui-panel weui-panel_access custom-title">
-      <div class="weui-panel__hd">已上架商品1121</div>
+      <div class="weui-panel__hd">已上架商品</div>
       <div class="weui-panel__bd">
         <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
@@ -22,7 +22,7 @@
           </div>
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <div class="weui-media-box__title_custom">由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体</div>
-            <div class="weui-media-box__desc">剩余库存：10000 <span>￥500</span></div>
+            <div class="weui-media-box__desc">剩余库存：10090 <span>￥12500</span></div>
           </div>
         </navigator>
         <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">

@@ -72,6 +72,12 @@ export default {
               "text": "我要采购"
             },
             {
+              "pagePath": "pages/adminCart/main",
+              "iconPath": "static/images/ic_menu_shoping_nor.png",
+              "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+              "text": "购物车"
+            },
+            {
               "pagePath": "pages/adminOrder/main",
               "iconPath": "static/images/ic_menu_topic_nor.png",
               "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
