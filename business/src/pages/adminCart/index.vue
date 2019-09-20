@@ -30,7 +30,7 @@
     </div>
 
     <div class="sureBth">
-      <button class="weui-btn" type="primary">确认下单</button>
+      <button class="weui-btn" type="primary" @click="handleOrder">确认下单</button>
     </div>
 
 
@@ -68,6 +68,12 @@ export default {
   },
   components: {},
   methods: {
+    handleOrder(){
+      console.log(wx.navigateTo)
+      wx.redirectTo({
+        url:'/pages/adminOrderList/main'
+      })
+    },
     handleOnlyNumber(item){
       let reg1 = /^\d+$/ig,
           reg2 = /\d+/ig;

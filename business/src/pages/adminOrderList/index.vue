@@ -69,6 +69,10 @@
       </div>
     </div>
 
+    <div class="sureBth">
+      <button class="weui-btn" type="primary" @click="handleBack">返回</button>
+    </div>
+
   </div>
 </template>
 
@@ -99,6 +103,11 @@ export default {
   },
   components: {},
   methods: {
+    handleBack(){
+      wx.switchTab({
+        url: '/pages/adminBuy/main'
+      })
+    },
     ...mapMutations(["update"]),
 
     async getData() {

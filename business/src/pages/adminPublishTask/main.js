@@ -5,6 +5,6 @@ const app = new Vue(App)
 app.$mount()
 export default {
   config: {
-    navigationBarTitleText: '我的工作台',
+    navigationBarTitleText: '发布的任务',
   }
 }

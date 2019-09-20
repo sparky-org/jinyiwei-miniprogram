@@ -1,53 +1,37 @@
 <template>
-  <div class="index">
-    <div class="swiper">
-      <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="500">
-        <block v-for="(item, index) in banner " :key="index">
-          <swiper-item class="swiper-item">
-            <image :src="item.image_url" class="slide-image" />
-          </swiper-item>
-        </block>
-      </swiper>
+  <div class="work_bench">
+    <div class="weui-cells__title">我的工作台</div>
+    <div class="weui-cells weui-cells_after-title">
+      <navigator url="/pages/adminPublishTask/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">发布的任务</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator>
+      <navigator url="/pages/adminCustomerPoint/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">顾客积分榜</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator>
+      <navigator url="/pages/adminStaffPoint/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">员工积分榜</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator>
+      <navigator url="/pages/adminMyApproval/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">待我审批</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator>
+      <navigator url="/pages/adminAssociatedAgents/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">关联代理商</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator>
+      <navigator url="/pages/adminMyQrCode/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">我的二维码</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator>
+      <navigator url="/pages/adminService/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">客服</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator>
     </div>
-
-
-
-
-    <div class="weui-panel weui-panel_access custom-title">
-      <div class="weui-panel__hd">已上架商品1121</div>
-      <div class="weui-panel__bd">
-        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体</div>
-            <div class="weui-media-box__desc">剩余库存：10000 <span>￥500</span></div>
-          </div>
-        </navigator>
-        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">标题二</div>
-            <div class="weui-media-box__desc">剩余库存：1222<span>￥500</span></div>
-          </div>
-        </navigator>
-      </div>
-      <div class="weui-panel__ft">
-        <div class="weui-cell weui-cell_access weui-cell_link">
-          <div class="weui-cell__bd">查看更多</div>
-          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-        </div>
-      </div>
-    </div>
-
-
-
-
-
-    </div>
+  </div>
 </template>
 
 <script>

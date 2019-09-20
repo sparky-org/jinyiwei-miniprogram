@@ -78,7 +78,7 @@ export default {
               "text": "购物车"
             },
             {
-              "pagePath": "pages/adminOrderList/main",
+              "pagePath": "pages/adminOrder/main",
               "iconPath": "static/images/ic_menu_topic_nor.png",
               "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
               "text": "订单管理"
