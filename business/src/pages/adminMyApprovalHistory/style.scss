@@ -1,4 +1,4 @@
-.my_approval {
+.my_approval-history {
   .weui-form-preview__hd,
   .weui-form-preview__value{
     text-align: left;
@@ -8,11 +8,5 @@
   }
   & > .weui-form-preview{
     margin-bottom: 20rpx;
-  }
-  & > .history{
-    padding: 20rpx;
-    .weui-form-preview__btn{
-      text-align: right;
-    }
   }
 }

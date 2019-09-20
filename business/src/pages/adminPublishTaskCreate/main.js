@@ -5,6 +5,6 @@ const app = new Vue(App)
 app.$mount()
 export default {
   config: {
-    navigationBarTitleText: '我的审批',
+    navigationBarTitleText: '创建新任务',
   }
 }

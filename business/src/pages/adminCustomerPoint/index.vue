@@ -1,8 +1,11 @@
 <template>
   <div class="customer_point">
-    <picker class="weui-btn" mode="date" :value="date" fields="month" start="2015-09" end="2017-09" @change="bindDateChange">
-      <button type="default">{{date}}</button>
-    </picker>
+    <div class="date_wrapper">
+      <picker class="weui-btn" mode="date" :value="date" fields="month" start="2015-09" end="2017-09" @change="bindDateChange">
+        <button type="default">{{date}}</button>
+      </picker>
+    </div>
+
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">
         <div class="weui-cell__hd">
