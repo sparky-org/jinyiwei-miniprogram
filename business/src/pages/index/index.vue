@@ -18,7 +18,7 @@ export default {
     ...mapState(["cityName"])
   },
   mounted() {
-    let role = 'admin'
+    let role = 'admin1'
     setTimeout(() => {
       if(role === 'admin'){
         // 保留当前页面，跳转到应用内的某个页面。但是不能跳到 tabbar 页面  返回是 wx.navigateBack({ })

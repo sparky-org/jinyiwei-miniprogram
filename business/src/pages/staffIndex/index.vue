@@ -1,16 +1,43 @@
 <template>
-  <div class="index">
-    <div class="swiper">
-      <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="500">
-        <block v-for="(item, index) in banner " :key="index">
-          <swiper-item class="swiper-item">
-            <image :src="item.image_url" class="slide-image" />
-          </swiper-item>
-        </block>
-      </swiper>
+  <div class="staff_index">
+      <div class="myinfo">
+        <img :src="avator" alt="">
+        <div>
+          <p>{{userInfo.nickName}}<span>铜牌员工</span>&#12288;&#12288;&#12288;</p>
+          <p>工号：001<span>积分：100</span>&#12288;&#12288;&#12288;</p>
+        </div>
+      </div>
+
+      <div class="weui-cells__title">我的任务</div>
+      <div class="weui-cells weui-cells_after-title">
+        <navigator url="/pages/staffTask/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <div class="weui-cell__bd">我的任务一</div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+        </navigator>
+        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <div class="weui-cell__bd">我的任务二</div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+        </navigator>
+        <div class="weui-panel__ft">
+          <div class="weui-cell weui-cell_access weui-cell_link">
+            <div class="weui-cell__bd" style="text-align: right;">查看更多</div>
+            <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="weui-cells weui-cells_after-title" style="margin-top: 20rpx;">
+        <navigator url="/pages/staffApply/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <div class="weui-cell__bd">我的申请</div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+        </navigator>
+        <navigator url="/pages/staffSign/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <div class="weui-cell__bd">签到赚积分</div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+        </navigator>
+      </div>
+
     </div>
-    员工首页
-  </div>
 </template>
 
 <script>
@@ -29,13 +56,10 @@ export default {
   },
   data() {
     return {
-      banner: [],
-      channel: [],
-      brandList: [],
-      newGoods: [],
-      hotGoods: [],
-      topicList: [],
-      newCategoryList: []
+      avator: 'https://free.modao.cc/uploads3/images/955/9557238/raw_1494941308.png',
+      userInfo: {
+         nickName: '邹志辉'
+      }
     };
   },
   components: {},
@@ -44,53 +68,17 @@ export default {
 
     async getData() {
       const data = await get("/index/index");
-      this.banner = data.banner;
-      this.channel = data.channel;
-      this.brandList = data.brandList;
-      this.newGoods = data.newGoods;
-      this.hotGoods = data.hotGoods;
-      this.topicList = data.topicList;
-      this.newCategoryList = data.newCategoryList;
+      // this.banner = data.banner;
+      // this.channel = data.channel;
+      // this.brandList = data.brandList;
+      // this.newGoods = data.newGoods;
+      // this.hotGoods = data.hotGoods;
+      // this.topicList = data.topicList;
+      // this.newCategoryList = data.newCategoryList;
     },
     goodsDetail(id) {
       wx.navigateTo({
         url: "/pages/goods/main?id=" + id
-      });
-    },
-    categoryList(id) {
-      wx.navigateTo({
-        url: "/pages/categorylist/main?id=" + id
-      });
-    },
-    goodsList(info) {
-      if (info == "hot") {
-        wx.navigateTo({
-          url: "/pages/newgoods/main?isHot=" + 1
-        });
-      } else {
-        wx.navigateTo({
-          url: "/pages/newgoods/main?isNew=" + 1
-        });
-      }
-    },
-    topicdetail(id) {
-      wx.navigateTo({
-        url: "/pages/topicdetail/main?id=" + id
-      });
-    },
-    totopic() {
-      wx.navigateTo({
-        url: "/pages/topic/main"
-      });
-    },
-    tobrandList() {
-      wx.navigateTo({
-        url: "/pages/brandlist/main"
-      });
-    },
-    branddetail(id) {
-      wx.navigateTo({
-        url: "/pages/branddetail/main?id=" + id
       });
     }
   },
