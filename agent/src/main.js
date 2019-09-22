@@ -65,18 +65,18 @@ export default {
               "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
               "text": "首页"
             },
-            {
-              "pagePath": "pages/adminBuy/main",
-              "iconPath": "static/images/ic_menu_shoping_nor.png",
-              "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
-              "text": "我要采购"
-            },
-            {
-              "pagePath": "pages/adminCart/main",
-              "iconPath": "static/images/ic_menu_shoping_nor.png",
-              "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
-              "text": "购物车"
-            },
+            // {
+            //   "pagePath": "pages/adminBuy/main",
+            //   "iconPath": "static/images/ic_menu_shoping_nor.png",
+            //   "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+            //   "text": "我要采购"
+            // },
+            // {
+            //   "pagePath": "pages/adminCart/main",
+            //   "iconPath": "static/images/ic_menu_shoping_nor.png",
+            //   "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+            //   "text": "购物车"
+            // },
             {
               "pagePath": "pages/adminOrder/main",
               "iconPath": "static/images/ic_menu_topic_nor.png",
