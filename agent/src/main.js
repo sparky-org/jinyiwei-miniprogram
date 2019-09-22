@@ -15,6 +15,8 @@ Vue.prototype.$store = store;
 
 Vue.config.productionTip = false
 App.mpType = 'app'
+import '../static/weui/weui.css'
+// import '../static/weui.css'
 
 const app = new Vue(App)
 app.$mount()
@@ -33,6 +35,10 @@ export default {
       // "pages/addaddress/main",
       // "pages/address/main",
       "^pages/index/main",
+      // "pages/adminOrder/main",
+      // "pages/adminBuy/main",
+      // "pages/adminIndex/main",
+      // "pages/adminMy/main",
       // "pages/search/main",
       // "pages/my/main",
       // "pages/login/main",
@@ -47,48 +53,55 @@ export default {
       // "pages/practice/main",
       // "pages/topicdetail/main"
     ],
+
+        "tabBar": {
+          "backgroundColor": "#fafafa",
+          "borderStyle": "white",
+          "selectedColor": "#b4282d",
+          "color": "#666",
+          "list": [{
+              "pagePath": "pages/adminIndex/main",
+              "iconPath": "static/images/ic_menu_choice_nor.png",
+              "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
+              "text": "首页"
+            },
+            {
+              "pagePath": "pages/adminBuy/main",
+              "iconPath": "static/images/ic_menu_shoping_nor.png",
+              "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+              "text": "我要采购"
+            },
+            {
+              "pagePath": "pages/adminCart/main",
+              "iconPath": "static/images/ic_menu_shoping_nor.png",
+              "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
+              "text": "购物车"
+            },
+            {
+              "pagePath": "pages/adminOrder/main",
+              "iconPath": "static/images/ic_menu_topic_nor.png",
+              "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
+              "text": "订单管理"
+            },
+            // {
+            //   "pagePath": "pages/category/main",
+            //   "iconPath": "static/images/ic_menu_sort_nor.png",
+            //   "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
+            //   "text": "分类"
+            // },
+            {
+              "pagePath": "pages/adminMy/main",
+              "iconPath": "static/images/ic_menu_me_nor.png",
+              "selectedIconPath": "static/images/ic_menu_me_pressed.png",
+              "text": "工作台"
+            }
+          ]
+        },
     "window": {
       "backgroundTextStyle": "light",
       "navigationBarBackgroundColor": "#fff",
-      "navigationBarTitleText": "科比",
+      "navigationBarTitleText": "商家小程序",
       "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-      "backgroundColor": "#fafafa",
-      "borderStyle": "white",
-      "selectedColor": "#b4282d",
-      "color": "#666",
-      "list": [{
-          "pagePath": "pages/index/main",
-          "iconPath": "static/images/ic_menu_choice_nor.png",
-          "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
-          "text": "首页"
-        },
-        {
-          "pagePath": "pages/cart/main",
-          "iconPath": "static/images/ic_menu_shoping_nor.png",
-          "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
-          "text": "我要采购"
-        },
-        {
-          "pagePath": "pages/topic/main",
-          "iconPath": "static/images/ic_menu_topic_nor.png",
-          "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
-          "text": "订单管理"
-        },
-        // {
-        //   "pagePath": "pages/category/main",
-        //   "iconPath": "static/images/ic_menu_sort_nor.png",
-        //   "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
-        //   "text": "分类"
-        // },
-        {
-          "pagePath": "pages/my/main",
-          "iconPath": "static/images/ic_menu_me_nor.png",
-          "selectedIconPath": "static/images/ic_menu_me_pressed.png",
-          "text": "工作台"
-        }
-      ]
     },
     "permission": {
       "scope.userLocation": {
