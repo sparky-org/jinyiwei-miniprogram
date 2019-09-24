@@ -1,27 +1,53 @@
 <template>
-  <div class="staff_point">
+  <div class="staff_point_detail">
+
+   <div class="weui-cells weui-cells_after-title">
+     <div class="weui-cell">
+       <div class="weui-cell__bd">任务名称：签到（10积分）</div>
+       <div class="weui-cell__ft">2019-09-01</div>
+     </div>
+     <div class="weui-cell">
+       <div class="weui-cell__bd">任务名称：签到（10积分）</div>
+       <div class="weui-cell__ft">2019-09-01</div>
+     </div>
+     <div class="weui-cell">
+       <div class="weui-cell__bd">任务名称：签到（10积分）</div>
+       <div class="weui-cell__ft">2019-09-01</div>
+     </div>
+     <div class="weui-cell">
+       <div class="weui-cell__bd">任务名称：签到（10积分）</div>
+       <div class="weui-cell__ft">2019-09-01</div>
+     </div>
+     <div class="weui-cell">
+       <div class="weui-cell__bd">任务名称：签到（10积分）</div>
+       <div class="weui-cell__ft">2019-09-01</div>
+     </div>
+   </div>
+   
+   
+
     <!-- <div class="date_wrapper">
       <picker class="weui-btn" mode="date" :value="date" fields="month" start="2015-09" end="2017-09" @change="bindDateChange">
         <button type="default">{{date}}</button>
       </picker>
     </div> -->
 
-    <div class="weui-cells weui-cells_after-title">
-      <navigator url="/pages/adminStaffPointDetail/main?id=1" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+    <!-- <div class="weui-cells weui-cells_after-title">
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__hd">
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div>
         <div class="weui-cell__bd">邹志辉</div>
         <div class="weui-cell__ft weui-cell__ft_in-access">500</div>
       </navigator>
-      <navigator url="/pages/adminStaffPointDetail/main?id=2" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__hd">
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div>
         <div class="weui-cell__bd">刘德华</div>
         <div class="weui-cell__ft weui-cell__ft_in-access">300</div>
       </navigator>
-    </div>
+    </div> -->
 
     <!-- <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">

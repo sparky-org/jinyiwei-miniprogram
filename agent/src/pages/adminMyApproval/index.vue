@@ -1,15 +1,19 @@
 <template>
   <div class="my_approval">
-    
-    <div class="history">
+
+    <!-- <div class="history">
       <navigator class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" url="/pages/adminMyApprovalHistory/main">审批历史 ></navigator>
-    </div>
+    </div> -->
 
 
     <div class="weui-form-preview">
       <div class="weui-form-preview__hd">
         <div class="weui-form-preview__label">申请人</div>
         <div class="weui-form-preview__value_in-hd">张三</div>
+      </div>
+      <div class="weui-form-preview__hd">
+        <div class="weui-form-preview__label">申请类型</div>
+        <div class="weui-form-preview__value_in-hd">请假</div>
       </div>
       <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
@@ -18,8 +22,8 @@
         </div>
       </div>
       <div class="weui-form-preview__ft">
-        <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">拒绝</div>
-        <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">同意</div>
+        <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">驳回</div>
+        <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">批准</div>
       </div>
     </div>
 
@@ -28,6 +32,10 @@
         <div class="weui-form-preview__label">申请人</div>
         <div class="weui-form-preview__value_in-hd">张三</div>
       </div>
+      <div class="weui-form-preview__hd">
+        <div class="weui-form-preview__label">申请类型</div>
+        <div class="weui-form-preview__value_in-hd">请假</div>
+      </div>
       <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
           <div class="weui-form-preview__label">申请内容</div>
@@ -35,16 +43,20 @@
         </div>
       </div>
       <div class="weui-form-preview__ft">
-        <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">拒绝</div>
-        <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">同意</div>
+        <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">驳回</div>
+        <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">批准</div>
       </div>
     </div>
-
+    
     <div class="weui-form-preview">
       <div class="weui-form-preview__hd">
         <div class="weui-form-preview__label">申请人</div>
         <div class="weui-form-preview__value_in-hd">张三</div>
       </div>
+      <div class="weui-form-preview__hd">
+        <div class="weui-form-preview__label">申请类型</div>
+        <div class="weui-form-preview__value_in-hd">请假</div>
+      </div>
       <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
           <div class="weui-form-preview__label">申请内容</div>
@@ -52,8 +64,8 @@
         </div>
       </div>
       <div class="weui-form-preview__ft">
-        <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">拒绝</div>
-        <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">同意</div>
+        <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">驳回</div>
+        <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">批准</div>
       </div>
     </div>
 

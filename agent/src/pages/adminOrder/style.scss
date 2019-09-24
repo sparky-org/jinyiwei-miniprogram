@@ -1,4 +1,17 @@
 .order_manage {
+  .order_send_list{
+    & > div{
+      border-bottom: 1px dashed #ccc;
+      height: 80rpx;
+      line-height: 80rpx;
+      &:last-child{
+        border-bottom: 0 none;
+      }
+      & > span{
+        float: right;
+      }
+    }
+  }
   .custom-title{
     .weui-media-box__title_custom{
       display: block;
@@ -39,5 +52,34 @@
   width: 100%;
   overflow: hidden;
   position: relative;
+
+
+  .weui-form-preview__hd,
+  .weui-form-preview__value{
+    text-align: left;
+  }
+  .weui-form-preview__value_in-hd{
+    font-size: 32rpx;
+  }
+  .weui-form-preview{
+    margin-top: 20rpx;
+  }
+
+  .weui-tab__content {
+    // padding-top: 60px;
+    text-align: center;
+  }
+  .weui-navbar__slider_0 {
+    left: 29rpx;
+    transform: translateX(0);
+  }
+  .weui-navbar__slider_1 {
+    left: 29rpx;
+    transform: translateX(250rpx);
+  }
+  .weui-navbar__slider_2 {
+    left: 29rpx;
+    transform: translateX(500rpx);
+  }
 
 }

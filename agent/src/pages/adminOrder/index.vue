@@ -1,75 +1,57 @@
 <template>
   <div class="order_manage">
-
-    <div class="weui-panel weui-panel_access custom-title">
-      <div class="weui-panel__hd">2019-11-20 12:12:34 <span>未付款</span></div>
-      <div class="weui-panel__bd">
-        <div class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
+    <div class="weui-tab">
+      <div class="weui-navbar">
+        <block v-for="(item,index) in tabs" :key="index">
+          <div :id="index" :class="{'weui-bar__item_on':activeIndex == index}" class="weui-navbar__item" @click="tabClick">
+            <div class="weui-navbar__title">{{item}}</div>
           </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体</div>
-            <div class="weui-media-box__desc"><!--剩余库存：10000-->&#12288; <span>￥500</span></div>
-          </div>
-        </div>
-        <div class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">标题二</div>
-            <div class="weui-media-box__desc"><!--剩余库存：1222-->&#12288; <span>￥500</span></div>
-          </div>
-        </div>
+        </block>
+        <div class="weui-navbar__slider" :class="navbarSliderClass"></div>
       </div>
-      <div class="weui-panel__ft">
-        <div class="weui-cell weui-cell_access weui-cell_link">
-          <!-- <div class="weui-cell__bd">查看更多</div>
-          <div class="weui-cell__ft weui-cell__ft_in-access"></div> -->
-          <span class="total_price">总共12件商品，总计：￥500</span>
-        </div>
-      </div>
-    </div>
+      <div class="weui-tab__panel">
+        <div class="weui-tab__content" :hidden="activeIndex != 0">
+
+
+          <div class="weui-form-preview">
+            <div class="weui-form-preview__hd">
+              <div class="weui-form-preview__label">订单时间</div>
+              <div class="weui-form-preview__value_in-hd">2019-08-09</div>
+            </div>
+            <div class="weui-form-preview__hd">
+              <div class="weui-form-preview__label">商户</div>
+              <div class="weui-form-preview__value_in-hd">张三的美容店(张经理:13012341234)</div>
+            </div>
+            <div class="weui-form-preview__bd" style="padding-top: 0; padding-bottom: 0; padding-right: 20rpx;">
+              <div class="weui-form-preview__item">
+                <div class="weui-form-preview__label">&#12288;</div>
+                <div class="weui-form-preview__value order_send_list">
+                  <div>abc护理液<span>6瓶</span></div>
+                  <div>abc护理液<span>6瓶</span></div>
+                  <div>abc护理液<span>6瓶</span></div>
+                  <div>abc护理液<span>6瓶</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="weui-form-preview__ft">
+              <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">指派销售</div>
+              <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">联系客服</div>
+            </div>
+          </div>
 
 
 
-    <div class="weui-panel weui-panel_access custom-title">
-      <div class="weui-panel__hd">2019-11-22 10:52:14 <span>未付款</span></div>
-      <div class="weui-panel__bd">
-        <div class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体</div>
-            <div class="weui-media-box__desc"><!--剩余库存：10000-->&#12288; <span>￥14500</span></div>
-          </div>
+
+
+
         </div>
-        <div class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">标题二由各种物质组成的巨型球状天体由各种物质组成的巨型球</div>
-            <div class="weui-media-box__desc"><!--剩余库存：1222-->&#12288; <span>￥5500</span></div>
-          </div>
-        </div>
-      </div>
-      <div class="weui-panel__ft">
-        <div class="weui-cell weui-cell_access weui-cell_link">
-          <!-- <div class="weui-cell__bd">查看更多</div>
-          <div class="weui-cell__ft weui-cell__ft_in-access"></div> -->
-          <span class="total_price">总共2件商品，总计：￥24500</span>
-        </div>
+        <div class="weui-tab__content" :hidden="activeIndex != 1">选项二的内容</div>
+        <div class="weui-tab__content" :hidden="activeIndex != 2">选项三的内容</div>
       </div>
     </div>
 
 
-
-
-
-    </div>
+  </div>
 </template>
 
 <script>
@@ -80,6 +62,17 @@ export default {
   onShow() {
   },
   computed: {
+    navbarSliderClass() {
+      if (this.activeIndex === 0) {
+        return 'weui-navbar__slider_0'
+      }
+      if (this.activeIndex === 1) {
+        return 'weui-navbar__slider_1'
+      }
+      if (this.activeIndex === 2) {
+        return 'weui-navbar__slider_2'
+      }
+    },
     ...mapState(["cityName"])
   },
   mounted() {
@@ -89,16 +82,16 @@ export default {
   data() {
     return {
       banner: [],
-      channel: [],
-      brandList: [],
-      newGoods: [],
-      hotGoods: [],
-      topicList: [],
-      newCategoryList: []
+      tabs: ['全部', '已完成', '未完成'],
+      activeIndex: 0
     };
   },
   components: {},
   methods: {
+    tabClick(e) {
+      console.log(e);
+      this.activeIndex = Number(e.currentTarget.id);
+    },
     ...mapMutations(["update"]),
 
     async getData() {

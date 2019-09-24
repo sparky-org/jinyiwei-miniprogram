@@ -5,6 +5,6 @@ const app = new Vue(App)
 app.$mount()
 export default {
   config: {
-    navigationBarTitleText: '发布的任务',
+    navigationBarTitleText: '任务列表',
   }
 }

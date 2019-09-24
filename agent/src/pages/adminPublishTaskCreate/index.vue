@@ -84,7 +84,7 @@
 
 
     <div class="sureBth">
-      <button class="weui-btn" type="primary">创 建</button>
+      <button class="weui-btn" type="primary">确认发布</button>
     </div>
 
   </div>

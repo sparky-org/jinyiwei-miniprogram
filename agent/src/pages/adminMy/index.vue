@@ -2,34 +2,47 @@
   <div class="work_bench">
     <div class="weui-cells__title">我的工作台</div>
     <div class="weui-cells weui-cells_after-title">
-      <navigator url="/pages/adminPublishTask/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <div class="weui-cell__bd">发布的任务</div>
+      <navigator url="/pages/adminPublishTaskCreate/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">发布任务</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
-      <navigator url="/pages/adminCustomerPoint/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator url="/pages/adminPublishTask/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">任务列表</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator>
+      <!-- <navigator url="/pages/adminCustomerPoint/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__bd">顾客积分榜</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-      </navigator>
+      </navigator> -->
       <navigator url="/pages/adminStaffPoint/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <div class="weui-cell__bd">员工积分榜</div>
+        <div class="weui-cell__bd">积分榜</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
       <navigator url="/pages/adminMyApproval/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__bd">待我审批</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
-      <navigator url="/pages/adminAssociatedAgents/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <!-- <navigator url="/pages/adminAssociatedAgents/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__bd">关联代理商</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator> -->
+
+      <navigator url="/pages/adminProductManage/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">商品管理</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator>
+      <navigator url="/pages/adminMyData/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd">数据大盘</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
       <navigator url="/pages/adminMyQrCode/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__bd">我的二维码</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
-      <navigator url="/pages/adminService/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <!-- <navigator url="/pages/adminService/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__bd">客服</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-      </navigator>
+      </navigator> -->
     </div>
   </div>
 </template>
