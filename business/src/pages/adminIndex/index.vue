@@ -44,7 +44,7 @@
     </div>
 
 
-
+    <button @click="scan">扫描二维码</button>
 
 
     </div>
@@ -77,6 +77,13 @@ export default {
   },
   components: {},
   methods: {
+    scan(){
+      wx.scanCode({
+        success (res) {
+          console.log(res)
+        }
+      })
+    },
     ...mapMutations(["update"]),
 
     async getData() {
