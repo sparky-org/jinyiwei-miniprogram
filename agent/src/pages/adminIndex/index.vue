@@ -55,13 +55,13 @@ export default {
   },
   mounted() {
     // this.getData();
-    this.userInfo = wx.getStorageSync("userInfo")
-    console.info(this.userInfo);
+    // this.userInfo = wx.getStorageSync("userInfo")
+    // console.info(this.userInfo);
     this.geData()
   },
   data() {
     return {
-      userInfo: null,
+      // userInfo: null,
       data: null,
       // channel: [],
       // brandList: [],
@@ -75,8 +75,8 @@ export default {
   methods: {
     // ...mapMutations(["update"]),
     async geData(){
-      console.info(12891892189)
-      const data = post(`/agency/main/getMainPage?agencyId=${this.userInfo.agencyId}`).then((data)=>{
+      // console.info(12891892189)
+      const data = post(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.agencyId}`).then((data)=>{
         if(data.success){
           this.data = data.result
         }

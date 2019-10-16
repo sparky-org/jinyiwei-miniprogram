@@ -35,6 +35,8 @@ export default {
       })
       return
     }
+    // console.info('this.$store',this.$store)
+    this.$store.commit('setUserInfo',userInfo)
 
     if( userInfo.role == "EMPLOY"){
       wx.reLaunch({

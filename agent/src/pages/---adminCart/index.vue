@@ -79,7 +79,7 @@ export default {
           reg2 = /\d+/ig;
       if (!reg1.test(item.num)) {
         item.num = item.num.match(reg2) ? item.num.match(reg2)[0] : ''
-        console.info(1212,item.num)
+        // console.info(1212,item.num)
       }
     },
     handleChangeNum(type, item){

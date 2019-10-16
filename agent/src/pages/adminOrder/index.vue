@@ -56,7 +56,7 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
@@ -73,17 +73,17 @@ export default {
         return 'weui-navbar__slider_2'
       }
     },
-    ...mapState(["cityName"])
+    // ...mapState(["cityName"])
   },
   mounted() {
-
     this.getData();
   },
   data() {
     return {
-      banner: [],
+      // banner: [],
       tabs: ['全部', '已完成', '未完成'],
-      activeIndex: 0
+      activeIndex: 0,
+      data: null
     };
   },
   components: {},
@@ -92,17 +92,18 @@ export default {
       console.log(e);
       this.activeIndex = Number(e.currentTarget.id);
     },
-    ...mapMutations(["update"]),
+    // ...mapMutations(["update"]),
 
     async getData() {
-      const data = await get("/index/index");
-      this.banner = data.banner;
-      this.channel = data.channel;
-      this.brandList = data.brandList;
-      this.newGoods = data.newGoods;
-      this.hotGoods = data.hotGoods;
-      this.topicList = data.topicList;
-      this.newCategoryList = data.newCategoryList;
+      const data = await post(`/agency/order/queryOrderList?agencyId=${this.$store.state.userInfo.agencyId}`);
+      console.info('data',data)
+      // this.banner = data.banner;
+      // this.channel = data.channel;
+      // this.brandList = data.brandList;
+      // this.newGoods = data.newGoods;
+      // this.hotGoods = data.hotGoods;
+      // this.topicList = data.topicList;
+      // this.newCategoryList = data.newCategoryList;
     },
     goodsDetail(id) {
       wx.navigateTo({

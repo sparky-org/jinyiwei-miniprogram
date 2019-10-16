@@ -75,7 +75,7 @@ export default {
         return
       }
       const data = await post(`/agency/info/getVerifyCode?phone=${this.phone}`);
-      console.info(data)
+      // console.info(data)
       if(data.success){
         this.verifyCode = data.result
       }
@@ -112,6 +112,7 @@ export default {
       });
       if(data.success){
         wx.setStorageSync("userInfo", data.result);
+        this.$store.commit('setUserInfo',data.result)
         if( data.result.role == "EMPLOY"){
           wx.reLaunch({
             url: '/pages/staffIndex/main'
