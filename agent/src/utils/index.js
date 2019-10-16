@@ -20,8 +20,11 @@ export function formatTime(date) {
 
 //-------------------------------------------------------------------------请求的封装
 
-const host = "http://118.25.222.68:5757/heyushuo"
+// const host = "http://118.25.222.68:5757/heyushuo"
+const host = 'http://118.25.104.232:8081/jinyiwei'
 export { host };
+
+let userInfo = wx.getStorageSync("userInfo")
 //请求封装
 function request(url, method, data, header = {}) {
   wx.showLoading({
@@ -33,11 +36,19 @@ function request(url, method, data, header = {}) {
       method: method,
       data: data,
       header: {
-        "content-type": "application/json" // 默认值
+        "content-type": "application/json", // 默认值
+        "token": userInfo ? userInfo.token : '',
+        "key": userInfo ? 'AGENCY-'+userInfo.id : '',
       },
       success: function(res) {
         wx.hideLoading();
-        resolve(res.data);
+        if(res.data.success === false){
+          wx.navigateTo({
+            url: '/pages/login/main'
+          })
+        }else{
+          resolve(res.data);
+        }
       },
       fail: function(error) {
         wx.hideLoading();

@@ -18,34 +18,71 @@ export default {
     ...mapState(["cityName"])
   },
   mounted() {
-    let role = 'admin'
-    setTimeout(() => {
-      if(role === 'admin'){
-        // 保留当前页面，跳转到应用内的某个页面。但是不能跳到 tabbar 页面  返回是 wx.navigateBack({ })
-        // wx.navigateTo({
-        //   url: '/pages/adminIndex/main'
-        // })
-
-        // 关闭当前页面，跳转到应用内的某个页面。但是不允许跳转到 tabbar 页面
-        // wx.redirectTo({
-        //   url: '/pages/adminIndex/main'
-        // })
-
-        // 跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面
-        // wx.switchTab({
-        //   url: '/pages/adminIndex/main'
-        // })
-
-        wx.navigateTo({
-          url: '/pages/login/main'
-        })
-      }else{
-        wx.redirectTo({
-          url: '/pages/staffIndex/main'
+    wx.login({
+      success: () => {
+        wx.getUserInfo({
+          success: (res) => {
+            wx.setStorageSync("userInfo", res.userInfo);
+          }
         })
       }
-    }, 0)
-    this.getData();
+    })
+    // 判断是否登录
+    let userInfo = wx.getStorageSync("userInfo")
+    if(!userInfo){
+      wx.navigateTo({
+        url: '/pages/login/main'
+      })
+      return
+    }
+
+    if( userInfo.role == "EMPLOY"){
+      wx.reLaunch({
+        url: '/pages/staffIndex/main'
+      })
+    }
+    if( userInfo.role == "SADMIN"){
+      wx.switchTab({
+        url: '/pages/adminIndex/main'
+      })
+    }
+    if( userInfo.role == "ADMIN"){
+      wx.switchTab({
+        url: '/pages/adminIndex/main'
+      })
+    }
+    wx.switchTab({
+      url: '/pages/adminIndex/main'
+    })
+
+    // let role = 'admin'
+    // setTimeout(() => {
+    //   if(role === 'admin'){
+    //     // 保留当前页面，跳转到应用内的某个页面。但是不能跳到 tabbar 页面  返回是 wx.navigateBack({ })
+    //     // wx.navigateTo({
+    //     //   url: '/pages/adminIndex/main'
+    //     // })
+
+    //     // 关闭当前页面，跳转到应用内的某个页面。但是不允许跳转到 tabbar 页面
+    //     // wx.redirectTo({
+    //     //   url: '/pages/adminIndex/main'
+    //     // })
+
+    //     // 跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面
+    //     // wx.switchTab({
+    //     //   url: '/pages/adminIndex/main'
+    //     // })
+
+    //     wx.navigateTo({
+    //       url: '/pages/login/main'
+    //     })
+    //   }else{
+    //     wx.redirectTo({
+    //       url: '/pages/staffIndex/main'
+    //     })
+    //   }
+    // }, 0)
+    // this.getData();
   },
   data() {
     return {
