@@ -27,9 +27,9 @@
                 <div class="weui-form-preview__value">{{tabs[item.typeIndex]}}</div>
               </div>
             </div>
-            <div class="weui-form-preview__ft">
+            <div class="weui-form-preview__ft" style="display: none;">
               <!-- <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">驳回</div> -->
-              <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">发布</div>
+              <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" @click="handlePublish(item)">发布</div>
             </div>
           </div>
           <div v-if="taskList.length==0">
@@ -119,14 +119,21 @@ export default {
   computed: {
     // ...mapState(["cityName"]),
     navbarSliderClass() {
+      // if (this.activeIndex === 0) {
+      //   return 'weui-navbar__slider_0'
+      // }
+      // if (this.activeIndex === 1) {
+      //   return 'weui-navbar__slider_1'
+      // }
+      // if (this.activeIndex === 2) {
+      //   return 'weui-navbar__slider_2'
+      // }
+
       if (this.activeIndex === 0) {
-        return 'weui-navbar__slider_0'
+        return 'weui-navbar__slider_left'
       }
       if (this.activeIndex === 1) {
-        return 'weui-navbar__slider_1'
-      }
-      if (this.activeIndex === 2) {
-        return 'weui-navbar__slider_2'
+        return 'weui-navbar__slider_right'
       }
     }
   },
@@ -138,13 +145,18 @@ export default {
       taskList: [],
       // banner: [],
       types: ['NEW','PUBLISH','EXPIRED'],
-      tabs: ['未发布', '进行中', '已结束'],
+      // tabs: ['未发布', '进行中', '已结束'],
+      tabs: ['进行中', '已结束'],
       activeIndex: 0
     };
   },
   components: {},
 
   methods: {
+    async handlePublish(item){
+      // const data = await post(`/agency/task/publishTask?taskId=${item.taskId}`);
+      // console.info(data,'delete')
+    },
     tabClick(e) {
       console.log(e);
       this.activeIndex = Number(e.currentTarget.id);
@@ -185,5 +197,17 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+  .weui-navbar__slider_left{
+    left: 0!important;
+    width: 50%!important;
+    transition: transform 0.3s!important;
+    /* transform: translateX(0)!important; */
+  }
+  .weui-navbar__slider_right{
+    left: 50%!important;
+    width: 50%!important;
+    transition: transform 0.3s!important;
+    /* transform: translateX(0)!important; */
+  }
   @import "./style.scss";
 </style>
