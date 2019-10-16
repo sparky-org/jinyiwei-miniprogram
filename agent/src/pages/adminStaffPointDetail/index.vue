@@ -23,8 +23,8 @@
        <div class="weui-cell__ft">2019-09-01</div>
      </div>
    </div>
-   
-   
+
+
 
     <!-- <div class="date_wrapper">
       <picker class="weui-btn" mode="date" :value="date" fields="month" start="2015-09" end="2017-09" @change="bindDateChange">
@@ -70,39 +70,44 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
   computed: {
-    ...mapState(["cityName"])
+    // ...mapState(["cityName"])
   },
   mounted() {
+    this.empId = this.$root.$mp.query.id;
+    this.date = this.$root.$mp.query.date;
+    console.info(this.empId,'this.empId')
     this.getData();
   },
   data() {
     return {
-      banner: [],
-      date: '2019-06'
+      // banner: [],
+      empId: '',
+      date: ''
     };
   },
   components: {},
   methods: {
     bindDateChange(e) {
-      console.log('选中的日期为：' + e.mp.detail.value);
+      // console.log('选中的日期为：' + e.mp.detail.value);
       this.date = e.mp.detail.value
     },
-    ...mapMutations(["update"]),
+    // ...mapMutations(["update"]),
     async getData() {
-      const data = await get("/index/index");
-      this.banner = data.banner;
+      const data = await post(`/agency/info/getPointItem?month=${this.date}&empId=${this.empId}`);
+      console.info(data,'122112')
+      this.list = data.result
     },
-    topicdetail(id) {
-      wx.navigateTo({
-        url: "/pages/topicdetail/main?id=" + id
-      });
-    },
+    // topicdetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/topicdetail/main?id=" + id
+    //   });
+    // },
   },
   created() {
 
