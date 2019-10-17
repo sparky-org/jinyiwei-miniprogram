@@ -31,7 +31,7 @@
         <div class="weui-cell__bd">商品管理</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
-      <navigator url="/pages/adminMyData/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator v-if="role=='SADMIN'" url="/pages/adminMyData/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__bd">数据大盘</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
@@ -58,8 +58,8 @@ export default {
     // ...mapState(["cityName"])
   },
   mounted() {
-    // this.role = this.$store.state.userInfo.role
-    // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role)
+    this.role = this.$store.state.userInfo.role
+    console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role)
     // this.getData();
   },
   data() {
