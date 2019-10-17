@@ -1,8 +1,12 @@
 <template>
   <div class="staff_point_detail">
-
+  <!-- {{list}} -->
    <div class="weui-cells weui-cells_after-title">
-     <div class="weui-cell">
+     <div class="weui-cell" v-for="(item, index) in list" :key="index">
+       <div class="weui-cell__bd">任务名称：{{item.taskName}}（{{item.point}}积分）</div>
+       <div class="weui-cell__ft">{{item.dateStr}}</div>
+     </div>
+     <!-- <div class="weui-cell">
        <div class="weui-cell__bd">任务名称：签到（10积分）</div>
        <div class="weui-cell__ft">2019-09-01</div>
      </div>
@@ -17,11 +21,7 @@
      <div class="weui-cell">
        <div class="weui-cell__bd">任务名称：签到（10积分）</div>
        <div class="weui-cell__ft">2019-09-01</div>
-     </div>
-     <div class="weui-cell">
-       <div class="weui-cell__bd">任务名称：签到（10积分）</div>
-       <div class="weui-cell__ft">2019-09-01</div>
-     </div>
+     </div> -->
    </div>
 
 
@@ -70,7 +70,7 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get, post } from "../../utils";
+import { get, post, msToDate } from "../../utils";
 import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
@@ -87,6 +87,7 @@ export default {
   data() {
     return {
       // banner: [],
+      list: [],
       empId: '',
       date: ''
     };
@@ -101,7 +102,18 @@ export default {
     async getData() {
       const data = await post(`/agency/info/getPointItem?month=${this.date}&empId=${this.empId}`);
       console.info(data,'122112')
-      this.list = data.result
+      if(data.success == true){
+        if(data.result){
+          data.result.forEach(item => {
+            item['dateStr'] = msToDate(item.date)
+          })
+          this.list = data.result
+        }else{
+          this.list = []
+        }
+      }
+      // this.list = data.result ? data.result : []
+      console.info('this.list', this.list)
     },
     // topicdetail(id) {
     //   wx.navigateTo({

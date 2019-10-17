@@ -130,10 +130,10 @@ export default {
       // }
 
       if (this.activeIndex === 0) {
-        return 'weui-navbar__slider_left'
+        return 'weui-navbar__slider_0'
       }
       if (this.activeIndex === 1) {
-        return 'weui-navbar__slider_right'
+        return 'weui-navbar__slider_1'
       }
     }
   },
@@ -197,17 +197,18 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-  .weui-navbar__slider_left{
+  .weui-navbar__slider_0{
     left: 0!important;
     width: 50%!important;
     transition: transform 0.3s!important;
-    /* transform: translateX(0)!important; */
+    transform: translateX(0)!important;
   }
-  .weui-navbar__slider_right{
+  .weui-navbar__slider_1{
     left: 50%!important;
-    width: 50%!important;
-    transition: transform 0.3s!important;
-    /* transform: translateX(0)!important; */
+    right: 0 !important;
+    width: 50% !important;
+    transition: transform 0.3s !important;
+    transform: translateX(0) !important;
   }
   @import "./style.scss";
 </style>

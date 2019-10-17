@@ -79,7 +79,7 @@ export default {
   watch: {
      date(val){
       console.info('change后的值：',val)
-      // this.getData();
+      this.getData();
      }
   },
   components: {},
@@ -90,9 +90,9 @@ export default {
     },
     // ...mapMutations(["update"]),
     async getData() {
-      const data = await post(`/agency/info/getPointBang?agencyId=${this.$store.state.userInfo.agencyId}&date=${this.date}`);
+      const data = await post(`/agency/info/getPointBang?agencyId=${this.$store.state.userInfo.agencyId}&month=${this.date}`);
       console.info(data,'122112')
-      this.list = data.result
+      this.list = data.result ? data.result : [] 
     },
     // topicdetail(id) {
     //   wx.navigateTo({

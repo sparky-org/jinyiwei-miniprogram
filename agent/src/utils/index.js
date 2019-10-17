@@ -24,6 +24,32 @@ export function formatTime(date) {
 const host = 'http://118.25.104.232:8081/jinyiwei'
 export { host };
 
+export function msToDate(_ms, _format) {
+  let ms = _ms
+  let format = _format
+  if (ms && ms.toString().length === 10) {
+    ms *= 1000
+  }
+  format = format || 'yyyy-MM-dd hh:mm:ss'
+  const d = new Date(ms)
+  const year = d.getFullYear()
+  const month = d.getMonth() + 1
+  const day = d.getDate()
+  const hour = d.getHours()
+  const minute = d.getMinutes()
+  const seconds = d.getSeconds()
+
+  const addPrefix = source => (source < 10 ? `0${source}` : source)
+
+  format = format.replace('yyyy', year)
+    .replace('MM', addPrefix(month))
+    .replace('dd', addPrefix(day))
+    .replace('hh', addPrefix(hour))
+    .replace('mm', addPrefix(minute))
+    .replace('ss', addPrefix(seconds))
+  return format
+}
+
 let userInfo = wx.getStorageSync("userInfo")
 //请求封装
 function request(url, method, data, header = {}) {
