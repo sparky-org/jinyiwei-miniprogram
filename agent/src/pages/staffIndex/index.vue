@@ -10,20 +10,22 @@
 
       <div class="weui-cells__title">我的任务</div>
       <div class="weui-cells weui-cells_after-title">
-        <navigator url="/pages/staffTask/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-          <div class="weui-cell__bd">我的任务一</div>
+        <navigator v-for="(item, index) in hotList" :key="index" url="/pages/staffTask/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <div class="weui-cell__bd">{{item.name}}</div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </navigator>
-        <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <!-- <navigator url="/pages/staffTask/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <div class="weui-cell__bd">我的任务二</div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-        </navigator>
-        <div class="weui-panel__ft">
+        </navigator> -->
+        <navigator class="weui-panel__ft" url="/pages/staffTask/main">
           <div class="weui-cell weui-cell_access weui-cell_link">
-            <div class="weui-cell__bd" style="text-align: right;">查看更多</div>
+            <div class="weui-cell__bd" style="text-align: right;">
+              查看更多
+            </div>
             <div class="weui-cell__ft weui-cell__ft_in-access"></div>
           </div>
-        </div>
+        </navigator>
       </div>
 
       <div class="weui-cells weui-cells_after-title" style="margin-top: 20rpx;">
@@ -66,6 +68,8 @@ export default {
       }
     })
     this.getData();
+    this.getNearestTasks()
+
   },
   data() {
     return {
@@ -74,7 +78,8 @@ export default {
       //    nickName: '邹志辉'
       // },
       userInfo: null,
-      staffInfo: null
+      staffInfo: null,
+      hotList: []
     };
   },
   components: {},
@@ -97,6 +102,7 @@ export default {
         this.staffInfo = data.result
       }
 
+
       // this.banner = data.banner;
       // this.channel = data.channel;
       // this.brandList = data.brandList;
@@ -105,6 +111,23 @@ export default {
       // this.topicList = data.topicList;
       // this.newCategoryList = data.newCategoryList;
     },
+
+    async getNearestTasks() {
+      const data = await post(`/agency/task/getNearestTasks?employId=${this.$store.state.userInfo.id}`);
+      console.info('staff', data)
+      if(data.success){
+        this.hotList = data.result ? data.result : []
+      }
+
+
+      // this.banner = data.banner;
+      // this.channel = data.channel;
+      // this.brandList = data.brandList;
+      // this.newGoods = data.newGoods;
+      // this.hotGoods = data.hotGoods;
+      // this.topicList = data.topicList;
+      // this.newCategoryList = data.newCategoryList;
+    }
     // goodsDetail(id) {
     //   wx.navigateTo({
     //     url: "/pages/goods/main?id=" + id

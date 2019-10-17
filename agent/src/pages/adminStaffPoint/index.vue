@@ -56,7 +56,7 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+// import { mapState, mapMutations } from "vuex";
 let D = new Date()
 let date = D.getFullYear() + '-' + (D.getMonth() + 1)
 export default {

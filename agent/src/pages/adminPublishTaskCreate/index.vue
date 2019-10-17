@@ -127,7 +127,7 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
@@ -241,7 +241,7 @@ export default {
     async handlePublish(){
       if(this.form.taskName == '' || this.form.targetStr == '' || this.form.awardPoint == '' || this.form.startDay == '' || this.form.endDay == '' || this.form.condition == ''){
         wx.showModal({
-          content: '请填写完整信息',
+          content: '请填写信息',
           showCancel: false,
           success: function (res) {
             if (res.confirm) {
