@@ -51,6 +51,11 @@ export function msToDate(_ms, _format) {
 }
 
 let userInfo = wx.getStorageSync("userInfo")
+// import store from './../store'
+// console.info('store',store)
+// if(userInfo){
+//   store.commit('setUserInfo',userInfo)
+// }
 //请求封装
 function request(url, method, data, header = {}) {
   wx.showLoading({

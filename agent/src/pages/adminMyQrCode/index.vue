@@ -1,39 +1,43 @@
 <template>
   <div class="my_QrCode">
-    my_QrCode
+    <img :src="imgCode" alt="我的二维码">
   </div>
 </template>
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+import { get, post } from "../../utils";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
   computed: {
-    ...mapState(["cityName"])
+    // ...mapState(["cityName"])
   },
   mounted() {
     this.getData();
   },
   data() {
     return {
-      banner: [],
+      // banner: [],
+      imgCode: ''
     };
   },
   components: {},
   methods: {
-    ...mapMutations(["update"]),
+    // ...mapMutations(["update"]),
     async getData() {
-      const data = await get("/index/index");
-      this.banner = data.banner;
+      const data = await post(`/agency/employ/getMyQRCode?agencyId=${this.$store.state.userInfo.agencyId}&employId=${this.$store.state.userInfo.id}`);
+      console.info(data,'二维码')
+      if(data.success){
+        this.imgCode = data.result
+      }
     },
-    topicdetail(id) {
-      wx.navigateTo({
-        url: "/pages/topicdetail/main?id=" + id
-      });
-    },
+    // topicdetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/topicdetail/main?id=" + id
+    //   });
+    // },
   },
   created() {
 

@@ -58,11 +58,13 @@ export default {
     // ...mapState(["cityName"])
   },
   mounted() {
-
+    // this.role = this.$store.state.userInfo.role
+    // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role)
     // this.getData();
   },
   data() {
     return {
+      role: ''
       // banner: [],
       // channel: [],
       // brandList: [],

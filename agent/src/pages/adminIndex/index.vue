@@ -46,7 +46,7 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
@@ -57,7 +57,7 @@ export default {
     // this.getData();
     // this.userInfo = wx.getStorageSync("userInfo")
     // console.info(this.userInfo);
-    this.geData()
+    this.getData()
   },
   data() {
     return {
@@ -74,7 +74,7 @@ export default {
   components: {},
   methods: {
     // ...mapMutations(["update"]),
-    async geData(){
+    async getData(){
       // console.info(12891892189)
       const data = post(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.agencyId}`).then((data)=>{
         if(data.success){
@@ -84,7 +84,7 @@ export default {
 
     },
 
-    async getData() {
+    // async getData() {
       // const data = await get("/index/index");
       // this.banner = data.banner;
       // this.channel = data.channel;
@@ -93,7 +93,7 @@ export default {
       // this.hotGoods = data.hotGoods;
       // this.topicList = data.topicList;
       // this.newCategoryList = data.newCategoryList;
-    }
+    // }
   },
   created() {
   }
