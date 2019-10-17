@@ -14,15 +14,7 @@ export default {
     // ...mapState(["cityName"])
   },
   mounted() {
-    wx.login({
-      success: () => {
-        wx.getUserInfo({
-          success: (res) => {
-            wx.setStorageSync("userInfo", res.userInfo);
-          }
-        })
-      }
-    })
+    
     // 判断是否登录
     let userInfo = wx.getStorageSync("userInfo")
     if(!userInfo){
