@@ -34,8 +34,8 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
-import { agentId } from "../../config";
-import { mapState, mapMutations } from "vuex";
+import { shopId } from "../../config";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       // date: '2019-08-11',
-      phone: '15000000001',
+      phone: '13010000000',
       verifyCode: ''
     };
   },
@@ -74,7 +74,7 @@ export default {
         });
         return
       }
-      const data = await post(`/agency/info/getVerifyCode?phone=${this.phone}`);
+      const data = await post(`/shop/getVerifyCode?phone=${this.phone}`);
       // console.info(data)
       if(data.success){
         this.verifyCode = data.result
@@ -105,8 +105,8 @@ export default {
         });
         return
       }
-      const data = await post(`/agency/info/login`, {
-        "agencyId": agentId,
+      const data = await post(`/shop/login`, {
+        "shopId": shopId,
         "phone": this.phone,
         "verifyCode": this.verifyCode
       });

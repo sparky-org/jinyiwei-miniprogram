@@ -1,5 +1,6 @@
 <template>
   <div class="index">
+  12212121
   </div>
 </template>
 
@@ -14,10 +15,11 @@ export default {
     // ...mapState(["cityName"])
   },
   mounted() {
-    
+
     // 判断是否登录
     let userInfo = wx.getStorageSync("userInfo")
     if(!userInfo){
+      console.info(1212)
       wx.navigateTo({
         url: '/pages/login/main'
       })
@@ -31,19 +33,19 @@ export default {
         url: '/pages/staffIndex/main'
       })
     }
-    if( userInfo.role == "SADMIN"){
-      wx.switchTab({
-        url: '/pages/adminIndex/main'
-      })
-    }
+    // if( userInfo.role == "SADMIN"){
+    //   wx.switchTab({
+    //     url: '/pages/adminIndex/main'
+    //   })
+    // }
     if( userInfo.role == "ADMIN"){
       wx.switchTab({
         url: '/pages/adminIndex/main'
       })
     }
-    wx.switchTab({
-      url: '/pages/adminIndex/main'
-    })
+    // wx.switchTab({
+    //   url: '/pages/adminIndex/main'
+    // })
 
     // let role = 'admin'
     // setTimeout(() => {

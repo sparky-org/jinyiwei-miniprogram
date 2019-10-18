@@ -1,2 +1,2 @@
-const agentId = 1
-export { agentId };
+const shopId = 1
+export { shopId };

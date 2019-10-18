@@ -69,7 +69,7 @@ function request(url, method, data, header = {}) {
       header: {
         "content-type": "application/json", // 默认值
         "token": userInfo ? userInfo.token : '',
-        "key": userInfo ? 'AGENCY-'+userInfo.id : '',
+        "key": userInfo ? 'SHOP-'+userInfo.id : '',
       },
       success: function(res) {
         wx.hideLoading();
