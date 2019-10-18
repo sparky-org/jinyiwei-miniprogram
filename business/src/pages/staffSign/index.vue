@@ -52,7 +52,7 @@ export default {
         this.markers[0].longitude = res.longitude
         this.markers[0].latitude = res.latitude
 
-        const data = await post(`/agency/employ/getBaseLocation?agencyId=${this.$store.state.userInfo.agencyId}`);
+        const data = await post(`/agency/employ/getBaseLocation?employId=${this.$store.state.userInfo.id}`);
         if(data.success){
           console.info(data.result)
           this.latitude = data.result.latitude

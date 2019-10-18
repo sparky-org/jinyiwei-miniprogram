@@ -118,19 +118,19 @@ export default {
             url: '/pages/staffIndex/main'
           })
         }
-        if( data.result.role == "SADMIN"){
-          wx.switchTab({
-            url: '/pages/adminIndex/main'
-          })
-        }
+        // if( data.result.role == "SADMIN"){
+        //   wx.switchTab({
+        //     url: '/pages/adminIndex/main'
+        //   })
+        // }
         if( data.result.role == "ADMIN"){
           wx.switchTab({
             url: '/pages/adminIndex/main'
           })
         }
-        wx.switchTab({
-          url: '/pages/adminIndex/main'
-        })
+        // wx.switchTab({
+        //   url: '/pages/adminIndex/main'
+        // })
       }
     },
     // bindDateChange(e) {

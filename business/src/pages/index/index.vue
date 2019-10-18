@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-  12212121
+  
   </div>
 </template>
 
@@ -19,7 +19,7 @@ export default {
     // 判断是否登录
     let userInfo = wx.getStorageSync("userInfo")
     if(!userInfo){
-      console.info(1212)
+      // console.info(1212)
       wx.navigateTo({
         url: '/pages/login/main'
       })
