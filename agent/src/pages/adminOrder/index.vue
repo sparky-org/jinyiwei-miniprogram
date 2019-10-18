@@ -97,7 +97,7 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get, post, msToDate } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
@@ -167,7 +167,7 @@ export default {
       }
       if(!this.point){
         wx.showModal({
-          content: '亲输入奖励积分',
+          content: '请输入奖励积分',
           showCancel: false,
           success: function (res) {
             if (res.confirm) {
@@ -301,7 +301,7 @@ export default {
     // }
   },
   created() {
-    console.log(89128921982189)
+    // console.log(89128921982189)
   }
 };
 </script>

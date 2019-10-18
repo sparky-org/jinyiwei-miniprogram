@@ -166,7 +166,7 @@ export default {
     }
   },
   created() {
-    console.log(89128921982189)
+    // console.log(89128921982189)
   }
 };
 </script>
