@@ -100,7 +100,7 @@ export default {
     "window": {
       "backgroundTextStyle": "light",
       "navigationBarBackgroundColor": "#fff",
-      "navigationBarTitleText": "商家小程序",
+      "navigationBarTitleText": "代理商小程序",
       "navigationBarTextStyle": "black"
     },
     "permission": {
