@@ -105,7 +105,7 @@ export default {
     },
     "permission": {
       "scope.userLocation": {
-        "desc": "你的位置信息将用于小程序学习使用"
+        "desc": "你的位置信息将用于小程序使用"
       }
     }
   }
