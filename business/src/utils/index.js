@@ -20,8 +20,42 @@ export function formatTime(date) {
 
 //-------------------------------------------------------------------------请求的封装
 
-const host = "http://118.25.222.68:5757/heyushuo"
+// const host = "http://118.25.222.68:5757/heyushuo"
+const host = 'http://118.25.104.232:8081/jinyiwei'
 export { host };
+
+export function msToDate(_ms, _format) {
+  let ms = _ms
+  let format = _format
+  if (ms && ms.toString().length === 10) {
+    ms *= 1000
+  }
+  format = format || 'yyyy-MM-dd hh:mm:ss'
+  const d = new Date(ms)
+  const year = d.getFullYear()
+  const month = d.getMonth() + 1
+  const day = d.getDate()
+  const hour = d.getHours()
+  const minute = d.getMinutes()
+  const seconds = d.getSeconds()
+
+  const addPrefix = source => (source < 10 ? `0${source}` : source)
+
+  format = format.replace('yyyy', year)
+    .replace('MM', addPrefix(month))
+    .replace('dd', addPrefix(day))
+    .replace('hh', addPrefix(hour))
+    .replace('mm', addPrefix(minute))
+    .replace('ss', addPrefix(seconds))
+  return format
+}
+
+let userInfo = wx.getStorageSync("userInfo")
+// import store from './../store'
+// console.info('store',store)
+// if(userInfo){
+//   store.commit('setUserInfo',userInfo)
+// }
 //请求封装
 function request(url, method, data, header = {}) {
   wx.showLoading({
@@ -33,11 +67,19 @@ function request(url, method, data, header = {}) {
       method: method,
       data: data,
       header: {
-        "content-type": "application/json" // 默认值
+        "content-type": "application/json", // 默认值
+        "token": userInfo ? userInfo.token : '',
+        "key": userInfo ? 'AGENCY-'+userInfo.id : '',
       },
       success: function(res) {
         wx.hideLoading();
-        resolve(res.data);
+        if(res.data.success === false){
+          wx.navigateTo({
+            url: '/pages/login/main'
+          })
+        }else{
+          resolve(res.data);
+        }
       },
       fail: function(error) {
         wx.hideLoading();

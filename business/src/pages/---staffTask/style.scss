@@ -1,9 +1,4 @@
-.staff_sign {
-  .map{
-    padding-bottom: 100%;
-    background-color: #ccc;
-    position: relative;
-  }
+.staff_task {
   .weui-form-preview__hd,
   .weui-form-preview__value{
     text-align: left;
@@ -14,15 +9,8 @@
   & > .weui-form-preview{
     margin-bottom: 20rpx;
   }
-
-
-  padding-bottom: 120rpx;
-  .sureBth{
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 20rpx;
+  .date_wrapper{
     background-color: #fff;
+    padding: 20rpx;
   }
 }

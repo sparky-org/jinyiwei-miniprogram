@@ -1,9 +1,4 @@
-.staff_sign {
-  .map{
-    padding-bottom: 100%;
-    background-color: #ccc;
-    position: relative;
-  }
+.staff_apply {
   .weui-form-preview__hd,
   .weui-form-preview__value{
     text-align: left;
@@ -14,8 +9,8 @@
   & > .weui-form-preview{
     margin-bottom: 20rpx;
   }
-
-
+  
+  
   padding-bottom: 120rpx;
   .sureBth{
     position: fixed;
