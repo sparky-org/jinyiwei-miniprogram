@@ -2,22 +2,29 @@
   <div class="staff_sign">
 
     <div class="map" v-if="latitude && longitude">
-      <map id="map" :markers="markers" :longitude="longitude" :latitude="latitude" scale="14" show-location style="width: 100%; height: 300px;"></map>
+      <map id="map" :markers="markers" :longitude="longitude" :latitude="latitude" scale="14" show-location style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;"></map>
     </div>
 
     <div class="weui-form-preview">
       <div class="weui-form-preview__hd">
         <div class="weui-form-preview__label">时间</div>
-        <div class="weui-form-preview__value_in-hd">2019-09-19 09:12:23</div>
+        <div class="weui-form-preview__value_in-hd">{{currentTime}}</div>
       </div>
-      <div class="weui-form-preview__hd">
+      <!-- <div class="weui-form-preview__hd">
         <div class="weui-form-preview__label">地点</div>
         <div class="weui-form-preview__value_in-hd">北京天安门王府井</div>
+      </div> -->
+      <div class="weui-form-preview__hd">
+        <div class="weui-form-preview__label">当前位置</div>
+        <div class="weui-form-preview__value_in-hd">
+          <span v-if="isIn" style="color: #179C16;">在打卡范围内</span>
+          <span v-if="!isIn" style="color: #f00;">不在打卡范围内</span>
+        </div>
       </div>
     </div>
 
     <div class="sureBth">
-      <button class="weui-btn" type="primary" @click="handleArrive">签到</button>
+      <button class="weui-btn" :disabled="!isIn" type="primary" @click="handleArrive">签到</button>
     </div>
 
   </div>
@@ -25,7 +32,7 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post, msToDate } from "../../utils";
 let img = require('../../images/marker.png')
 // import { mapState, mapMutations } from "vuex";
 export default {
@@ -34,23 +41,49 @@ export default {
   computed: {
     // ...mapState(["cityName"])
   },
-  mounted() {
+  async mounted() {
     wx.getLocation({
       type: 'gcj02',
-      success: (res) => {
+      success: async (res) => {
         console.log("当前坐标信息：", res)
         this.longitude = res.longitude
         this.latitude = res.latitude
+        console.info(this.longitude,this.latitude)
         this.markers[0].longitude = res.longitude
         this.markers[0].latitude = res.latitude
-        var distance = this.distance(res.latitude, res.longitude,39.918034,116.415192);
-        console.log("当前位置距离北京故宫：", distance, "千米")
+
+        const data = await post(`/agency/employ/getBaseLocation?agencyId=${this.$store.state.userInfo.agencyId}`);
+        if(data.success){
+          console.info(data.result)
+          this.latitude = data.result.latitude
+          this.longitude = data.result.longitude
+          this.radius = data.result.radius
+          let D = new Date(data.result.currentTime);
+          let S = D.getTime();
+          setInterval(() =>{
+            S += 1000
+            this.currentTime = msToDate(S)
+          }, 1000)
+
+          var distance = this.distance(res.latitude, res.longitude, this.latitude, this.longitude) * 1000;
+          console.log("当前位置距离打卡位置：", distance, "米")
+          if(distance <= this.radius){
+            this.isIn = true
+          }else{
+            this.isIn = false
+          }
+
+        }
       }
     })
+
     // this.getData();
   },
   data() {
     return {
+      radius: 1000000000,
+      currentTime: null,
+      isIn: false,
       markers: [{
         iconPath: img,
         // width: 50,
@@ -66,6 +99,20 @@ export default {
   },
   components: {},
   methods: {
+    async handleArrive(){
+      const data = await post(`/agency/employ/sign?employId=${this.$store.state.userInfo.id}`);
+      console.info(123,data)
+      if(data.success){
+        wx.showToast({
+          title: '打卡成功',
+          icon: 'success',
+          duration: 2000,
+          success(){
+
+          }
+        })
+      }
+    },
     // bindDateChange(e) {
     //   console.log('选中的日期为：' + e.mp.detail.value);
     //   this.date = e.mp.detail.value
