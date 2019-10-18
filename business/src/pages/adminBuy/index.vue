@@ -6,7 +6,7 @@
          <div class="weui-form-preview__label">
 
          </div>
-       </div>
+       </div>  
      </div> -->
      <!-- {{height}} -->
 
