@@ -74,9 +74,18 @@ function request(url, method, data, header = {}) {
       success: function(res) {
         wx.hideLoading();
         if(res.data.success === false){
-          wx.navigateTo({
-            url: '/pages/login/main'
-          })
+          // wx.navigateTo({
+          //   url: '/pages/login/main'
+          // })
+          wx.showModal({
+            content: res.data.errMsg,
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                // console.log('用户点击确定')
+              }
+            }
+          });
         }else{
           resolve(res.data);
         }
