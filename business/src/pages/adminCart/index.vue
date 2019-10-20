@@ -79,6 +79,7 @@ export default {
   },
   computed: {
     // ...mapState(["cityName"])
+
   },
   mounted() {
 
@@ -92,6 +93,7 @@ export default {
       // hotGoods: [],
       // topicList: [],
       // newCategoryList: [],
+      // orderDisabled: false,
       totalLen: 0,
       successCount: 0,
       checkboxItems: [
@@ -108,6 +110,9 @@ export default {
     };
   },
   watch: {
+    // totalLen(val){
+    //   (val == 0) ? (this.orderDisabled = true) : (this.orderDisabled = false)
+    // },
     successCount(val){
       if( val == this.totalLen){
         wx.showToast({
@@ -147,6 +152,18 @@ export default {
         return item.checked
       })
       console.info(1, orderList)
+      if(orderList.length == 0){
+        wx.showModal({
+          content: '请选择需要购买的商品',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              // console.log('用户点击确定')
+            }
+          }
+        });
+        return
+      }
       // let orderLen = orderList.length
       let resultArr = []
       // list = [
@@ -182,6 +199,8 @@ export default {
 
       console.info(2, resultArr)
       this.totalLen = resultArr.length
+
+
 
       resultArr.forEach(async item => {
         let param = item.map(it => {

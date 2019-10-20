@@ -76,7 +76,7 @@ export default {
     // ...mapMutations(["update"]),
     async getData(){
       // console.info(12891892189)
-      const data = post(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.id}`).then((data)=>{
+      const data = post(`/shop/main?shopId=${this.$store.state.userInfo.shopId}`).then((data)=>{
         if(data.success){
           this.data = data.result
         }
