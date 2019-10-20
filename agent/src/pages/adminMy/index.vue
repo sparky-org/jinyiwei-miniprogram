@@ -50,7 +50,7 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
