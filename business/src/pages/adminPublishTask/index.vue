@@ -1,6 +1,6 @@
 <template>
   <div class="publish_task">
-
+    --{{list.length}}--
     <div class="weui-form-preview">
       <div class="weui-form-preview__hd">
         <div class="weui-form-preview__label">发布的任务1</div>
@@ -105,19 +105,20 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
   computed: {
-    ...mapState(["cityName"])
+    // ...mapState(["cityName"])
   },
   mounted() {
     this.getData();
   },
   data() {
     return {
-      banner: [],
+      // banner: [],
+      list: []
     };
   },
   components: {},
@@ -127,16 +128,24 @@ export default {
         url: '/pages/adminPublishTaskCreate/main'
       })
     },
-    ...mapMutations(["update"]),
+    // ...mapMutations(["update"]),
     async getData() {
-      const data = await get("/index/index");
-      this.banner = data.banner;
+      const data = await post(`/shop/task/getTaskList`, {
+        "shopId": this.$store.state.userInfo.shopId,
+        "currentPageIndex": 1,
+        "pageSize": 1000000,
+      })
+      if(data.success){
+        this.list = data.result ? data.result : []
+      }
+      // const data = await get("/index/index");
+      // this.banner = data.banner;
     },
-    topicdetail(id) {
-      wx.navigateTo({
-        url: "/pages/topicdetail/main?id=" + id
-      });
-    },
+    // topicdetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/topicdetail/main?id=" + id
+    //   });
+    // },
   },
   created() {
 

@@ -2,17 +2,17 @@
   <div class="cart">
 
 
-    <div class="weui-cells weui-cells_after-title" id="selectArea" @click="handleHistory">
+    <!-- <div class="weui-cells weui-cells_after-title" id="selectArea" @click="handleHistory">
        <div class="weui-cell weui-cell_access">
           <div>&#12288;&#12288;&#12288;</div>
           <div class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0; position: absolute; right: 20rpx;">
               <div>
                 查看订单列表
               </div>
-              <!-- <div class="weui-badge weui-badge_dot" style="margin-left: 5px;margin-right: 5px;"></div> -->
+
           </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="weui-cells weui-cells_after-title" v-if="checkboxItems.length">
       <checkbox-group @change="checkboxChange">
@@ -142,11 +142,7 @@ export default {
   },
   components: {},
   methods: {
-    handleHistory(){
-      wx.navigateTo({
-        url:'/pages/adminOrderList/main'
-      })
-    },
+
     async handleOrder(){
       let orderList = this.checkboxItems.filter(item => {
         return item.checked

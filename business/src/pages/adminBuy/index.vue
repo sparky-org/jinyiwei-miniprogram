@@ -24,10 +24,19 @@
         </div>
       </picker>
     </div>
+    <div class="weui-cell weui-cell_access" style="padding: 0 30px; height: 30px; line-height: 30px;" @click="handleHistory">
+        <div>&#12288;&#12288;&#12288;</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0; position: absolute; right: 20rpx;">
+            <div>
+              查看订单列表
+            </div>
+            <!-- <div class="weui-badge weui-badge_dot" style="margin-left: 5px;margin-right: 5px;"></div> -->
+        </div>
+    </div>
 
     <!-- {{height}} {{selectAreaHeight}} {{height-selectAreaHeight}} -->
     <!-- {{index}} -->
-    <scroll-view scroll-y="true" :style="{'height':height-selectAreaHeight+'px'}">
+    <scroll-view scroll-y="true" :style="{'height':height-selectAreaHeight-30+'px'}">
     <!-- {{productList.length}} -->
       <div v-if="productList.length > 0" class="weui-panel weui-panel_access custom-title" v-for="(item, index) in productList" :key="index">
         <!-- <div class="weui-panel__hd">今日上新</div> -->
@@ -204,6 +213,11 @@ export default {
     //     url:'/pages/adminOrderList/main'
     //   })
     // },
+    handleHistory(){
+      wx.navigateTo({
+        url:'/pages/adminOrderList/main?agencyId=' + this.agencyId
+      })
+    },
     bindPickerChange(e) {
       // console.info('e', e)
       this.index = e.mp.detail.value

@@ -1,6 +1,6 @@
 <template>
   <div class="order_manage">
-
+    {{list}}
     <div class="weui-panel weui-panel_access custom-title">
       <div class="weui-panel__hd">2019-11-20 12:12:34 <span>未付款</span></div>
       <div class="weui-panel__bd">
@@ -74,7 +74,7 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get, post } from "../../utils";
+import { get, post, msToDate } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
@@ -88,6 +88,7 @@ export default {
   },
   data() {
     return {
+      list: []
       // banner: [],
       // channel: [],
       // brandList: [],
@@ -102,19 +103,24 @@ export default {
     // ...mapMutations(["update"]),
 
     async getData() {
-      
-      // const data = await post(`/shop/createPurchaseOrder`, {
-      //   "agencyId": item[0].agencyId,
-      //   "goodsItems": param,
-      //   "shopEmpId": this.$store.state.userInfo.employId,
-      //   "shopId": this.$store.state.userInfo.shopId
-      // })
-      // if(data.success){
-      //   console.info(12122101091290)
-      //   this.successCount++
-      // }
-      
-      
+
+      const data = await post(`/shop/goods/orderList`, {
+        "shopId": this.$store.state.userInfo.shopId,
+        "currentPageIndex": 1,
+        "pageSize": 100000
+      })
+      if(data.success){
+        if(data.result){
+          data.result.forEach(item => {
+            item.dateStr = msToDate(item.createTime)
+          })
+          this.list = data.result
+        }else{
+          this.list = []
+        }
+      }
+
+
       // const data = await get("/index/index");
       // this.banner = data.banner;
       // this.channel = data.channel;

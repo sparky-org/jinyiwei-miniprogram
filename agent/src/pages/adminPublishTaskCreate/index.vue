@@ -45,7 +45,7 @@
             <div class="weui-label">开始时间</div>
           </div>
           <div class="weui-cell__bd">
-            <!-- <picker mode="date" value="form.startDay" start="2015-09-01" end="2017-09-01" @change="bindBeginDateChange"> -->
+            <!-- <picker mode="date" value="form.startDay" @change="bindBeginDateChange"> -->
             <picker mode="date" value="form.startDay" @change="bindBeginDateChange">
               <div class="weui-input">{{form.startDay}}</div>
             </picker>
@@ -57,7 +57,7 @@
             <div class="weui-label">结束时间</div>
           </div>
           <div class="weui-cell__bd">
-            <!-- <picker mode="date" value="form.endDay" start="2015-09-01" end="2017-09-01" @change="bindEndDateChange"> -->
+            <!-- <picker mode="date" value="form.endDay" @change="bindEndDateChange"> -->
             <picker mode="date" value="form.endDay" @change="bindEndDateChange">
               <div class="weui-input">{{form.endDay}}</div>
             </picker>
