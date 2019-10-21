@@ -156,7 +156,9 @@ export default {
 
                 }
               })
-              this.getData()
+              setTimeout(() => {
+                this.getData()
+              }, 2100);
             }
           } else {
             console.log('取消')
