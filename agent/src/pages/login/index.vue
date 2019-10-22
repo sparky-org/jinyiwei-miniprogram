@@ -1,97 +1,159 @@
 <template>
-  <div class="login-container">
-    <view class="weui-cells weui-cells_after-title">
-      <view class="weui-cell weui-cell_vcode">
-        <view class="weui-cell__bd">
-          <input class="weui-input" type="number" placeholder="请输入您的手机号" />
-        </view>
-      </view>
-      <view class="weui-cell weui-cell_vcode">
-        <view class="weui-cell__bd">
-          <input class="weui-input" type="number" placeholder="请输入验证码" />
-        </view>
-        <view class="weui-cell__ft">
-          <view class="weui-vcode-btn">获取验证码</view>
-        </view>
-      </view>
-    </view>
-    <view class="weui-btn-area">
-      <button class="weui-btn" type="primary" @click="login">登录</button>
-    </view>
+  <div class="login">
+    <div class="weui-cells weui-cells_after-title">
+      <div class="weui-cell weui-cell_input weui-cell_vcode">
+        <div class="weui-cell__hd">
+          <div class="weui-label">手机号</div>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" v-model="phone" placeholder="请输入手机号" />
+        </div>
+        <div class="weui-cell__ft">
+          <div class="weui-vcode-btn" @click="getCode">获取验证码</div>
+        </div>
+      </div>
+
+      <div class="weui-cell weui-cell_input weui-cell_vcode">
+        <div class="weui-cell__hd">
+          <div class="weui-label">验证码</div>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" v-model="verifyCode" placeholder="请输入验证码" />
+        </div>
+        <!-- <div class="weui-cell__ft">
+          <image class="weui-vcode-img" src="/static/images/vcode.jpg" style="width: 108px" />
+        </div> -->
+      </div>
+    </div>
+    <div style="padding: 50rpx 20rpx;">
+      <button class="weui-btn" type="primary" @click="handleLogin" :disabled="loginState">登 录</button>
+    </div>
   </div>
 </template>
 
 <script>
+import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
+import { agentId } from "../../config";
 import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
   computed: {
-    ...mapState(["cityName"])
+    // ...mapState(["cityName"]),
+    // loginState(){
+    //   return this.phone && this.verifyCode
+    // }
   },
   mounted() {
-    this.getData();
+    // this.getData();
   },
   data() {
     return {
-      banner: [
-        'https://oss.chlpartner.com/distribution/gold/images/index/swiper1.png',
-        'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
-        'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
-      ],
-      newGoods: [],
-      hotGoods: [],
-      topicList: [],
-      newCategoryList: [],
-      activeNav: '1',
-      navData: [{
-        text: '推荐',
-        value: '1'
-      }, {
-        text: '美容',
-        value: '2'
-      }, {
-        text: '美体',
-        value: '3'
-      }, {
-        text: '丰胸',
-        value: '4'
-      }, {
-        text: '美白',
-        value: '5'
-      }, {
-        text: '整形',
-        value: '6'
-      }, {
-        text: '微整',
-        value: '7'
-      }],
+      // date: '2019-08-11',
+      phone: '15000000001',
+      verifyCode: ''
     };
+  },
+  watch:{
   },
   components: {},
   methods: {
-    ...mapMutations(["update"]),
-
-    getData() {
-      post("/commPoster/getPoster").then(res => {
-        console.log(3333, res)
-      })
+    async getCode(){
+      if(!this.phone){
+        wx.showModal({
+          content: '请输入手机号码',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              // console.log('用户点击确定')
+            }
+          }
+        });
+        return
+      }
+      const data = await post(`/agency/info/getVerifyCode?phone=${this.phone}`);
+      // console.info(data)
+      if(data.success){
+        this.verifyCode = data.result
+      }
     },
-
-    // 切换类别
-    changeNav(item) {
-      this.activeNav = item.value
-    },
-
-    goodsDetail(id) {
-      wx.navigateTo({
-        url: "/pages/goods/main?id=" + id
+    async handleLogin(){
+      if(!this.phone){
+        wx.showModal({
+          content: '请输入手机号码',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              // console.log('用户点击确定')
+            }
+          }
+        });
+        return
+      }
+      if(!this.verifyCode){
+        wx.showModal({
+          content: '请输入验证码',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              // console.log('用户点击确定')
+            }
+          }
+        });
+        return
+      }
+      const data = await post(`/agency/info/login`, {
+        "agencyId": agentId,
+        "phone": this.phone,
+        "verifyCode": this.verifyCode
       });
+      if(data.success){
+        wx.setStorageSync("userInfo", data.result);
+        this.$store.commit('setUserInfo',data.result)
+        if( data.result.role == "EMPLOY"){
+          wx.reLaunch({
+            url: '/pages/staffIndex/main'
+          })
+        }
+        if( data.result.role == "SADMIN"){
+          wx.switchTab({
+            url: '/pages/adminIndex/main'
+          })
+        }
+        if( data.result.role == "ADMIN"){
+          wx.switchTab({
+            url: '/pages/adminIndex/main'
+          })
+        }
+        wx.switchTab({
+          url: '/pages/adminIndex/main'
+        })
+      }
     },
-
+    // bindDateChange(e) {
+    //   console.log('选中的日期为：' + e.mp.detail.value);
+    //   this.date = e.mp.detail.value
+    // },
+    // ...mapMutations(["update"]),
+    // async getData() {
+      // const data = await get("/index/index");
+      // this.banner = data.banner;
+      // this.channel = data.channel;
+      // this.brandList = data.brandList;
+      // this.newGoods = data.newGoods;
+      // this.hotGoods = data.hotGoods;
+      // this.topicList = data.topicList;
+      // this.newCategoryList = data.newCategoryList;
+    // },
+    // goodsDetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/goods/main?id=" + id
+    //   });
+    // }
   },
   created() {
+    // console.log(89128921982189)
   }
 };
 </script>

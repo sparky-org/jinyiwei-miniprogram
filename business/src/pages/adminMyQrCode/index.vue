@@ -1,6 +1,13 @@
 <template>
   <div class="my_QrCode">
-    my_QrCode
+    <div class="page__bd" style="padding-top: 150rpx; text-align: center;">
+      <div class="icon-box">
+        <icon type="info" size="93"></icon>
+        <div class="icon-box__ctn">
+          <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px;">暂无二维码，敬请期待小程序上线后更新</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

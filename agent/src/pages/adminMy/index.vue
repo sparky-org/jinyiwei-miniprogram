@@ -31,7 +31,7 @@
         <div class="weui-cell__bd">商品管理</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
-      <navigator url="/pages/adminMyData/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator v-if="role=='SADMIN'" url="/pages/adminMyData/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__bd">数据大盘</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
@@ -50,86 +50,88 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
   computed: {
-    ...mapState(["cityName"])
+    // ...mapState(["cityName"])
   },
   mounted() {
-
-    this.getData();
+    this.role = this.$store.state.userInfo.role
+    console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role)
+    // this.getData();
   },
   data() {
     return {
-      banner: [],
-      channel: [],
-      brandList: [],
-      newGoods: [],
-      hotGoods: [],
-      topicList: [],
-      newCategoryList: []
+      role: ''
+      // banner: [],
+      // channel: [],
+      // brandList: [],
+      // newGoods: [],
+      // hotGoods: [],
+      // topicList: [],
+      // newCategoryList: []
     };
   },
   components: {},
   methods: {
-    ...mapMutations(["update"]),
+    // ...mapMutations(["update"]),
 
-    async getData() {
-      const data = await get("/index/index");
-      this.banner = data.banner;
-      this.channel = data.channel;
-      this.brandList = data.brandList;
-      this.newGoods = data.newGoods;
-      this.hotGoods = data.hotGoods;
-      this.topicList = data.topicList;
-      this.newCategoryList = data.newCategoryList;
-    },
-    goodsDetail(id) {
-      wx.navigateTo({
-        url: "/pages/goods/main?id=" + id
-      });
-    },
-    categoryList(id) {
-      wx.navigateTo({
-        url: "/pages/categorylist/main?id=" + id
-      });
-    },
-    goodsList(info) {
-      if (info == "hot") {
-        wx.navigateTo({
-          url: "/pages/newgoods/main?isHot=" + 1
-        });
-      } else {
-        wx.navigateTo({
-          url: "/pages/newgoods/main?isNew=" + 1
-        });
-      }
-    },
-    topicdetail(id) {
-      wx.navigateTo({
-        url: "/pages/topicdetail/main?id=" + id
-      });
-    },
-    totopic() {
-      wx.navigateTo({
-        url: "/pages/topic/main"
-      });
-    },
-    tobrandList() {
-      wx.navigateTo({
-        url: "/pages/brandlist/main"
-      });
-    },
-    branddetail(id) {
-      wx.navigateTo({
-        url: "/pages/branddetail/main?id=" + id
-      });
-    }
+    // async getData() {
+    //   const data = await get("/index/index");
+    //   this.banner = data.banner;
+    //   this.channel = data.channel;
+    //   this.brandList = data.brandList;
+    //   this.newGoods = data.newGoods;
+    //   this.hotGoods = data.hotGoods;
+    //   this.topicList = data.topicList;
+    //   this.newCategoryList = data.newCategoryList;
+    // },
+    // goodsDetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/goods/main?id=" + id
+    //   });
+    // },
+    // categoryList(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/categorylist/main?id=" + id
+    //   });
+    // },
+    // goodsList(info) {
+    //   if (info == "hot") {
+    //     wx.navigateTo({
+    //       url: "/pages/newgoods/main?isHot=" + 1
+    //     });
+    //   } else {
+    //     wx.navigateTo({
+    //       url: "/pages/newgoods/main?isNew=" + 1
+    //     });
+    //   }
+    // },
+    // topicdetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/topicdetail/main?id=" + id
+    //   });
+    // },
+    // totopic() {
+    //   wx.navigateTo({
+    //     url: "/pages/topic/main"
+    //   });
+    // },
+    // tobrandList() {
+    //   wx.navigateTo({
+    //     url: "/pages/brandlist/main"
+    //   });
+    // },
+    // branddetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/branddetail/main?id=" + id
+    //   });
+    // }
   },
   created() {
-    console.log(89128921982189)
+    // console.log(89128921982189)
   }
 };
 </script>

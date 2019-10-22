@@ -1,6 +1,7 @@
 <template>
   <div class="order_list">
-
+  <!-- {{agencyId}} -->
+  {{list}}
     <div class="weui-form-preview">
        <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
@@ -78,27 +79,29 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+import { get, post } from "../../utils";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
   computed: {
-    ...mapState(["cityName"])
+    // ...mapState(["cityName"])
   },
   mounted() {
-
+    this.agencyId = this.$root.$mp.query.agencyId;
     this.getData();
   },
   data() {
     return {
-      banner: [],
-      channel: [],
-      brandList: [],
-      newGoods: [],
-      hotGoods: [],
-      topicList: [],
-      newCategoryList: []
+      list: [],
+      agencyId: ''
+      // banner: [],
+      // channel: [],
+      // brandList: [],
+      // newGoods: [],
+      // hotGoods: [],
+      // topicList: [],
+      // newCategoryList: []
     };
   },
   components: {},
@@ -108,62 +111,70 @@ export default {
         url: '/pages/adminBuy/main'
       })
     },
-    ...mapMutations(["update"]),
+    // ...mapMutations(["update"]),
 
     async getData() {
-      const data = await get("/index/index");
-      this.banner = data.banner;
-      this.channel = data.channel;
-      this.brandList = data.brandList;
-      this.newGoods = data.newGoods;
-      this.hotGoods = data.hotGoods;
-      this.topicList = data.topicList;
-      this.newCategoryList = data.newCategoryList;
-    },
-    goodsDetail(id) {
-      wx.navigateTo({
-        url: "/pages/goods/main?id=" + id
-      });
-    },
-    categoryList(id) {
-      wx.navigateTo({
-        url: "/pages/categorylist/main?id=" + id
-      });
-    },
-    goodsList(info) {
-      if (info == "hot") {
-        wx.navigateTo({
-          url: "/pages/newgoods/main?isHot=" + 1
-        });
-      } else {
-        wx.navigateTo({
-          url: "/pages/newgoods/main?isNew=" + 1
-        });
+      const data = await post(`/shop/queryPurchaseOrderList`, {
+        "shopId": this.$store.state.userInfo.shopId,
+        "agencyId": 2
+      })
+      if(data.success){
+        console.info(12122101091290)
+        this.list = data.result ? data.result : []
       }
+      // const data = await get("/index/index");
+      // this.banner = data.banner;
+      // this.channel = data.channel;
+      // this.brandList = data.brandList;
+      // this.newGoods = data.newGoods;
+      // this.hotGoods = data.hotGoods;
+      // this.topicList = data.topicList;
+      // this.newCategoryList = data.newCategoryList;
     },
-    topicdetail(id) {
-      wx.navigateTo({
-        url: "/pages/topicdetail/main?id=" + id
-      });
-    },
-    totopic() {
-      wx.navigateTo({
-        url: "/pages/topic/main"
-      });
-    },
-    tobrandList() {
-      wx.navigateTo({
-        url: "/pages/brandlist/main"
-      });
-    },
-    branddetail(id) {
-      wx.navigateTo({
-        url: "/pages/branddetail/main?id=" + id
-      });
-    }
+    // goodsDetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/goods/main?id=" + id
+    //   });
+    // },
+    // categoryList(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/categorylist/main?id=" + id
+    //   });
+    // },
+    // goodsList(info) {
+    //   if (info == "hot") {
+    //     wx.navigateTo({
+    //       url: "/pages/newgoods/main?isHot=" + 1
+    //     });
+    //   } else {
+    //     wx.navigateTo({
+    //       url: "/pages/newgoods/main?isNew=" + 1
+    //     });
+    //   }
+    // },
+    // topicdetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/topicdetail/main?id=" + id
+    //   });
+    // },
+    // totopic() {
+    //   wx.navigateTo({
+    //     url: "/pages/topic/main"
+    //   });
+    // },
+    // tobrandList() {
+    //   wx.navigateTo({
+    //     url: "/pages/brandlist/main"
+    //   });
+    // },
+    // branddetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/branddetail/main?id=" + id
+    //   });
+    // }
   },
   created() {
-    console.log(89128921982189)
+    // console.log(89128921982189)
   }
 };
 </script>

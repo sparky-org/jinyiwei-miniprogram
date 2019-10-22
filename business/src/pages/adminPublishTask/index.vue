@@ -1,37 +1,51 @@
 <template>
   <div class="publish_task">
+    <!-- --{{list.length}}-- -->
+    <template v-if="list.length > 0">
+      <div class="weui-form-preview" v-for="(item, index) in list" :key="index">
+        <div class="weui-form-preview__hd">
+          <div class="weui-form-preview__label">发布的任务1</div>
+          <div class="weui-form-preview__value_in-hd">{{item.taskName}}&#12288;</div>
+        </div>
+        <div class="weui-form-preview__bd">
+          <div class="weui-form-preview__item">
+            <div class="weui-form-preview__label">完成奖励</div>
+            <div class="weui-form-preview__value">{{item.point}}积分</div>
+          </div>
+        </div>
+        <div class="weui-form-preview__bd">
+          <div class="weui-form-preview__item">
+            <div class="weui-form-preview__label">对象</div>
+            <div class="weui-form-preview__value">{{item.targetType == 'ALL' ? '全体员工' : item.humanStr}}</div>
+          </div>
+        </div>
+        <div class="weui-form-preview__bd">
+          <div class="weui-form-preview__item">
+            <div class="weui-form-preview__label">开始时间</div>
+            <div class="weui-form-preview__value">{{item.beginStr}}</div>
+          </div>
+        </div>
+        <div class="weui-form-preview__bd">
+          <div class="weui-form-preview__item">
+            <div class="weui-form-preview__label">结束时间</div>
+            <div class="weui-form-preview__value">{{item.endStr}}</div>
+          </div>
+        </div>
+      </div>
+    </template>
 
-    <div class="weui-form-preview">
-      <div class="weui-form-preview__hd">
-        <div class="weui-form-preview__label">发布的任务1</div>
-        <div class="weui-form-preview__value_in-hd">&#12288;</div>
-      </div>
-      <div class="weui-form-preview__bd">
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">完成奖励</div>
-          <div class="weui-form-preview__value">100积分</div>
-        </div>
-      </div>
-      <div class="weui-form-preview__bd">
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">对象</div>
-          <div class="weui-form-preview__value">全体员工</div>
-        </div>
-      </div>
-      <div class="weui-form-preview__bd">
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">开始时间</div>
-          <div class="weui-form-preview__value">2019-09-10</div>
-        </div>
-      </div>
-      <div class="weui-form-preview__bd">
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">结束时间</div>
-          <div class="weui-form-preview__value">2019-09-11</div>
+    <div v-else>
+      <div class="page__bd" style="padding-top: 150rpx; text-align: center;">
+        <div class="icon-box">
+          <icon type="info" size="93"></icon>
+          <div class="icon-box__ctn">
+            <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px;">暂无数据</div>
+          </div>
         </div>
       </div>
     </div>
 
+<!--
     <div class="weui-form-preview">
       <div class="weui-form-preview__hd">
         <div class="weui-form-preview__label">发布的任务2</div>
@@ -94,7 +108,7 @@
       </div>
     </div>
 
-
+ -->
 
     <div class="sureBth">
       <button class="weui-btn" type="primary" @click="handleCreate">创建新任务</button>
@@ -104,20 +118,21 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+import { get, post, msToDate} from "../../utils";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
   computed: {
-    ...mapState(["cityName"])
+    // ...mapState(["cityName"])
   },
   mounted() {
     this.getData();
   },
   data() {
     return {
-      banner: [],
+      // banner: [],
+      list: []
     };
   },
   components: {},
@@ -127,16 +142,31 @@ export default {
         url: '/pages/adminPublishTaskCreate/main'
       })
     },
-    ...mapMutations(["update"]),
+    // ...mapMutations(["update"]),
     async getData() {
-      const data = await get("/index/index");
-      this.banner = data.banner;
+      const data = await post(`/shop/task/queryPublishedTasks?shopId=${this.$store.state.userInfo.shopId}`)
+      if(data.success){
+        data.result.forEach(item => {
+          item.beginStr = msToDate(item.startTime)
+          item.endStr = msToDate(item.endTime)
+          if(item.target){
+            let arr = item.target.split(',')
+            arr.splice(arr.length-1, 1)
+            item.humanStr = arr[0]
+          }else{
+            item.humanStr = ''
+          }
+        })
+        this.list = data.result ? data.result : []
+      }
+      // const data = await get("/index/index");
+      // this.banner = data.banner;
     },
-    topicdetail(id) {
-      wx.navigateTo({
-        url: "/pages/topicdetail/main?id=" + id
-      });
-    },
+    // topicdetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/topicdetail/main?id=" + id
+    //   });
+    // },
   },
   created() {
 

@@ -100,12 +100,12 @@ export default {
     "window": {
       "backgroundTextStyle": "light",
       "navigationBarBackgroundColor": "#fff",
-      "navigationBarTitleText": "商家小程序",
+      "navigationBarTitleText": "代理商小程序",
       "navigationBarTextStyle": "black"
     },
     "permission": {
       "scope.userLocation": {
-        "desc": "你的位置信息将用于小程序学习使用"
+        "desc": "你的位置信息将用于小程序使用"
       }
     }
   }
