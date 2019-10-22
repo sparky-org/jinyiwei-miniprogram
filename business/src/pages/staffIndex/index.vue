@@ -87,7 +87,7 @@ export default {
     // ...mapMutations(["update"]),
 
     async getData() {
-      const data = await post(`/agency/employ/getEmployInfo?employId=${this.$store.state.userInfo.employId}`);
+      const data = await post(`/employ/queryEmployInfo?employId=${this.$store.state.userInfo.employId}`);
       console.info('staff', data)
       if(data.success){
         if(data.result.employId > 0){

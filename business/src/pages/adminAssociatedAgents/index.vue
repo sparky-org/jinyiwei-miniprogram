@@ -1,13 +1,13 @@
 <template>
   <div class="associated_agents">
-    -- {{list.length}} --
+    <!-- -- {{list.length}} -- -->
     <div class="weui-cells weui-cells_after-title" v-if="list.length > 0">
       <div class="weui-cell" v-for="(item, index) in list" :key="index">
         <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+          <!-- <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image> -->
         </div>
-        <div class="weui-cell__bd">长江美业</div>
-        <div class="weui-cell__ft">2019-08-19</div>
+        <div class="weui-cell__bd">{{item.agencyName}}</div>
+        <div class="weui-cell__ft">{{item.timeStr}}</div>
       </div>
       <!-- <div class="weui-cell">
         <div class="weui-cell__hd">
@@ -140,7 +140,7 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get, post } from "../../utils";
+import { get, post, msToDate } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
@@ -160,10 +160,11 @@ export default {
   methods: {
     // ...mapMutations(["update"]),
     async getData() {
-      const data = await post(`/shop/getRelatedAgency`, {
-        "shopId": this.$store.state.userInfo.shopId
-      })
+      const data = await post(`/shop/getRelatedAgency?shopId=${this.$store.state.userInfo.shopId}`)
       if(data.success){
+        data.result.forEach(item => {
+          item.timeStr = msToDate(item.relatedDate)
+        })
         this.list = data.result ? data.result : []
       }
       // const data = await get("/index/index");
@@ -188,6 +189,7 @@ export default {
                 }
               }
             });
+            this.getData()
           }
 
         }

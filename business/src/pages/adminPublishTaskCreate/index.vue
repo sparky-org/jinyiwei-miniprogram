@@ -132,7 +132,7 @@ export default {
   },
   mounted() {
     // this.getData();
-    const data = post(`/agency/employ/queryEmploys?agencyId=${this.$store.state.userInfo.shopId}`).then((data)=>{
+    const data = post(`/employ/queryEmployByShop?shopId=${this.$store.state.userInfo.shopId}`).then((data)=>{
       if(data.success){
         let result = JSON.parse(JSON.stringify(data.result))
         result.forEach(item => {
@@ -205,7 +205,7 @@ export default {
           }
         })
         setTimeout(()=>{
-          wx.switchTab({
+          wx.navigateTo({
             url: '/pages/adminPublishTask/main'
           })
         },2000)

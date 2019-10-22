@@ -268,7 +268,7 @@ export default {
           }
         })
         setTimeout(()=>{
-          wx.switchTab({
+          wx.navigateTo({
             url: '/pages/adminMy/main'
           })
         },3000)

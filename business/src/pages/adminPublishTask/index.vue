@@ -10,25 +10,25 @@
         <div class="weui-form-preview__bd">
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">完成奖励</div>
-            <div class="weui-form-preview__value">{{item.complete}}积分</div>
+            <div class="weui-form-preview__value">{{item.point}}积分</div>
           </div>
         </div>
         <div class="weui-form-preview__bd">
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">对象</div>
-            <div class="weui-form-preview__value">{{item.targetType == 'ALL' ? '全体员工' : '部分人'}}</div>
+            <div class="weui-form-preview__value">{{item.targetType == 'ALL' ? '全体员工' : item.humanStr}}</div>
           </div>
         </div>
         <div class="weui-form-preview__bd">
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">开始时间</div>
-            <div class="weui-form-preview__value">2019-09-10</div>
+            <div class="weui-form-preview__value">{{item.beginStr}}</div>
           </div>
         </div>
         <div class="weui-form-preview__bd">
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">结束时间</div>
-            <div class="weui-form-preview__value">2019-09-11</div>
+            <div class="weui-form-preview__value">{{item.endStr}}</div>
           </div>
         </div>
       </div>
@@ -118,7 +118,7 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get, post } from "../../utils";
+import { get, post, msToDate} from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
@@ -146,6 +146,17 @@ export default {
     async getData() {
       const data = await post(`/shop/task/queryPublishedTasks?shopId=${this.$store.state.userInfo.shopId}`)
       if(data.success){
+        data.result.forEach(item => {
+          item.beginStr = msToDate(item.startTime)
+          item.endStr = msToDate(item.endTime)
+          if(item.target){
+            let arr = item.target.split(',')
+            arr.splice(arr.length-1, 1)
+            item.humanStr = arr[0]
+          }else{
+            item.humanStr = ''
+          }
+        })
         this.list = data.result ? data.result : []
       }
       // const data = await get("/index/index");
