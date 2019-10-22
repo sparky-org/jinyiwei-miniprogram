@@ -8,7 +8,7 @@
       </picker>
     </div>
 
-    <div class="weui-form-preview" v-for="(item, index) in list" :key="index">
+    <div class="weui-form-preview" v-for="(item, index) in list" :key="index" v-if="list.length > 0">
       <div class="weui-form-preview__hd">
         <div class="weui-form-preview__label">任务名称</div>
         <div class="weui-form-preview__value_in-hd">{{item.taskName}}</div>
@@ -23,9 +23,20 @@
           <div class="weui-form-preview__value">{{item.createTime}}</div>
         </div>
       </div>
-      <div class="weui-form-preview__ft" style="margin-top: -1px;">
+      <div class="weui-form-preview__ft" style="margin-top: -1px;"  v-if="item.status=='UNCOMPLETED'">
         <!-- <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">拒绝</div> -->
         <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" @click="handleAction(item,'done')">完成</div>
+      </div>
+    </div>
+
+    <div v-if="list.length == 0">
+      <div class="page__bd" style="padding-top: 150rpx; text-align: center;">
+        <div class="icon-box">
+          <icon type="info" size="93"></icon>
+          <div class="icon-box__ctn">
+            <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px;">暂无数据</div>
+          </div>
+        </div>
       </div>
     </div>
 

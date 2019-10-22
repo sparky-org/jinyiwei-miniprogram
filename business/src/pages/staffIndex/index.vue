@@ -87,16 +87,16 @@ export default {
     // ...mapMutations(["update"]),
 
     async getData() {
-      const data = await post(`/agency/employ/getEmployInfo?employId=${this.$store.state.userInfo.id}`);
+      const data = await post(`/agency/employ/getEmployInfo?employId=${this.$store.state.userInfo.employId}`);
       console.info('staff', data)
       if(data.success){
-        if(data.result.id > 0){
-          if(String(data.result.id).length == 1){
+        if(data.result.employId > 0){
+          if(String(data.result.employId).length == 1){
             console.info('dsjajdsasdksdallks')
-            data.result.id = '00' + data.result.id
+            data.result.employId = '00' + data.result.employId
           }
-          if(String(data.result.id).length == 2){
-            data.result.id = '0' + data.result.id
+          if(String(data.result.employId).length == 2){
+            data.result.employId = '0' + data.result.employId
           }
         }
         this.staffInfo = data.result
@@ -113,7 +113,7 @@ export default {
     },
 
     async getNearestTasks() {
-      const data = await post(`/agency/task/getNearestTasks?employId=${this.$store.state.userInfo.id}`);
+      const data = await post(`/agency/task/getNearestTasks?employId=${this.$store.state.userInfo.employId}`);
       console.info('staff', data)
       if(data.success){
         this.hotList = data.result ? data.result : []

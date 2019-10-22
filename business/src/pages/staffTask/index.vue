@@ -8,26 +8,41 @@
       </picker>
     </div>
 
-    <div class="weui-form-preview" v-for="(item, index) in list" :key="index">
-      <div class="weui-form-preview__hd">
-        <div class="weui-form-preview__label">任务名称</div>
-        <div class="weui-form-preview__value_in-hd">{{item.taskName}}</div>
-      </div>
-      <div class="weui-form-preview__hd">
-        <div class="weui-form-preview__label">任务内容</div>
-        <div class="weui-form-preview__value_in-hd">{{item.condition}}</div>
-      </div>
-      <div class="weui-form-preview__bd">
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">到期时间</div>
-          <div class="weui-form-preview__value">{{item.createTime}}</div>
+    <template v-if="list.length > 0">
+      <div class="weui-form-preview" v-for="(item, index) in list" :key="index">
+        <div class="weui-form-preview__hd">
+          <div class="weui-form-preview__label">任务名称</div>
+          <div class="weui-form-preview__value_in-hd">{{item.taskName}}</div>
+        </div>
+        <div class="weui-form-preview__hd">
+          <div class="weui-form-preview__label">任务内容</div>
+          <div class="weui-form-preview__value_in-hd">{{item.condition}}</div>
+        </div>
+        <div class="weui-form-preview__bd">
+          <div class="weui-form-preview__item">
+            <div class="weui-form-preview__label">到期时间</div>
+            <div class="weui-form-preview__value">{{item.dateStr}}</div>
+          </div>
+        </div>
+        <div class="weui-form-preview__ft" style="margin-top: -1px;" v-if="item.status=='UNCOMPLETED'">
+          <!-- <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">拒绝</div> -->
+          <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" @click="handleAction(item,'done')">完成</div>
         </div>
       </div>
-      <div class="weui-form-preview__ft" style="margin-top: -1px;">
-        <!-- <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">拒绝</div> -->
-        <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" @click="handleAction(item,'done')">完成</div>
+    </template>
+    
+    <div v-else>
+      <div class="page__bd" style="padding-top: 150rpx; text-align: center;">
+        <div class="icon-box">
+          <icon type="info" size="93"></icon>
+          <div class="icon-box__ctn">
+            <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px;">暂无数据</div>
+          </div>
+        </div>
       </div>
     </div>
+
+
 
 
     <!-- <div class="weui-form-preview">
@@ -61,7 +76,7 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get, post } from "../../utils";
+import { get, post, msToDate } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 let D = new Date()
 let date = D.getFullYear() + '-' + (D.getMonth() + 1) + '-'+ D.getDate()
@@ -101,7 +116,7 @@ export default {
             console.log(res);
             if (res.confirm) {
               // console.log('确定')
-              const data = await post(`/agency/task/completeTask?empId=${this.$store.state.userInfo.id}&taskId=${item.taskId}`);
+              const data = await post(`/shop/task/completeTask?employId=${this.$store.state.userInfo.employId}&taskId=${item.taskId}`);
               if(data.success){
                 wx.showToast({
                   title: '操作成功',
@@ -124,10 +139,14 @@ export default {
     },
 
     async getData() {
-      console.info(12912912)
-      const data = await post(`/agency/task/queryTaskByDate?employId=${this.$store.state.userInfo.id}&date=${this.date}`);
+      // console.info(12912912)
+      //
+      const data = await post(`/shop/task/queryMyTask?shopId=${this.$store.state.userInfo.shopId}&employId=${this.$store.state.userInfo.employId}&date=${this.date}`);
       if(data.success){
         if(data.result){
+          data.result.forEach(item => {
+            item.dateStr = msToDate(item.createTime)
+          })
           this.list = data.result
         }else{
           this.list = []

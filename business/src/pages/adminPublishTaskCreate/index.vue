@@ -7,7 +7,7 @@
           <div class="weui-label">任务名称</div>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入任务名称" v-model="form.name" />
+          <input class="weui-input" placeholder="请输入任务名称" v-model="form.taskName" />
         </div>
       </div>
       <div class="weui-cell weui-cell_input">
@@ -45,8 +45,8 @@
           <div class="weui-label">开始时间</div>
         </div>
         <div class="weui-cell__bd">
-          <picker mode="date" value="startTime" @change="bindBeginDateChange">
-            <div class="weui-input">{{form.startTime}}</div>
+          <picker mode="date" value="startDay" @change="bindBeginDateChange">
+            <div class="weui-input">{{form.startDay}}</div>
           </picker>
         </div>
       </div>
@@ -56,8 +56,8 @@
           <div class="weui-label">结束时间</div>
         </div>
         <div class="weui-cell__bd">
-          <picker mode="date" value="endTime" @change="bindEndDateChange">
-            <div class="weui-input">{{form.endTime}}</div>
+          <picker mode="date" value="endDay" @change="bindEndDateChange">
+            <div class="weui-input">{{form.endDay}}</div>
           </picker>
         </div>
       </div>
@@ -156,10 +156,10 @@ export default {
       form: {
         "awardPoint": '',
         "creator": "",
-        "endTime": "",
-        "name": "",
+        "endDay": "",
+        "taskName": "",
         "shopId": 1,
-        "startTime": "",
+        "startDay": "",
         "targetType": "",
         "condition": '',
         empIds: '',
@@ -171,7 +171,12 @@ export default {
   methods: {
     async handlePublish(){
       console.info('wahahahah')
-      if(this.form.name == '' || this.form.targetStr == '' || this.form.awardPoint == '' || this.form.startTime == '' || this.form.endTime == '' || this.form.condition == ''){
+      if(this.form.name == '' ||
+      this.form.targetStr == '' ||
+      this.form.awardPoint == '' ||
+      this.form.startDay == '' ||
+      this.form.endDay == '' ||
+      this.form.condition == ''){
         wx.showModal({
           content: '请填写信息',
           showCancel: false,
@@ -184,10 +189,10 @@ export default {
         return
       }
       console.info(this.form)
-      const data = await post(`/agency/task/createTask`,{
+      const data = await post(`/shop/task/createShopTask`,{
         ...this.form,
-        agencyId: this.$store.state.userInfo.agencyId,
-        createEmpId: this.$store.state.userInfo.id
+        agencyId: this.$store.state.userInfo.shopId,
+        createEmpId: this.$store.state.userInfo.employId
       })
       if(data.success){
         console.info('wadjassd',data)
@@ -200,10 +205,10 @@ export default {
           }
         })
         setTimeout(()=>{
-          // wx.switchTab({
-          //   url: '/pages/adminMy/main'
-          // })
-        },3000)
+          wx.switchTab({
+            url: '/pages/adminPublishTask/main'
+          })
+        },2000)
       }
 
     },
@@ -264,11 +269,11 @@ export default {
       this.checkStaff = true
     },
     bindBeginDateChange(e) {
-      this.form.startTime = e.mp.detail.value;
+      this.form.startDay = e.mp.detail.value;
       console.log(e.mp.detail.value);
     },
     bindEndDateChange(e) {
-      this.form.endTime = e.mp.detail.value;
+      this.form.endDay = e.mp.detail.value;
       console.log(e.mp.detail.value);
     },
     // bindTimeChange(e) {
