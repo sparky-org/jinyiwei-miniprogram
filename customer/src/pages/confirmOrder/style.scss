@@ -1,0 +1,145 @@
+.confirm-order {
+  overflow-x: hidden;
+  min-height: 100%;
+  background-color: #fff;
+  padding-bottom: 120rpx;
+  box-sizing: border-box;
+
+  h2 {
+    padding: 20rpx;
+    font-size: 32rpx;
+    border-bottom: 1rpx solid #eee;
+  }
+
+  .pay-type {
+    border-bottom: 20rpx solid #f8f8f8;
+    li {
+      display: flex;
+      padding: 20rpx;
+      align-items: center;
+      >i {
+        font-size: 60rpx;
+        &.icon-wx-pay {
+          color: #1AAD19;
+        }
+        &.icon-wallet {
+          color: #1488F5;
+        }
+        &.icon-integral {
+          color: #FF9C09;
+        }
+      }
+      .font {
+        padding: 0 20rpx;
+        flex: 1;
+        >h3 {
+          font-size: 30rpx;
+        }
+        >p{
+          font-size: 24rpx;
+        }
+      }
+      .radio {
+        .icon-checked {
+          color: #E51C23;
+        }
+      }
+      &:last-child {
+        border-top: 10rpx solid #f8f8f8;
+      }
+    }
+  }
+
+  .goods-info {
+    display: flex;
+    padding: 20rpx;
+    image {
+      width: 120rpx;
+      height: 120rpx;
+      background-color: #f8f8f8;
+    }
+    .font {
+      flex: 1;
+      margin-left: 20rpx;
+      .price-num {
+        .price{
+          color: #E51C23;
+          font-size: 34rpx;
+          margin-right: 30rpx;
+        }
+        .old-price {
+          color: #999999;
+          text-decoration: line-through;
+        }
+        .num {
+          float: right;
+        }
+      }
+    }
+  }
+
+  .order-info {
+    .total-price {
+      padding: 20rpx;
+      border-top: 1rpx solid #eee;
+      border-bottom: 1rpx solid #eee;
+      display: flex;
+      >div {
+        flex: 1;
+        text-align: right;
+      }
+    }
+    
+    .remark-panel {
+      display: flex;
+      padding: 20rpx;
+      textarea {
+        flex: 1;
+        border: 1rpx solid #eee;
+        height: 200rpx;
+        padding: 20rpx;
+      }
+    }
+  }
+
+  .bottom {
+    position: fixed;
+    bottom: 0;
+    height: 100rpx;
+    width: 100%;
+    display: flex;
+    background: #fff;
+    font-size: 32repx;
+    div:nth-child(1) {
+      flex: 1;
+      line-height: 100rpx;
+      padding-left: 20rpx
+    }
+    div:nth-child(2) {
+      width: 200rpx;
+      height: 100rpx;
+      text-align: center;
+      line-height: 100rpx;
+      font-size: 29rpx;
+      background: #E51C23;
+      color: #fff;
+      font-weight: bold;
+    }
+  }
+  .weui-dialog__wrp {
+    .box {
+      background-color: #fff;
+      border-radius: 20rpx;
+      padding: 20rpx;
+      text-align: center;
+      .goods-info {
+        text-align: left;
+      }
+      .filter-tip {
+        color: #E51C23;
+        margin-top: 20rpx;
+        margin-bottom: 20rpx;
+      }
+    }
+  }
+}

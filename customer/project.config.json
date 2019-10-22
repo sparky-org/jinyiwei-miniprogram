@@ -10,7 +10,7 @@
 	"miniprogramRoot": "dist/",
 	"qcloudRoot": "server/",
 	"compileType": "顾客小程序",
-	"appid": "wx21d086fc220daa6b",
+	"appid": "wx12c22d5718db019b",
 	"projectname": "顾客小程序",
 	"libVersion": "2.2.4",
 	"simulatorType": "wechat",

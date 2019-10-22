@@ -1,0 +1,138 @@
+.card-container {
+  .market-item {
+    margin-top: 17rpx;
+    background-color: white;
+    padding-left: 30rpx;
+  }
+
+  .order-code-contain {
+    display: flex;
+    padding: 35rpx 30rpx 35rpx 0;
+    border-bottom: 1rpx solid #eee;
+    justify-content: space-between;
+    margin-bottom: 20rpx;
+  }
+
+  .market-item .goods-item {
+    padding: 15rpx 30rpx 15rpx 0;
+    display: flex;
+    align-items: top;
+  }
+
+  .market-item .text-contain {
+    display: flex;
+    flex-direction: row;
+    padding: 15rpx 30rpx 30rpx 0;
+    border-bottom: 1rpx solid #eee;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .market-item .order-code {
+    font-size: 26rpx;
+    line-height: 26rpx;
+    height: 26rpx;
+  }
+
+  .market-item .order-status {
+    color: #f55e5b;
+    font-size: 26rpx;
+    line-height: 26rpx;
+  }
+
+  .order-img-contain, .order-img-contain image {
+    width: 180rpx;
+    height: 180rpx;
+    background-color: #f8f8f8;
+  }
+
+  .market-item .goods-item .detail-info {
+    margin-left: 25rpx;
+  }
+
+  .market-item .goods-item .title {
+    line-height: 28rpx;
+    height: 56rpx;
+    font-size: 28rpx;
+    margin-top: 15rpx;
+    word-wrap:break-word!important;
+    text-overflow: -o-ellipsis-lastline;
+    line-clamp: 2;
+    // -webkit-box-orient: vertical;
+    // margin-bottom: 15rpx;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+  }
+
+  .market-item .goods-item {
+    .price {
+      font-size: 24rpx;
+      margin-top: 15rpx;
+      margin-right: 20rpx;
+    }
+    .time {
+      font-size: 22rpx;
+      margin-top: 20rpx;
+      color: #666;
+    }
+  }
+
+  .market-item .text {
+    font-size: 24rpx;
+    line-height: 24rpx;
+    height: 24rpx;
+  }
+
+  .group-btns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 20rpx;
+    padding-bottom: 20rpx;
+    padding-right: 30rpx;
+    .btn {
+      height: 64rpx;
+      font-size: 28rpx;
+      line-height: 64rpx;
+      text-align: center;
+      border: 1rpx solid #999;
+      background-color: #fff;
+      border-radius: 35rpx;
+      padding: 0 23rpx;
+      margin-left: 20rpx;
+      color: #363636;
+      margin-right: inherit;
+      margin-left: 20rpx;
+      min-width: 120rpx;
+      box-sizing: border-box;
+      &:after {
+        border-color: transparent;
+      }
+    }
+    .primary-btn {
+      border: 1rpx solid #f55e5b;
+      color: #fff;
+      background-color: #f55e5b;
+    }
+    .status {
+      color: #999;
+    }
+  }
+}
+
+.weui-dialog {
+  .weui-dialog__wrp {
+    img {
+      width: 100%;
+    }
+    p {
+      color: #fff;
+      font-size: 32rpx;
+      text-align: center;
+      margin-top: 20rpx;
+    }
+  }
+}

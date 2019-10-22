@@ -12,6 +12,9 @@ import '../static/weui/weui.css'
 import store from './store/index'
 //把store挂载到全局
 Vue.prototype.$store = store;
+Vue.prototype.globalData = {
+  shopId: 1
+}
 
 Vue.config.productionTip = false
 App.mpType = 'app'
@@ -24,33 +27,28 @@ export default {
   config: {
     // 页面前带有 ^ 符号的，会被编译成首页，其他页面可以选填，我们会自动把 webpack entry 里面的入口页面加进去
     "pages": [
-      // "pages/feedback/main",
-      // "pages/order/main",
-      // "pages/cart/main",
-      // "pages/mappage/main",
-      // "pages/collectlist/main",
-      // "pages/addressSelect/main",
-      // "pages/addaddress/main",
-      // "pages/address/main",
-      "^pages/index/main",
-      // "pages/search/main",
-      // "pages/my/main",
-      // "pages/login/main",
-      // "pages/category/main",
-      // "pages/categorylist/main",
-      // "pages/topic/main",
-      // "pages/goods/main",
-      // "pages/logs/main",
-      // "pages/branddetail/main",
-      // "pages/brandlist/main",
-      // "pages/newgoods/main",
-      // "pages/practice/main",
-      // "pages/topicdetail/main"
+      "pages/order/main",
+      "pages/cart/main",
+      "pages/index/main",
+      "pages/giftCard/main",
+      "pages/articleDetail/main",
+      "^pages/market/main",
+      "pages/my/main",
+      "pages/scan/main",
+      "pages/scanPay/main",
+      "pages/login/main",
+      "pages/goods/main",
+      "pages/appointment/main",
+      "pages/settings/main",
+      "pages/message/main",
+      "pages/upgrade/main",
+      "pages/logs/main",
     ],
+    "subPackages": [],
     "window": {
       "backgroundTextStyle": "light",
       "navigationBarBackgroundColor": "#fff",
-      "navigationBarTitleText": "科比",
+      "navigationBarTitleText": "顾客小程序",
       "navigationBarTextStyle": "black"
     },
     "tabBar": {
@@ -65,28 +63,28 @@ export default {
           "text": "首页"
         },
         {
-          "pagePath": "pages/cart/main",
+          "pagePath": "pages/market/main",
           "iconPath": "static/images/ic_menu_shoping_nor.png",
           "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
-          "text": "我要采购"
+          "text": "积分商城"
         },
         {
-          "pagePath": "pages/topic/main",
-          "iconPath": "static/images/ic_menu_topic_nor.png",
-          "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
-          "text": "订单管理"
+          "pagePath": "pages/scan/main",
+          "iconPath": "static/images/ic_menu_code_nor.png",
+          "selectedIconPath": "static/images/ic_menu_code_pressed.png",
+          "text": "扫码支付"
         },
-        // {
-        //   "pagePath": "pages/category/main",
-        //   "iconPath": "static/images/ic_menu_sort_nor.png",
-        //   "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
-        //   "text": "分类"
-        // },
+        {
+          "pagePath": "pages/appointment/main",
+          "iconPath": "static/images/ic_menu_phone_nor.png",
+          "selectedIconPath": "static/images/ic_menu_phone_pressed.png",
+          "text": "预约"
+        },
         {
           "pagePath": "pages/my/main",
           "iconPath": "static/images/ic_menu_me_nor.png",
           "selectedIconPath": "static/images/ic_menu_me_pressed.png",
-          "text": "工作台"
+          "text": "个人中心"
         }
       ]
     },

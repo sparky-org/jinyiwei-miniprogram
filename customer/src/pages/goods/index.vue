@@ -2,137 +2,46 @@
   <div class="goods">
     <div class="swiper">
       <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
-        <block v-for="(item, index) in gallery " :key="index">
+        <block v-for="(item, index) in info.picUrlList " :key="index">
           <swiper-item class="swiper-item">
-            <image :src="item.img_url" class="slide-image" />
+            <image :src="item" class="slide-image" />
           </swiper-item>
         </block>
       </swiper>
-      <button class="share" hover-class="none" open-type="share" value="">分享商品</button>
     </div>
-    <div class="swiper-b">
-      <div class="item">30天无忧退货</div>
-      <div class="item">48小时快速退款</div>
-      <div class="item">满88元免邮费</div>
-    </div>
+
     <div class="goods-info">
-      <div class="c">
-        <p>{{info.name}}</p>
-        <p>{{info.goods_brief}}</p>
-        <p>￥{{info.retail_price}}</p>
-        <div v-if="brand.name" class="brand">
-          <p>{{brand.name}}</p>
-        </div>
-      </div>
-    </div>
-    <div @click="showType" class="section-nav">
-      <div>请选择规格数量</div>
-      <div></div>
-    </div>
-    <!-- <div @click="showType" class="section-nav">
-      <div>用户评价</div>
-      <div></div>
-    </div> -->
-
-    <div v-if="attribute.length!=0" class="attribute">
-      <div class="head">
-        商品参数
-      </div>
-      <div v-for="(item,index) in attribute" :key="index" class="item">
-        <div>{{item.name}}</div>
-        <div>{{item.value}}</div>
-      </div>
-    </div>
-    <div v-if="goods_desc" class="detail">
-      <wxParse :content="goods_desc" />
-    </div>
-    <!-- 常见问题 -->
-    <div class="common-problem">
-      <div class="h">
-        <div class="line"></div>
-        <text class="title">常见问题</text>
-        <div class="line"></div>
-      </div>
-      <div class="b">
-        <div class="item" v-for="(item, index) in issueList" :key="index">
-          <div class="question-box">
-            <text class="spot"></text>
-            <text class="question">{{item.question}}</text>
-          </div>
-          <div class="answer">
-            {{item.answer}}
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- 常见问题 -->
-    <!-- 大家都在看 -->
-
-    <div class="common-problem">
-      <div class="h">
-        <div class="line"></div>
-        <text class="title">大家都在看</text>
-        <div class="line"></div>
-      </div>
-      <div class="sublist">
-        <div @click="togoodsDetail(subitem.id)" v-for="(subitem, subindex) in productList" :key="subindex">
-          <img :src="subitem.list_pic_url" alt="">
-          <p>{{subitem.name}}</p>
-          <p>￥{{subitem.retail_price}}</p>
-        </div>
+      <p class="title">{{info.goodsName}}</p>
+      <div class="desc">
+        <span class="price">￥{{info.price}}</span>
+        <span class="old-price">￥{{info.retailPrice}}</span>
+        <span class="num">已售{{info.boughtCount}}件</span>
       </div>
     </div>
 
-    <!-- 大家都在看 -->
+    <ul class="section-nav">
+      <li v-for="(item, index) in navList" :key="index" :class="{'active': 
+      activeNav == item.value}" @click="changeNav(item)">{{item.text}}</li>
+    </ul>
+    <div class="detail-panel" v-if="goodsDesc">
+      <wxParse :content="goodsDesc"/>
+    </div>
+    
+    <!-- 底部操作 -->
     <div class="bottom-fixed">
-      <div @click="collect">
+      <button open-type="contact" class="contact-btn">
         <div class="collect" :class="[collectFlag ? 'active' :'']">
-
         </div>
-
-      </div>
-      <div @click="toCart">
+      </button>
+      <div @click="toCart" class="cart-btn">
         <div class="car">
-          <span>
-            {{allnumber}}
-          </span>
           <img src="/static/images/ic_menu_shoping_nor.png" alt="">
         </div>
       </div>
-      <div @click="bug">立即购买</div>
-      <div @click="addCart">加入购物车</div>
+      <div @click="addCart" class="btn add-cart-btn">加入购物车</div>
+      <div @click="onBuy" class="btn buy-btn">立即购买</div>
     </div>
 
-    <!-- 选择规格部分 -->
-    <div v-show="showpop" @click="showType" class="pop">
-
-    </div>
-    <div class="attr-pop" :class="[showpop ? 'fadeup' : 'fadedown']">
-      <div class="top">
-        <div class="left">
-          <img :src="info.primary_pic_url" alt="">
-        </div>
-        <div class="right">
-          <div>
-            <p>价格￥{{info.retail_price}}</p>
-            <p>请选择数量</p>
-          </div>
-        </div>
-        <div @click="showType" class="close">
-          X
-        </div>
-      </div>
-      <div class="b">
-        <p>数量</p>
-        <div class="count">
-          <div @click="reduce" class="cut">-</div>
-          <input class="number" disabled="" v-model="number" />
-          <div @click="add" class="add">+</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 选择规格部分 -->
   </div>
 </template>
 
@@ -142,168 +51,117 @@ import wxParse from "mpvue-wxparse";
 
 export default {
   onShow() {
+    let {id} = this.$root.$mp.query 
+    id && this.goodsDetail(id);
   },
   mounted() {
-    //判断是否登录获取用户信息
-    if (login()) {
-      this.userInfo = login();
-    }
-    console.log(this.$root.$mp.query.id);
-
     this.id = this.$root.$mp.query.id;
-
     this.openId = getStorageOpenid();
-    this.goodsDetail();
   },
-  //商品转发
-  onShareAppMessage() {
-    console.log(this.info.name);
-    console.log(this.info.id);
-    console.log(this.gallery[0].img_url);
 
-    return {
-      title: this.info.name,
-      path: "/pages/goods/main?id=" + this.info.id,
-      imageUrl: this.gallery[0].img_url //拿第一张商品的图片
-    };
-  },
   data() {
     return {
-      allnumber: 0,
-      openId: "",
-      collectFlag: false,
-      number: 0,
-      showpop: false,
-      gallery: [],
-      info: {},
-      brand: {},
-      attribute: [],
-      issueList: [],
-      productList: [],
-      goods_desc: "",
-      id: "",
-      userInfo: "",
-      goodsId: "",
-      allPrise: ""
+      userInfo: wx.getStorageSync("userInfo") || {},
+      navList: [{
+        value: 1,
+        text: '图文详情'
+      }, {
+        value: 2,
+        text: '商品参数'
+      }, {
+        value: 3,
+        text: '购买须知'
+      }],
+      activeNav: 1,
+      goodsDesc: '图文详情',
+      info: {/*
+        goodsId: 1,
+        goodsName: '商品名称啊啊啊',
+        price: 123,
+        retailPrice: 223,
+        boughtCount: 300,
+        buyNoticeDesc: '购买须知',
+        goodsParamDesc: '商品参数',
+        dtlDesc: '图文详情',
+        picUrl: 'https://oss.chlpartner.com/distribution/gold/images/index/swiper1.png',
+        picUrlList: [
+          'https://oss.chlpartner.com/distribution/gold/images/index/swiper1.png',
+          'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
+          'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
+        ]*/
+      },
     };
   },
   components: {
     wxParse
   },
   methods: {
-    togoodsDetail(id) {
-      wx.redirectTo({ url: "/pages/goods/main?id=" + id });
-    },
-    add() {
-      this.number = this.number + 1;
-    },
-    reduce() {
-      if (this.number > 1) {
-        this.number = this.number - 1;
+    // 切换tab
+    changeNav(item) {
+      this.activeNav = item.value
+      if (item.value == 1) {
+        this.goodsDesc = this.info.dtlDesc
+      } else if (item.value == 2) {
+        this.goodsDesc = this.info.goodsParamDesc
       } else {
-        return false;
+        this.goodsDesc = this.info.buyNoticeDesc
       }
     },
-    async bug() {
-      if (toLogin()) {
-        if (this.showpop) {
-          if (this.number == 0) {
-            wx.showToast({
-              title: "请选择商品数量", //提示的内容,
-              duration: 2000, //延迟时间,
-              icon: "none",
-              mask: true, //显示透明蒙层，防止触摸穿透,
-              success: res => { }
-            });
-            return false;
-          }
-          console.log(this.goodsId);
-          console.log(this.openId);
 
-          const data = await post("/order/submitAction", {
-            goodsId: this.goodsId,
-            openId: this.openId,
-            allPrise: this.allPrise
-          });
-          if (data) {
-            wx.navigateTo({
-              url: "/pages/order/main"
-            });
-          }
-        } else {
-          this.showpop = true;
-        }
+    // 立即购买
+    onBuy() {
+      if (toLogin()) {
+        let {goodsId, goodsName, picUrl, price, retailPrice} = this.info
+        let goodsList = [{
+          goodsId, goodsName, picUrl, price, retailPrice, num: 1
+        }]
+        wx.navigateTo({
+          url: `/pages/confirmOrder/main?goodsList=${JSON.stringify(goodsList)}`
+        })
       }
     },
-    async collect() {
+
+    // 加入购物车
+    addCart() {
       if (toLogin()) {
-        this.collectFlag = !this.collectFlag;
-        const data = await post("/collect/addcollect", {
-          openId: this.userInfo.openId,
-          goodsId: this.goodsId
+        let key = `goodsInfo-${this.userInfo.customerId}`
+        let goodsInfo = wx.getStorageSync(key) || []
+        wx.showToast({
+          title: "添加购物车成功",
+          icon: "success",
+          duration: 1000
         });
-      }
-    },
-    async addCart() {
-      if (toLogin()) {
-        if (this.showpop) {
-          if (this.number == 0) {
-            wx.showToast({
-              title: "请选择商品数量", //提示的内容,
-              duration: 2000, //延迟时间,
-              icon: "none",
-              mask: true, //显示透明蒙层，防止触摸穿透,
-              success: res => { }
-            });
-            return false;
-          }
-          const data = await post("/cart/addCart", {
-            openId: this.userInfo.openId,
-            goodsId: this.goodsId,
-            number: this.number
-          });
-          //添加成功后
-          if (data) {
-            this.allnumber = this.allnumber + this.number;
-            wx.showToast({
-              title: "添加购物车成功",
-              icon: "success",
-              duration: 1500
-            });
-          }
-        } else {
-          this.showpop = true;
+        let findIndex = goodsInfo.findIndex(goods => goods.goodsId == this.info.goodsId)
+        if (goodsInfo.length && findIndex !== -1) {
+          goodsInfo[findIndex].num = goodsInfo[findIndex].num + 1
+          wx.setStorageSync(key, goodsInfo)
+          return
         }
+
+        goodsInfo.push({
+          ...this.info,
+          num: 1
+        })
+        wx.setStorageSync(key, goodsInfo)
       }
     },
+
+    // 跳转购物车
     toCart() {
-      wx.switchTab({
+      wx.navigateTo({
         url: "/pages/cart/main"
       });
-      // wx.navigateTo({
-      //   url: "/pages/cart/main"
-      // });
     },
-    async goodsDetail() {
-      const data = await get("/goods/detailaction", {
-        id: this.id,
-        openId: this.openId
-      });
-      this.gallery = data.gallery;
-      this.info = data.info;
-      this.allPrise = data.info.retail_price;
-      this.goodsId = data.info.id;
-      this.brand = data.brand;
-      this.attribute = data.attribute;
-      this.goods_desc = data.info.goods_desc;
-      this.issueList = data.issue;
-      this.collectFlag = data.collected;
-      this.allnumber = data.allnumber;
-      this.productList = data.productList;
+
+    // 获取商品详情
+    goodsDetail(id) {
+      post(`/goods/getGoodsDtl?goodsId=${id}`).then(res => {
+        if (res.success) {
+          this.info = res.result || {}
+          this.goodsDesc = res.result ? res.result.dtlDesc : ''
+        }
+      })
     },
-    showType() {
-      this.showpop = !this.showpop;
-    }
   },
   computed: {}
 };

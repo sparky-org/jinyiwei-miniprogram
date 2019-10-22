@@ -20,7 +20,7 @@ export function formatTime(date) {
 
 //-------------------------------------------------------------------------请求的封装
 
-const host = "http://118.25.222.68:5757/heyushuo"
+const host = "http://118.25.104.232:8082/jinyiwei-front"
 export { host };
 //请求封装
 function request(url, method, data, header = {}) {
@@ -33,18 +33,43 @@ function request(url, method, data, header = {}) {
       method: method,
       data: data,
       header: {
-        "content-type": "application/json" // 默认值
+        "content-type": "application/json", // 默认值
+        'token': wx.getStorageSync('userInfo') ? wx.getStorageSync('userInfo').token : '',
+        'key': wx.getStorageSync('userInfo') ? 'CUSTOMER-' + wx.getStorageSync('userInfo').customerId : '',
       },
       success: function(res) {
         wx.hideLoading();
+        if (!res.data.success) {
+          wx.showToast({
+            title: res.data.errMsg || '请求失败',
+            icon: 'none'
+          })
+          reject(false);
+          return
+        }
+        console.log(1111, res.data)
         resolve(res.data);
       },
       fail: function(error) {
+        console.log('fail', error)
+        const message = error.errMsg || error.info || '请求失败'
+        wx.showToast({
+          title: message,
+          icon: 'none'
+        })
         wx.hideLoading();
         reject(false);
       },
-      complete: function() {
+      complete: function(data) {
+        console.log('complete', data)
         wx.hideLoading();
+        if (data.statusCode !== 200) {
+          const message = data.data ? data.data.message : '请求失败'
+          wx.showToast({
+            title: message,
+            icon: 'none'
+          })
+        }
       }
     });
   });
@@ -90,28 +115,18 @@ export function getStorageOpenid() {
 }
 
 export function getOpenid() {
-  // wx.login({
-  //   success: res => {
-  //     if (res.code) {
-  //       //发起网络请求
-  //       wx.request({
-  //         url: 'https://api.weixin.qq.com/sns/jscode2session',
-  //         data: {
-  //           "appid": "wx601ce71bde7b9add",
-  //           "secret": "abed5421d88eb8236e933c6e42d5c14e",
-  //           "js_code": res.code,
-  //           "grant_type": "authorization_code"
-  //         },
-  //         success: function (data) {
-  //           var openid = data.data.openid;
-  //           wx.setStorageSync("openid", openid);
-  //         }
-  //       })
-  //     } else {
-  //       console.log('登录失败！' + res.errMsg)
-  //     }
-  //   },
-  //   fail: () => {},
-  //   complete: () => {}
-  // });
+  wx.login({
+    success: res => {
+      if (res.code) {
+        //发起网络请求
+        post(`/customer/getUserInfo?customerId=${wx.getStorageSync('userInfo').customerId}&code=${res.code}`).then(res => {
+          wx.setStorageSync("openid", openid);
+        })
+      } else {
+        console.log('登录失败！' + res.errMsg)
+      }
+    },
+    fail: () => {},
+    complete: () => {}
+  });
 }

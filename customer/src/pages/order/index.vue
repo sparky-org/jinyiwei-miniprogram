@@ -1,139 +1,172 @@
 <template>
-  <div class="order">
-    <div @click="toAddressList" v-if="address.name" class="address">
-      <div class="item">
-        <div class="list">
-          <div class="addresslist">
-            <div>
-              <span>{{address.name}}</span>
-              <div v-if="address.is_default" class="moren">
-                默认
+  <div class="order-container">
+    <scroll-view scroll-x="true" class="nav-list" :scroll-with-animation="true">
+      <block v-for="(item, index) in navData" :key="index">
+        <view class="item" :class="{'active': activeNav == item.value}" @click="changeNav(item)">{{item.name}}</view>
+      </block>
+    </scroll-view>
+    <!-- 页面内容 -->
+    <div class='list-contain'>
+      <div v-if="orderList && orderList.length">
+        <div v-for="(item, index) in orderList" :key="index" @click="goToOrderDetail">
+          <div class="market-item">
+            <div class='order-code-contain'>
+              <div class="order-code">订单编号: {{item.orderId}}</div>
+              <div class="order-status">{{item.statusText}}</div>
+            </div>
+            <div class="goods-item" v-for="(it, i) in item.productList" :key="i">
+              <div class="order-img-contain">
+                <image :src="it.picUrl" />
+              </div>
+              <div class="flex-1 detail-info">
+                <div class="title">{{it.name}}</div>
+                <div class="price-num">
+                  <div class='real-price'>¥{{it.price}}</div>
+                  <div class='number'>X{{it.count}}</div>
+                </div>
               </div>
             </div>
-            <div class="info">
-              <p>{{address.mobile}}</p>
-              <p>{{address.address+address.address_detail}}</p>
+            <div class='text-contain'>
+              <div class="text">共计{{item.totalCount}}件商品 总计：</div>
+              <div class="text-price">¥{{item.orderAmount}}</div>
             </div>
-            <div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div @click="toAdd" v-else class="seladdress">
-      请选择收货地址
-    </div>
-    <div class="orderbox">
-      <div class="item">
-        <div>商品合计</div>
-        <div>￥{{allprice}}</div>
-      </div>
-      <div class="item">
-        <div>运费</div>
-        <div>免运费</div>
-      </div>
-      <div class="item">
-        <div>优惠券</div>
-        <div>暂无</div>
-      </div>
-    </div>
-    <div class="cartlist">
-      <div class="item" v-for="(item,index) in listData" :key="index">
-        <div class="con">
-          <div class="left">
-            <div class="img">
-              <img :src="item.list_pic_url" alt="">
-            </div>
-            <div class="info">
-              <p>{{item.goods_name}}</p>
-              <p>￥{{item.retail_price}}</p>
-            </div>
-          </div>
-          <div class="right">
-            <div class="num">
-              x{{item.number}}
+            <div v-if="item.status === 'NEW'">
+              <div class='group-btns'>
+                <div class="btn primary-btn" @click="payNow(item.orderId)">去支付</div>
+              </div>
             </div>
           </div>
         </div>
+        <div class="no-more" v-if="orderList.length >= pageCount">没有更多了</div>
       </div>
-    </div>
-    <div class="bottom">
-      <div>
-        实付 : ￥{{allprice}}
-      </div>
-      <div @click="pay">
-        支付
-      </div>
+      <no-data v-else></no-data>
     </div>
   </div>
 </template>
 
 <script>
+  const statusList = [{
+    name: '待付款',
+    value: 'NEW'
+  }, {
+    name: '进行中',
+    value: 'SERVICE'
+  }, {
+    name: '已完成',
+    value: 'FINISH'
+  }]
   import {
     get,
     post,
-    login,
+    toLogin,
     getStorageOpenid
   } from "../../utils";
+  import noData from '@/components/no-data'
   export default {
     onShow() {
-      if (wx.getStorageSync("addressId")) {
-        this.addressId = wx.getStorageSync("addressId");
+      let {status} = this.$root.$mp.query
+      if (toLogin()) {
+        this.activeNav = status || this.activeNav
+        this.loadData()
+      } else {
+        this.userInfo = wx.getStorageSync("userInfo") || ''
       }
-      this.openId = getStorageOpenid();
-
-      this.getDetail();
     },
-    created() {},
-    mounted() {},
+    created() {
+    },
+    mounted() {
+    },
     data() {
       return {
-        addressId: "",
-        openId: "",
-        allprice: "",
-        listData: [],
-        address: {}
+        userInfo: wx.getStorageSync("userInfo") || {},
+        orderList: [/*{
+          "orderAmount": 200,
+          "orderId": 332325660,
+          "orderTime": "2019-10-15T15:06:40.008Z",
+          "productList": [
+            {
+              "count": 2,
+              "name": "名称啊啊啊",
+              "picUrl": "https://oss.chlpartner.com/distribution/gold/images/index/swiper1.png",
+              "price": 100
+            }
+          ],
+          "status": "string",
+          "totalCount": 2
+        }*/],
+        activeNav: 'NEW',
+        navData: statusList,
+        navDataObj: statusList.reduce((prev, cur) => {
+          prev[cur.value] = cur.name
+          return prev
+        }, {}),
+        pageNum: 1, //当前页
+        pageSize: 10,
+        pageCount: null, //总条数
       };
     },
-    components: {},
-    methods: {
-      pay() {
-        wx.showToast({
-          title: "支付功能暂未开发", //提示的内容,
-          icon: "none", //图标,
-          duration: 1500, //延迟时间,
-          mask: false, //显示透明蒙层，防止触摸穿透,
-          success: res => {}
-        });
-      },
-      toAddressList() {
-        wx.navigateTo({
-          url: "/pages/addressSelect/main"
-        });
-      },
-      toAdd() {
-        wx.navigateTo({
-          url: "/pages/addaddress/main"
-        });
-      },
-      async getDetail() {
-        const data = await get("/order/detailAction", {
-          openId: this.openId,
-          addressId: this.addressId
-        });
-        console.log(data);
-
-        if (data) {
-          this.allprice = data.allPrise;
-          this.listData = data.goodsList;
-          this.address = data.address;
-        }
+    components: {
+      noData
+    },
+    //上拉加载
+    onReachBottom() {
+      if(this.orderList.length < this.pageCount) {
+        this.loadData(true)
       }
     },
-    computed: {}
+    //下拉刷新
+    onPullDownRefresh: function () {
+      wx.stopPullDownRefresh()
+      this.loadData()
+    },
+    methods: {
+      // 切换状态
+      changeNav(item) {
+        this.activeNav = item.value
+        this.loadData(false)
+      },
+      //加载数据
+      loadData: function (append) {
+        let {pageNum, pageSize, activeNav, orderList} = this
+        post(`/customer/getServiceOrder?customerId=${this.userInfo.customerId}&status=${activeNav}&currentPage=${append ? pageNum + 1 : 1}&pageSize=${pageSize}`).then((res) => {
+          let orders = res.result || []
+          orders.map(order => {
+            order.statusText = this.navDataObj[order.status]
+          })
+          this.pageNum = append ? pageNum + 1 : 1
+          this.pageCount = res.totalCount
+          this.orderList = append ? orderList.concat(orders) : orders
+        })
+      },
+      payNow(orderId) {
+        post(`/shop/order/createTransPayOrder`, {
+          orderId,
+        }).then(res => {
+          // 微信支付
+          // wx.requestPayment({
+          //   ...res.data.payInfo,
+          //   'success':function(res){
+          //     wx.navigateTo({
+          //       url: `/pages/index/market-order-detail/index?isPaySuccess=1&orderId=${orderId}`,
+          //     })
+          //   },
+          //   'fail':function(res){
+          //     wx.navigateTo({
+          //       url: `/pages/index/market-order-detail/index?orderId=${orderId}`,
+          //     })
+          //   },
+          //   'complete':function(res){
+          //   }
+          // })
+        })
+      },
+    },
+    computed: {
+
+    }
   };
 
 </script>
 <style lang='scss' scoped>
   @import "./style";
-
 </style>

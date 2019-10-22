@@ -1,19 +1,68 @@
 <template>
-  <div class="my">
-    <div class="myinfo">
-      <img @click="toLogin" :src="avator" alt="">
-      <div @click="toLogin">
-        <p>{{userInfo.nickName}}</p>
-        <p v-if="userInfo.nickname">点击登录</p>
-        <p v-else>微信用户</p>
+  <div class="my-container">
+    <button class="userinfo-btn" open-type="getUserInfo" @getuserinfo="onGotUserInfo">
+      <div class='userinfo'>
+        <img class="userinfo-avatar" :src="wxInfo.avatarUrl" mode="cover" v-if="wxInfo">
+        <div v-else class="userinfo-avatar">
+          <span>获取微信头像</span>
+        </div>
+        <div class="font">
+          <div class="userinfo-nickname">{{info.nickName || wxInfo.nickName || '-'}}</div>
+          <div class="level-text" v-if="info.vipLevel">{{info.vipLevel}}</div>
+        </div>
+      </div>
+    </button>
+    <div class="head">
+      <div class="item">
+        <div class='number' @click="showCashBalance">{{cashBalance}}</div>
+        <div class='text'>钱包</div>
+      </div>
+      <div class="item" @click='getIncome'>
+        <div class='number'>{{info.profitBalance}}</div>
+        <div class='text'>分红</div>
+      </div>
+      <div class="item">
+        <div class='number'>{{info.pointBalance}}</div>
+        <div class='text'>积分</div>
       </div>
     </div>
-    <div class="iconlist">
-      <div @click="goTo(item.url)" v-for="(item, index) in listData" :key="index">
-        <span class="iconfont" :class="item.icon"></span>
-        <span>{{item.title}}</span>
+    <div class="market-contain">
+      <div class="title">
+        <div class="name">我的订单</div>
+        <div class="view-all" @click="goToOrder('/pages/order/main')">查看全部</div>
+        <image class="right-inco" src="https://oss.chlpartner.com/distribution/gold/images/my/icon-right.jpg" mode="cover" />
+      </div>
+      <div class="status-list">
+        <div class="item" v-for="(item, index) in statusLists" :key="index" @click="goToOrder('/pages/order/main', item.status)">
+          <i class="iconfont" :class="item.icon"></i>
+          <div class="name">{{item.name}}</div>
+        </div>
       </div>
     </div>
+    <ul class="tab-list">
+      <li @click="goTo(`/pages/giftCard/main`)" class="item">
+        <i class="iconfont icon-gift-card"></i>
+        <div class='text'>礼品卡</div>
+        <i class="iconfont icon-arrow-right"></i>
+      </li>
+      <li @click="goTo(`/pages/upgrade/main?vipLevel=${info.vipLevel}&pointBalance=${info.pointBalance}`)" class="item">
+        <i class="iconfont icon-upgrade"></i>
+        <div class='text'>我要升级</div>
+        <i class="iconfont icon-arrow-right"></i>
+      </li>
+      <li @click="goToAddressList">
+        <button open-type="contact" class="item">
+          <i class="iconfont icon-customer-service"></i>
+          <div class='text'>在线客服</div>
+          <i class="iconfont icon-arrow-right"></i>
+        </button>
+      </li>
+      <li @click="goTo('/pages/settings/main')" class="item">
+        <i class="iconfont icon-setup"></i>
+        <div class='text'>个人设置</div>
+        <i class="iconfont icon-arrow-right"></i>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -21,71 +70,55 @@
   import {
     get,
     toLogin,
-    login
+    login,
+    post
   } from "../../utils";
   export default {
     onShow() {
       // 可以通过 wx.getSetting 先查询一下用户是否授权了 "scope.record" 这个 scope
-      if (login()) {
-        this.userInfo = login();
-        console.log(this.userInfo);
-        this.avator = this.userInfo.avatarUrl;
+      if (toLogin()) {
+        this.userInfo = wx.getStorageSync("userInfo") || ''
+        this.getUserInfo()
       }
     },
     created() {},
     mounted() {},
     data() {
       return {
-        avator: "http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png",
-        allcheck: false,
-        listData: [],
-        Listids: [],
-        userInfo: {},
-        listData: [{
-            title: "我的订单",
-            icon: "icon-unie64a",
-            url: ""
-          },
-          {
-            title: "优惠券",
-            icon: "icon-youhuiquan",
-            url: ""
-          },
-          {
-            title: "我的足迹",
-            icon: "icon-zuji",
-            url: ""
-          },
-          {
-            title: "我的收藏",
-            icon: "icon-shoucang",
-            url: "/pages/collectlist/main"
-          },
-          {
-            title: "地址管理",
-            icon: "icon-dizhiguanli",
-            url: "/pages/address/main"
-          },
-          {
-            title: "联系客服",
-            icon: "icon-lianxikefu",
-            url: ""
-          },
-          {
-            title: "帮助中心",
-            icon: "icon-bangzhuzhongxin",
-            url: ""
-          },
-          {
-            title: "意见反馈",
-            icon: "icon-yijianfankui",
-            url: "/pages/feedback/main"
-          }
-        ]
+        wxInfo: wx.getStorageSync("wxInfo") || '',
+        userInfo: wx.getStorageSync("userInfo") || '',
+        info: {},
+        statusLists: [{
+          name: '待付款',
+          icon: 'icon-pending',
+          status: 'NEW'
+        }, {
+          name: '进行中',
+          icon: 'icon-progress',
+          status: 'SERVICE'
+        }, {
+          name: '已完成',
+          icon: 'icon-complete',
+          status: 'FINISH'
+        }],
+        cashBalance: '***'
       };
     },
     components: {},
     methods: {
+      getUserInfo() {
+        post(`/customer/getCustomerCenterInfo?customerId=${this.userInfo.customerId}`).then(res => {
+          if (res.success) {
+            this.info = res.result || []
+          }
+        })
+      },
+      // 获取用户头像信息
+      onGotUserInfo: function (e) {
+        this.wxInfo = e.target.userInfo
+        wx.setStorageSync('wxInfo', e.target.userInfo)
+      },
+      // 跳转
       goTo(url) {
         if (toLogin()) {
           wx.navigateTo({
@@ -93,12 +126,16 @@
           });
         }
       },
-      toLogin() {
-        if (!this.userInfo.avatarUrl) {
+      goToOrder(url, value) {
+        if (toLogin()) {
           wx.navigateTo({
-            url: "/pages/login/main"
+            url: value ? url + `?status=${value}` : url
           });
         }
+      },
+      // 显示金额
+      showCashBalance() {
+        this.cashBalance = this.info.cashBalance
       }
     },
     computed: {}

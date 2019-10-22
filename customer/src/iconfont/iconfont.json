@@ -1,0 +1,121 @@
+{
+  "id": "1462422",
+  "name": "顾客",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "100740",
+      "name": "设置",
+      "font_class": "setup",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "376168",
+      "name": "微信支付",
+      "font_class": "wx-pay",
+      "unicode": "e62a",
+      "unicode_decimal": 58922
+    },
+    {
+      "icon_id": "648754",
+      "name": "钱包",
+      "font_class": "wallet",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "654156",
+      "name": "未选中",
+      "font_class": "not-checked",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "683404",
+      "name": "积分",
+      "font_class": "integral",
+      "unicode": "e61a",
+      "unicode_decimal": 58906
+    },
+    {
+      "icon_id": "886990",
+      "name": "通知",
+      "font_class": "notice",
+      "unicode": "e62d",
+      "unicode_decimal": 58925
+    },
+    {
+      "icon_id": "908549",
+      "name": "待付款",
+      "font_class": "pending",
+      "unicode": "e68e",
+      "unicode_decimal": 59022
+    },
+    {
+      "icon_id": "1106910",
+      "name": "版本升级",
+      "font_class": "upgrade",
+      "unicode": "e633",
+      "unicode_decimal": 58931
+    },
+    {
+      "icon_id": "1272658",
+      "name": "选中",
+      "font_class": "checked",
+      "unicode": "e63b",
+      "unicode_decimal": 58939
+    },
+    {
+      "icon_id": "2423300",
+      "name": "无数据",
+      "font_class": "no-data",
+      "unicode": "e642",
+      "unicode_decimal": 58946
+    },
+    {
+      "icon_id": "4297477",
+      "name": "已完成",
+      "font_class": "complete",
+      "unicode": "e669",
+      "unicode_decimal": 58985
+    },
+    {
+      "icon_id": "4341911",
+      "name": "疑问",
+      "font_class": "ques",
+      "unicode": "e6c8",
+      "unicode_decimal": 59080
+    },
+    {
+      "icon_id": "4437608",
+      "name": "右箭头",
+      "font_class": "arrow-right",
+      "unicode": "e617",
+      "unicode_decimal": 58903
+    },
+    {
+      "icon_id": "6366905",
+      "name": "客服",
+      "font_class": "customer-service",
+      "unicode": "e610",
+      "unicode_decimal": 58896
+    },
+    {
+      "icon_id": "7863862",
+      "name": "shinshop 礼品卡",
+      "font_class": "gift-card",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "9713088",
+      "name": "进行中",
+      "font_class": "progress",
+      "unicode": "e68a",
+      "unicode_decimal": 59018
+    }
+  ]
+}

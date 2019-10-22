@@ -1,67 +1,50 @@
-.cart {
+.cart-container {
   overflow-x: hidden;
-  .top {
-    display: flex;
-    justify-content: space-between;
-    padding: 30rpx 20rpx;
-    div {
-      background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/servicePolicyRed-518d32d74b.png) 0 center no-repeat;
-      background-size: 10rpx;
-      padding-left: 15rpx;
-      display: flex;
-      align-items: center;
-      font-size: 25rpx;
-      color: #666;
-    }
-  }
   .cartlist {
     background: #fff;
     margin-bottom: 110rpx;
     .item {
       padding: 20rpx 0;
       border-bottom: 1rpx solid #f4f4f4;
-      height: 166rpx;
       position: relative;
       .con {
         display: flex;
         align-items: center;
         justify-content: space-between;
         transition: all 300ms ease;
-        .left {
-          display: flex;
-          align-items: center;
-          width: 80%;
-          .icon {
-            height: 125rpx;
-            width: 34rpx;
-            background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat center center;
-            background-size: 34rpx 34rpx;
-            margin: 0 20rpx;
-          }
-          .icon.active {
-            background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat center center;
-            background-size: 34rpx 34rpx;
-          }
-          .img {
-            height: 125rpx;
-            width: 125rpx;
-            display: block;
-            background: #f4f4f4;
-            img {
-              width: 100%;
-              height: 100%;
-            }
-          }
-          .info {
-            width: 50%;
-            padding: 20rpx;
-            p {
-              line-height: 40rpx;
-            }
+        .icon {
+          height: 125rpx;
+          width: 34rpx;
+          background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat center center;
+          background-size: 34rpx 34rpx;
+          margin: 0 20rpx;
+        }
+        .icon.active {
+          background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat center center;
+          background-size: 34rpx 34rpx;
+        }
+        .img {
+          height: 125rpx;
+          width: 125rpx;
+          display: block;
+          background: #f4f4f4;
+          img {
+            width: 100%;
+            height: 100%;
           }
         }
-        .right {
-          padding-right: 50rpx;
+        .info {
+          padding: 20rpx;
+          flex: 1;
+          p {
+            line-height: 40rpx;
+          }
+          .price-num {
+            display: flex;
+            .price {
+              flex: 1;
+            }
+          }
         }
       }
       .delete {
@@ -71,7 +54,7 @@
         right: -100rpx;
         text-align: center;
         height: 100%;
-        background: #b4282d;
+        background: #E51C23;
         color: #fff;
         transition: all 200ms ease;
         display: flex;
@@ -110,7 +93,7 @@
     .right {
       display: flex;
       div:nth-child(1) {
-        color: #b4282d;
+        color: #E51C23;
         padding-right: 40rpx;
       }
       div:nth-child(2) {
@@ -119,18 +102,70 @@
         text-align: center;
         line-height: 100rpx;
         font-size: 29rpx;
-        background: #b4282d;
+        background: #E51C23;
         color: #fff;
       }
     }
   }
-  .nogoods {
+  .no-data {
     margin-top: 200rpx;
+    text-align: center;
     img {
       margin: 0 auto;
       display: block;
       width: 258rpx;
       height: 258rpx;
     }
+    p {
+      color: #ccc;
+      margin-top: 30rpx;
+    }
+    .btn {
+      margin-top: 30rpx;
+    }
+  }
+
+  .add-or-decrease {
+    width: 172rpx;
+    height: 46rpx;
+    border: 2rpx solid #d5d5d5;
+    border-radius: 10rpx;
+    display: flex;
+    flex-direction: row;
+    line-height: 46rpx;
+    color: #666;
+    .add-contain {
+      width: 50rpx;
+      height: 46rpx;
+      display: flex;
+      justify-content: center;
+    }
+    .add{
+      height: 26rpx;
+      font-size: 40rpx;
+      line-height: 38rpx;
+      width: 26rpx;
+    }
+    .decrease{
+      font-size: 40rpx;
+      width: 26rpx;
+    }
+    .decrease-contain {
+      width: 50rpx;
+      border-right: 2rpx solid #d5d5d5;
+      height: 46rpx;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .number-contain {
+      width: 72rpx;
+      border-right: 2rpx solid #d5d5d5;
+      height: 46rpx;
+      display: flex;
+      justify-content: center;
+      text-align: center;
+    }  
   }
 }
