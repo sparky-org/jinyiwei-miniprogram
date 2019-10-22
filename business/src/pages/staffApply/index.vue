@@ -120,7 +120,7 @@ export default {
           console.log(res);
           if (res.confirm) {
             // console.log('确定')
-            const data = await post(`/agency/employ/cancelApply?employId=${this.$store.state.userInfo.id}&workflowId=${item.id}`);
+            const data = await post(`/employ/cancelApply?employId=${this.$store.state.userInfo.employId}&workflowId=${item.workflowId}`);
             if(data.success){
               wx.showToast({
                 title: '操作成功',
@@ -141,7 +141,7 @@ export default {
       })
     },
     async getData() {
-      const data = await post(`/agency/employ/getMyApply?employId=${this.$store.state.userInfo.id}`);
+      const data = await post(`/employ/myApplyList?shopId=${this.$store.state.userInfo.shopId}&employId=${this.$store.state.userInfo.employId}`);
       if(data.success){
         if(data.result){
           data.result.forEach(item => {

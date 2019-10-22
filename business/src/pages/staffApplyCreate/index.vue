@@ -53,12 +53,12 @@
       </div>
 
 
-      <div class="weui-cell weui-cell_input" v-if="type==1">
+      <div class="weui-cell weui-cell_input">
         <div class="weui-cell__hd">
-          <div class="weui-label">请款事由</div>
+          <div class="weui-label">{{type==0?'请假事由':'请款事由'}}</div>
         </div>
         <div class="weui-cell__bd" style="padding: 20rpx 0;">
-          <textarea class="" v-model="form.reason" placeholder="请输入请款事由" style="height: 3.8em" />
+          <textarea class="" v-model="form.reason" placeholder="请输入事由" style="height: 3.8em" />
         </div>
       </div>
 
@@ -121,7 +121,7 @@ export default {
   methods: {
     async handleAction(){
       if(this.type == 0){
-        if(!this.form.applyTypeName || !this.form.begin || !this.form.end){
+        if(!this.form.applyTypeName || !this.form.begin || !this.form.end || !this.form.reason){
           wx.showModal({
             content: '请填写信息',
             showCancel: false,
@@ -133,12 +133,14 @@ export default {
           });
           return
         }
-        const data = await post(`/agency/employ/createHolidayApply`, {
-          "agencyId": this.$store.state.userInfo.agencyId,
-          "employId": this.$store.state.userInfo.id,
+
+        const data = await post(`/employ/createHolidayApply`, {
+          "agencyId": this.$store.state.userInfo.shopId,
+          "employId": this.$store.state.userInfo.employId,
           "applyTypeName": this.form.applyTypeName,
           "begin": this.form.begin,
-          "end": this.form.end
+          "end": this.form.end,
+          "reason": this.form.reason
         });
         console.info('2311212', data)
         if(data.success){
@@ -169,9 +171,10 @@ export default {
           });
           return
         }
-        const data = await post(`/agency/employ/createMoneyApply`, {
-          "agencyId": this.$store.state.userInfo.agencyId,
-          "employId": this.$store.state.userInfo.id,
+
+        const data = await post(`/employ/createMoneyApply`, {
+          "agencyId": this.$store.state.userInfo.shopId,
+          "employId": this.$store.state.userInfo.employId,
           "applyTypeName": this.form.applyTypeName,
           "amount": this.form.amount,
           "reason": this.form.reason
@@ -208,8 +211,8 @@ export default {
     // },
     // ...mapMutations(["update"]),
     async getData() {
-      const data = await get("/index/index");
-      this.banner = data.banner;
+      // const data = await get("/index/index");
+      // this.banner = data.banner;
     },
     // topicdetail(id) {
     //   wx.navigateTo({
