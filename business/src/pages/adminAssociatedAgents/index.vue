@@ -160,6 +160,7 @@ export default {
   methods: {
     // ...mapMutations(["update"]),
     async getData() {
+      console.info('12212112112',this.$store.state.userInfo.shopId)
       const data = await post(`/shop/getRelatedAgency?shopId=${this.$store.state.userInfo.shopId}`)
       if(data.success){
         data.result.forEach(item => {
