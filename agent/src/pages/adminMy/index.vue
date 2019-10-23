@@ -39,6 +39,10 @@
         <div class="weui-cell__bd">我的二维码</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
+      <navigator url="/pages/login/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd" onclick="this.clear1()">退出登陆</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+      </navigator>
       <!-- <navigator url="/pages/adminService/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__bd">客服</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
@@ -78,6 +82,9 @@ export default {
   methods: {
     // ...mapMutations(["update"]),
 
+    async clear1(){
+      wx.setStorageSync("userInfo", "");
+    }
     // async getData() {
     //   const data = await get("/index/index");
     //   this.banner = data.banner;
