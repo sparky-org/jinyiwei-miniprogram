@@ -126,9 +126,6 @@ export default {
             url: '/pages/adminIndex/main'
           })
         }
-        wx.switchTab({
-          url: '/pages/adminIndex/main'
-        })
       }
     },
     // bindDateChange(e) {
