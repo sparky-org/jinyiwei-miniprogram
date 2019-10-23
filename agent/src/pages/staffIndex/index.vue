@@ -61,20 +61,16 @@ export default {
     // ...mapState(["cityName"])
   },
   mounted() {
-    // wx.login({
-    //   success: () => {
-    //     wx.getUserInfo({
-    //       success: (res) => {
-
-    //       }
-    //     })
-    //   }
-    // })
-    wx.getUserInfo({
-      success: (res) => {
-         this.userInfo = res.userInfo
+    wx.login({
+      success: () => {
+        wx.getUserInfo({
+          success: (res) => {
+             this.userInfo = res.userInfo
+          }
+        })
       }
     })
+    
     this.getData();
     this.getNearestTasks()
 
