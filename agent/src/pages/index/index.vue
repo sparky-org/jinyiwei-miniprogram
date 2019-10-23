@@ -18,7 +18,7 @@ export default {
     // 判断是否登录
     let userInfo = wx.getStorageSync("userInfo")
     if(!userInfo){
-      wx.navigateTo({
+      wx.reLaunch({
         url: '/pages/login/main'
       })
       return
