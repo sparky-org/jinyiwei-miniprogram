@@ -20,7 +20,7 @@
       <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
           <div class="weui-form-preview__label">到期时间</div>
-          <div class="weui-form-preview__value">{{item.createTime}}</div>
+          <div class="weui-form-preview__value">{{item.createTimeStr}}</div>
         </div>
       </div>
       <div class="weui-form-preview__ft" style="margin-top: -1px;"  v-if="item.status=='UNCOMPLETED'">
@@ -72,7 +72,7 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get, post } from "../../utils";
+import { get, post, msToDate } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 let D = new Date()
 let date = D.getFullYear() + '-' + (D.getMonth() + 1) + '-'+ D.getDate()
@@ -139,6 +139,9 @@ export default {
       const data = await post(`/agency/task/queryTaskByDate?employId=${this.$store.state.userInfo.id}&date=${this.date}`);
       if(data.success){
         if(data.result){
+          data.result.forEach(item => {
+            item.createTimeStr = msToDate(item.createTime)
+          })
           this.list = data.result
         }else{
           this.list = []
