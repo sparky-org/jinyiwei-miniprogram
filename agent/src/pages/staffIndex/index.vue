@@ -61,16 +61,37 @@ export default {
     // ...mapState(["cityName"])
   },
   mounted() {
-    wx.login({
-      success: () => {
-        wx.getUserInfo({
-          success: (res) => {
-             this.userInfo = res.userInfo
-          }
-        })
+    // wx.login({
+    //   success: () => {
+    //     wx.getUserInfo({
+    //       success: (res) => {
+    //          this.userInfo = res.userInfo
+    //       }
+    //     })
+    //   }
+    // })
+
+    wx.getSetting({
+      success: function(res){
+        // if (res.authSetting['scope.userInfo']) {
+        //   // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+        //   wx.getUserInfo({
+        //     success: function(res) {
+        //       console.log(res.userInfo)
+        //     }
+        //   })
+        // }
+        
       }
     })
     
+    wx.getUserInfo({
+      success: (res) => {
+         this.userInfo = res.userInfo
+      }
+    })
+
+
     this.getData();
     this.getNearestTasks()
 
@@ -88,7 +109,7 @@ export default {
   },
   components: {},
   methods: {
-    
+
     handleExit(){
       console.info(19012902109)
       wx.clearStorageSync()
