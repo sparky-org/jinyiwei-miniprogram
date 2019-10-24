@@ -12,21 +12,26 @@
 
     <div class="goods-info">
       <p class="title">{{info.goodsName}}</p>
-      <div class="desc">
+      <div v-if="info.usePoint" class="desc">
+        <span class="price">{{info.pointPrice}}积分</span>
+        <span class="old-price">市场价￥{{info.retailPrice}}</span>
+        <span class="num">已售{{info.boughtCount}}件</span>
+      </div>
+      <div v-if="!info.usePoint" class="desc">
         <span class="price">￥{{info.price}}</span>
         <span class="old-price">￥{{info.retailPrice}}</span>
-        <span class="num">已售{{info.boughtCount}}件</span>
+        <span class="num">11{{info.usePoint}}已售{{info.boughtCount}}件</span>
       </div>
     </div>
 
     <ul class="section-nav">
-      <li v-for="(item, index) in navList" :key="index" :class="{'active': 
+      <li v-for="(item, index) in navList" :key="index" :class="{'active':
       activeNav == item.value}" @click="changeNav(item)">{{item.text}}</li>
     </ul>
     <div class="detail-panel" v-if="goodsDesc">
       <wxParse :content="goodsDesc"/>
     </div>
-    
+
     <!-- 底部操作 -->
     <div class="bottom-fixed">
       <button open-type="contact" class="contact-btn">
@@ -51,7 +56,7 @@ import wxParse from "mpvue-wxparse";
 
 export default {
   onShow() {
-    let {id} = this.$root.$mp.query 
+    let {id} = this.$root.$mp.query
     id && this.goodsDetail(id);
   },
   mounted() {

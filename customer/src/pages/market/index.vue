@@ -27,9 +27,17 @@
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <div class="title">
               <div class="weui-media-box__title_custom">{{item.goodsName}}</div>
-              <div class="num">已售12件</div>
+              <div class="num">已售：{{item.boughtCount}}件</div>
             </div>
-            <div class="weui-media-box__desc">
+            <div v-if="item.usePoint" class="weui-media-box__desc">
+              <span class="price">{{item.pointPrice}}积分</span>
+              <span class="old-price">市场价¥{{item.retailPrice}}</span>
+              <span class="btns">
+                <button class="add-cart-btn" @click.stop="addCart(item)">加入购物车</button>
+                <button class="buy-btn" @click.stop="onBuy(item)">立即购买</button>
+              </span>
+            </div>
+            <div v-if="!item.usePoint" class="weui-media-box__desc">
               <span class="price">¥{{item.price}}</span>
               <span class="old-price">¥{{item.retailPrice}}</span>
               <span class="btns">
