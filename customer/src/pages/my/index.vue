@@ -12,6 +12,7 @@
         </div>
       </div>
     </button>
+    <div @click="logout" class="logout">退出</div>
     <div class="head">
       <div class="item">
         <div class='number' @click="showCashBalance">{{cashBalance}}</div>
@@ -136,7 +137,20 @@
       // 显示金额
       showCashBalance() {
         this.cashBalance = this.info.cashBalance
-      }
+      },
+      logout() {
+        wx.setStorageSync("userInfo", '');
+        wx.showToast({
+          title: "退出成功",
+          icon: "none",
+          duration: 1000
+        });
+        setTimeout(() => {
+          wx.switchTab({
+            url: '/pages/index/main'
+          })
+        }, 1000)
+      },
     },
     computed: {}
   };
