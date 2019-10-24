@@ -50,7 +50,7 @@ export function msToDate(_ms, _format) {
   return format
 }
 
-let userInfo = wx.getStorageSync("userInfo")
+
 // import store from './../store'
 // console.info('store',store)
 // if(userInfo){
@@ -58,6 +58,7 @@ let userInfo = wx.getStorageSync("userInfo")
 // }
 //请求封装
 function request(url, method, data, header = {}) {
+  let userInfo = wx.getStorageSync("userInfo")
   wx.showLoading({
     title: "加载中" //数据请求前loading
   });
@@ -87,14 +88,35 @@ function request(url, method, data, header = {}) {
             }
           });
         }else{
+          console.info('error4-------401',res)
+          if(res.statusCode == 401){
+            wx.clearStorageSync()
+            wx.reLaunch({
+              url: "/pages/login/main"
+            });
+          }
           resolve(res.data);
         }
       },
       fail: function(error) {
+        console.info('error1',error)
+        if(error.statusCode == 401){
+          wx.clearStorageSync()
+          wx.reLaunch({
+            url: "/pages/login/main"
+          });
+        }
         wx.hideLoading();
         reject(false);
       },
-      complete: function() {
+      complete: function(error) {
+        console.info('error2---------401',error)
+        if(error.statusCode == 401){
+          wx.clearStorageSync()
+          wx.reLaunch({
+            url: "/pages/login/main"
+          });
+        }
         wx.hideLoading();
       }
     });

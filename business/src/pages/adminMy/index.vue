@@ -31,6 +31,11 @@
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
     </div>
+    
+    <div style="padding: 50rpx 20rpx;">
+      <button class="weui-btn" type="primary" @click="handleExit">退出登陆</button>
+    </div>
+    
   </div>
 </template>
 
@@ -62,7 +67,13 @@ export default {
   components: {},
   methods: {
     // ...mapMutations(["update"]),
-
+    handleExit(){
+      console.info(19012902109)
+      wx.clearStorageSync()
+      wx.reLaunch({
+        url: "/pages/login/main"
+      });
+    },
     async getData() {
       // const data = await get("/index/index");
       // this.banner = data.banner;

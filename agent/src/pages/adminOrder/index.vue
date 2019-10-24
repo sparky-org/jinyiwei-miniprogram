@@ -34,7 +34,8 @@
               </div>
             </div>
             <div class="weui-form-preview__ft">
-              <div class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" @click="handleSelect(item)">指派销售</div>
+              <div v-if="item.dispatchStatus=='DISPATCHED'" class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active">{{item.dispatchSellerName}}</div>
+              <div v-if="item.dispatchStatus=='UNDISPATCHED'" class="weui-form-preview__btn weui-form-preview__btn_default" hover-class="weui-form-preview__btn_active" @click="handleSelect(item)">指派销售</div>
               <div class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active" @click="handleCall(item)">联系客服</div>
             </div>
           </div>
@@ -123,8 +124,8 @@ export default {
       // banner: [],
       point: '',
       list: [],
-      tabs: ['全部', '已完成', '未完成'],
-      status: ['','PROCESSING','FINISHED'],
+      tabs: ['全部', '已分配', '未分配'],
+      status: ['','DISPATCHED','UNDISPATCHED'],
       activeIndex: 0,
       // data: null
       selectStaffVisible: false,

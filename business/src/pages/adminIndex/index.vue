@@ -12,7 +12,7 @@
 
     <div class="weui-panel weui-panel_access custom-title">
       <div class="weui-panel__hd">已上架商品</div>
-      <div class="weui-panel__bd">
+      <div class="weui-panel__bd" v-if="data.goodsItems && data.goodsItems.length > 0">
         <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" v-for="(item, index) in data.goodsItems" :key="index">
           <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" :src="item.picUrl" />
@@ -40,6 +40,17 @@
       </div> -->
     </div>
 
+    <div v-if="!data.goodsItems">
+      <div class="page__bd" style="padding-top: 50rpx; text-align: center;">
+        <div class="icon-box">
+          <icon type="info" size="50"></icon>
+          <div class="icon-box__ctn">
+            <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 14px;">暂无上架商品</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -49,6 +60,7 @@ import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
+    this.getData()
   },
   computed: {
     // ...mapState(["cityName"])

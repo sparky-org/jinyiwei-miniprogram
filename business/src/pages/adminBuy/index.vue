@@ -260,7 +260,7 @@ export default {
 
 
     async getData() {
-      const data = await post(`/shop/getRelatedAgency`, this.$store.state.userInfo.shopId)
+      const data = await post(`/shop/getRelatedAgency?shopId=${this.$store.state.userInfo.shopId}`)
       console.info(data)
       if(data.success){
         this.agentList = data.result ? data.result : []

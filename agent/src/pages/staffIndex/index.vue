@@ -37,6 +37,14 @@
           <div class="weui-cell__bd">签到赚积分</div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </navigator>
+        <!-- <navigator url="/pages/login/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <div class="weui-cell__bd">退出</div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+        </navigator> -->
+      </div>
+
+      <div style="padding: 50rpx 20rpx;">
+        <button class="weui-btn" type="primary" @click="handleExit">退出登陆</button>
       </div>
 
     </div>
@@ -57,16 +65,33 @@ export default {
     //   success: () => {
     //     wx.getUserInfo({
     //       success: (res) => {
-
+    //          this.userInfo = res.userInfo
     //       }
     //     })
     //   }
     // })
+
+    // wx.getSetting({
+    //   success: function(res){
+    //     // if (res.authSetting['scope.userInfo']) {
+    //     //   // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+    //     //   wx.getUserInfo({
+    //     //     success: function(res) {
+    //     //       console.log(res.userInfo)
+    //     //     }
+    //     //   })
+    //     // }
+
+    //   }
+    // })
+
     wx.getUserInfo({
       success: (res) => {
          this.userInfo = res.userInfo
       }
     })
+
+
     this.getData();
     this.getNearestTasks()
 
@@ -84,6 +109,14 @@ export default {
   },
   components: {},
   methods: {
+
+    handleExit(){
+      console.info(19012902109)
+      wx.clearStorageSync()
+      wx.reLaunch({
+        url: "/pages/login/main"
+      });
+    },
     // ...mapMutations(["update"]),
 
     async getData() {

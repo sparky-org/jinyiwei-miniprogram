@@ -20,7 +20,7 @@ export default {
     let userInfo = wx.getStorageSync("userInfo")
     if(!userInfo){
       // console.info(1212)
-      wx.navigateTo({
+      wx.reLaunch({
         url: '/pages/login/main'
       })
       return
