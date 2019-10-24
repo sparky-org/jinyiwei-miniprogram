@@ -62,7 +62,7 @@
     </div>
     <div class="bottom">
       <div>实付 : ￥{{allprice}}</div>
-      <div @click="pay">支付订单</div>
+      <div @click="pay">确认订单</div>
     </div>
 
     <div class="weui-dialog" v-if="showDialog">
@@ -182,7 +182,7 @@
             // })
           } else {
             wx.showToast({
-              title: "支付成功",
+              title: "订单创建成功",
               icon: "none",
               duration: 1000
             });
