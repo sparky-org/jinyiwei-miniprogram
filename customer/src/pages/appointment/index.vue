@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="appointment-container">
     <Calendar 
       :months="months" 
       :value="value" 
@@ -12,6 +12,12 @@
       @selectMonth="selectMonth"       
       @selectYear="selectYear"/>     
     <!-- <button @click="setToday">返回今日</button> -->
+    <ul class="info-list">
+      <li v-for="(item, index) in infoList" :key="index">
+        <span class="time">{{item.time}}</span> 
+        <span>{{item.title}}</span>
+      </li>
+    </ul>
   </div> 
 </template>
 
@@ -37,7 +43,8 @@
         begin:[2010,1,1],
         end:[2050,1,1],
         events: {/*'2018-6-7':'今日备注', '2018-6-8':'一条很长的明日备注'*/},
-        date: '2019-10-20'
+        date: '2019-10-20',
+        infoList: []
       };
     },
     onShow() {
@@ -79,7 +86,7 @@
       getInfo() {
         post(`/appointment/getAppointments?customerId=${this.userInfo.customerId}&shopId=${this.globalData.shopId}&date=${this.date}`).then(res => {
           if (res.success) {
-
+            this.infoList = res.result
           }
         })
       }

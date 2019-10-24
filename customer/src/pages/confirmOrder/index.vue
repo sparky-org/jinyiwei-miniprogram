@@ -163,22 +163,35 @@
           shopId: this.globalData.shopId,
           orderReqDtls
         }).then(res => {
-          // 微信支付
-          // wx.requestPayment({
-          //   ...res.data.payInfo,
-          //   'success':function(res){
-          //     wx.navigateTo({
-          //       url: `/pages/index/market-order-detail/index?isPaySuccess=1&orderId=${orderId}`,
-          //     })
-          //   },
-          //   'fail':function(res){
-          //     wx.navigateTo({
-          //       url: `/pages/index/market-order-detail/index?orderId=${orderId}`,
-          //     })
-          //   },
-          //   'complete':function(res){
-          //   }
-          // })
+          if (this.payType === 'WEIXIN') {
+            // 微信支付
+            // wx.requestPayment({
+            //   ...res.data.payInfo,
+            //   'success':function(res){
+            //     wx.navigateTo({
+            //       url: `/pages/index/market-order-detail/index?isPaySuccess=1&orderId=${orderId}`,
+            //     })
+            //   },
+            //   'fail':function(res){
+            //     wx.navigateTo({
+            //       url: `/pages/index/market-order-detail/index?orderId=${orderId}`,
+            //     })
+            //   },
+            //   'complete':function(res){
+            //   }
+            // })
+          } else {
+            wx.showToast({
+              title: "支付成功",
+              icon: "none",
+              duration: 1000
+            });
+            setTimeout(() => {
+              wx.switchTab({
+                url: '/pages/my/main'
+              })
+            }, 1000)
+          }
         })
       },
     },

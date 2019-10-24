@@ -206,9 +206,9 @@ export default {
     // 立即购买
     onBuy(item) {
       if (toLogin()) {
-        let {goodsId, goodsName, picUrl, price, retailPrice} = item
+        let {goodsId, goodsName, picUrl, price, retailPrice, payTypeList} = item
         let goodsList = [{
-          goodsId, goodsName, picUrl, price, retailPrice, num: 1
+          goodsId, goodsName, picUrl, price, retailPrice, num: 1, payTypeList
         }]
         wx.navigateTo({
           url: `/pages/confirmOrder/main?goodsList=${JSON.stringify(goodsList)}`
