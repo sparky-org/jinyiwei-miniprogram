@@ -1,7 +1,7 @@
 <template>
   <div class="order_list">
   <!-- {{agencyId}} -->
-  {{list}}
+  {{list}}122112
     <div class="weui-form-preview">
        <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
@@ -116,7 +116,7 @@ export default {
     async getData() {
       const data = await post(`/shop/queryPurchaseOrderList`, {
         "shopId": this.$store.state.userInfo.shopId,
-        "agencyId": 2
+        "agencyId": this.$store.state.userInfo.agencyId
       })
       if(data.success){
         console.info(12122101091290)
