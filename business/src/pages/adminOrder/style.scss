@@ -20,7 +20,7 @@
     .weui-panel__hd{
       span{
         float: right;
-        color: #f00;
+        color: #888;
       }
     }
     .total_price{
@@ -39,5 +39,8 @@
   width: 100%;
   overflow: hidden;
   position: relative;
+  span.greenColor{
+    color: #0BB20C!important;
+  }
 
 }

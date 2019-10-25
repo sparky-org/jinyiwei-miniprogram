@@ -3,7 +3,7 @@
     <!-- {{list}}212121 -->
     <template v-if="list.length > 0">
       <div class="weui-panel weui-panel_access custom-title" v-for="(item, index) in list" :key="index">
-        <div class="weui-panel__hd">{{item.orderTimeStr}}<span>{{item.status=='NEW'?'未付款':'已付款'}}</span></div>
+        <div class="weui-panel__hd">{{item.orderTimeStr}}<span :class="{greenColor: item.status!='NEW'}">{{item.status=='NEW'?'未付款':'已付款'}}</span></div>
         <div class="weui-panel__bd">
 
           <div class="weui-media-box weui-media-box_appmsg" v-for="(it,idx) in item.productList" :accesskey="idx" hover-class="weui-cell_active">
@@ -33,7 +33,7 @@
           <div class="weui-cell weui-cell_access weui-cell_link">
             <!-- <div class="weui-cell__bd">查看更多</div>
             <div class="weui-cell__ft weui-cell__ft_in-access"></div> -->
-            <span class="total_price">总共{{item.totalCount}}件商品，总计：￥<em style="font-size: 32rpx; color: #f00;">{{item.orderAmount}}</em>元</span>
+            <span class="total_price">总共{{item.totalCount}}件商品，总计：<em style="font-size: 32rpx; color: #f00; display: inline-block;">￥{{item.orderAmount}}元</em></span>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
         <div class="icon-box">
           <icon type="info" size="93"></icon>
           <div class="icon-box__ctn">
-            <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px; display: inline-block;">暂无订单</div>
+            <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px;">暂无订单</div>
           </div>
         </div>
       </div>
@@ -58,6 +58,7 @@ import { get, post, msToDate } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
+    this.getData()
   },
   computed: {
     // ...mapState(["cityName"])
