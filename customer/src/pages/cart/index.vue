@@ -10,7 +10,8 @@
           <div class="info">
             <p>{{item.goodsName}}</p>
             <div class="price-num">
-              <span class="price">￥{{item.price}}</span>
+              <span v-if="item.usePoint" class="price">￥{{item.price}}</span>
+              <span v-if="!item.usePoint" class="price">￥{{item.pointPrice}}</span>
               <div class='add-or-decrease'>
                 <div class='decrease-contain' @click='decreaseItem(index)'>
                     <div class='decrease'>-</div>
@@ -97,7 +98,7 @@
           this.updateStorageSync()
         }
       },
-      
+
       // 增加数量
       addItem(index) {
         this.listData[index].num++

@@ -4,7 +4,7 @@
       <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="500">
         <block v-for="(item, index) in banner" :key="index">
           <swiper-item class="swiper-item">
-            <image :src="item" class="slide-image" />
+            <image :src="item.picUrl" class="slide-image" />
           </swiper-item>
         </block>
       </swiper>
@@ -27,9 +27,17 @@
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <div class="title">
               <div class="weui-media-box__title_custom">{{item.goodsName}}</div>
-              <div class="num">已售12件</div>
+              <div class="num">已售：{{item.boughtCount}}件</div>
             </div>
-            <div class="weui-media-box__desc">
+            <div v-if="item.usePoint" class="weui-media-box__desc">
+              <span class="price">{{item.pointPrice}}积分</span>
+              <span class="old-price">市场价¥{{item.retailPrice}}</span>
+              <span class="btns">
+                <button class="add-cart-btn" @click.stop="addCart(item)">加入购物车</button>
+                <button class="buy-btn" @click.stop="onBuy(item)">立即购买</button>
+              </span>
+            </div>
+            <div v-if="!item.usePoint" class="weui-media-box__desc">
               <span class="price">¥{{item.price}}</span>
               <span class="old-price">¥{{item.retailPrice}}</span>
               <span class="btns">
@@ -206,9 +214,9 @@ export default {
     // 立即购买
     onBuy(item) {
       if (toLogin()) {
-        let {goodsId, goodsName, picUrl, price, retailPrice} = item
+        let {goodsId, goodsName, picUrl, price, retailPrice, payTypeList} = item
         let goodsList = [{
-          goodsId, goodsName, picUrl, price, retailPrice, num: 1
+          goodsId, goodsName, picUrl, price, retailPrice, num: 1, payTypeList
         }]
         wx.navigateTo({
           url: `/pages/confirmOrder/main?goodsList=${JSON.stringify(goodsList)}`

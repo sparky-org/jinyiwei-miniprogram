@@ -44,7 +44,12 @@
         <image :src="item.picUrl"/>
         <div class="font">
           <div class="title">{{item.goodsName}}</div>
-          <div class="price-num">
+          <div v-if="item.usePoint" class="price-num">
+            <span class="price">{{item.pointPrice}}积分</span>
+            <span class="old-price">{{item.retailPrice}}</span>
+            <span class="num">x {{item.num}}</span>
+          </div>
+          <div v-if="!item.usePoint" class="price-num">
             <span class="price">{{item.price}}</span>
             <span class="old-price">{{item.retailPrice}}</span>
             <span class="num">x {{item.num}}</span>
@@ -62,7 +67,7 @@
     </div>
     <div class="bottom">
       <div>实付 : ￥{{allprice}}</div>
-      <div @click="pay">支付订单</div>
+      <div @click="pay">确认订单</div>
     </div>
 
     <div class="weui-dialog" v-if="showDialog">
@@ -73,7 +78,12 @@
             <image :src="item.picUrl"/>
             <div class="font">
               <div class="title">{{item.goodsName}}</div>
-              <div class="price-num">
+              <div v-if="item.usePoint" class="price-num">
+                <span class="price">{{item.pointPrice}}</span>
+                <span class="old-price">{{item.retailPrice}}</span>
+                <span class="num">x {{item.num}}</span>
+              </div>
+              <div v-if="!item.usePoint" class="price-num">
                 <span class="price">{{item.price}}</span>
                 <span class="old-price">{{item.retailPrice}}</span>
                 <span class="num">x {{item.num}}</span>
@@ -102,10 +112,18 @@
     created() {
     },
     mounted() {
-      this.allprice = this.info.reduce((prev, cur) => {
-        prev += parseFloat(cur.price * cur.num)
-        return prev
-      }, 0)
+        console.log("pay type is : ", this.payType)
+        if (this.payType == 'POINT'){
+            this.allprice = this.info.reduce((prev, cur) => {
+                prev += parseFloat(cur.pointPrice * cur.num)
+                return prev
+            }, 0)
+        }else{
+            this.allprice = this.info.reduce((prev, cur) => {
+                prev += parseFloat(cur.price * cur.num)
+                return prev
+            }, 0)
+        }
     },
     data() {
       return {
@@ -138,7 +156,19 @@
       },
       // 选择支付方式
       choosePayType(value) {
-        this.payType = value
+        this.payType = value;
+          if (this.payType == 'POINT'){
+              console.log("pay type is : ", this.info)
+              this.allprice = this.info.reduce((prev, cur) => {
+                  prev += parseFloat(cur.pointPrice * cur.num)
+                  return prev
+              }, 0)
+          }else{
+              this.allprice = this.info.reduce((prev, cur) => {
+                  prev += parseFloat(cur.price * cur.num)
+                  return prev
+              }, 0)
+          }
       },
       changeInput($event, key) {
         this[key] = $event.target.value
@@ -163,22 +193,35 @@
           shopId: this.globalData.shopId,
           orderReqDtls
         }).then(res => {
-          // 微信支付
-          // wx.requestPayment({
-          //   ...res.data.payInfo,
-          //   'success':function(res){
-          //     wx.navigateTo({
-          //       url: `/pages/index/market-order-detail/index?isPaySuccess=1&orderId=${orderId}`,
-          //     })
-          //   },
-          //   'fail':function(res){
-          //     wx.navigateTo({
-          //       url: `/pages/index/market-order-detail/index?orderId=${orderId}`,
-          //     })
-          //   },
-          //   'complete':function(res){
-          //   }
-          // })
+          if (this.payType === 'WEIXIN') {
+            // 微信支付
+            // wx.requestPayment({
+            //   ...res.data.payInfo,
+            //   'success':function(res){
+            //     wx.navigateTo({
+            //       url: `/pages/index/market-order-detail/index?isPaySuccess=1&orderId=${orderId}`,
+            //     })
+            //   },
+            //   'fail':function(res){
+            //     wx.navigateTo({
+            //       url: `/pages/index/market-order-detail/index?orderId=${orderId}`,
+            //     })
+            //   },
+            //   'complete':function(res){
+            //   }
+            // })
+          } else {
+            wx.showToast({
+              title: "订单创建成功",
+              icon: "none",
+              duration: 1000
+            });
+            setTimeout(() => {
+              wx.switchTab({
+                url: '/pages/my/main'
+              })
+            }, 1000)
+          }
         })
       },
     },
