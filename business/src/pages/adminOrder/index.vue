@@ -3,19 +3,20 @@
     <!-- {{list}}212121 -->
     <template v-if="list.length > 0">
       <div class="weui-panel weui-panel_access custom-title" v-for="(item, index) in list" :key="index">
-        <div class="weui-panel__hd">{{item.createTimeStr}}<span>{{item.orderStatus=='NEW'?'未付款':'已付款'}}</span></div>
+        <div class="weui-panel__hd">{{item.orderTimeStr}}<span>{{item.status=='NEW'?'未付款':'已付款'}}</span></div>
         <div class="weui-panel__bd">
-          <div class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+
+          <div class="weui-media-box weui-media-box_appmsg" v-for="(it,idx) in item.productList" :accesskey="idx" hover-class="weui-cell_active">
             <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-              <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
+              <image class="weui-media-box__thumb" :src="it.picUrl" />
             </div>
             <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-              <div class="weui-media-box__title_custom">由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体由各种物质组成的巨型球状天体</div>
-              <div class="weui-media-box__desc"><!--剩余库存：10000-->&#12288; <span>￥{{item.price}}</span></div>
+              <div class="weui-media-box__title_custom">{{it.name}}</div>
+              <div class="weui-media-box__desc">数量：{{it.count}}&#12288; <span>￥{{it.price}}元</span></div>
             </div>
           </div>
-          
-          
+
+
           <div class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="display: none;">
             <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
               <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
@@ -25,20 +26,27 @@
               <div class="weui-media-box__desc"><!--剩余库存：1222-->&#12288; <span>￥500</span></div>
             </div>
           </div>
-          
-          
+
+
         </div>
         <div class="weui-panel__ft">
           <div class="weui-cell weui-cell_access weui-cell_link">
             <!-- <div class="weui-cell__bd">查看更多</div>
             <div class="weui-cell__ft weui-cell__ft_in-access"></div> -->
-            <span class="total_price">总共{{item.goodsNum}}件商品，总计：￥{{item.price}}</span>
+            <span class="total_price">总共{{item.totalCount}}件商品，总计：￥<em style="font-size: 32rpx; color: #f00;">{{item.orderAmount}}</em>元</span>
           </div>
         </div>
       </div>
     </template>
     <template v-else>
-      000
+      <div class="page__bd" style="padding-top: 150rpx; text-align: center;">
+        <div class="icon-box">
+          <icon type="info" size="93"></icon>
+          <div class="icon-box__ctn">
+            <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px; display: inline-block;">暂无订单</div>
+          </div>
+        </div>
+      </div>
     </template>
 
   </div>
@@ -96,7 +104,7 @@ export default {
 
     async getData() {
 
-      const data = await post(`/shop/goods/orderList`, {
+      const data = await post(`/shop/goods/queryOrderList`, {
         "shopId": this.$store.state.userInfo.shopId,
         "currentPageIndex": 1,
         "pageSize": 100000
@@ -104,7 +112,7 @@ export default {
       if(data.success){
         if(data.result){
           data.result.forEach(item => {
-            item.createTimeStr = msToDate(item.createTime)
+            item.orderTimeStr = msToDate(item.orderTime)
           })
           this.list = data.result
         }else{
