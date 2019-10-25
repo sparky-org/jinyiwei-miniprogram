@@ -159,6 +159,7 @@ import { get, post } from "../../utils";
 export default {
   onShow() {
     this.buyList = []
+    this.getData()
   },
   computed: {
     // ...mapState(["cityName"])

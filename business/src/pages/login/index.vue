@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       // date: '2019-08-11',
-      phone: '13010000000',
+      phone: '18600000001',
       verifyCode: ''
     };
   },

@@ -205,7 +205,7 @@ export default {
           }
         })
         setTimeout(()=>{
-          wx.navigateTo({
+          wx.navigateBack({
             url: '/pages/adminPublishTask/main'
           })
         },2000)
