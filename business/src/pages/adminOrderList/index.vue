@@ -1,24 +1,41 @@
 <template>
   <div class="order_list">
   <!-- {{agencyId}} -->
-  {{list}}122112-1221121
-    <div class="weui-form-preview">
-       <div class="weui-form-preview__bd">
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">订 单 号</div>
-          <div class="weui-form-preview__value">1098002122221</div>
+  <!-- {{list}} -->
+    <template v-if="list.length>0">
+      <div class="weui-form-preview" v-for="(item, index) in list" :key="index">
+         <div class="weui-form-preview__bd">
+          <div class="weui-form-preview__item">
+            <div class="weui-form-preview__label">订 单 号</div>
+            <div class="weui-form-preview__value">{{item.orderId}}</div>
+          </div>
+          <div class="weui-form-preview__item">
+            <div class="weui-form-preview__label">采购内容</div>
+            <div class="weui-form-preview__value">
+              <template v-for="(it, idx) in item.goodsItems">
+                <span>{{it.goodsName}}x{{it.count}}&#12288;</span>
+              </template>
+              <!-- 樱桃x12&#12288;马莲花x20&#12288;桃子x101&#12288;樱桃x12&#12288;马莲花x20&#12288;桃子x101&#12288;樱桃x12&#12288;马莲花x20&#12288;桃子x101&#12288; -->
+            </div>
+          </div>
+          <div class="weui-form-preview__item">
+            <div class="weui-form-preview__label">供应商</div>
+            <div class="weui-form-preview__value">{{item.agencyName}}</div>
+          </div>
         </div>
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">采购内容</div>
-          <div class="weui-form-preview__value">樱桃x12&#12288;马莲花x20&#12288;桃子x101&#12288;樱桃x12&#12288;马莲花x20&#12288;桃子x101&#12288;樱桃x12&#12288;马莲花x20&#12288;桃子x101&#12288;</div>
-        </div>
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">供应商</div>
-          <div class="weui-form-preview__value">很长很长的名</div>
+      </div>
+    </template>
+    <div v-if="list.length == 0">
+      <div class="page__bd" style="padding-top: 150rpx; text-align: center;">
+        <div class="icon-box">
+          <icon type="info" size="93"></icon>
+          <div class="icon-box__ctn">
+            <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px;">暂无订单</div>
+          </div>
         </div>
       </div>
     </div>
-
+<!--
     <div class="weui-form-preview">
        <div class="weui-form-preview__bd">
         <div class="weui-form-preview__item">
@@ -69,7 +86,7 @@
         </div>
       </div>
     </div>
-
+ -->
     <div class="sureBth">
       <button class="weui-btn" type="primary" @click="handleBack">返回</button>
     </div>

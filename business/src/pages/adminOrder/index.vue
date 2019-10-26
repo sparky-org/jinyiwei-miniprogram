@@ -33,7 +33,14 @@
           <div class="weui-cell weui-cell_access weui-cell_link">
             <!-- <div class="weui-cell__bd">查看更多</div>
             <div class="weui-cell__ft weui-cell__ft_in-access"></div> -->
-            <span class="total_price">总共{{item.totalCount}}件商品，总计：<em style="font-size: 32rpx; color: #f00; display: inline-block;">￥{{item.orderAmount}}元</em></span>
+            <span class="total_price">总共{{item.totalCount}}件商品，总计：
+              <template v-if="item.payType == 'POINT'">
+                <em style="font-size: 32rpx; color: #f00; display: inline-block;">{{item.orderAmount}}积分</em>
+              </template>
+              <template v-else>
+                <em style="font-size: 32rpx; color: #f00; display: inline-block;">￥{{item.orderAmount}}元</em>
+              </template>
+            </span>
           </div>
         </div>
       </div>
