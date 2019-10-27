@@ -28,7 +28,7 @@
       <li>
         <i class="iconfont icon-integral"></i>
         <div class="font">
-          <h3>可用积分1000分</h3>
+          <h3>可用积分{{pointBalance}}分</h3>
         </div>
         <div class="radio" @click="choosePayType('POINT')">
           <i class="iconfont icon-checked" v-if="payType === 'POINT'"></i>
@@ -124,6 +124,7 @@
                 return prev
             }, 0)
         }
+        this.loadPointBalance();
     },
     data() {
       return {
@@ -143,11 +144,19 @@
           price: 123,
           picUrl: 'https://oss.chlpartner.com/distribution/gold/images/index/swiper1.png',
         }*/],
-        showDialog: false
+        showDialog: false,
+        pointBalance: 0
       };
     },
     components: {},
     methods: {
+        loadPointBalance(){
+            post(`/customer/getCustomer?customerId=${this.userInfo.customerId}`).then(res=>{
+                if (res.success){
+                    this.pointBalance = res.result.pointBalance;
+                }
+            })
+        },
       showHelp() {
         this.showDialog = true
       },
