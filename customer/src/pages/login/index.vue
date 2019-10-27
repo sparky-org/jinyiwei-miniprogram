@@ -23,10 +23,18 @@
 </template>
 
 <script>
-import { get, post, getOpenid } from "../../utils";
+import { get, post, getOpenid, wxGetUserInfo } from "../../utils";
 import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
+    let {cardId} = this.$root.$mp.query
+    if (wx.getStorageSync("wxInfo")) {
+      this.wxInfo = wx.getStorageSync("wxInfo")
+    } else {
+      wxGetUserInfo(wxInfo => {
+        this.wxInfo = wx.getStorageSync("wxInfo")
+      })
+    }
   },
   computed: {
   },
@@ -44,6 +52,10 @@ export default {
   created() {
   },
   methods: {
+    // 绑定礼品卡
+    bindingCard () {
+
+    },
     changeInput ($event, key) {
       this[key] = $event.target.value
     },
@@ -103,7 +115,8 @@ export default {
       post(`/login/login`, {
         phone,
         verifyCode,
-        shopId: this.globalData.shopId
+        shopId: this.globalData.shopId,
+        weixin: this.wxInfo.nickName
       }).then(res => {
         if (res.success) {
           wx.setStorageSync('userInfo', res.result)
