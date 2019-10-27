@@ -20,7 +20,7 @@
     .weui-panel__hd{
       span{
         float: right;
-        color: #f00;
+        color: #888;
       }
     }
     .total_price{
@@ -31,13 +31,16 @@
     .weui-media-box__desc{
       span{
         float: right;
-        color: #f00;
-        font-size: 34rpx;
+        color: #666;
+        font-size: 28rpx;
       }
     }
   }
   width: 100%;
   overflow: hidden;
   position: relative;
+  span.greenColor{
+    color: #0BB20C!important;
+  }
 
 }

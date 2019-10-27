@@ -28,7 +28,7 @@
       <li>
         <i class="iconfont icon-integral"></i>
         <div class="font">
-          <h3>可用积分1000分</h3>
+          <h3>可用积分{{pointBalance}}分</h3>
         </div>
         <div class="radio" @click="choosePayType('POINT')">
           <i class="iconfont icon-checked" v-if="payType === 'POINT'"></i>
@@ -44,7 +44,12 @@
         <image :src="item.picUrl"/>
         <div class="font">
           <div class="title">{{item.goodsName}}</div>
-          <div class="price-num">
+          <div v-if="item.usePoint" class="price-num">
+            <span class="price">{{item.pointPrice}}积分</span>
+            <span class="old-price">{{item.retailPrice}}</span>
+            <span class="num">x {{item.num}}</span>
+          </div>
+          <div v-if="!item.usePoint" class="price-num">
             <span class="price">{{item.price}}</span>
             <span class="old-price">{{item.retailPrice}}</span>
             <span class="num">x {{item.num}}</span>
@@ -62,7 +67,7 @@
     </div>
     <div class="bottom">
       <div>实付 : ￥{{allprice}}</div>
-      <div @click="pay">支付订单</div>
+      <div @click="pay">确认订单</div>
     </div>
 
     <div class="weui-dialog" v-if="showDialog">
@@ -73,7 +78,12 @@
             <image :src="item.picUrl"/>
             <div class="font">
               <div class="title">{{item.goodsName}}</div>
-              <div class="price-num">
+              <div v-if="item.usePoint" class="price-num">
+                <span class="price">{{item.pointPrice}}</span>
+                <span class="old-price">{{item.retailPrice}}</span>
+                <span class="num">x {{item.num}}</span>
+              </div>
+              <div v-if="!item.usePoint" class="price-num">
                 <span class="price">{{item.price}}</span>
                 <span class="old-price">{{item.retailPrice}}</span>
                 <span class="num">x {{item.num}}</span>
@@ -102,10 +112,19 @@
     created() {
     },
     mounted() {
-      this.allprice = this.info.reduce((prev, cur) => {
-        prev += parseFloat(cur.price * cur.num)
-        return prev
-      }, 0)
+        console.log("pay type is : ", this.payType)
+        if (this.payType == 'POINT'){
+            this.allprice = this.info.reduce((prev, cur) => {
+                prev += parseFloat(cur.pointPrice * cur.num)
+                return prev
+            }, 0)
+        }else{
+            this.allprice = this.info.reduce((prev, cur) => {
+                prev += parseFloat(cur.price * cur.num)
+                return prev
+            }, 0)
+        }
+        this.loadPointBalance();
     },
     data() {
       return {
@@ -125,11 +144,19 @@
           price: 123,
           picUrl: 'https://oss.chlpartner.com/distribution/gold/images/index/swiper1.png',
         }*/],
-        showDialog: false
+        showDialog: false,
+        pointBalance: 0
       };
     },
     components: {},
     methods: {
+        loadPointBalance(){
+            post(`/customer/getCustomer?customerId=${this.userInfo.customerId}`).then(res=>{
+                if (res.success){
+                    this.pointBalance = res.result.pointBalance;
+                }
+            })
+        },
       showHelp() {
         this.showDialog = true
       },
@@ -138,7 +165,19 @@
       },
       // 选择支付方式
       choosePayType(value) {
-        this.payType = value
+        this.payType = value;
+          if (this.payType == 'POINT'){
+              console.log("pay type is : ", this.info)
+              this.allprice = this.info.reduce((prev, cur) => {
+                  prev += parseFloat(cur.pointPrice * cur.num)
+                  return prev
+              }, 0)
+          }else{
+              this.allprice = this.info.reduce((prev, cur) => {
+                  prev += parseFloat(cur.price * cur.num)
+                  return prev
+              }, 0)
+          }
       },
       changeInput($event, key) {
         this[key] = $event.target.value
@@ -182,7 +221,7 @@
             // })
           } else {
             wx.showToast({
-              title: "支付成功",
+              title: "订单创建成功",
               icon: "none",
               duration: 1000
             });

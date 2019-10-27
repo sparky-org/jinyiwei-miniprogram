@@ -11,7 +11,7 @@
             </div>
             <div class="goods-item">
               <div class="order-img-contain">
-                <img :src="item.picUrl" />
+                <img :src="item.iconUrl" />
               </div>
               <div class="flex-1 detail-info">
                 <div class="title">{{item.name || '礼品卡'}}</div>
@@ -21,9 +21,9 @@
             </div>
             <div>
               <div class='group-btns'>
-                <div class="status">已消费</div>
-                <div class="btn primary-btn" @click="use(item.id)">使用</div>
-                <button open-type='share' bindtap="onShareAppMessage" class="btn primary-btn" @click="send(item.id)">赠送</button>
+                <div v-if="used" class="status">已消费</div>
+                <div v-if="canUse" class="btn primary-btn" @click="use(item.id)">使用</div>
+                <button v-if="!used" open-type='share' bindtap="onShareAppMessage" class="btn primary-btn" @click="send(item.id)">赠送</button>
               </div>
             </div>
           </div>
@@ -114,7 +114,8 @@
       loadData() {
         post(`/customer/getGistCoupons?customerId=${this.userInfo.customerId}`).then((res) => {
           if (res.success) {
-            // this.cardList = res.result || this.cardList
+            console.log(res.result)
+            this.cardList = res.result
           }
         })
       },

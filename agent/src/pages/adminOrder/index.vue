@@ -101,6 +101,7 @@ import { get, post, msToDate } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
+    this.getData(this.status[0]);
   },
   computed: {
     navbarSliderClass() {
@@ -117,7 +118,7 @@ export default {
     // ...mapState(["cityName"])
   },
   mounted() {
-    this.getData(this.status[0]);
+    // this.getData(this.status[0]);
   },
   data() {
     return {

@@ -1,46 +1,43 @@
 <template>
   <div class="my_QrCode">
-    <div class="page__bd" style="padding-top: 150rpx; text-align: center;">
-      <div class="icon-box">
-        <icon type="info" size="93"></icon>
-        <div class="icon-box__ctn">
-          <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px;">暂无二维码，敬请期待小程序上线后更新</div>
-        </div>
-      </div>
-    </div>
+    <img :src="imgCode" alt="我的二维码">
   </div>
 </template>
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
-import { mapState, mapMutations } from "vuex";
+import { get, post } from "../../utils";
+// import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
   },
   computed: {
-    ...mapState(["cityName"])
+    // ...mapState(["cityName"])
   },
   mounted() {
     this.getData();
   },
   data() {
     return {
-      banner: [],
+      // banner: [],
+      imgCode: ''
     };
   },
   components: {},
   methods: {
-    ...mapMutations(["update"]),
+    // ...mapMutations(["update"]),
     async getData() {
-      const data = await get("/index/index");
-      this.banner = data.banner;
+      const data = await post(`/shop/getShopQRCode?employId=${this.$store.state.userInfo.employId}&shopId=${this.$store.state.userInfo.shopId}`);
+      console.info(data,'二维码')
+      if(data.success){
+        this.imgCode = data.result
+      }
     },
-    topicdetail(id) {
-      wx.navigateTo({
-        url: "/pages/topicdetail/main?id=" + id
-      });
-    },
+    // topicdetail(id) {
+    //   wx.navigateTo({
+    //     url: "/pages/topicdetail/main?id=" + id
+    //   });
+    // },
   },
   created() {
 

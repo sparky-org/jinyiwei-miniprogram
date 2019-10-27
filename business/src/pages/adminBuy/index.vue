@@ -24,7 +24,7 @@
         </div>
       </picker>
     </div>
-    <div class="weui-cell weui-cell_access" style="padding: 0 30px; height: 30px; line-height: 30px;" @click="handleHistory">
+    <div v-if="agencyId!=''" class="weui-cell weui-cell_access" style="padding: 0 30px; height: 30px; line-height: 30px;" @click="handleHistory">
         <div>&#12288;&#12288;&#12288;</div>
         <div class="weui-cell__ft weui-cell__ft_in-access" style="font-size: 0; position: absolute; right: 20rpx;">
             <div>
@@ -159,6 +159,7 @@ import { get, post } from "../../utils";
 export default {
   onShow() {
     this.buyList = []
+    this.getData()
   },
   computed: {
     // ...mapState(["cityName"])
