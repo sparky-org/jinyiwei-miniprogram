@@ -71,12 +71,13 @@ text {
   align-items: center;
   background-color: #fff;
   .item {
-    min-width: 120rpx;
+    // min-width: 120rpx;
     display: inline-block;
     text-align: center;
-    padding: 10rpx 0;
+    padding: 10rpx 30rpx;
     font-size: 28rpx;
     flex: 1;
+    box-sizing: border-box;
     &.active {
       font-size: 34rpx;
       position: relative;

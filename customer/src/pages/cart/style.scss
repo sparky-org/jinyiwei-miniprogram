@@ -18,6 +18,9 @@
           background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-0e09baa37e.png) no-repeat center center;
           background-size: 34rpx 34rpx;
           margin: 0 20rpx;
+          &.disabled {
+            opacity: .5;
+          }
         }
         .icon.active {
           background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/checkbox-checked-822e54472a.png) no-repeat center center;
