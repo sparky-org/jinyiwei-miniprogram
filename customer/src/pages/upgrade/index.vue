@@ -45,58 +45,18 @@
 <script>
 import * as echarts from 'echarts/dist/echarts.simple.min'
 import mpvueEcharts from 'mpvue-echarts'
+import {
+  get,
+  post,
+  toLogin,
+  getStorageOpenid
+} from "../../utils";
 let chart = null
-function initChart (canvas, width, height) {
-  chart = echarts.init(canvas, null, {
-    width: width,
-    height: height
-  })
-  canvas.setChart(chart)
-  var option = {
-    color: ['#3398DB'],
-    tooltip : {
-        trigger: 'axis',
-        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
-            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
-        }
-    },
-    grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-    },
-    xAxis : [
-        {
-            type : 'category',
-            data : ['铜牌', '铁牌', '金牌', '钻石', '合伙人'],
-            axisTick: {
-                alignWithLabel: true
-            }
-        }
-    ],
-    yAxis : [
-        {
-            type : 'value'
-        }
-    ],
-    series : [
-        {
-            name:'等级',
-            type:'bar',
-            barWidth: '60%',
-            data:[100, 10000, 40000, 60000, 100000]
-        }
-    ]
-  }
-  chart.setOption(option)
-  return chart
-}
 export default {
   data () {
     return {
       echarts,
-      onInit: initChart,
+      onInit: this.initChart,
       vipLevel: '铜牌会员',
       showDialog: false,
       pointBalance: 0,
@@ -122,21 +82,88 @@ export default {
     }
   },
   onShow() {
-    let {vipLevel, pointBalance} = this.$root.$mp.query
-    this.vipLevel = vipLevel || this.vipLevel
-    this.pointBalance = pointBalance || this.pointBalance
-    let findIndex = this.levelList.findIndex(level => level.text == this.vipLevel)
-    if (findIndex !== -1 && findIndex !== this.levelList.length -1) {
-      this.levelDiff = {
-        name: this.levelList[findIndex+1].text,
-        pointBalance: this.levelList[findIndex+1].value - this.pointBalance
-      }
+    if (toLogin()) {
+      this.userInfo = wx.getStorageSync("userInfo") || {}
+      // let {vipLevel, pointBalance} = this.$root.$mp.query
+      // this.vipLevel = vipLevel || this.vipLevel
+      // this.pointBalance = pointBalance || this.pointBalance
+      // let findIndex = this.levelList.findIndex(level => level.text == this.vipLevel)
+      // if (findIndex !== -1 && findIndex !== this.levelList.length -1) {
+      //   this.levelDiff = {
+      //     name: this.levelList[findIndex+1].text,
+      //     pointBalance: this.levelList[findIndex+1].value - this.pointBalance
+      //   }
+      // }
     }
   },
   components: {
     mpvueEcharts
   },
   methods: {
+    // 获取等级数据
+    upgradeLevelInfo() {
+      post(`/customer/upgradeLevelInfo?shopId=${this.globalData.shopId}&customerId=${this.userInfo.customerId}`).then((res) => {
+        if (res.success) {
+          let result = res.result
+          this.vipLevel = result.levelDesc
+          this.levelDiff = {
+            name: result.nextLevelDesc,
+            pointBalance: result.toNextLevelNeedPoint
+          }
+          if (result.levelConfigList) {
+            let xData = result.levelConfigList.map(item => item.levelDesc)
+            let yData = result.levelConfigList.map(item => item.needPoint)
+            var option = {
+              color: ['#3398DB'],
+              tooltip : {
+                  trigger: 'axis',
+                  axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                      type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                  }
+              },
+              grid: {
+                  left: '3%',
+                  right: '4%',
+                  bottom: '3%',
+                  containLabel: true
+              },
+              xAxis : [
+                  {
+                      type : 'category',
+                      data : xData,
+                      axisTick: {
+                          alignWithLabel: true
+                      }
+                  }
+              ],
+              yAxis : [
+                  {
+                      type : 'value'
+                  }
+              ],
+              series : [
+                  {
+                      name:'等级',
+                      type:'bar',
+                      barWidth: '60%',
+                      data: yData
+                  }
+              ]
+            }
+            chart.setOption(option)
+          }
+        }
+      })
+    },
+    initChart (canvas, width, height) {
+      chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      })
+      canvas.setChart(chart)
+      this.upgradeLevelInfo()
+      return chart
+    },
     showHelp() {
       this.showDialog = true
     },
