@@ -58,7 +58,7 @@
     data() {
       return {
         userInfo: wx.getStorageSync("userInfo") || {},
-        cardList: [{
+        cardList: [/*{
           "beginDate": "2019-10-19T15:51:55.771Z",
           "count": 0,
           "creator": "string",
@@ -69,7 +69,7 @@
           "ownerId": 0,
           "price": 0,
           "shopId": 0
-        }],
+        }*/],
         showCode: false,
         codeImg: '',
         cardId: ''

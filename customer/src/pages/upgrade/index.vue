@@ -57,7 +57,7 @@ export default {
     return {
       echarts,
       onInit: this.initChart,
-      vipLevel: '铜牌会员',
+      vipLevel: '',
       showDialog: false,
       pointBalance: 0,
       levelList: [{
