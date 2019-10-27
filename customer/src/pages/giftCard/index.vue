@@ -23,7 +23,7 @@
               <div class='group-btns'>
                 <div class="status">已消费</div>
                 <div class="btn primary-btn" @click="use(item.id)">使用</div>
-                <div class="btn primary-btn" @click="send(item.id)">赠送</div>
+                <button open-type='share' bindtap="onShareAppMessage" class="btn primary-btn" @click="send(item.id)">赠送</button>
               </div>
             </div>
           </div>
@@ -84,8 +84,19 @@
     },
     methods: {
       // 赠送
-      send() {
-
+      send(cardId) {
+        let vm =this;
+        return {
+          title: '顾客小程序',
+          path: `/pages/login/main?cardId=${cardId}`,
+          success: (res)=>{
+            console.log('分享成功', res)
+          },
+          fail: function (res) {
+            // 分享失败
+            console.log(res)
+          }
+        }
       },
       // 使用
       use(gistCouponId) {
