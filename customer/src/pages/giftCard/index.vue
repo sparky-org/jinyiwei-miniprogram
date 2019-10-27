@@ -11,7 +11,7 @@
             </div>
             <div class="goods-item">
               <div class="order-img-contain">
-                <img :src="item.iconUrl" />
+                <img :src="/static/images/list_coupon.png" />
               </div>
               <div class="flex-1 detail-info">
                 <div class="title">{{item.name || '礼品卡'}}</div>
