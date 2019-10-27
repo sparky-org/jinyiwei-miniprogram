@@ -28,6 +28,7 @@ import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
     let {cardId} = this.$root.$mp.query
+    this.cardId = cardId
     if (wx.getStorageSync("wxInfo")) {
       this.wxInfo = wx.getStorageSync("wxInfo")
     } else {
@@ -46,6 +47,7 @@ export default {
       verifyCode: '',
       sendAuthCode: true,
       auth_time: 0,
+      cardId: ''
     };
   },
   components: {},
@@ -124,10 +126,22 @@ export default {
           if (!wx.getStorageSync('openid')) {
             getOpenid();
           }
+          if (this.cardId) {
+            this.bindByGistCoupon(res.result.customerId)
+          }
           wx.switchTab({
             url: '/pages/index/main'
           })
         }
+      })
+    },
+
+    // 绑定礼品卡
+    bindByGistCoupon(customerId) {
+      post(`/customer/bindByGistCoupon?shopId=${this.globalData.shopId}&customerId=${customerId}&couponId=${this.cardId}`, {}).then(res => {
+        wx.switchTab({
+          url: '/pages/my/main'
+        })
       })
     }
   }
