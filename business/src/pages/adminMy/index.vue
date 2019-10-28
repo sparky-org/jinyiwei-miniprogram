@@ -26,16 +26,16 @@
         <div class="weui-cell__bd">我的二维码</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
       </navigator>
-      <navigator url="/pages/adminService/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <button open-type="contact" style="text-align: left; line-height: 1.8;" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__bd">客服</div>
         <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-      </navigator>
+      </button>
     </div>
-    
+
     <div style="padding: 50rpx 20rpx;">
       <button class="weui-btn" type="primary" @click="handleExit">退出登陆</button>
     </div>
-    
+
   </div>
 </template>
 
