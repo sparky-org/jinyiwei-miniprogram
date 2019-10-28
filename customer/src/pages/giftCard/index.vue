@@ -11,7 +11,7 @@
             </div>
             <div class="goods-item">
               <div class="order-img-contain">
-                <img :src="/static/images/list_coupon.png" />
+                <img src="/static/images/list_coupon.png" />
               </div>
               <div class="flex-1 detail-info">
                 <div class="title">{{item.name || '礼品卡'}}</div>
@@ -86,7 +86,6 @@
     // 赠送
     onShareAppMessage: function(res) {
       let cardId = res.target ? res.target.dataset.id : ''
-      console.log(1333, cardId)
       if (!cardId) {
         return
       }
@@ -94,6 +93,7 @@
       return {
         title: '顾客小程序',
         path: `/pages/login/main?cardId=${cardId}`,
+        imageUrl:'/static/images/list_coupon.png',
         success: function (res){
           console.log('分享成功', res)
         },
@@ -102,7 +102,6 @@
           console.log(res)
         },
         complete: function(res) {
-          console.log(666, res)
         }
       }
     },
@@ -123,7 +122,6 @@
       loadData() {
         post(`/customer/getGistCoupons?customerId=${this.userInfo.customerId}`).then((res) => {
           if (res.success) {
-            console.log(res.result)
             this.cardList = res.result
           }
         })
