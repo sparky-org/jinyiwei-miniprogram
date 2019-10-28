@@ -62,7 +62,7 @@ export default {
       let vm = this
       this.isLoading = true
       wx.scanCode({
-        onlyFromCamera: true,
+        onlyFromCamera: false,
         success: (res) => {
           if (res.result == this.globalData.shopId) {
             this.isPay = true

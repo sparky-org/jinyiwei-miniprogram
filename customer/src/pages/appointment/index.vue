@@ -43,13 +43,15 @@
         begin:[2010,1,1],
         end:[2050,1,1],
         events: {/*'2018-6-7':'今日备注', '2018-6-8':'一条很长的明日备注'*/},
-        date: '2019-10-20',
-        infoList: []
+        date: new Date().getFullYear() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getDate(),
+        infoList: [],
+        month: new Date().getFullYear() + '-' + (new Date().getMonth() + 1)
       };
     },
     onShow() {
       if (login()) {
         this.getInfo()
+        this.getInfoList()
       }
     },
     created() {
@@ -79,12 +81,23 @@
         this.$refs.calendar.setToday();     
       },     
       select(val, val2) {
-        this.data = val2.date
-        this.getInfo()
-        console.log(val, val2)
+        this.date = val2.date
+        this.getInfo(val2.date)
       },
-      getInfo() {
-        post(`/appointment/getAppointments?customerId=${this.userInfo.customerId}&shopId=${this.globalData.shopId}&date=${this.date}`).then(res => {
+      getInfoList(month) {
+        post(`/customer/getAppointmentDay?customerId=${this.userInfo.customerId}&shopId=${this.globalData.shopId}&month=${month || this.month}`).then(res => {
+          if (res.success) {
+            if (res.result && res.result.length) {
+              this.events = res.result.reduce((obj, cur) => {
+                obj[cur] = '有预约标记'
+                return obj
+              }, {})
+            }
+          }
+        })
+      },
+      getInfo(date) {
+        post(`/appointment/getAppointments?customerId=${this.userInfo.customerId}&shopId=${this.globalData.shopId}&date=${date || this.date}`).then(res => {
           if (res.success) {
             this.infoList = res.result
           }
@@ -97,6 +110,6 @@
   };
 
 </script>
-<style lang='scss' scoped>
+<style lang='scss'>
   @import "./style";
 </style>

@@ -3,15 +3,16 @@
     <div class="cartlist" v-if="listData && listData.length">
       <div class="item" @touchstart="startMove" @touchmove="deleteGoods" @touchend="endMove" :data-index="index" v-for="(item,index) in listData" :key="index">
         <div class="con" :style="item.textStyle">
-          <div class="icon" @click="chooseItem(item, index)" :class="[ item.active ? 'active' : '',{active:allcheck}]"></div>
+          <div class="icon disabled" v-if="(item.payTypeList.length == 1 && payType.length == 1 && item.payTypeList[0] != payType[0]) || (item.payTypeList.length == 2 && payType.length != 2)"></div>
+          <div class="icon" v-else @click="chooseItem(item, index)" :class="[ item.active ? 'active' : '',{active:allcheck}]"></div>
           <div class="img">
             <img :src="item.picUrl" alt="">
           </div>
           <div class="info">
             <p>{{item.goodsName}}</p>
             <div class="price-num">
-              <span v-if="item.usePoint" class="price">￥{{item.price}}</span>
-              <span v-if="!item.usePoint" class="price">￥{{item.pointPrice}}</span>
+              <span v-if="item.usePoint" class="price">{{item.pointPrice}}积分</span>
+              <span v-else class="price">￥{{item.price}}</span>
               <div class='add-or-decrease'>
                 <div class='decrease-contain' @click='decreaseItem(index)'>
                     <div class='decrease'>-</div>
@@ -43,7 +44,7 @@
         全选({{isCheckedNumber}})
       </div>
       <div class="right">
-        <div>￥{{allPrice}}</div>
+        <div>￥{{allPrice}} {{payType.length == 1 && payType[0] == 'POINT' ? '积分' : ''}}</div>
         <div @click="orderDown">下单</div>
       </div>
     </div>
@@ -60,13 +61,14 @@
   export default {
     onShow() {
       if (toLogin()) {
-        let userInfo = wx.getStorageSync("userInfo") || {}
-        let listData = wx.getStorageSync(`goodsInfo-${userInfo.customerId}`) || []
-        listData.map(data => {
-          data.active = data.active || false
-        })
+        this.userInfo = wx.getStorageSync("userInfo") || {}
+        let listData = wx.getStorageSync(`goodsInfo-${this.userInfo.customerId}`) || []
+        // listData.map(data => {
+        //   data.active = data.active || false
+        // })
         this.listData = listData
       }
+      this.payType = []
       this.openId = getStorageOpenid();
     },
     created() {},
@@ -86,7 +88,8 @@
         moveEndX: "",
         moveEndY: "",
         X: 0,
-        Y: ""
+        Y: "",
+        payType: []
       };
     },
     components: {},
@@ -205,7 +208,7 @@
           return false;
         }
         wx.navigateTo({
-          url: `/pages/confirmOrder/main?goodsList=${JSON.stringify(chooseData)}`
+          url: `/pages/confirmOrder/main?goodsList=${JSON.stringify(chooseData)}&isCart=1`
         })
       },
 
@@ -233,8 +236,48 @@
         });
       },
 
+      // 判断是否可以勾选全选
+      checkAllFlag() {
+        let pointList = this.listData.filter(item => item.usePoint) // 积分支付数据
+        if (pointList.length) {
+          if (pointList.length < this.listData.length) {
+            return false
+          }
+        } else {
+          let otherList = this.listData.filter(item => !item.usePoint) // 钱包支付和微信支付数据
+          let morePayTypeList = otherList.filter(item => item.payTypeList.length > 1)
+          if (morePayTypeList.length ) {
+            if (morePayTypeList.length < this.listData.length) {
+              return false
+            }
+          } else {
+            // 只有钱包或微信一种支付方式
+            let onlyOnePayTypeList = otherList.filter(item => item.payTypeList.length == 1)
+            if (onlyOnePayTypeList.length) {
+              if (onlyOnePayTypeList.length < this.listData.length) {
+                return false
+              } else {
+                let payTypeList = onlyOnePayTypeList[0]
+                let flag = onlyOnePayTypeList.every(item => item.payTypeList == payType)
+                return flag
+              }
+            }
+          }
+        }
+        return true
+      },
+
       // 全选
       checkAll() {
+        let isCheckAll = this.checkAllFlag()
+        if (!isCheckAll) {
+          wx.showToast({
+            title: "商品可支付方式不同，不能全部勾选！",
+            icon: "none",
+            duration: 1500
+          });
+          return
+        }
         this.allCheck = !this.allCheck
         this.listData.forEach(data => {
           data.active = this.allCheck
@@ -246,7 +289,31 @@
       chooseItem(item, index) {
         let {listData} = this
         this.$set(this.listData, index, {...item, active: !item.active});
-        this.updateStorageSync()
+        setTimeout(() => {
+          this.getPayTypeList()
+        }, 100)
+        // this.updateStorageSync()
+      },
+
+      getPayTypeList() {
+        let activeList = this.listData.filter(item => item.active) // 选中的数据
+        if (activeList.length) {
+          let pointList = activeList.filter(item => item.usePoint) // 积分支付数据
+          if (pointList.length) {
+            this.payType = ['POINT']
+          } else {
+            let otherList = activeList.filter(item => !item.usePoint) // 钱包支付和微信支付数据
+            let onlyOnePayTypeList = otherList.filter(item => item.payTypeList.length == 1)
+            if (onlyOnePayTypeList.length) {
+              this.payType = onlyOnePayTypeList[0].payTypeList
+            } else {
+              let morePayTypeList = otherList.filter(item => item.payTypeList.length > 1)
+              this.payType = morePayTypeList[0].payTypeList
+            }
+          }
+        } else {
+          this.payType = []
+        }
       }
     },
     computed: {
@@ -258,7 +325,7 @@
       allPrice() {
         let chooseData = this.listData.filter(data => data.active)
         return chooseData.reduce((price, cur) => {
-          price = price + cur.price * cur.num
+          price = price + (cur.usePoint ? cur.pointPrice : cur.price) * cur.num
           return price
         }, 0)
       }

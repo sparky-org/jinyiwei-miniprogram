@@ -23,10 +23,19 @@
 </template>
 
 <script>
-import { get, post, getOpenid } from "../../utils";
+import { get, post, getOpenid, wxGetUserInfo } from "../../utils";
 import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
+    let {cardId} = this.$root.$mp.query
+    this.cardId = cardId
+    if (wx.getStorageSync("wxInfo")) {
+      this.wxInfo = wx.getStorageSync("wxInfo")
+    } else {
+      wxGetUserInfo(wxInfo => {
+        this.wxInfo = wx.getStorageSync("wxInfo")
+      })
+    }
   },
   computed: {
   },
@@ -38,12 +47,17 @@ export default {
       verifyCode: '',
       sendAuthCode: true,
       auth_time: 0,
+      cardId: ''
     };
   },
   components: {},
   created() {
   },
   methods: {
+    // 绑定礼品卡
+    bindingCard () {
+
+    },
     changeInput ($event, key) {
       this[key] = $event.target.value
     },
@@ -103,7 +117,8 @@ export default {
       post(`/login/login`, {
         phone,
         verifyCode,
-        shopId: this.globalData.shopId
+        shopId: this.globalData.shopId,
+        weixin: this.wxInfo.nickName
       }).then(res => {
         if (res.success) {
           wx.setStorageSync('userInfo', res.result)
@@ -111,10 +126,22 @@ export default {
           if (!wx.getStorageSync('openid')) {
             getOpenid();
           }
+          if (this.cardId) {
+            this.bindByGistCoupon(res.result.customerId)
+          }
           wx.switchTab({
             url: '/pages/index/main'
           })
         }
+      })
+    },
+
+    // 绑定礼品卡
+    bindByGistCoupon(customerId) {
+      post(`/customer/bindByGistCoupon?shopId=${this.globalData.shopId}&customerId=${customerId}&couponId=${this.cardId}`, {}).then(res => {
+        wx.switchTab({
+          url: '/pages/my/main'
+        })
       })
     }
   }

@@ -21,14 +21,15 @@
               <div class="flex-1 detail-info">
                 <div class="title">{{it.name}}</div>
                 <div class="price-num">
-                  <div class='real-price'>¥{{it.price}}</div>
+                  <div class='real-price' v-if="item.payType == 'POINT'">{{it.pointPrice}}积分</div>
+                  <div class='real-price' v-else>¥{{it.price}}</div>
                   <div class='number'>X{{it.count}}</div>
                 </div>
               </div>
             </div>
             <div class='text-contain'>
               <div class="text">共计{{item.totalCount}}件商品 总计：</div>
-              <div class="text-price">¥{{item.orderAmount}}</div>
+              <div class="text-price">{{item.payType == 'POINT' ? '' : '¥' }}{{item.orderAmount}}{{item.payType == 'POINT' ? '积分' : '' }}</div>
             </div>
             <div v-if="item.status === 'NEW'">
               <div class='group-btns'>
@@ -123,7 +124,7 @@
       // 切换状态
       changeNav(item) {
         this.activeNav = item.value
-        this.loadData(false)
+        this.loadData()
       },
       //加载数据
       loadData: function (append) {
@@ -139,25 +140,26 @@
         })
       },
       payNow(orderId) {
+        let vm = this
         post(`/shop/order/createTransPayOrder`, {
           orderId,
         }).then(res => {
           // 微信支付
-          // wx.requestPayment({
-          //   ...res.data.payInfo,
-          //   'success':function(res){
-          //     wx.navigateTo({
-          //       url: `/pages/index/market-order-detail/index?isPaySuccess=1&orderId=${orderId}`,
-          //     })
-          //   },
-          //   'fail':function(res){
-          //     wx.navigateTo({
-          //       url: `/pages/index/market-order-detail/index?orderId=${orderId}`,
-          //     })
-          //   },
-          //   'complete':function(res){
-          //   }
-          // })
+          wx.requestPayment({
+            ...res.data.result,
+            'success':function(res){
+              vm.loadData()
+            },
+            'fail':function(res){
+              wx.showToast({
+                title: "支付失败",
+                icon: "none",
+                duration: 1000
+              });
+            },
+            'complete':function(res){
+            }
+          })
         })
       },
     },

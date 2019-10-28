@@ -29,17 +29,10 @@
               <div class="weui-media-box__title_custom">{{item.goodsName}}</div>
               <div class="num">已售：{{item.boughtCount}}件</div>
             </div>
-            <div v-if="item.usePoint" class="weui-media-box__desc">
-              <span class="price">{{item.pointPrice}}积分</span>
+            <div class="weui-media-box__desc">
+              <span class="price" v-if="item.usePoint">{{item.pointPrice}}积分</span>
+              <span class="price" v-else>¥{{item.price}}</span>
               <span class="old-price">市场价¥{{item.retailPrice}}</span>
-              <span class="btns">
-                <button class="add-cart-btn" @click.stop="addCart(item)">加入购物车</button>
-                <button class="buy-btn" @click.stop="onBuy(item)">立即购买</button>
-              </span>
-            </div>
-            <div v-if="!item.usePoint" class="weui-media-box__desc">
-              <span class="price">¥{{item.price}}</span>
-              <span class="old-price">¥{{item.retailPrice}}</span>
               <span class="btns">
                 <button class="add-cart-btn" @click.stop="addCart(item)">加入购物车</button>
                 <button class="buy-btn" @click.stop="onBuy(item)">立即购买</button>
@@ -214,9 +207,9 @@ export default {
     // 立即购买
     onBuy(item) {
       if (toLogin()) {
-        let {goodsId, goodsName, picUrl, price, retailPrice, payTypeList} = item
+        let {goodsId, goodsName, picUrl, price, retailPrice, payTypeList, usePoint, pointPrice} = item
         let goodsList = [{
-          goodsId, goodsName, picUrl, price, retailPrice, num: 1, payTypeList
+          goodsId, goodsName, picUrl, price, retailPrice, num: 1, payTypeList, usePoint, pointPrice
         }]
         wx.navigateTo({
           url: `/pages/confirmOrder/main?goodsList=${JSON.stringify(goodsList)}`

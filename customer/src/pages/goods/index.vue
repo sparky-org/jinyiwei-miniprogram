@@ -12,15 +12,11 @@
 
     <div class="goods-info">
       <p class="title">{{info.goodsName}}</p>
-      <div v-if="info.usePoint" class="desc">
-        <span class="price">{{info.pointPrice}}积分</span>
+      <div class="desc">
+        <span class="price" v-if="info.usePoint">{{info.pointPrice}}积分</span>
+        <span class="price" v-else>¥{{info.price}}</span>
         <span class="old-price">市场价￥{{info.retailPrice}}</span>
         <span class="num">已售{{info.boughtCount}}件</span>
-      </div>
-      <div v-if="!info.usePoint" class="desc">
-        <span class="price">￥{{info.price}}</span>
-        <span class="old-price">￥{{info.retailPrice}}</span>
-        <span class="num">11{{info.usePoint}}已售{{info.boughtCount}}件</span>
       </div>
     </div>
 
@@ -116,9 +112,9 @@ export default {
     // 立即购买
     onBuy() {
       if (toLogin()) {
-        let {goodsId, goodsName, picUrl, price, retailPrice} = this.info
+        let {goodsId, goodsName, picUrl, price, retailPrice, payTypeList, usePoint, pointPrice} = this.info
         let goodsList = [{
-          goodsId, goodsName, picUrl, price, retailPrice, num: 1
+          goodsId, goodsName, picUrl, price, retailPrice, num: 1, payTypeList, usePoint, pointPrice
         }]
         wx.navigateTo({
           url: `/pages/confirmOrder/main?goodsList=${JSON.stringify(goodsList)}`

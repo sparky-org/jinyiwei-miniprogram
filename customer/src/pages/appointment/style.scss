@@ -10,4 +10,24 @@
       }
     }
   }
+  .mc-day {
+    position: relative;
+    .mc-dot {
+      width: 0;
+      height: 0;
+      background-color: transparent;
+      position: absolute;
+      right: 30rpx;
+      top: 0;
+      margin-left: inherit;
+      left: inherit;
+      &:before {
+        color: #E51C23;
+        content: '约';
+        display: block;
+        font-weight: 600;
+        font-size: 30rpx;
+      }
+    }
+  }
 }

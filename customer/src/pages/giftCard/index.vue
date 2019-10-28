@@ -11,7 +11,7 @@
             </div>
             <div class="goods-item">
               <div class="order-img-contain">
-                <img :src="item.iconUrl" />
+                <img :src="/static/images/list_coupon.png" />
               </div>
               <div class="flex-1 detail-info">
                 <div class="title">{{item.name || '礼品卡'}}</div>
@@ -21,9 +21,9 @@
             </div>
             <div>
               <div class='group-btns'>
-                <div v-if="used" class="status">已消费</div>
-                <div v-if="canUse" class="btn primary-btn" @click="use(item.id)">使用</div>
-                <div v-if="!used" class="btn primary-btn" @click="send(item.id)">赠送</div>
+                <div v-if="item.used" class="status">已消费</div>
+                <div v-if="item.canUse" class="btn primary-btn" @click="use(item.id)">使用</div>
+                <button v-if="!item.used" open-type='share' :data-id="item.id" class="btn primary-btn">赠送</button>
               </div>
             </div>
           </div>
@@ -58,7 +58,7 @@
     data() {
       return {
         userInfo: wx.getStorageSync("userInfo") || {},
-        cardList: [{
+        cardList: [/*{
           "beginDate": "2019-10-19T15:51:55.771Z",
           "count": 0,
           "creator": "string",
@@ -69,9 +69,10 @@
           "ownerId": 0,
           "price": 0,
           "shopId": 0
-        }],
+        }*/],
         showCode: false,
-        codeImg: ''
+        codeImg: '',
+        cardId: ''
       };
     },
     components: {
@@ -82,11 +83,30 @@
       wx.stopPullDownRefresh()
       this.loadData()
     },
+    // 赠送
+    onShareAppMessage: function(res) {
+      let cardId = res.target ? res.target.dataset.id : ''
+      console.log(1333, cardId)
+      if (!cardId) {
+        return
+      }
+      let vm =this
+      return {
+        title: '顾客小程序',
+        path: `/pages/login/main?cardId=${cardId}`,
+        success: function (res){
+          console.log('分享成功', res)
+        },
+        fail: function (res) {
+          // 分享失败
+          console.log(res)
+        },
+        complete: function(res) {
+          console.log(666, res)
+        }
+      }
+    },
     methods: {
-      // 赠送
-      send() {
-
-      },
       // 使用
       use(gistCouponId) {
         post(`/customer/getCouponUrl?gistCouponId=${gistCouponId}`).then((res) => {

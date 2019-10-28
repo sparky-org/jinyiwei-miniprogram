@@ -130,3 +130,35 @@ export function getOpenid() {
     complete: () => {}
   });
 }
+
+export function wxGetUserInfo(callback) {
+  wx.getSetting({
+    success: res => {
+      let isAuthSetting = res.authSetting['scope.userInfo']
+      /**
+       * isAuthSetting判断是否授权用户信息，来创建或更新用户信息
+       * 已经授权的直接获取
+       * 未授权的跳转授权页面
+       */
+      if (isAuthSetting) {
+        wx.getUserInfo({
+          success: res => {
+            wx.setStorageSync('wxInfo', res.userInfo)
+            callback(res.userInfo)
+            // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+            // 所以此处加入 callback 以防止这种情况
+            // if (this.userInfoReadyCallback) {
+            //   this.userInfoReadyCallback(res)
+            // }
+          }
+        })
+      } else {
+        setTimeout(function() {
+          wx.redirectTo({
+            url: "/pages/authorize/main"
+          })
+        }, 100)
+      }
+    }
+  })
+}
