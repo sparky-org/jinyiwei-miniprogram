@@ -1,0 +1,18 @@
+.my_approval {
+  .weui-form-preview__hd,
+  .weui-form-preview__value{
+    text-align: left;
+  }
+  .weui-form-preview__value_in-hd{
+    font-size: 32rpx;
+  }
+  & > .weui-form-preview{
+    margin-bottom: 20rpx;
+  }
+  & > .history{
+    padding: 20rpx;
+    .weui-form-preview__btn{
+      text-align: right;
+    }
+  }
+}
