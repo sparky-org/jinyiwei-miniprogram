@@ -60,37 +60,25 @@ export default {
           "selectedColor": "#b4282d",
           "color": "#666",
           "list": [{
-              "pagePath": "pages/adminIndex/main",
+              "pagePath": "pages/index/main",
               "iconPath": "static/images/ic_menu_choice_nor.png",
               "selectedIconPath": "static/images/ic_menu_choice_pressed.png",
               "text": "首页"
             },
-            // {
-            //   "pagePath": "pages/adminBuy/main",
-            //   "iconPath": "static/images/ic_menu_shoping_nor.png",
-            //   "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
-            //   "text": "我要采购"
-            // },
-            // {
-            //   "pagePath": "pages/adminCart/main",
-            //   "iconPath": "static/images/ic_menu_shoping_nor.png",
-            //   "selectedIconPath": "static/images/ic_menu_shoping_pressed.png",
-            //   "text": "购物车"
-            // },
             {
-              "pagePath": "pages/adminOrder/main",
+              "pagePath": "pages/task/main",
               "iconPath": "static/images/ic_menu_topic_nor.png",
               "selectedIconPath": "static/images/ic_menu_topic_pressed.png",
-              "text": "订单管理"
+              "text": "我的任务"
             },
-            // {
-            //   "pagePath": "pages/category/main",
-            //   "iconPath": "static/images/ic_menu_sort_nor.png",
-            //   "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
-            //   "text": "分类"
-            // },
             {
-              "pagePath": "pages/adminMy/main",
+              "pagePath": "pages/customer/main",
+              "iconPath": "static/images/ic_menu_sort_nor.png",
+              "selectedIconPath": "static/images/ic_menu_sort_pressed.png",
+              "text": "我的客户"
+            },
+            {
+              "pagePath": "pages/my/main",
               "iconPath": "static/images/ic_menu_me_nor.png",
               "selectedIconPath": "static/images/ic_menu_me_pressed.png",
               "text": "工作台"
@@ -100,7 +88,7 @@ export default {
     "window": {
       "backgroundTextStyle": "light",
       "navigationBarBackgroundColor": "#fff",
-      "navigationBarTitleText": "代理商小程序",
+      "navigationBarTitleText": "美容院店铺小程序",
       "navigationBarTextStyle": "black"
     },
     "permission": {
