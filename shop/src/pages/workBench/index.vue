@@ -116,7 +116,7 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">修改密码</div>
       </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-sign/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">签到</div>
       </navigator>
