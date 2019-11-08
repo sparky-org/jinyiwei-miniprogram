@@ -7,7 +7,7 @@
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea class="" placeholder="请输入公告" style="height: 9.9em" v-model="noticeText" />
+          <textarea class="" placeholder="请输入公告" style="height: 9.9em; width: 100%;" v-model="noticeText" />
           <!-- <div class="weui-textarea-counter">0/200</div> -->
         </div>
       </div>
