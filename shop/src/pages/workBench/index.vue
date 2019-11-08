@@ -67,7 +67,7 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">美容院制度</div>
       </navigator>
-      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-shop-poster/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">店内海报</div>
       </navigator>
@@ -75,7 +75,7 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">岗位管理</div>
       </navigator>
-      <navigator url="/pages/my-shop-rules/notice" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-shop-notice/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">公告</div>
       </navigator>

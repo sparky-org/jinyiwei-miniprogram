@@ -14,8 +14,8 @@
       </div>
     </div>
 
-<div class="page__bd">
-      <div class="weui-cells">
+    <div class="page__bd">
+      <div class="weui-cells" style="margin-top: 0; border-top: 0 none; margin-top: -1rpx;">
         <div class="weui-cell">
           <div class="weui-cell__bd">
             <div class="weui-uploader">
