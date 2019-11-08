@@ -132,7 +132,7 @@ import amapFile from "../../utils/amap-wx";
 import { get } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 
-let enumTaskState = ['全部任务状态','进行中','审核中','已奖励'];
+let enumTaskState = ['任务状态','进行中','审核中','已奖励'];
 export default {
   onShow() {
 

@@ -97,7 +97,7 @@
 
     <div class="add-customer">
       <button class="weui-btn" type="primary">预约</button>
-      <button class="weui-btn modify" type="default" style="margin-top: 20rpx;">修改</button>
+      <button class="weui-btn modify" type="default" style="margin-top: 20rpx;" @click="handleToOperate">修改</button>
     </div>
   </div>
 </template>
@@ -136,6 +136,12 @@ export default {
     tabClick(e) {
       console.log(e);
       this.activeIndex = Number(e.currentTarget.id);
+    },
+
+    handleToOperate(){
+      wx.navigateTo({
+        url: "/pages/customer-operate/main?id=" + 1212
+      });
     }
 
     // async getData() {
