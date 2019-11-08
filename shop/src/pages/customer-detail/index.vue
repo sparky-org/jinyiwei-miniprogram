@@ -1,102 +1,93 @@
 <template>
-  <div class="customer-operate">
-    <i class="iconfont iconai-user"></i>
-    <i class="iconfont iconbodadianhua"></i>
-    <!-- <div class="weui-toptips weui-toptips_warn" v-if="showTopTips">错误提示</div> -->
+  <div class="customer-detail">
+    <!-- <i class="iconfont iconai-user"></i> -->
+    <!-- <i class="iconfont iconbodadianhua"></i> -->
 
-    <div class="weui-cells weui-cells_after-title">
-
-      <div class="weui-cell weui-cell_input">
-        <div class="weui-cell__hd">
-          <div class="weui-label"><span class="required">*</span>客户姓名</div>
+    <div class="weui-panel__bd">
+      <div class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 20rpx 0;">
+        <div class="weui-media-box__hd weui-media-box__hd_in-appmsg" style="width: 80rpx; margin-right: 20rpx; text-align: right;">
+          <!-- <image class="weui-media-box__thumb" :src="icon60" /> -->
+          <i class="iconfont iconai-user weui-media-box__thumb" style="color: #999; font-size: 50rpx;"></i>
         </div>
-        <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入客户姓名" />
+        <div class="weui-media-box__bd weui-media-box__bd_in-appmsg" style="position: relative;">
+          <div class="weui-media-box__title">刘德华</div>
+          <div class="weui-media-box__desc">182****8238</div>
+          <i class="iconfont iconbodadianhua" style="position: absolute; right: 50rpx; top: 50%; margin-top: -56rpx; font-size: 70rpx; color: #0BB20C;"></i>
         </div>
       </div>
+    </div>
 
-      <div class="weui-cell weui-cell_input weui-cell_vcode" style="padding: 20rpx 30rpx;">
-        <div class="weui-cell__hd">
-          <div class="weui-label">性&#12288;&#12288;别</div>
+    <div style="padding: 0 20rpx; background-color: #fff; box-sizing: border-box;">
+      <div class="weui-tab">
+        <div class="weui-navbar">
+          <block v-for="(item,index) in tabs" :key="index">
+            <div :id="index" :class="{'weui-bar__item_on':activeIndex == index}" class="weui-navbar__item" @click="tabClick">
+              <div class="weui-navbar__title">{{item}}</div>
+            </div>
+          </block>
+          <div class="weui-navbar__slider" :class="navbarSliderClass"></div>
         </div>
-        <div class="weui-cell__bd">
-            <radio-group @change="radioChange">
-              <label class="weui-check__label" style="width: 50px; display: inline-block;" v-for="(item,index) in radioItems" :key="index">
-                <radio class="weui-check" :value="item.value" :checked="item.checked" />
-                <span>{{item.name}}</span>
-                <span v-if="item.checked">
-                  <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
-                </span>
-              </label>
-            </radio-group>
-        </div>
-      </div>
-
-      <div class="weui-cell weui-cell_input weui-cell_vcode">
-        <div class="weui-cell__hd">
-          <div class="weui-label"><span class="required">*</span>首选联系电话</div>
-        </div>
-        <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入首选联系电话" />
-        </div>
-      </div>
-
-
-      <div class="weui-cell weui-cell_input weui-cell_vcode">
-        <div class="weui-cell__hd">
-          <div class="weui-label"><span class="required">*</span>爱&#12288;&#12288;好</div>
-        </div>
-        <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请添加客户爱好" />
-        </div>
-        <div class="weui-cell__ft">
-           <button class="weui-btn mini-btn add" type="primary" size="mini">添加爱好</button>
-        </div>
-      </div>
-      <div class="weui-cell weui-cell_input weui-cell_vcode" style="border-bottom: 1rpx solid #d9d9d9;">
-        <div class="weui-cell__hd">
-          <div class="weui-label"></div>
-        </div>
-        <div class="weui-cell__bd love">
-          <span>打篮球</span>
-          <span>唱歌</span>
-          <span>旅游</span>
-          <span>打篮球</span>
-          <span>唱歌</span>
-          <span>旅游</span>
-          <span>打篮球</span>
-          <span>唱歌</span>
-          <span>旅游</span>
-        </div>
-      </div>
+        <div class="weui-tab__panel">
+          <div class="weui-tab__content" :hidden="activeIndex != 0">
+            <!-- 选项一的内容 -->
+            <div class="weui-form-preview">
+              <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">客户生日</div>
+                  <div class="weui-form-preview__value tl">1990-10-21</div>
+                </div>
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">客户爱好</div>
+                  <div class="weui-form-preview__value tl">游泳 健身 跑步 打篮球</div>
+                </div>
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">备注</div>
+                  <div class="weui-form-preview__value tl">很长很长的名字很长很长的名字很长很长的名字很长很长的名字很长很长的名字</div>
+                </div>
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">年度规划</div>
+                  <div class="weui-form-preview__value tl">很长的名字很长很长的名字很长很长的名字</div>
+                </div>
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">关联员工</div>
+                  <div class="weui-form-preview__value tl">李四</div>
+                </div>
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">添加日期</div>
+                  <div class="weui-form-preview__value tl">2019-10-10</div>
+                </div>
+              </div>
+            </div>
 
 
+           </div>
+          <div class="weui-tab__content" :hidden="activeIndex != 1">
+            <!-- 选项二的内容 -->
+            <div class="weui-form-preview">
+              <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">登记信息</div>
+                  <div class="weui-form-preview__value">2017-08-21</div>
+                </div>
+
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">颈部护理项目</div>
+                  <div class="weui-form-preview__value">2019-11-04</div>
+                </div>
+
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">背部按摩护理项目</div>
+                  <div class="weui-form-preview__value">2019-11-07</div>
+                </div>
+
+              </div>
+            </div>
 
 
-      <div class="weui-cells__title" style="margin-top: 20px;">备注</div>
-      <div class="weui-cells weui-cells_after-title">
-        <div class="weui-cell">
-          <div class="weui-cell__bd">
-            <textarea class="" placeholder="请输入备注" style="height: 3.3em" />
-            <!-- <div class="weui-textarea-counter">0/200</div> -->
+
           </div>
         </div>
       </div>
-
-
-
-      <div class="weui-cells__title" style="margin-top: 20px;">年度规划</div>
-      <div class="weui-cells weui-cells_after-title">
-        <div class="weui-cell">
-          <div class="weui-cell__bd">
-            <textarea class="" placeholder="请输入年度规划" style="height: 3.3em" />
-            <!-- <div class="weui-textarea-counter">0/200</div> -->
-          </div>
-        </div>
-      </div>
-
-      <!--完-->
-
     </div>
 
 
@@ -104,9 +95,9 @@
 
 
 
-
     <div class="add-customer">
-      <button class="weui-btn" type="primary">添加客户</button>
+      <button class="weui-btn" type="primary">预约</button>
+      <button class="weui-btn modify" type="default" style="margin-top: 20rpx;">修改</button>
     </div>
   </div>
 </template>
@@ -118,7 +109,14 @@ export default {
   onShow() {
   },
   computed: {
-
+    navbarSliderClass() {
+      if (this.activeIndex === 0) {
+        return 'weui-navbar__slider_0'
+      }
+      if (this.activeIndex === 1) {
+        return 'weui-navbar__slider_1'
+      }
+    }
   },
   mounted() {
     // this.role = this.$store.state.userInfo.role
@@ -128,23 +126,17 @@ export default {
   data() {
     return {
       // role: ''
-      showTopTips: true,
-      radioItems: [
-        { name: '男', value: '1', checked: true},
-        { name: '女', value: '2' }
-      ],
+      tabs: ['客户信息', '跟踪信息'],
+      activeIndex: 0,
     };
   },
   components: {},
   methods: {
-    radioChange(e) {
-      console.log('radio发生change事件，携带value值为：' + e.mp.detail.value);
-      let radioItems = this.radioItems;
-      for (let i = 0; i < radioItems.length; ++i) {
-        radioItems[i].checked = radioItems[i].value === e.mp.detail.value;
-      }
-      this.radioItems = radioItems;
-    },
+
+    tabClick(e) {
+      console.log(e);
+      this.activeIndex = Number(e.currentTarget.id);
+    }
 
     // async getData() {
     //   const data = await get("/index/index");
@@ -164,5 +156,21 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-@import "./style.scss";
+  .weui-navbar__slider_0{
+    left: 0!important;
+    width: 50%!important;
+    transition: transform 0.3s!important;
+    transform: translateX(0)!important;
+  }
+  .weui-navbar__slider_1{
+    left: 50%!important;
+    right: 0 !important;
+    width: 50% !important;
+    transition: transform 0.3s !important;
+    transform: translateX(0) !important;
+  }
+  .weui-navbar__item.weui-bar__item_on .weui-navbar__title{
+    color: #1aad19!important;
+  }
+  @import "./style.scss";
 </style>

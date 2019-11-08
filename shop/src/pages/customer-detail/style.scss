@@ -1,6 +1,17 @@
-.customer-operate {
-  padding-bottom: 120rpx;
-  position: relative;
+.customer-detail {
+  .tl{
+    text-align: left;
+  }
+  .weui-tab__content{
+    padding: 20rpx 0;
+  }
+  .weui-form-preview:after{
+    border-bottom: 0 none;
+  }
+  .weui-form-preview:before{
+    border-top: 0 none;
+  }
+  padding-bottom: 220rpx;
   & > .add-customer{
     background-color: #f4f4f4;
     width: 100%;
@@ -8,32 +19,12 @@
     position: fixed;
     left: 0;
     bottom: 0;
-    height: 120rpx;
+    height: 220rpx;
     padding: 20rpx;
   }
 
-  .add{
-    padding: 0 10rpx;
-    border-radius: 8rpx;
-    font-size: 13px;
-    line-height: 2.2;
-    position: relative;
-    top: 8rpx;
-    right: 8rpx;
+  button.modify::after {
+    border: 1px solid #ccc;
   }
-  .love{
-    padding: 20rpx 20rpx 10rpx 0;
-    & > span{
-      background-color: #eee;
-      padding: 8rpx 10rpx;
-      display: inline-block;
-      color: #666;
-      font-size: 12px;
-      margin: 0 10rpx 10rpx 0;
-      border-radius: 8rpx;
-    }
-  }
-  .required{
-    color: #f00;
-  }
+
 }
