@@ -37,10 +37,10 @@ export default {
 
 
       // "^pages/index/main",
-      "^pages/workBench/main",
+      "pages/workBench/main",
       "pages/task/main",
       "pages/customer/main",
-      "pages/index/main",
+      "^pages/index/main",
       "pages/my-task-manage/main",
 
 
