@@ -105,7 +105,7 @@
 
 
     <div class="add-customer">
-      <button class="weui-btn" type="primary">添加客户</button>
+      <button class="weui-btn" type="primary">提交</button>
     </div>
   </div>
 </template>
@@ -115,6 +115,11 @@ import amapFile from "../../utils/amap-wx";
 import { get } from "../../utils";
 export default {
   onShow() {
+    this.id = this.$root.$mp.query.id;
+    // console.info(this.id)
+    wx.setNavigationBarTitle({
+      title: this.id ? '修改客户信息' : '添加客户'
+    })
   },
   computed: {
 
@@ -127,6 +132,7 @@ export default {
   data() {
     return {
       // role: ''
+      id: null,
       showTopTips: true,
       radioItems: [
         { name: '男', value: '1', checked: true},

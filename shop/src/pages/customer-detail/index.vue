@@ -140,7 +140,7 @@ export default {
 
     handleToOperate(){
       wx.navigateTo({
-        url: "/pages/customer-operate/main?id=" + 1212
+        url: "/pages/customer-operate/main?id=" + 1
       });
     }
 
