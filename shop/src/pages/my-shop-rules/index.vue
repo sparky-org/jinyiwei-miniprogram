@@ -7,7 +7,7 @@
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea class="" placeholder="请输入店内制度" style="height: 9.9em" />
+          <textarea class="" placeholder="请输入店内制度" v-model="ruleText" style="height: 9.9em" />
           <!-- <div class="weui-textarea-counter">0/200</div> -->
         </div>
       </div>
@@ -34,7 +34,8 @@ export default {
   data() {
     return {
       // role: '',
-      errorTips: false
+      errorTips: false,
+      ruleText: '1. 统一着装，美容师和美容顾问必须穿工作服上岗，未按标准着装扣100分。1. 统一着装，美容师和美容顾问必须穿工作服上岗，未按标准着装扣100分。'
     };
   },
 

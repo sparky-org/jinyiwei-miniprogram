@@ -7,7 +7,7 @@
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea class="" placeholder="请输入公告" style="height: 9.9em" />
+          <textarea class="" placeholder="请输入公告" style="height: 9.9em" v-model="noticeText" />
           <!-- <div class="weui-textarea-counter">0/200</div> -->
         </div>
       </div>
@@ -34,7 +34,8 @@ export default {
   data() {
     return {
       // role: '',
-      errorTips: false
+      errorTips: false,
+      noticeText: '为了迎接双十一，凡11月1号到11月11号进店新用户预存1万送1000；老客户预存1万送15000. 请大家相互转告。'
     };
   },
 
