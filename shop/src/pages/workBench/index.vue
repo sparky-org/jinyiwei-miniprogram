@@ -3,119 +3,123 @@
 
     <div class="weui-cells__title">审批管理</div>
     <div class="weui-grids" style="background-color: #fcfcfc;">
-      <div class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">我的申请</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">待我审批</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">抄送我的</div>
-      </div>
+      </navigator>
     </div>
 
 
     <div class="weui-cells__title">业务管理</div>
     <div class="weui-grids" style="background-color: #fcfcfc;">
-      <div class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">我的预约</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">我的客户</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">添加客户</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">项目申报</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">目标申报</div>
-      </div>
+      </navigator>
     </div>
 
 
     <div class="weui-cells__title">员工管理</div>
     <div class="weui-grids" style="background-color: #fcfcfc;">
-      <div class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">员工管理</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">积分奖扣</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">我的日志</div>
-      </div>
+      </navigator>
     </div>
 
 
 
     <div class="weui-cells__title">门店管理</div>
     <div class="weui-grids" style="background-color: #fcfcfc;">
-      <div class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">美容院制度</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">店内海报</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">岗位管理</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">公告</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">发布任务</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">发布项目</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">积分制度</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">签到设置</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">岗位管理</div>
-      </div>
+      </navigator>
     </div>
 
 
     <div class="weui-cells__title">系统管理</div>
     <div class="weui-grids" style="background-color: #fcfcfc;">
-      <div class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-center/main" class="weui-grid" hover-class="weui-grid_active">
+        <!-- <image class="weui-grid__icon" :src="item.src" /> -->
+        <div class="weui-grid__label">个人中心</div>
+      </navigator>
+      <navigator url="/pages/my-center/main?type=edit" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">修改资料</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/my-change-password/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">修改密码</div>
-      </div>
-      <div class="weui-grid" hover-class="weui-grid_active">
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">签到</div>
-      </div>
+      </navigator>
     </div>
 
     <div style="padding: 50rpx 20rpx;">
