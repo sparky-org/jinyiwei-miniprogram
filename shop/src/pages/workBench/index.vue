@@ -79,9 +79,13 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">公告</div>
       </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-task-operate/main?type=add" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">发布任务</div>
+      </navigator>
+      <navigator url="/pages/my-task-manage/main" class="weui-grid" hover-class="weui-grid_active">
+        <!-- <image class="weui-grid__icon" :src="item.src" /> -->
+        <div class="weui-grid__label">任务管理</div>
       </navigator>
       <navigator url="/pages/customer-detail/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->

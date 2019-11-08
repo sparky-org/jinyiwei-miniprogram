@@ -86,4 +86,9 @@ text {
   -webkit-transition: width 2s;
   -o-transition: width 2s;
 } */
+
+
+.required{
+  color: #f00;
+}
 </style>
