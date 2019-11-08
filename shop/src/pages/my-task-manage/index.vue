@@ -16,13 +16,13 @@
         </div>
         <div class="weui-flex__item">
           <picker @change="bindPickerChange" :value="index" :range="enumArea">
-            <div class="tab-title">{{area}}<ins></ins></div>
+            <div class="tab-title" style="font-size: 13px;">{{area}}<ins></ins></div>
           </picker>
         </div>
         <div class="weui-flex__item">
           <!-- <div class="tab-title" @click="handleScorSelect">{{score}}<ins></ins></div> -->
           <picker @change="bindScoreChange" :value="index" :range="enumScore">
-            <div class="tab-title">{{score}}<ins></ins></div>
+            <div class="tab-title" style="font-size: 13px;">{{score}}<ins></ins></div>
           </picker>
         </div>
       </div>
@@ -203,7 +203,7 @@ export default {
   methods: {
 
     handleEditTask(){
-      wx.navigateTo({ 
+      wx.navigateTo({
         url: "/pages/my-task-operate/main?id=2&type=edit"
       });
     },
