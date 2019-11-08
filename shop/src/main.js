@@ -40,8 +40,8 @@ export default {
       "pages/workBench/main",
       "pages/task/main",
       "pages/customer/main",
-      "^pages/index/main",
-      "pages/my-task-manage/main",
+      "pages/index/main",
+      "^pages/my-shop-poster/main",
 
 
 
