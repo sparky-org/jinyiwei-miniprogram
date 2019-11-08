@@ -1,0 +1,30 @@
+{
+  "id": "1425098",
+  "name": "小程序",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "721703",
+      "name": "用户",
+      "font_class": "ai-user",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "2570090",
+      "name": "采购",
+      "font_class": "caigou",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "9826663",
+      "name": "拨打电话",
+      "font_class": "bodadianhua",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    }
+  ]
+}

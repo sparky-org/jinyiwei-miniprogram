@@ -37,7 +37,7 @@ export default {
 
 <style>
 @import url("./iconfont/iconfont.css");
-
+@import url("./statics/iconfont/iconfont.css");
 .container {
   height: 100%;
   display: flex;

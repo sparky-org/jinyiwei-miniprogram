@@ -38,6 +38,10 @@ import { agentId } from "../../config";
 import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
+    // 上线后去掉  测试用
+	  // wx.switchTab({
+	  //   url: '/pages/index/main'
+	  // })
   },
   computed: {
     // ...mapState(["cityName"]),

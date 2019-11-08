@@ -1,49 +1,117 @@
 <template>
-  <div class="index" v-if="data">
-    1212
+  <div class="index">
+
     <div class="swiper">
       <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="500">
-        <block v-for="(item, index) in data.posters" :key="index">
+        <!-- <block v-for="(item, index) in data.posters" :key="index">
           <swiper-item class="swiper-item">
             <image :src="item.picUrl" class="slide-image" />
           </swiper-item>
-        </block>
+        </block> -->
+        <swiper-item class="swiper-item">
+          <image style="width: 100%; height: 100%;" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4133574179,304311957&fm=26&gp=0.jpg" class="slide-image" />
+        </swiper-item>
+        <swiper-item class="swiper-item">
+          <image style="width: 100%; height: 100%;" src="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=610304775,4230083833&fm=26&gp=0.jpg" class="slide-image" />
+        </swiper-item>
+        <swiper-item class="swiper-item">
+          <image style="width: 100%; height: 100%;" src="https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1837099700,2517317439&fm=26&gp=0.jpg" class="slide-image" />
+        </swiper-item>
       </swiper>
     </div>
 
-    <div class="weui-panel weui-panel_access custom-title">
-      <div class="weui-panel__hd">已上架商品</div>
-      <div class="weui-panel__bd" v-if="data.goodsItems && data.goodsItems.length > 0">
-        <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" v-for="(item, index) in data.goodsItems" :key="index">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" :src="item.picUrl" />
+    <div class="weui-cells__title">营业动态</div>
+    <div class="weui-cells weui-cells_after-title">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">今日预约客户</div>
+        <div class="weui-cell__ft">36人</div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">今日业绩</div>
+        <div class="weui-cell__ft">24个</div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">今日项目数量</div>
+        <div class="weui-cell__ft">10个</div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">今日休息员工</div>
+        <div class="weui-cell__ft">2人</div>
+      </div>
+    </div>
+
+
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__hd">今日积分排名</div>
+      <div class="weui-panel__bd">
+        <div class="weui-flex">
+          <div class="weui-flex__item">
+            <div class="placeholder">
+              <dl class="ph-dl">
+                <dt>1</dt>
+                <dd>排名</dd>
+              </dl>
+            </div>
           </div>
+          <div class="weui-flex__item">
+            <div class="placeholder">
+              <dl class="ph-dl">
+                <dt>20</dt>
+                <dd>今日积分</dd>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="weui-panel__ft">
+        <div class="weui-cell weui-cell_access weui-cell_link">
+          <div class="weui-cell__bd" style="color: #10AEFF;">袁凯夺得今日排行榜冠军</div>
+          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="weui-panel weui-panel_access">
+      <div class="weui-panel__hd">积分动态</div>
+      <div class="weui-panel__bd">
+        <navigator url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" :src="icon60" />
+          </div> -->
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">{{item.name}}</div>
-            <div class="weui-media-box__desc">剩余库存：{{item.stock}} <span>￥{{item.price}}</span></div>
+            <div class="weui-media-box__title">袁凯 <span class="score-num">+20分</span></div>
+            <div class="weui-media-box__desc">
+              招聘任务完成奖励<br>2019-11-11 11:12:23
+            </div>
           </div>
         </navigator>
-        <!-- <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" src="http://a.hiphotos.baidu.com/image/h%3D300/sign=a62e824376d98d1069d40a31113eb807/838ba61ea8d3fd1fc9c7b6853a4e251f94ca5f46.jpg" />
-          </div>
+        <!--注意这个跳转方式  switchTab方式-->
+        <navigator url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" :src="icon60" />
+          </div> -->
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title_custom">标题二</div>
-            <div class="weui-media-box__desc">剩余库存：1222<span>￥500</span></div>
+            <div class="weui-media-box__title">袁凯 <span class="score-num">+20分</span></div>
+            <div class="weui-media-box__desc">
+              招聘任务完成奖励<br>2019-11-11 11:12:23
+            </div>
           </div>
-        </navigator> -->
+        </navigator>
       </div>
-
-
-      <!-- <div class="weui-panel__ft">
+      <div class="weui-panel__ft">
         <div class="weui-cell weui-cell_access weui-cell_link">
           <div class="weui-cell__bd">查看更多</div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
-      </div> -->
+      </div>
     </div>
 
-    <div v-if="!data.goodsItems">
+
+
+
+   <!-- <div v-if="!data.goodsItems">
       <div class="page__bd" style="padding-top: 50rpx; text-align: center;">
         <div class="icon-box">
           <icon type="info" size="50"></icon>
@@ -52,7 +120,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </div>
 </template>
@@ -63,17 +131,25 @@ import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
+
     // 判断是否登录
-    let userInfo = wx.getStorageSync("userInfo")
-    if(!userInfo){
-      wx.reLaunch({
-        url: '/pages/login/main'
-      })
-      return
-    }else{
-      wx.setStorageSync("userInfo", userInfo);
-      this.$store.commit('setUserInfo', userInfo)
-    }
+    // let userInfo = wx.getStorageSync("userInfo")
+    // if(!userInfo){
+    //   wx.reLaunch({
+    //     url: '/pages/login/main'
+    //   })
+    //   return
+    // }else{
+    //   wx.setStorageSync("userInfo", userInfo);
+    //   this.$store.commit('setUserInfo', userInfo)
+    // }
+
+
+
+
+
+
+
 
     // this.$store.commit('setUserInfo',userInfo)
     // if( userInfo.role == "EMPLOY"){
@@ -116,12 +192,12 @@ export default {
   methods: {
     // ...mapMutations(["update"]),
     async getData(){
-      console.info(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.agencyId}`)
-      const data = post(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.agencyId}`).then((data)=>{
-        if(data.success){
-          this.data = data.result
-        }
-      });
+      // console.info(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.agencyId}`)
+      // const data = post(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.agencyId}`).then((data)=>{
+      //   if(data.success){
+      //     this.data = data.result
+      //   }
+      // });
 
     },
 

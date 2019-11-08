@@ -34,13 +34,22 @@ export default {
       // "pages/addressSelect/main",
       // "pages/addaddress/main",
       // "pages/address/main",
-      "^pages/index/main",
+
+
+      // "^pages/index/main",
+      "pages/workBench/main",
+      "pages/task/main",
+      "pages/customer/main",
+      "pages/index/main",
+      "^pages/customer-detail/main",
+
+
+
       // "pages/adminOrder/main",
       // "pages/adminBuy/main",
       // "pages/adminIndex/main",
       // "pages/adminMy/main",
       // "pages/search/main",
-      // "pages/my/main",
       // "pages/login/main",
       // "pages/category/main",
       // "pages/categorylist/main",
@@ -78,7 +87,7 @@ export default {
               "text": "我的客户"
             },
             {
-              "pagePath": "pages/my/main",
+              "pagePath": "pages/workBench/main",
               "iconPath": "static/images/ic_menu_me_nor.png",
               "selectedIconPath": "static/images/ic_menu_me_pressed.png",
               "text": "工作台"
