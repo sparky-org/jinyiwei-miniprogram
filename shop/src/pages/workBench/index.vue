@@ -75,6 +75,10 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">岗位管理</div>
       </navigator>
+      <navigator url="/pages/my-project-manage/main" class="weui-grid" hover-class="weui-grid_active">
+        <!-- <image class="weui-grid__icon" :src="item.src" /> -->
+        <div class="weui-grid__label">项目管理</div>
+      </navigator>
       <navigator url="/pages/my-shop-notice/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">公告</div>
