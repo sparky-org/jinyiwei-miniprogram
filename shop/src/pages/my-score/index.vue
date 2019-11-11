@@ -34,7 +34,7 @@
         <div class="weui-flex__item">总分</div>
       </div>
 
-      <div class="weui-flex list">
+      <div class="weui-flex list" @click="handleDetail(1)">
         <div class="weui-flex__item">1</div>
         <div class="weui-flex__item">邹志辉</div>
         <div class="weui-flex__item">80</div>
@@ -42,7 +42,7 @@
         <div class="weui-flex__item">100</div>
       </div>
 
-      <div class="weui-flex list">
+      <div class="weui-flex list" @click="handleDetail(2)">
         <div class="weui-flex__item">2</div>
         <div class="weui-flex__item">刘德华</div>
         <div class="weui-flex__item">80</div>
@@ -50,7 +50,7 @@
         <div class="weui-flex__item">90</div>
       </div>
 
-      <div class="weui-flex list">
+      <div class="weui-flex list" @click="handleDetail(3)">
         <div class="weui-flex__item">3</div>
         <div class="weui-flex__item">赵本山</div>
         <div class="weui-flex__item">80</div>
@@ -95,6 +95,11 @@ export default {
 
   },
   methods: {
+    handleDetail(id){
+      wx.navigateTo({
+        url: "/pages/my-score-detail/main?id="+id
+      });
+    },
     handelTabClick(index){
       this.index = index
     },
