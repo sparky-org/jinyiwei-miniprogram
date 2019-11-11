@@ -5,6 +5,6 @@ const app = new Vue(App)
 app.$mount()
 export default {
   config: {
-    navigationBarTitleText: '职位管理',
+    navigationBarTitleText: '岗位管理',
   }
 }

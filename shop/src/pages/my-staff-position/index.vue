@@ -4,10 +4,10 @@
       <div class="weui-cells weui-cells_after-title">
         <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
-            <div class="weui-label">职位名称</div>
+            <div class="weui-label">岗位名称</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入要创建的职位" />
+            <input class="weui-input" placeholder="请输入要创建的岗位" />
           </div>
         </div>
       </div>
@@ -42,8 +42,8 @@
     </div>
 
     <div class="operate-btn">
-      <button class="weui-btn" type="primary" @click="handleAdd" v-if="!add">添加职位</button>
-      <button class="weui-btn" type="primary" @click="handleAdd" v-if="add">创建职位</button>
+      <button class="weui-btn" type="primary" @click="handleAdd" v-if="!add">添加岗位</button>
+      <button class="weui-btn" type="primary" @click="handleAdd" v-if="add">创建岗位</button>
     </div>
   </div>
 </template>
