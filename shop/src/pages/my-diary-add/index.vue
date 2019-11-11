@@ -1,5 +1,17 @@
 <template>
   <div class="page">
+    <div class="weui-cells weui-cells_after-title">
+      <div class="weui-cell weui-cell_input weui-cell_vcode">
+        <div class="weui-cell__hd">
+          <div class="weui-label"><span class="required">*</span>日记日期</div>
+        </div>
+        <div class="weui-cell__bd">
+          <picker class="weui-btn" mode="date" :value="bath"  @change="bindDateChange">
+            <input class="weui-input" placeholder="请选择日记日期" />
+          </picker>
+        </div>
+      </div>
+    </div>
 
     <div class="weui-cells__title">今日工作总结</div>
     <div class="weui-cells weui-cells_after-title">
