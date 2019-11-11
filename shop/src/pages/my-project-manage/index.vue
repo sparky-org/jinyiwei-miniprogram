@@ -94,11 +94,11 @@ export default {
     add(val){
        if(val){
          wx.setNavigationBarTitle({
-           title: '创建职位'
+           title: '创建项目'
          })
        }else{
          wx.setNavigationBarTitle({
-           title: '职位管理'
+           title: '项目管理'
          })
        }
     }
