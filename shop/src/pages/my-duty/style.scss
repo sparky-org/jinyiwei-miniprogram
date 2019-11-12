@@ -37,4 +37,38 @@
   .no-t::before{
     border-top: 0 none!important;
   }
+
+  .holiday{
+    position: relative;
+    .slot-element{
+      position: absolute;
+      right: -5px;
+      top: -5px;
+      font-size: 20rpx!important;
+      color: #3b75fb!important;
+    }
+  }
+  .errorDate{
+    position: relative;
+    .slot-element{
+      position: absolute;
+      right: -5px;
+      top: -5px;
+      font-size: 20rpx!important;
+      color: #f00!important;
+    }
+  }
+  .ph-dl{
+    display: block;
+    text-align: center;
+    & > dt{
+      padding: 10rpx 0 5rpx 0;
+      color: #f00;
+      // color: #06AD56;
+      font-size: 18px;
+    }
+    & > dd{
+      padding: 0 0 10rpx 0;
+    }
+  }
 }
