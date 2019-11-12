@@ -37,11 +37,11 @@ export default {
 
 
       // "^pages/index/main",
-      "pages/workBench/main",
+      "^pages/workBench/main",
       "pages/task/main",
       "pages/customer/main",
       "pages/index/main",
-      "^pages/my-duty/main",
+      "pages/my-duty-set/main",
 
 
 
