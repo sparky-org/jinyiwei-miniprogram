@@ -53,7 +53,7 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">积分榜</div>
       </navigator>
-      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-score-action/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">积分奖扣</div>
       </navigator>

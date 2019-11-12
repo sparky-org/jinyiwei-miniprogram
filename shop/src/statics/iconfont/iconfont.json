@@ -20,6 +20,13 @@
       "unicode_decimal": 58933
     },
     {
+      "icon_id": "2570215",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
       "icon_id": "9826663",
       "name": "拨打电话",
       "font_class": "bodadianhua",
