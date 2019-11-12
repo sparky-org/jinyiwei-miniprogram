@@ -131,11 +131,14 @@ export default {
     return {
       // role: '',
       errorTips: false,
-      files: []
+      files: [],
+      id: ''
     };
   },
 
   mounted() {
+    this.id = this.$root.$mp.query.id;
+    console.info(this.id)
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role);
     // this.getData();
@@ -144,9 +147,9 @@ export default {
 
   },
   methods: {
-    
-    
-   
+
+
+
 
     // handleAreaSelect(){
     //   wx.showActionSheet({
