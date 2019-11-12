@@ -32,11 +32,11 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">添加客户</div>
       </navigator>
-      <navigator url="/page/my-project/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-project/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">项目申报</div>
       </navigator>
-      <navigator url="/page/my-target/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-target/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">目标申报</div>
       </navigator>
@@ -45,6 +45,10 @@
 
     <div class="weui-cells__title">员工管理</div>
     <div class="weui-grids" style="background-color: #fcfcfc;">
+      <navigator url="/pages/my-duty/main" class="weui-grid" hover-class="weui-grid_active">
+        <!-- <image class="weui-grid__icon" :src="item.src" /> -->
+        <div class="weui-grid__label">我的考勤</div>
+      </navigator>
       <navigator url="/pages/my-staff-manage/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">员工管理</div>
