@@ -13,7 +13,7 @@
       <div class="weui-flex__item">
         <div class="tab-title" :class="{current: index==4}" @click="handelTabClick(4)">当年<em></em></div>
       </div>
-      <div class="item">
+      <div class="item" style="border-left: 1rpx solid #fff;">
         <picker class="weui-btn" mode="date" :value="startDate" @change="bindStartDateChange">
           <div class="tab-title" style="font-size: 13px; margin: 0;">{{startDate?startDate:'开始日期'}}<ins></ins></div>
         </picker>
