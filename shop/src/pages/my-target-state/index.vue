@@ -1,13 +1,20 @@
 <template>
   <div class="page">
+    <div class="weui-cells weui-cells_after-title">
+      <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <div class="weui-cell__bd"><i class="iconfont iconai-user" style="display: inline-block; color: #10AEFF;"></i>已提交，待[<span style="color: #10AEFF;">张总</span>]审批</div>
+        <div class="weui-cell__ft weui-cell__ft_in-access">2019-10-11 19:12:38</div>
+      </navigator>
+    </div>
     <div class="weui-form-preview" style="margin-bottom: 20rpx;">
-      <div class="weui-cells weui-cells_after-title">
+
+      <div class="weui-cells weui-cells_after-title no-t">
         <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
             <div class="weui-label"><span class="required">*</span>申报标题</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入申报标题" />
+            <input class="weui-input" placeholder="请输入申报标题" value="1" />
           </div>
         </div>
 
@@ -18,7 +25,7 @@
             <div class="weui-label"><span class="required">*</span>申报目标</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入申报目标" />
+            <input class="weui-input" placeholder="请输入申报目标" value="1" />
           </div>
         </div>
 
@@ -27,7 +34,7 @@
             <div class="weui-label"><span class="required">*</span>客户姓名</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入客户姓名" />
+            <input class="weui-input" placeholder="请输入客户姓名" value="1" />
           </div>
         </div>
 
@@ -37,7 +44,7 @@
           </div>
           <div class="weui-cell__bd">
             <picker class="weui-btn" mode="date" :value="date" @change="bindTimeChange">
-              <input class="weui-input" placeholder="请输入完成时间" />
+              <input class="weui-input" placeholder="请输入完成时间" value="1" />
             </picker>
           </div>
         </div>
@@ -47,18 +54,18 @@
             <div class="weui-label"><span class="required">*</span>申报奖励</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入申报奖励" />
+            <input class="weui-input" placeholder="请输入申报奖励" value="1" />
           </div>
         </div>
 
-        <div class="weui-cell weui-cell_input">
+        <!-- <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
             <div class="weui-label"><span class="required">*</span>审批人</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入审批人" />
+            <input class="weui-input" placeholder="请输入审批人" value="1" />
           </div>
-        </div>
+        </div> -->
 
         <div class="weui-cells weui-cells_after-title">
           <div class="weui-cell weui-cell_input">
@@ -97,7 +104,7 @@
     </div>
 
     <div class="operate-btn">
-      <button class="weui-btn" type="primary" @click="handleAdd">确 定</button>
+      <button class="weui-btn" type="warn" @click="handleAdd">撤 回</button>
     </div>
 
   </div>
@@ -118,7 +125,7 @@ export default {
   data() {
     return {
       // role: '',
-      noticeText: '',
+      noticeText: '1212',
       date: ''
     };
   },
@@ -139,10 +146,9 @@ export default {
       console.log('选中的时间为：' + e.mp.detail.value);
     },
     handleAdd(){
-      // 测试用 我的目标申报的详情页面是从我的申请里面跳转过来的
-      wx.navigateTo({
-        url: "/pages/my-target-state/main"
-      });
+      // wx.navigateTo({
+      //   url: "/pages/my-score-operate/main"
+      // });
     }
 
     // async getData() {
