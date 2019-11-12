@@ -148,9 +148,6 @@ export default {
   },
   methods: {
 
-
-
-
     // handleAreaSelect(){
     //   wx.showActionSheet({
     //     itemList: enumArea,
