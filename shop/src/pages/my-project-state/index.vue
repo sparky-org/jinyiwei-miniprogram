@@ -22,7 +22,7 @@
 
         <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
-            <div class="weui-label"><span class="required">*</span>申报目标</div>
+            <div class="weui-label"><span class="required">*</span>申报项目</div>
           </div>
           <div class="weui-cell__bd">
             <input class="weui-input" placeholder="请输入申报目标" value="1" />

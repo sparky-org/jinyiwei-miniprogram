@@ -41,7 +41,7 @@ export default {
       "pages/task/main",
       "pages/customer/main",
       "pages/index/main",
-      "^pages/my-target/main",
+      "^pages/my-project/main",
 
 
 
