@@ -154,7 +154,7 @@
           <div class="weui-form-preview__bd">
             <div class="weui-form-preview__item">
               <div class="weui-form-preview__label">状态</div>
-              <div class="weui-form-preview__value">待审批</div>
+              <div class="weui-form-preview__value">已通过</div>
             </div>
             <div class="weui-form-preview__item">
               <div class="weui-form-preview__label">申报名称</div>
@@ -182,7 +182,7 @@
         </div>
       </navigator>
 
-      <navigator url="/pages/my-approval-else/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+      <navigator url="/pages/my-approval-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
