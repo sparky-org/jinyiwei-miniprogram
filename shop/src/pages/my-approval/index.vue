@@ -30,7 +30,7 @@
 
 
     <div class="content">
-      <navigator url="/pages/my-application-holiday-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+      <navigator url="/pages/my-approval-holiday/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
@@ -66,7 +66,7 @@
         </div>
       </navigator>
 
-      <navigator url="/pages/my-application-holiday-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+      <navigator url="/pages/my-approval-holiday-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
@@ -102,7 +102,7 @@
         </div>
       </navigator>
 
-      <navigator url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+      <navigator url="/pages/my-approval-else/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
@@ -142,7 +142,7 @@
         </div>
       </navigator>
 
-      <navigator url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+      <navigator url="/pages/my-approval-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
@@ -182,7 +182,7 @@
         </div>
       </navigator>
 
-      <navigator url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+      <navigator url="/pages/my-approval-else/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
@@ -224,9 +224,9 @@
 
     </div>
 
-    <div class="operate-btn">
+    <!-- <div class="operate-btn">
       <button class="weui-btn" type="primary" @click="handleSelect">申 请</button>
-    </div>
+    </div> -->
   </div>
 </template>
 
