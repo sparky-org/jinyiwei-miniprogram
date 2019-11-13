@@ -4,8 +4,19 @@
     <div class="weui-toptips weui-toptips_warn" v-if="errorTips">错误提示</div>
 
     <div class="weui-cells weui-cells_after-title">
-
       <div class="weui-cell weui-cell_input">
+        <div class="weui-cell__hd">
+          <div class="weui-label"><span class="required">*</span>申请内容</div>
+        </div>
+        <div class="weui-cell__bd" style="padding: 20rpx 0;">
+           <textarea class="" placeholder="请输入申请内容" style="height: 3.3em; width: 100%;" />
+        </div>
+      </div>
+    </div>
+
+    <div class="weui-cells weui-cells_after-title no-t">
+
+      <!-- <div class="weui-cell weui-cell_input">
         <div class="weui-cell__hd">
           <div class="weui-label"><span class="required">*</span>开始日期</div>
         </div>
@@ -14,10 +25,10 @@
             <input class="weui-input" v-model="beginDate" placeholder="请选择开始日期" disabled="disabled" />
           </picker>
         </div>
-      </div>
+      </div> -->
 
 
-      <div class="weui-cell weui-cell_input">
+      <!-- <div class="weui-cell weui-cell_input">
         <div class="weui-cell__hd">
           <div class="weui-label"><span class="required">*</span>结束日期</div>
         </div>
@@ -26,7 +37,7 @@
             <input class="weui-input" v-model="endDate" placeholder="请选择结束日期" disabled="disabled" />
           </picker>
         </div>
-      </div>
+      </div> -->
 
       <div class="weui-cell weui-cell_input">
         <div class="weui-cell__hd">
@@ -48,16 +59,7 @@
 
     </div>
 
-    <div class="weui-cells weui-cells_after-title no-t">
-      <div class="weui-cell weui-cell_input">
-        <div class="weui-cell__hd">
-          <div class="weui-label"><span class="required">*</span>请假事由</div>
-        </div>
-        <div class="weui-cell__bd" style="padding: 20rpx 0;">
-           <textarea class="" placeholder="请输入请假事由" style="height: 3.3em; width: 100%;" />
-        </div>
-      </div>
-    </div>
+
 
     <div class="page__bd">
       <div class="weui-cells" style="margin-top: 0; border-top: 0 none; margin-top: -1rpx;">
