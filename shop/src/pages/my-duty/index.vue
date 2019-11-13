@@ -38,7 +38,7 @@
     <button @click="renderer">重新渲染年月日期</button> -->
 
 
-    <div class="weui-panel__bd" style="margin-top: -20rpx; border-top: 1rpx solid #ccc;">
+    <div class="weui-panel__bd" style="margin-top: -20rpx;">
       <div class="weui-flex">
         <div class="weui-flex__item">
           <div class="placeholder">

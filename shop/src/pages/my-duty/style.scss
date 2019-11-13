@@ -71,4 +71,18 @@
       padding: 0 0 10rpx 0;
     }
   }
+  
+  .mc-body ._tr {
+    border-top: 1rpx solid #ccc;
+    padding-top: 8rpx;
+    & > ._td{
+      // border-right: 1rpx solid #ccc;
+      // &:last-child{
+      //   border-right: 0 none;
+      // }
+    }
+    &:last-child{
+      border-bottom: 1rpx solid #ccc;
+    }
+  }
 }
