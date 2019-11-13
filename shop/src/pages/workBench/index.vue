@@ -20,7 +20,7 @@
 
     <div class="weui-cells__title">业务管理</div>
     <div class="weui-grids" style="background-color: #fcfcfc;">
-      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-appointment/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">我的预约</div>
       </navigator>

@@ -17,6 +17,7 @@
       :tileContent="tileContent"
       :almanacs="almanacs"
     />
+
     <!-- <Calendar
       :months="months"
       :value="value"
@@ -37,65 +38,33 @@
     <button @click="dateInfo">日期信息</button>
     <button @click="renderer">重新渲染年月日期</button> -->
 
-
-    <div class="weui-panel__bd" style="margin-top: -20rpx; border-top: 1rpx solid #ccc;">
-      <div class="weui-flex">
-        <div class="weui-flex__item">
-          <div class="placeholder">
-            <dl class="ph-dl">
-              <dt>1</dt>
-              <dd>迟到</dd>
-            </dl>
-          </div>
+    <div style="border-top: 1rpx solid #ccc; margin-top: -20rpx;">
+      <div class="weui-cells__title">我的预约</div>
+      <div class="weui-cells weui-cells_after-title">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">09:30</div>
+          <div class="weui-cell__ft">张小姐第五次面部护理</div>
         </div>
-        <div class="weui-flex__item">
-          <div class="placeholder">
-            <dl class="ph-dl">
-              <dt>20</dt>
-              <dd>早退</dd>
-            </dl>
-          </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">14:30</div>
+          <div class="weui-cell__ft">王小姐第三次背部按摩</div>
         </div>
-        <div class="weui-flex__item">
-          <div class="placeholder">
-            <dl class="ph-dl">
-              <dt>20</dt>
-              <dd>旷工</dd>
-            </dl>
-          </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">16:00</div>
+          <div class="weui-cell__ft">刘小姐第二次面部护理</div>
+        </div>
+        <div class="weui-cell">
+          <div class="weui-cell__bd">18:30</div>
+          <div class="weui-cell__ft">李小姐第一次面部护理</div>
         </div>
       </div>
     </div>
 
 
-    <div class="weui-form-preview">
-      <!-- <div class="weui-form-preview__hd">
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">付款金额</div>
-          <div class="weui-form-preview__value_in-hd">¥2400.00</div>
-        </div>
-      </div> -->
-      <div class="weui-form-preview__bd">
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">上班时间</div>
-          <div class="weui-form-preview__value" style="text-align: left;">10:00 - 19:30</div>
-        </div>
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">签到</div>
-          <div class="weui-form-preview__value" style="text-align: left;">09:30</div>
-        </div>
-        <div class="weui-form-preview__item">
-          <div class="weui-form-preview__label">签退</div>
-          <div class="weui-form-preview__value" style="text-align: left;">20:12</div>
-        </div>
-      </div>
-      <!-- <div class="weui-form-preview__ft">
-        <navigator url="" class="weui-form-preview__btn weui-form-preview__btn_primary" hover-class="weui-form-preview__btn_active">操作</navigator>
-      </div> -->
-    </div>
+
 
     <div class="operate-btn">
-      <button class="weui-btn" type="primary" @click="handleSign">打 卡</button>
+      <button class="weui-btn" type="primary" @click="handleSign">新预约</button>
     </div>
 
   </div>
@@ -188,7 +157,7 @@ export default {
     // },
     handleSign() {
       wx.navigateTo({
-        url: "/pages/my-sign/main?"
+        url: "/pages/my-appointment-create/main"
       });
     }
   },
