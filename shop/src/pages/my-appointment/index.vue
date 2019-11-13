@@ -38,25 +38,24 @@
     <button @click="dateInfo">日期信息</button>
     <button @click="renderer">重新渲染年月日期</button> -->
 
-    <div style="border-top: 1rpx solid #ccc; margin-top: -20rpx;">
-      <div class="weui-cells__title">我的预约</div>
-      <div class="weui-cells weui-cells_after-title">
-        <div class="weui-cell">
-          <div class="weui-cell__bd">09:30</div>
-          <div class="weui-cell__ft">张小姐第五次面部护理</div>
-        </div>
-        <div class="weui-cell">
-          <div class="weui-cell__bd">14:30</div>
-          <div class="weui-cell__ft">王小姐第三次背部按摩</div>
-        </div>
-        <div class="weui-cell">
-          <div class="weui-cell__bd">16:00</div>
-          <div class="weui-cell__ft">刘小姐第二次面部护理</div>
-        </div>
-        <div class="weui-cell">
-          <div class="weui-cell__bd">18:30</div>
-          <div class="weui-cell__ft">李小姐第一次面部护理</div>
-        </div>
+
+    <div class="weui-cells__title">我的预约</div>
+    <div class="weui-cells weui-cells_after-title">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">09:30</div>
+        <div class="weui-cell__ft">张小姐第五次面部护理</div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">14:30</div>
+        <div class="weui-cell__ft">王小姐第三次背部按摩</div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">16:00</div>
+        <div class="weui-cell__ft">刘小姐第二次面部护理</div>
+      </div>
+      <div class="weui-cell">
+        <div class="weui-cell__bd">18:30</div>
+        <div class="weui-cell__ft">李小姐第一次面部护理</div>
       </div>
     </div>
 
