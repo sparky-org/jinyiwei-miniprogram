@@ -59,4 +59,25 @@
       }
     }
   }
+
+  padding: 20rpx;
+  .weui-form-preview{
+    border-left: 1px solid #d9d9d9;
+    border-right: 1px solid #d9d9d9;
+    border-bottom: 1px solid #d9d9d9;
+    border-radius: 4px;
+    margin-bottom: 20rpx;
+    width: 100%;
+    &:last-child{
+      margin-bottom: 0;
+    }
+    .weui-form-preview__value{
+      text-align: left!important;
+    }
+    .weui-form-preview__value_in-hd{
+      text-align: left!important;
+      font-size: 36rpx!important;
+      color: #10AEFF!important;
+    }
+  }
 }
