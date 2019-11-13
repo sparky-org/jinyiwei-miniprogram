@@ -11,7 +11,7 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">待我审批</div>
       </navigator>
-      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-copy-me/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">抄送我的</div>
       </navigator>
@@ -24,11 +24,11 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">我的预约</div>
       </navigator>
-      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-appointment-create/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">预约客户</div>
       </navigator>
-      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/customer-operate/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">添加客户</div>
       </navigator>
@@ -103,10 +103,10 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">任务管理</div>
       </navigator>
-      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+      <!-- <navigator url="" class="weui-grid" hover-class="weui-grid_active"> -->
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
-        <div class="weui-grid__label">发布项目</div>
-      </navigator>
+        <!-- <div class="weui-grid__label">发布项目</div>
+      </navigator> -->
       <navigator url="/pages/my-score-rules/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">积分制度</div>

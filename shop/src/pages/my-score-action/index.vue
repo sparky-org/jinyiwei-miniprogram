@@ -237,7 +237,7 @@ export default {
     width: 40rpx;
     height: 40rpx;
     background: #f43530;
-    right: 0;
+    right: -20rpx;
     top: -20rpx;
     border-radius: 40rpx;
     z-index: 5;
