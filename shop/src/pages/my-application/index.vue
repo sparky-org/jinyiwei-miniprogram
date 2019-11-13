@@ -30,197 +30,202 @@
 
 
     <div class="content">
+      <navigator url="/pages/my-application-holiday-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+        <div class="weui-form-preview">
+          <div class="weui-form-preview__hd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">申请类型</div>
+              <div class="weui-form-preview__value_in-hd">请假</div>
+              <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+            </div>
+          </div>
+          <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">状态</div>
+              <div class="weui-form-preview__value">待审批</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">开始时间</div>
+              <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">结束时间</div>
+              <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
+            </div>
+          </div>
+          <!-- <div>
+            <div class="weui-flex">
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="warn" plain="true">删除</button>
+              </div>
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </navigator>
 
-      <div class="weui-form-preview">
-        <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">申请类型</div>
-            <div class="weui-form-preview__value_in-hd">请假</div>
-            <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-          </div>
-        </div>
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">状态</div>
-            <div class="weui-form-preview__value">待审批</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">开始时间</div>
-            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">结束时间</div>
-            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
-          </div>
-        </div>
-        <!-- <div>
-          <div class="weui-flex">
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="warn" plain="true">删除</button>
-            </div>
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+      <navigator url="/pages/my-application-holiday-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+        <div class="weui-form-preview">
+          <div class="weui-form-preview__hd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">申请类型</div>
+              <div class="weui-form-preview__value_in-hd">请假</div>
+              <div class="weui-cell__ft weui-cell__ft_in-access"></div>
             </div>
           </div>
-        </div> -->
-      </div>
+          <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">状态</div>
+              <div class="weui-form-preview__value" style="color: #09BB07;">已通过</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">开始时间</div>
+              <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">结束时间</div>
+              <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
+            </div>
+          </div>
+          <!-- <div>
+            <div class="weui-flex">
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="warn" plain="true">删除</button>
+              </div>
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </navigator>
 
+      <navigator url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+        <div class="weui-form-preview">
+          <div class="weui-form-preview__hd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">申请类型</div>
+              <div class="weui-form-preview__value_in-hd">项目申报</div>
+              <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+            </div>
+          </div>
+          <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">状态</div>
+              <div class="weui-form-preview__value">待审批</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">项目名称</div>
+              <div class="weui-form-preview__value">颈部护理按摩</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">项目日期</div>
+              <div class="weui-form-preview__value">2019-10-11</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">申报积分</div>
+              <div class="weui-form-preview__value">50</div>
+            </div>
+          </div>
+          <!-- <div>
+            <div class="weui-flex">
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="warn" plain="true">删除</button>
+              </div>
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </navigator>
 
-      <div class="weui-form-preview">
-        <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">申请类型</div>
-            <div class="weui-form-preview__value_in-hd">请假</div>
-            <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-          </div>
-        </div>
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">状态</div>
-            <div class="weui-form-preview__value" style="color: #09BB07;">已通过</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">开始时间</div>
-            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">结束时间</div>
-            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
-          </div>
-        </div>
-        <!-- <div>
-          <div class="weui-flex">
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="warn" plain="true">删除</button>
-            </div>
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+      <navigator url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+        <div class="weui-form-preview">
+          <div class="weui-form-preview__hd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">申请类型</div>
+              <div class="weui-form-preview__value_in-hd">目标申报</div>
+              <div class="weui-cell__ft weui-cell__ft_in-access"></div>
             </div>
           </div>
-        </div> -->
-      </div>
+          <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">状态</div>
+              <div class="weui-form-preview__value">待审批</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">申报名称</div>
+              <div class="weui-form-preview__value">卖了一个面部护理项目</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">完成日期</div>
+              <div class="weui-form-preview__value">2019-10-11</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">申报积分</div>
+              <div class="weui-form-preview__value">50</div>
+            </div>
+          </div>
+          <!-- <div>
+            <div class="weui-flex">
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="warn" plain="true">删除</button>
+              </div>
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </navigator>
 
-      <div class="weui-form-preview">
-        <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">申请类型</div>
-            <div class="weui-form-preview__value_in-hd">项目申报</div>
-            <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-          </div>
-        </div>
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">状态</div>
-            <div class="weui-form-preview__value">待审批</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">项目名称</div>
-            <div class="weui-form-preview__value">颈部护理按摩</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">项目日期</div>
-            <div class="weui-form-preview__value">2019-10-11</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">申报积分</div>
-            <div class="weui-form-preview__value">50</div>
-          </div>
-        </div>
-        <!-- <div>
-          <div class="weui-flex">
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="warn" plain="true">删除</button>
-            </div>
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+      <navigator url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+        <div class="weui-form-preview">
+          <div class="weui-form-preview__hd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">申请类型</div>
+              <div class="weui-form-preview__value_in-hd">出差申请</div>
+              <div class="weui-cell__ft weui-cell__ft_in-access"></div>
             </div>
           </div>
-        </div> -->
-      </div>
-
-      <div class="weui-form-preview">
-        <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">申请类型</div>
-            <div class="weui-form-preview__value_in-hd">目标申报</div>
-            <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-          </div>
-        </div>
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">状态</div>
-            <div class="weui-form-preview__value">待审批</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">申报名称</div>
-            <div class="weui-form-preview__value">卖了一个面部护理项目</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">完成日期</div>
-            <div class="weui-form-preview__value">2019-10-11</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">申报积分</div>
-            <div class="weui-form-preview__value">50</div>
-          </div>
-        </div>
-        <!-- <div>
-          <div class="weui-flex">
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="warn" plain="true">删除</button>
+          <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">状态</div>
+              <div class="weui-form-preview__value" style="color: #f00;">已拒绝</div>
             </div>
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">开始日期</div>
+              <div class="weui-form-preview__value">2019-10-11</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">结束日期</div>
+              <div class="weui-form-preview__value">2019-10-11</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">出差人数</div>
+              <div class="weui-form-preview__value">5</div>
             </div>
           </div>
-        </div> -->
-      </div>
-
-      <div class="weui-form-preview">
-        <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">申请类型</div>
-            <div class="weui-form-preview__value_in-hd">出差申请</div>
-            <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-          </div>
-        </div>
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">状态</div>
-            <div class="weui-form-preview__value" style="color: #f00;">已拒绝</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">开始日期</div>
-            <div class="weui-form-preview__value">2019-10-11</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">结束日期</div>
-            <div class="weui-form-preview__value">2019-10-11</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">出差人数</div>
-            <div class="weui-form-preview__value">5</div>
-          </div>
-        </div>
-        <!-- <div>
-          <div class="weui-flex">
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="warn" plain="true">删除</button>
+          <!-- <div>
+            <div class="weui-flex">
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="warn" plain="true">删除</button>
+              </div>
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+              </div>
             </div>
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
-            </div>
-          </div>
-        </div> -->
-      </div>
-
+          </div> -->
+        </div>
+      </navigator>
 
     </div>
 
     <div class="operate-btn">
-      <picker @change="bindTypeChange" :value="typeIndex" :range="enumApplicationType">
-        <button class="weui-btn" type="primary">申 请</button>
-      </picker>
+      <button class="weui-btn" type="primary" @click="handleSelect">申 请</button>
     </div>
   </div>
 </template>
@@ -250,8 +255,7 @@ export default {
       state: enumState[0],
       startDate: '',
       endDate: '',
-      enumApplicationType,
-      typeIndex: 0
+      enumApplicationType
     };
   },
 
@@ -264,6 +268,22 @@ export default {
 
   },
   methods: {
+    handleSelect(){
+      wx.showActionSheet({
+        itemList: this.enumApplicationType,
+        success: function (res) {
+          if(res.tapIndex == 0){
+            wx.navigateTo({
+              url: "/pages/my-application-holiday/main"
+            });
+          }else{
+            wx.navigateTo({
+              url: "/pages/my-application-else/main"
+            });
+          }
+        }
+      });
+    },
 
     handleEditTask(){
       wx.navigateTo({
