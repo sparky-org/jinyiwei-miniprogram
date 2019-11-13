@@ -3,7 +3,7 @@
 
     <div class="weui-cells__title">审批管理</div>
     <div class="weui-grids" style="background-color: #fcfcfc;">
-      <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+      <navigator url="/pages/my-application/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">我的申请</div>
       </navigator>
