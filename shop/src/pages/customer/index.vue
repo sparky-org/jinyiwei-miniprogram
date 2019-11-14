@@ -56,7 +56,7 @@
         <!-- <div class="weui-cell__hd">
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div> -->
-        <div class="weui-cell__bd">林俊杰&#12288;<span style="color: #ccc;">181****3212</span></div>
+        <div class="weui-cell__bd">李俊杰&#12288;<span style="color: #ccc;">181****3212</span></div>
         <div class="weui-cell__ft">2019-10-16</div>
       </navigator>
       <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
@@ -77,7 +77,7 @@
         <!-- <div class="weui-cell__hd">
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div> -->
-        <div class="weui-cell__bd">林俊杰&#12288;<span style="color: #ccc;">181****3212</span></div>
+        <div class="weui-cell__bd">李俊杰&#12288;<span style="color: #ccc;">181****3212</span></div>
         <div class="weui-cell__ft">2019-10-16</div>
       </navigator>
     </div>
