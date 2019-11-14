@@ -10,7 +10,7 @@
           <i class="iconfont iconai-user weui-media-box__thumb" style="color: #999; font-size: 50rpx;"></i>
         </div>
         <div class="weui-media-box__bd weui-media-box__bd_in-appmsg" style="position: relative;">
-          <div class="weui-media-box__title">刘德华</div>
+          <div class="weui-media-box__title">李本山</div>
           <div class="weui-media-box__desc">182****8238</div>
           <i class="iconfont iconbodadianhua" style="position: absolute; right: 50rpx; top: 50%; margin-top: -56rpx; font-size: 70rpx; color: #0BB20C;"></i>
         </div>

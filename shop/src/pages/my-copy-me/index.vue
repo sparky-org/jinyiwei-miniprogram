@@ -15,7 +15,7 @@
         </div>
         <div class="weui-form-preview__item">
           <div class="weui-form-preview__label">审批人</div>
-          <div class="weui-form-preview__value">赵本山</div>
+          <div class="weui-form-preview__value">李本山</div>
         </div>
         <div class="weui-form-preview__item">
           <div class="weui-form-preview__label">状态</div>
@@ -45,7 +45,7 @@
         </div>
         <div class="weui-form-preview__item">
           <div class="weui-form-preview__label">审批人</div>
-          <div class="weui-form-preview__value" style="text-align: left;">赵本山</div>
+          <div class="weui-form-preview__value" style="text-align: left;">李本山</div>
         </div>
         <div class="weui-form-preview__item">
           <div class="weui-form-preview__label">状态</div>

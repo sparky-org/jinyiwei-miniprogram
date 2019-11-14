@@ -140,7 +140,7 @@ export default {
       items: [{
         pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
         id: 1,
-        name: '刘德华',
+        name: '李德华',
         createDate: 1550648810989,
         isTouchMove: false
       }, {
@@ -152,7 +152,7 @@ export default {
       }, {
         pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
         id: 1,
-        name: '刘德华',
+        name: '李德华',
         createDate: 1550648810989,
         isTouchMove: false
       }, {
@@ -164,37 +164,37 @@ export default {
       }, {
         pictureUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3590935495,3256795874&fm=26&gp=0.jpg',
         id: 3,
-        name: '赵本山',
+        name: '李本山',
         createDate: 1550648810989,
         isTouchMove: false
       }, {
         pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
         id: 4,
-        name: '郭富城',
+        name: '李富城',
         createDate: 1550648810989,
         isTouchMove: false
       }, {
         pictureUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3590935495,3256795874&fm=26&gp=0.jpg',
         id: 5,
-        name: '黎明',
+        name: '李明',
         createDate: 1550648810989,
         isTouchMove: false
       }, {
         pictureUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3590935495,3256795874&fm=26&gp=0.jpg',
         id: 3,
-        name: '赵本山',
+        name: '李德华',
         createDate: 1550648810989,
         isTouchMove: false
       }, {
         pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
         id: 4,
-        name: '郭富城',
+        name: '李富城',
         createDate: 1550648810989,
         isTouchMove: false
       }, {
         pictureUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3590935495,3256795874&fm=26&gp=0.jpg',
         id: 5,
-        name: '黎明',
+        name: '李明',
         createDate: 1550648810989,
         isTouchMove: false
       }]

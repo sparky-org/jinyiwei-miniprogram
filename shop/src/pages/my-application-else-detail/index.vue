@@ -44,7 +44,7 @@
             <div class="weui-label"><span class="required">*</span>审批人</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="" value="李德华,赵本山" />
+            <input class="weui-input" placeholder="" value="李德华,李本山" />
           </div>
         </div>
 
@@ -53,7 +53,7 @@
             <div class="weui-label"><span class="required">*</span>抄送人</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="" value="梅艳芳" />
+            <input class="weui-input" placeholder="" value="李艳芳" />
           </div>
         </div>
 

@@ -89,7 +89,7 @@
                   </div>
                   <div class="weui-uploader__bd">
                     <div class="weui-uploader__files">
-                      <div class="weui-uploader__file">袁凯,刘德华</div>
+                      <div class="weui-uploader__file">袁凯,李德华</div>
                       <i class="iconfont iconjia"></i>
                     </div>
                   </div>

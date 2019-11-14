@@ -34,7 +34,7 @@
             <div class="weui-label"><span class="required">*</span>抄送人</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入抄送人" value="李德华,赵本山" />
+            <input class="weui-input" placeholder="请输入抄送人" value="李德华,李本山" />
           </div>
         </div>
 

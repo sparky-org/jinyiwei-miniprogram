@@ -44,7 +44,7 @@
 
       <div class="weui-flex list" @click="handleDetail(2)">
         <div class="weui-flex__item">2</div>
-        <div class="weui-flex__item">刘德华</div>
+        <div class="weui-flex__item">李德华</div>
         <div class="weui-flex__item">80</div>
         <div class="weui-flex__item">10</div>
         <div class="weui-flex__item">90</div>
@@ -52,7 +52,7 @@
 
       <div class="weui-flex list" @click="handleDetail(3)">
         <div class="weui-flex__item">3</div>
-        <div class="weui-flex__item">赵本山</div>
+        <div class="weui-flex__item">李本山</div>
         <div class="weui-flex__item">80</div>
         <div class="weui-flex__item">20</div>
         <div class="weui-flex__item">80</div>

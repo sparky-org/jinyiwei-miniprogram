@@ -42,14 +42,14 @@
         <!-- <div class="weui-cell__hd">
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div> -->
-        <div class="weui-cell__bd">刘德华&#12288;<span style="color: #ccc;">171****0217</span></div>
+        <div class="weui-cell__bd">李德华&#12288;<span style="color: #ccc;">171****0217</span></div>
         <div class="weui-cell__ft">2019-10-16</div>
       </navigator>
       <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <!-- <div class="weui-cell__hd">
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div> -->
-        <div class="weui-cell__bd">赵本山&#12288;<span style="color: #ccc;">152****8643</span></div>
+        <div class="weui-cell__bd">李本山&#12288;<span style="color: #ccc;">152****8643</span></div>
         <div class="weui-cell__ft">2019-10-16</div>
       </navigator>
       <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
@@ -63,14 +63,14 @@
         <!-- <div class="weui-cell__hd">
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div> -->
-        <div class="weui-cell__bd">刘德华&#12288;<span style="color: #ccc;">171****0217</span></div>
+        <div class="weui-cell__bd">李德华&#12288;<span style="color: #ccc;">171****0217</span></div>
         <div class="weui-cell__ft">2019-10-16</div>
       </navigator>
       <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <!-- <div class="weui-cell__hd">
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div> -->
-        <div class="weui-cell__bd">赵本山&#12288;<span style="color: #ccc;">152****8643</span></div>
+        <div class="weui-cell__bd">李本山&#12288;<span style="color: #ccc;">152****8643</span></div>
         <div class="weui-cell__ft">2019-10-16</div>
       </navigator>
       <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
