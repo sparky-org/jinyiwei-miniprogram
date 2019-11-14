@@ -37,10 +37,10 @@ export default {
 
 
       // "^pages/index/main",
-      "^pages/workBench/main",
+      "pages/workBench/main",
       "pages/task/main",
       "pages/customer/main",
-      "pages/index/main",
+      "^pages/index/main",
       "pages/my-application/main",
 
 
@@ -97,7 +97,7 @@ export default {
     "window": {
       "backgroundTextStyle": "light",
       "navigationBarBackgroundColor": "#fff",
-      "navigationBarTitleText": "美容院店铺小程序",
+      "navigationBarTitleText": "俪人管家",
       "navigationBarTextStyle": "black"
     },
     "permission": {
