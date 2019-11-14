@@ -15,10 +15,10 @@
 
         <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
-            <div class="weui-label"><span class="required">*</span>申报目标</div>
+            <div class="weui-label"><span class="required">*</span>申报业绩</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入申报目标" />
+            <input class="weui-input" placeholder="请输入申报业绩" />
           </div>
         </div>
 
@@ -82,7 +82,7 @@
                   </div>
                   <div class="weui-uploader__bd">
                     <div class="weui-uploader__files">
-                      <div class="weui-uploader__file">袁凯,李德华</div>
+                      <div class="weui-uploader__file">方竹兵</div>
                       <i class="iconfont iconjia"></i>
                     </div>
                   </div>

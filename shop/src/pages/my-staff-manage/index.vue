@@ -17,7 +17,7 @@
             :class="{'touch-move-active': item.isTouchMove}"
             @touchstart="touchstart"
             @touchmove="touchmove"
-            v-for="(item, index) in items"
+            v-for="(item, index) in items1"
             :data-index="index"
             :key="item.id">
               <view class='content' @click='handleOperate(3)' :data-index="index">
@@ -46,7 +46,7 @@
             :class="{'touch-move-active': item.isTouchMove}"
             @touchstart="touchstart"
             @touchmove="touchmove"
-            v-for="(item, index) in items"
+            v-for="(item, index) in items2"
             :data-index="index"
             :key="item.id">
               <view class='content' @click='handleOperate(1)' :data-index="index">
@@ -75,7 +75,7 @@
             :class="{'touch-move-active': item.isTouchMove}"
             @touchstart="touchstart"
             @touchmove="touchmove"
-            v-for="(item, index) in items"
+            v-for="(item, index) in items3"
             :data-index="index"
             :key="item.id">
               <view class='content' @click='handleOperate(5)' :data-index="index">
@@ -137,67 +137,39 @@ export default {
       // startDate: '',
       // endDate: ''
 
-      tabs: ['店长', '美容顾问', '员工'],
+      tabs: ['店长', '美容顾问', '美容师'],
       activeIndex: 0,
       touch: null,
-      items: [{
+      items1: [{
         pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
         id: 1,
-        name: '李本山',
+        name: '方竹兵',
         createDate: 1550648810989,
         isTouchMove: false
-      }, {
+      }],
+      items2: [{
         pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
         id: 2,
-        name: '袁凯',
+        name: '曹丹',
         createDate: 1550648810989,
         isTouchMove: false
       }, {
         pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
         id: 1,
-        name: '李本山',
+        name: '谭新梅',
         createDate: 1550648810989,
         isTouchMove: false
-      }, {
+      }],
+      items3: [{
         pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
         id: 2,
-        name: '袁凯',
+        name: '许竹君',
         createDate: 1550648810989,
         isTouchMove: false
       }, {
         pictureUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3590935495,3256795874&fm=26&gp=0.jpg',
         id: 3,
-        name: '李本山',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
-        id: 4,
-        name: '李富城',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3590935495,3256795874&fm=26&gp=0.jpg',
-        id: 5,
-        name: '李明',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3590935495,3256795874&fm=26&gp=0.jpg',
-        id: 3,
-        name: '李本山',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
-        id: 4,
-        name: '李富城',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3590935495,3256795874&fm=26&gp=0.jpg',
-        id: 5,
-        name: '李明',
+        name: '张晶晶',
         createDate: 1550648810989,
         isTouchMove: false
       }]

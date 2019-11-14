@@ -32,7 +32,7 @@
             <div class="weui-label"><span class="required">*</span>打卡地点</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入打卡地点" />
+            <input class="weui-input" placeholder="请选择打卡地点" />
           </div>
         </div>
 
@@ -50,7 +50,7 @@
             <div class="weui-label"><span class="required">*</span>按时打卡奖励</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入打卡奖励积分" />
+            <input class="weui-input" placeholder="请按公司制度输入打卡奖励积分" />
           </div>
         </div>
 

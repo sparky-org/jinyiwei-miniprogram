@@ -45,20 +45,20 @@
           </div>
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务内容</div>
-            <div class="weui-form-preview__value">上午10点前把办公室区域的卫生打扫干净，很长的描述很长的描述很长的描述很长的描述</div>
+            <div class="weui-form-preview__value">每天搞好卫生拍视频发到群里。</div>
           </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">创建时间</div>
-            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
-          </div>
+<!--          <div class="weui-form-preview__item">-->
+<!--            <div class="weui-form-preview__label">创建时间</div>-->
+<!--            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>-->
+<!--          </div>-->
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务积分</div>
-            <div class="weui-form-preview__value">20积分</div>
+            <div class="weui-form-preview__value">3积分</div>
           </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">剩余个数</div>
-            <div class="weui-form-preview__value">无限制</div>
-          </div>
+<!--          <div class="weui-form-preview__item">-->
+<!--            <div class="weui-form-preview__label">剩余个数</div>-->
+<!--            <div class="weui-form-preview__value">无限制</div>-->
+<!--          </div>-->
         </div>
         <div>
           <div class="weui-flex">
@@ -83,24 +83,24 @@
         <div class="weui-form-preview__bd">
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务名称</div>
-            <div class="weui-form-preview__value">打扫卫生</div>
+            <div class="weui-form-preview__value">每日学习</div>
           </div>
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务内容</div>
-            <div class="weui-form-preview__value">上午10点前把办公室区域的卫生打扫干净，很长的描述很长的描述很长的描述很长的描述</div>
+            <div class="weui-form-preview__value">专业每天在群里学习2遍，增加我们学习价值。</div>
           </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">创建时间</div>
-            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
-          </div>
+<!--          <div class="weui-form-preview__item">-->
+<!--            <div class="weui-form-preview__label">创建时间</div>-->
+<!--            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>-->
+<!--          </div>-->
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务积分</div>
-            <div class="weui-form-preview__value">20积分</div>
+            <div class="weui-form-preview__value">3积分</div>
           </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">剩余个数</div>
-            <div class="weui-form-preview__value">无限制</div>
-          </div>
+<!--          <div class="weui-form-preview__item">-->
+<!--            <div class="weui-form-preview__label">剩余个数</div>-->
+<!--            <div class="weui-form-preview__value">无限制</div>-->
+<!--          </div>-->
         </div>
         <div>
           <div class="weui-flex">
@@ -126,24 +126,24 @@
         <div class="weui-form-preview__bd">
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务名称</div>
-            <div class="weui-form-preview__value">打扫卫生</div>
+            <div class="weui-form-preview__value">接待演练</div>
           </div>
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务内容</div>
-            <div class="weui-form-preview__value">上午10点前把办公室区域的卫生打扫干净，很长的描述很长的描述很长的描述很长的描述</div>
+            <div class="weui-form-preview__value">每天演练接待流程2遍，让客户拥有愉悦的接待过程。</div>
           </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">创建时间</div>
-            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
-          </div>
+<!--          <div class="weui-form-preview__item">-->
+<!--            <div class="weui-form-preview__label">创建时间</div>-->
+<!--            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>-->
+<!--          </div>-->
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务积分</div>
-            <div class="weui-form-preview__value">20积分</div>
+            <div class="weui-form-preview__value">3积分</div>
           </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">剩余个数</div>
-            <div class="weui-form-preview__value">无限制</div>
-          </div>
+<!--          <div class="weui-form-preview__item">-->
+<!--            <div class="weui-form-preview__label">剩余个数</div>-->
+<!--            <div class="weui-form-preview__value">无限制</div>-->
+<!--          </div>-->
         </div>
         <div>
           <div class="weui-flex">

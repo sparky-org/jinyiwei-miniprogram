@@ -56,7 +56,7 @@
           <div class="weui-flex__item">
             <div class="placeholder">
               <dl class="ph-dl">
-                <dt>20</dt>
+                <dt>200</dt>
                 <dd>今日积分</dd>
               </dl>
             </div>
@@ -65,7 +65,7 @@
       </div>
       <div class="weui-panel__ft">
         <div class="weui-cell weui-cell_access weui-cell_link">
-          <div class="weui-cell__bd" style="color: #10AEFF;">袁凯夺得今日排行榜冠军</div>
+          <div class="weui-cell__bd" style="color: #10AEFF;">方竹兵夺得今日排行榜冠军</div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
       </div>
@@ -81,7 +81,7 @@
             <image class="weui-media-box__thumb" :src="icon60" />
           </div> -->
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title">袁凯 <span class="score-num">+20分</span></div>
+            <div class="weui-media-box__title">方竹兵 <span class="score-num">+20分</span></div>
             <div class="weui-media-box__desc">
               招聘任务完成奖励<br>2019-11-11 11:12:23
             </div>
@@ -93,9 +93,9 @@
             <image class="weui-media-box__thumb" :src="icon60" />
           </div> -->
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title">袁凯 <span class="score-num">+20分</span></div>
+            <div class="weui-media-box__title">曹丹 <span class="score-num">+20分</span></div>
             <div class="weui-media-box__desc">
-              招聘任务完成奖励<br>2019-11-11 11:12:23
+              招聘任务完成奖励<br>2019-11-11 09:10:16
             </div>
           </div>
         </navigator>
