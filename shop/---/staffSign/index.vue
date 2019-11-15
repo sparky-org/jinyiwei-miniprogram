@@ -24,7 +24,8 @@
     </div>
 
     <div class="sureBth">
-      <button class="weui-btn" :disabled="!isIn" type="primary" @click="handleArrive">签到</button>
+      <button class="weui-btn" v-if="isIn" type="primary" @click="handleArrive">签到</button>
+      <button class="weui-btn" v-if="!isIn" type="primary" @click="handleOutside">外勤签到</button>
     </div>
 
   </div>
@@ -72,7 +73,7 @@ export default {
           }else{
             this.isIn = false
           }
-
+        console.log("is in value is ", this.isIn)
         }
       }
     })
@@ -112,6 +113,20 @@ export default {
           }
         })
       }
+    },
+    async handleOutside(){
+      const data = await post(`/agency/employ/signOutside?employId=${this.$store.state.userInfo.id}?address=广州市天河区天河城`);
+      console.info(123,data)
+      if(data.success){
+         wx.showToast({
+            title: '外勤打卡成功',
+             icon: 'success',
+         duration: 2000,
+        success(){
+
+                }
+            })
+        }
     },
     // bindDateChange(e) {
     //   console.log('选中的日期为：' + e.mp.detail.value);
