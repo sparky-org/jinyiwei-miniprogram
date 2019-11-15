@@ -103,8 +103,9 @@ export default {
       //   '2019-11-15':'预约',
       //   '2019-11-18':'预约'
       // }
-      this.tileContent.push({date: '2019-11-12', className: 'holiday', content: '预约'},{date: '2019-11-19', className: 'errorDate', content: '异常'}, {date: '2019-11-13', className: 'holiday', content: '预约'})
-    },3000)
+      // this.tileContent.push({date: '2019-11-12', className: 'holiday', content: '预约'},{date: '2019-11-19', className: 'errorDate', content: '异常'}, {date: '2019-11-13', className: 'holiday', content: '预约'})
+      this.tileContent.push({date: '2019-11-15', className: 'holiday', content: '预约'}, {date: '2019-11-18', className: 'holiday', content: '预约'}, {date: '2019-11-8', className: 'holiday', content: '预约'}, {date: '2019-11-6', className: 'holiday', content: '预约'}, {date: '2019-11-10', className: 'holiday', content: '预约'},{date: '2019-11-12', className: 'holiday', content: '预约'})
+    },500)
     // this.calendar.jump(2021, 10);
     // this.id = this.$root.$mp.query.id;
     // console.info(this.id)
