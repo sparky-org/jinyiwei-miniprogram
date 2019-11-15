@@ -29,4 +29,7 @@
     height: 120rpx;
     padding: 20rpx;
   }
+  .no-t::before{
+    border-top: 0 none;
+  }
 }
