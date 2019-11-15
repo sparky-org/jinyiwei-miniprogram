@@ -31,28 +31,28 @@
 
     <div class="weui-cells__title">营业动态</div>
     <div class="weui-cells weui-cells_after-title">
-      <navigator url="/pages/my-appointment/main?date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-        <div class="weui-cell">
+      <navigator url="/pages/my-appointment/main?date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
+        <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日预约客户</div>
-          <div class="weui-cell__ft">36人</div>
+          <div class="weui-cell__ft" style="float: right;">36人</div>
         </div>
       </navigator>
-      <navigator url="/pages/my-application/main?applyType=SALES_PERF&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-        <div class="weui-cell">
+      <navigator url="/pages/my-application/main?applyType=SALES_PERF&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
+        <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日业绩</div>
-          <div class="weui-cell__ft">24个</div>
+          <div class="weui-cell__ft" style="float: right;">24个</div>
         </div>
       </navigator>
-      <navigator url="/pages/my-application/main?applyType=SERVICE_ITEM&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-        <div class="weui-cell">
+      <navigator url="/pages/my-application/main?applyType=SERVICE_ITEM&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
+        <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日项目数量</div>
-          <div class="weui-cell__ft">10个</div>
+          <div class="weui-cell__ft" style="float: right;">10个</div>
         </div>
       </navigator>
-      <navigator url="/pages/my-application/main?applyType=VACATION&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-        <div class="weui-cell">
+      <navigator url="/pages/my-application/main?applyType=VACATION&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
+        <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日休息员工</div>
-          <div class="weui-cell__ft">2人</div>
+          <div class="weui-cell__ft" style="float: right;">2人</div>
         </div>
       </navigator>
     </div>
