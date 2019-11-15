@@ -93,60 +93,60 @@
     <div class="weui-panel weui-panel_access">
       <div class="weui-panel__hd">积分动态</div>
       <div class="weui-panel__bd">
-        <navigator url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <navigator style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" :src="icon60" />
           </div> -->
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <div class="weui-media-box__title">方竹兵 <span class="score-num">+20分</span></div>
-            <div class="weui-media-box__desc">
-              招聘任务完成奖励<br>2019-11-11 11:12:23
-            </div>
+            <!-- <div class="weui-media-box__desc">
+              招聘任务完成奖励
+            </div> -->
           </div>
         </navigator>
         <!--注意这个跳转方式  switchTab方式-->
-        <navigator url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <navigator style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" :src="icon60" />
           </div> -->
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <div class="weui-media-box__title">曹丹 <span class="score-num">+20分</span></div>
-            <div class="weui-media-box__desc">
-              打扫卫生奖励<br>2019-11-11 10:10:16
-            </div>
+            <!-- <div class="weui-media-box__desc">
+              打扫卫生奖励
+            </div> -->
           </div>
         </navigator>
-        <navigator url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <navigator style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" :src="icon60" />
           </div> -->
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <div class="weui-media-box__title">胡燕群 <span class="score-num">+3分</span></div>
-            <div class="weui-media-box__desc">
-              考勤正常打卡<br>2019-11-11 09:10:16
-            </div>
+            <!-- <div class="weui-media-box__desc">
+              考勤正常打卡
+            </div> -->
           </div>
         </navigator>
-        <navigator url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <navigator style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" :src="icon60" />
           </div> -->
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <div class="weui-media-box__title">谭新梅 <span class="score-num">+3分</span></div>
-            <div class="weui-media-box__desc">
-              获得品德积分奖励<br>2019-11-11 09:10:16
-            </div>
+            <!-- <div class="weui-media-box__desc">
+              获得品德积分奖励
+            </div> -->
           </div>
         </navigator>
-        <navigator url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <navigator style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
           <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" :src="icon60" />
           </div> -->
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <div class="weui-media-box__title">许竹君 <span class="score-num">+20分</span></div>
-            <div class="weui-media-box__desc">
-              提交工作日志<br>2019-11-11 09:10:16
-            </div>
+            <!-- <div class="weui-media-box__desc">
+              提交工作日志
+            </div> -->
           </div>
         </navigator>
       </div>

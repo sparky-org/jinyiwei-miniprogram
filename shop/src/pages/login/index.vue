@@ -2,7 +2,7 @@
   <div class="login">
     <div class="weui-cells weui-cells_after-title">
       <div class="logo">
-        <img src="../../../static/images/logo.png">
+        <img :src="logoImg">
       </div>
       <div class="weui-cell weui-cell_input weui-cell_vcode">
         <div class="weui-cell__hd">
@@ -59,7 +59,8 @@ export default {
     return {
       // date: '2019-08-11',
       phone: '15000000001',
-      verifyCode: ''
+      verifyCode: '',
+      logoImg: require('./logo.png')
     };
   },
   watch:{
