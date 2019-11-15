@@ -36,7 +36,7 @@
           <block v-for="(item, index) in news" :key="index">
             <swiper-item>
               <view class='show-text-1 '>
-                <text class='tui_text'>推荐</text>
+                <text class='tui_text'>公告</text>
                 <text class='tui_item'>{{item}}</text>
               </view>
             </swiper-item>
