@@ -183,7 +183,41 @@
         </div>
       </navigator>
 
-      <navigator v-if="applyType=='VACATION'" url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+
+      <navigator v-if="applyType=='SALES_PERF'" url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+        <div class="weui-form-preview">
+          <div class="weui-form-preview__hd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">申请类型</div>
+              <div class="weui-form-preview__value_in-hd">业绩申请</div>
+              <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+            </div>
+          </div>
+          <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">顾客姓名</div>
+              <div class="weui-form-preview__value">李香洲</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">业绩金额</div>
+              <div class="weui-form-preview__value">5000元</div>
+            </div>
+          </div>
+          <!-- <div>
+            <div class="weui-flex">
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="warn" plain="true">删除</button>
+              </div>
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </navigator>
+
+
+      <navigator v-if="applyType=='ElSE'" url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
@@ -236,7 +270,7 @@ import amapFile from "../../utils/amap-wx";
 import { get } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 
-let enumApplication = ['全部申请','请假申请', '项目申请', '业绩申请'];
+let enumApplication = ['全部申请','请假申请', '项目申请', '业绩申请','其它申请'];
 let enumState = ['全部状态','待审批', '已通过','未通过', '已撤回']
 let enumApplicationType = ['请假申请','其它申请']
 export default {
@@ -268,6 +302,12 @@ export default {
     }
     if(this.applyType == 'SERVICE_ITEM'){
       this.application = enumApplication[2]
+    }
+    if(this.applyType == 'SALES_PERF'){
+      this.application = enumApplication[3]
+    }
+    if(this.applyType == 'ELSE'){
+      this.application = enumApplication[4]
     }
     console.info(this.applyType)
     // this.role = this.$store.state.userInfo.role
