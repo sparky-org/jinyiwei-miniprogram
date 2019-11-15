@@ -9,22 +9,22 @@
           </swiper-item>
         </block> -->
         <swiper-item class="swiper-item">
-          <image style="width: 100%; height: 100%;" src="http://118.25.104.232/jyw-resource/18/50/18509052e68889168422e7f387e654f9" class="slide-image" />
+          <image style="width: 100%; height: 100%;" src="https://www.zjliren520.com/jyw-resource/18/50/18509052e68889168422e7f387e654f9" class="slide-image" />
         </swiper-item>
         <swiper-item class="swiper-item">
-          <image style="width: 100%; height: 100%;" src="http://118.25.104.232/jyw-resource/c6/6f/c66f8ec914539d73c5eb277bd4f8d244" class="slide-image" />
+          <image style="width: 100%; height: 100%;" src="https://www.zjliren520.com/jyw-resource/c6/6f/c66f8ec914539d73c5eb277bd4f8d244" class="slide-image" />
         </swiper-item>
         <swiper-item class="swiper-item">
-          <image style="width: 100%; height: 100%;" src="http://118.25.104.232/jyw-resource/49/41/49415a3a3a17d035b824e3065384196c" class="slide-image" />
+          <image style="width: 100%; height: 100%;" src="https://www.zjliren520.com/jyw-resource/49/41/49415a3a3a17d035b824e3065384196c" class="slide-image" />
         </swiper-item>
         <swiper-item class="swiper-item">
-          <image style="width: 100%; height: 100%;" src="http://118.25.104.232/jyw-resource/fc/04/fc04606a2b0fc629b85ee67f62f68058" class="slide-image" />
+          <image style="width: 100%; height: 100%;" src="https://www.zjliren520.com/jyw-resource/fc/04/fc04606a2b0fc629b85ee67f62f68058" class="slide-image" />
         </swiper-item>
         <swiper-item class="swiper-item">
-          <image style="width: 100%; height: 100%;" src="http://118.25.104.232/jyw-resource/d3/1c/d31cab8413663bfdd16db8e312213e4c" class="slide-image" />
+          <image style="width: 100%; height: 100%;" src="https://www.zjliren520.com/jyw-resource/d3/1c/d31cab8413663bfdd16db8e312213e4c" class="slide-image" />
         </swiper-item>
         <swiper-item class="swiper-item">
-          <image style="width: 100%; height: 100%;" src="http://118.25.104.232/jyw-resource/6b/e9/6be953c24858a3c2d787d57e6b77be1f" class="slide-image" />
+          <image style="width: 100%; height: 100%;" src="https://www.zjliren520.com/jyw-resource/6b/e9/6be953c24858a3c2d787d57e6b77be1f" class="slide-image" />
         </swiper-item>
       </swiper>
     </div>
@@ -231,12 +231,12 @@ export default {
       // userInfo: null,
       data:null,
       brandList: [
-        {url:'http://118.25.104.232/jyw-resource/18/50/18509052e68889168422e7f387e654f9'},
-        {url:'http://118.25.104.232/jyw-resource/c6/6f/c66f8ec914539d73c5eb277bd4f8d244'},
-        {url:'http://118.25.104.232/jyw-resource/49/41/49415a3a3a17d035b824e3065384196c'},
-        {url:'http://118.25.104.232/jyw-resource/fc/04/fc04606a2b0fc629b85ee67f62f68058'},
-        {url:'http://118.25.104.232/jyw-resource/d3/1c/d31cab8413663bfdd16db8e312213e4c'},
-        {url:'http://118.25.104.232/jyw-resource/6b/e9/6be953c24858a3c2d787d57e6b77be1f'}
+        {url:'https://www.zjliren520.com/jyw-resource/18/50/18509052e68889168422e7f387e654f9'},
+        {url:'https://www.zjliren520.com/jyw-resource/c6/6f/c66f8ec914539d73c5eb277bd4f8d244'},
+        {url:'https://www.zjliren520.com/jyw-resource/49/41/49415a3a3a17d035b824e3065384196c'},
+        {url:'https://www.zjliren520.com/jyw-resource/fc/04/fc04606a2b0fc629b85ee67f62f68058'},
+        {url:'https://www.zjliren520.com/jyw-resource/d3/1c/d31cab8413663bfdd16db8e312213e4c'},
+        {url:'https://www.zjliren520.com/jyw-resource/6b/e9/6be953c24858a3c2d787d57e6b77be1f'}
       ]
       // channel: [],
       // newGoods: [],

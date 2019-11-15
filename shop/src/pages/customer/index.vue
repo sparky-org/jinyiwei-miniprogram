@@ -31,40 +31,19 @@
 
     <div class="weui-cells__title">我的客户</div>
     <div class="weui-cells weui-cells_after-title">
-      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator url="/pages/customer-detail/main?customerId=1" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <!-- <div class="weui-cell__hd">
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div> -->
-        <div class="weui-cell__bd">张三&#12288;<span style="color: #ccc;">182****8238</span></div>
-        <div class="weui-cell__ft">2019-10-02</div>
+        <div class="weui-cell__bd">陈菊&#12288;<span style="color: #ccc;">182****8238</span></div>
+        <div class="weui-cell__ft">2019-11-18</div>
       </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+      <navigator url="/pages/customer-detail/main?customerId=2" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <!-- <div class="weui-cell__hd">
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div> -->
-        <div class="weui-cell__bd">李德华&#12288;<span style="color: #ccc;">171****0217</span></div>
-        <div class="weui-cell__ft">2019-10-16</div>
-      </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <!-- <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-        </div> -->
-        <div class="weui-cell__bd">李本山&#12288;<span style="color: #ccc;">152****8643</span></div>
-        <div class="weui-cell__ft">2019-10-16</div>
-      </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <!-- <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-        </div> -->
-        <div class="weui-cell__bd">李俊杰&#12288;<span style="color: #ccc;">181****3212</span></div>
-        <div class="weui-cell__ft">2019-10-16</div>
-      </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <!-- <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-        </div> -->
-        <div class="weui-cell__bd">李德华&#12288;<span style="color: #ccc;">171****0217</span></div>
-        <div class="weui-cell__ft">2019-10-16</div>
+        <div class="weui-cell__bd">杨华&#12288;<span style="color: #ccc;">171****0217</span></div>
+        <div class="weui-cell__ft">2019-01-16</div>
       </navigator>
       <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <!-- <div class="weui-cell__hd">
@@ -78,6 +57,27 @@
           <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </div> -->
         <div class="weui-cell__bd">李俊杰&#12288;<span style="color: #ccc;">181****3212</span></div>
+        <div class="weui-cell__ft">2019-10-16</div>
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <!-- <div class="weui-cell__hd">
+          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+        </div> -->
+        <div class="weui-cell__bd">陈小平&#12288;<span style="color: #ccc;">171****0217</span></div>
+        <div class="weui-cell__ft">2019-10-16</div>
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <!-- <div class="weui-cell__hd">
+          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+        </div> -->
+        <div class="weui-cell__bd">张磊&#12288;<span style="color: #ccc;">152****8643</span></div>
+        <div class="weui-cell__ft">2019-10-16</div>
+      </navigator>
+      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <!-- <div class="weui-cell__hd">
+          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+        </div> -->
+        <div class="weui-cell__bd">李杰&#12288;<span style="color: #ccc;">181****3212</span></div>
         <div class="weui-cell__ft">2019-10-16</div>
       </navigator>
     </div>
