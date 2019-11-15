@@ -70,99 +70,99 @@ export default {
       title: enumTaskState[0],
       taskList1:[{
        name:'每天演练接待流程',
-       content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+       content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
        point:3,
        statusDesc:'未完成',
         statusDisable:false
       },{
         name:'每天演练接待流程',
-        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
         point:3,
         statusDesc:'审核中',
         statusDisable:true
       },{
         name:'每天演练接待流程',
-        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       },{
         name:'每天演练接待流程',
-        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       },{
         name:'每天演练接待流程',
-        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       },{
         name:'每天演练接待流程',
-        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       }],
       taskList2:[{
         name:'培训新人',
-        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        content:'培训新人一个手法奖励3积分',
         point:3,
         statusDesc:'未完成',
         statusDisable:false
       },{
         name:'培训新人',
-        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        content:'培训新人一个手法奖励3积分',
         point:3,
         statusDesc:'审核中',
         statusDisable:true
       },{
         name:'培训新人',
-        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        content:'培训新人一个手法奖励3积分',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       },{
         name:'培训新人',
-        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        content:'培训新人一个手法奖励3积分',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       },{
         name:'培训新人',
-        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        content:'培训新人一个手法奖励3积分',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       },{
         name:'培训新人',
-        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        content:'培训新人一个手法奖励3积分',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       },{
         name:'培训新人',
-        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        content:'培训新人一个手法奖励3积分',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       },{
         name:'培训新人',
-        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        content:'培训新人一个手法奖励3积分',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       },{
         name:'培训新人',
-        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        content:'培训新人一个手法奖励3积分',
         point:3,
         statusDesc:'已奖励',
         statusDisable:true
       }],
       taskList3:[{
         name:'培训新人',
-        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        content:'培训新人一个手法奖励3积分',
         point:3,
         statusDesc:'已完成',
         statusDisable:true
