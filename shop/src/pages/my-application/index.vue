@@ -30,7 +30,8 @@
 
 
     <div class="content">
-      <navigator url="/pages/my-application-holiday-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+
+      <navigator v-if="applyType=='VACATION'" url="/pages/my-application-holiday-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
@@ -66,7 +67,7 @@
         </div>
       </navigator>
 
-      <navigator url="/pages/my-application-holiday-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+      <navigator v-if="applyType=='VACATION'" url="/pages/my-application-holiday-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
@@ -102,7 +103,7 @@
         </div>
       </navigator>
 
-      <navigator url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+      <navigator v-if="applyType=='SERVICE_ITEM'" url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
@@ -142,12 +143,12 @@
         </div>
       </navigator>
 
-      <navigator url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+      <navigator v-if="applyType=='SERVICE_ITEM'" url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
               <div class="weui-form-preview__label">申请类型</div>
-              <div class="weui-form-preview__value_in-hd">目标申报</div>
+              <div class="weui-form-preview__value_in-hd">项目申报</div>
               <div class="weui-cell__ft weui-cell__ft_in-access"></div>
             </div>
           </div>
@@ -182,7 +183,7 @@
         </div>
       </navigator>
 
-      <navigator url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+      <navigator v-if="applyType=='VACATION'" url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
         <div class="weui-form-preview">
           <div class="weui-form-preview__hd">
             <div class="weui-form-preview__item">
@@ -255,11 +256,20 @@ export default {
       state: enumState[0],
       startDate: '',
       endDate: '',
-      enumApplicationType
+      enumApplicationType,
+      applyType: ''
     };
   },
 
   mounted() {
+    this.applyType = this.$root.$mp.query.applyType;
+    if(this.applyType == 'VACATION'){
+      this.application = enumApplication[1]
+    }
+    if(this.applyType == 'SERVICE_ITEM'){
+      this.application = enumApplication[2]
+    }
+    console.info(this.applyType)
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role);
     // this.getData();
