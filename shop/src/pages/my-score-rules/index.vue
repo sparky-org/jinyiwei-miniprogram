@@ -8,8 +8,7 @@
               <div class="weui-label"><span class="required">*</span>积分类型</div>
             </div>
             <div class="weui-cell__bd">
-              <!--<input class="weui-input" placeholder="请输入积分类型" :value="item.type" disabled="true"/>-->
-              {{item.type}}
+              <input class="weui-input" placeholder="请输入积分类型" :value="item.type" disabled="true"/>
             </div>
           </div>
 
@@ -18,8 +17,7 @@
               <div class="weui-label"><span class="required">*</span>奖励分值</div>
             </div>
             <div class="weui-cell__bd">
-              <!--<input class="weui-input" placeholder="请输入内容" :value="item.reward" disabled="true"/>-->
-              {{item.reward}}
+              <input class="weui-input" placeholder="请输入内容" :value="item.reward" disabled="true"/>
             </div>
           </div>
 
@@ -28,9 +26,9 @@
               <div class="weui-cell__hd">
                 <div class="weui-label"><span class="required">*</span>描&#12288;&#12288;述</div>
               </div>
-              <div class="weui-cell__bd" style="padding: 20rpx 0;">
-                <!--<textarea class="" placeholder="请输入描述" style="height: 3.3em; width: 100%;" v-model="noticeText" :v-text="item.desc" />-->
-                {{item.desc}}
+              <div class="weui-cell__bd" style="padding: 20rpx 0;" v-html="item.desc">
+                <textarea class="" placeholder="请输入描述" style="height: 3.3em; width: 100%;" v-model="noticeText" :v-text="item.desc" />
+
               </div>
             </div>
           </div>
