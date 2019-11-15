@@ -20,7 +20,7 @@ export function formatTime(date) {
 
 //-------------------------------------------------------------------------请求的封装
 
-const host = "http://118.25.104.232:8082/jinyiwei-front"
+const host = "https://www.zjliren520.com/jinyiwei-front"
 export { host };
 //请求封装
 function request(url, method, data, header = {}) {
