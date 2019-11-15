@@ -81,7 +81,7 @@
         </div>
       </div>
       <div class="weui-panel__ft">
-        <div class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell weui-cell_access weui-cell_link" @click="handleScore">
           <div class="weui-cell__bd" style="color: #10AEFF;">方竹兵夺得今日排行榜冠军</div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
@@ -257,6 +257,12 @@ export default {
       // });
 
     },
+
+    handleScore(){
+      wx.navigateTo({
+        url: "/pages/my-score/main"
+      });
+    }
 
     // async getData() {
       // const data = await get("/index/index");
