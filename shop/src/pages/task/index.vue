@@ -13,8 +13,7 @@
     </div>
 
     <div class="content">
-
-      <div class="weui-form-preview">
+      <div class="weui-form-preview" v-for="(item, index) in taskList">
         <!-- <div class="weui-form-preview__hd">
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">付款金额</div>
@@ -24,105 +23,29 @@
         <div class="weui-form-preview__bd">
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务名称</div>
-            <div class="weui-form-preview__value">打扫卫生</div>
+            <div class="weui-form-preview__value">{{item.name}}</div>
           </div>
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务内容</div>
-            <div class="weui-form-preview__value">上午10点前把办公室区域的卫生打扫干净，很长的描述很长的描述很长的描述很长的描述</div>
+            <div class="weui-form-preview__value">{{item.content}}</div>
           </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">创建时间</div>
-            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务积分</div>
-            <div class="weui-form-preview__value">20积分</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">剩余个数</div>
-            <div class="weui-form-preview__value">无限制</div>
-          </div>
-        </div>
-        <div class="weui-form-preview__ft">
-          <button class="weui-btn" type="primary" disabled="true">已奖励</button>
-        </div>
-      </div>
-
-
-      <div class="weui-form-preview">
-        <!-- <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">付款金额</div>
-            <div class="weui-form-preview__value_in-hd">¥2400.00</div>
-          </div>
-        </div> -->
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务名称</div>
-            <div class="weui-form-preview__value">打扫卫生</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务内容</div>
-            <div class="weui-form-preview__value">上午10点前把办公室区域的卫生打扫干净，很长的描述很长的描述很长的描述很长的描述</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">创建时间</div>
-            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
-          </div>
+          <!--<div class="weui-form-preview__item">-->
+            <!--<div class="weui-form-preview__label">创建时间</div>-->
+            <!--<div class="weui-form-preview__value">2019-10-11 18:12:23</div>-->
+          <!--</div>-->
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">任务积分</div>
-            <div class="weui-form-preview__value">20积分</div>
+            <div class="weui-form-preview__value">{{item.point}}积分</div>
           </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">剩余个数</div>
-            <div class="weui-form-preview__value">无限制</div>
-          </div>
+          <!--<div class="weui-form-preview__item">-->
+            <!--<div class="weui-form-preview__label">剩余个数</div>-->
+            <!--<div class="weui-form-preview__value">无限制</div>-->
+          <!--</div>-->
         </div>
         <div class="weui-form-preview__ft">
-          <button class="weui-btn" type="default" disabled="true">审核中</button>
+          <button class="weui-btn" type="primary" :disabled="item.statusDisable">{{item.statusDesc}}</button>
         </div>
       </div>
-
-
-
-      <div class="weui-form-preview">
-        <!-- <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">付款金额</div>
-            <div class="weui-form-preview__value_in-hd">¥2400.00</div>
-          </div>
-        </div> -->
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务名称</div>
-            <div class="weui-form-preview__value">打扫卫生</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务内容</div>
-            <div class="weui-form-preview__value">上午10点前把办公室区域的卫生打扫干净，很长的描述很长的描述很长的描述很长的描述</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">创建时间</div>
-            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务积分</div>
-            <div class="weui-form-preview__value">20积分</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">剩余个数</div>
-            <div class="weui-form-preview__value">无限制</div>
-          </div>
-        </div>
-        <div class="weui-form-preview__ft">
-          <button class="weui-btn" type="primary">完 成</button>
-        </div>
-      </div>
-
-
-
-
-
     </div>
   </div>
 </template>
@@ -132,7 +55,7 @@ import amapFile from "../../utils/amap-wx";
 import { get } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 
-let enumTaskState = ['任务状态','进行中','审核中','已奖励'];
+let enumTaskState = ['任务状态','未完成','审核中','已奖励'];
 export default {
   onShow() {
 
@@ -144,7 +67,107 @@ export default {
     return {
       // role: '',
       index: 1,
-      title: enumTaskState[0]
+      title: enumTaskState[0],
+      taskList1:[{
+       name:'每天演练接待流程',
+       content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+       point:3,
+       statusDesc:'未完成',
+        statusDisable:false
+      },{
+        name:'每天演练接待流程',
+        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+        point:3,
+        statusDesc:'审核中',
+        statusDisable:true
+      },{
+        name:'每天演练接待流程',
+        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      },{
+        name:'每天演练接待流程',
+        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      },{
+        name:'每天演练接待流程',
+        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      },{
+        name:'每天演练接待流程',
+        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励3积分',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      }],
+      taskList2:[{
+        name:'培训新人',
+        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        point:3,
+        statusDesc:'未完成',
+        statusDisable:false
+      },{
+        name:'培训新人',
+        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        point:3,
+        statusDesc:'审核中',
+        statusDisable:true
+      },{
+        name:'培训新人',
+        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      },{
+        name:'培训新人',
+        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      },{
+        name:'培训新人',
+        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      },{
+        name:'培训新人',
+        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      },{
+        name:'培训新人',
+        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      },{
+        name:'培训新人',
+        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      },{
+        name:'培训新人',
+        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        point:3,
+        statusDesc:'已奖励',
+        statusDisable:true
+      }],
+      taskList3:[{
+        name:'培训新人',
+        content:'培训新人一个手法奖励3积分，该任务完成后点击完成按钮，系统将自动送交老板娘审批，审批通过后奖励到账',
+        point:3,
+        statusDesc:'已完成',
+        statusDisable:true
+      }],
+      taskList: this.taskList1
     };
   },
 
@@ -158,7 +181,17 @@ export default {
   },
   methods: {
     handelTabClick(index){
-      this.index = index
+      this.index = index;
+      if (index == 1){
+        this.taskList = this.taskList1;
+      }
+      if (index == 2){
+        this.taskList = this.taskList2;
+      }
+      if (index == 3){
+        this.taskList = this.taskList3;
+      }
+      console.log("task list is :", taskList)
     },
     handleStateSelect(){
       wx.showActionSheet({

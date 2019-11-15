@@ -22,22 +22,30 @@
 
     <div class="weui-cells__title">营业动态</div>
     <div class="weui-cells weui-cells_after-title">
-      <div class="weui-cell">
-        <div class="weui-cell__bd">今日预约客户</div>
-        <div class="weui-cell__ft">36人</div>
-      </div>
-      <div class="weui-cell">
-        <div class="weui-cell__bd">今日业绩</div>
-        <div class="weui-cell__ft">24个</div>
-      </div>
-      <div class="weui-cell">
-        <div class="weui-cell__bd">今日项目数量</div>
-        <div class="weui-cell__ft">10个</div>
-      </div>
-      <div class="weui-cell">
-        <div class="weui-cell__bd">今日休息员工</div>
-        <div class="weui-cell__ft">2人</div>
-      </div>
+      <navigator url="/pages/my-appointment/main?date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">今日预约客户</div>
+          <div class="weui-cell__ft">36人</div>
+        </div>
+      </navigator>
+      <navigator url="/pages/my-application/main?applyType=SALES_PERF&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">今日业绩</div>
+          <div class="weui-cell__ft">24个</div>
+        </div>
+      </navigator>
+      <navigator url="/pages/my-application/main?applyType=SERVICE_ITEM&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">今日项目数量</div>
+          <div class="weui-cell__ft">10个</div>
+        </div>
+      </navigator>
+      <navigator url="/pages/my-application/main?applyType=VACATION&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+        <div class="weui-cell">
+          <div class="weui-cell__bd">今日休息员工</div>
+          <div class="weui-cell__ft">2人</div>
+        </div>
+      </navigator>
     </div>
 
 
@@ -95,14 +103,47 @@
           <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
             <div class="weui-media-box__title">曹丹 <span class="score-num">+20分</span></div>
             <div class="weui-media-box__desc">
-              招聘任务完成奖励<br>2019-11-11 09:10:16
+              打扫卫生奖励<br>2019-11-11 10:10:16
+            </div>
+          </div>
+        </navigator>
+        <navigator url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" :src="icon60" />
+          </div> -->
+          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <div class="weui-media-box__title">胡燕群 <span class="score-num">+3分</span></div>
+            <div class="weui-media-box__desc">
+              考勤正常打卡<br>2019-11-11 09:10:16
+            </div>
+          </div>
+        </navigator>
+        <navigator url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" :src="icon60" />
+          </div> -->
+          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <div class="weui-media-box__title">谭新梅 <span class="score-num">+3分</span></div>
+            <div class="weui-media-box__desc">
+              获得品德积分奖励<br>2019-11-11 09:10:16
+            </div>
+          </div>
+        </navigator>
+        <navigator url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+          <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+            <image class="weui-media-box__thumb" :src="icon60" />
+          </div> -->
+          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+            <div class="weui-media-box__title">许竹君 <span class="score-num">+20分</span></div>
+            <div class="weui-media-box__desc">
+              提交工作日志<br>2019-11-11 09:10:16
             </div>
           </div>
         </navigator>
       </div>
       <div class="weui-panel__ft">
         <div class="weui-cell weui-cell_access weui-cell_link">
-          <div class="weui-cell__bd">查看更多</div>
+          <div class="weui-cell__bd">上拉查看更多</div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
       </div>

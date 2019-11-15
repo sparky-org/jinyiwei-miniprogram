@@ -24,7 +24,8 @@
     </div>
 
     <div class="sureBth">
-      <button class="weui-btn" :disabled="!isIn" type="primary" @click="handleArrive">签到</button>
+      <button class="weui-btn" v-if="isIn" type="primary" @click="handleArrive">签到</button>
+      <button class="weui-btn" v-if="!isIn" type="primary" @click="handleOutside">外勤签到</button>
     </div>
 
   </div>
@@ -82,7 +83,7 @@ export default {
   data() {
     return {
       radius: 1000000000,
-      currentTime: null,
+      currentTime: new Date(),
       isIn: false,
       markers: [{
         iconPath: img,
@@ -102,6 +103,28 @@ export default {
     async handleArrive(){
       const data = await post(`/agency/employ/sign?employId=${this.$store.state.userInfo.id}`);
       console.info(123,data)
+      if(data.success){
+        wx.showToast({
+          title: '打卡成功',
+          icon: 'success',
+          duration: 2000,
+          success(){
+
+          }
+        })
+      }
+    },
+    async handleOutside(){
+      const data = await post(`/agency/employ/outSideSign?employId=${this.$store.state.userInfo.id}&address=广州市天河城`);
+      console.info(123,data)
+      wx.showToast({
+        title: '外勤打卡申请已提交',
+        icon: 'success',
+        duration: 2000,
+        success(){
+
+        }
+      })
       if(data.success){
         wx.showToast({
           title: '打卡成功',
