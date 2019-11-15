@@ -2,7 +2,7 @@
   <div class="login">
     <div class="weui-cells weui-cells_after-title">
       <div class="logo">
-        <img src="../../../static/images/edit.png">
+        <img src="../../../static/images/logo.png">
       </div>
       <div class="weui-cell weui-cell_input weui-cell_vcode">
         <div class="weui-cell__hd">
