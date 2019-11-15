@@ -151,7 +151,7 @@
         </navigator>
       </div>
       <div class="weui-panel__ft">
-        <div class="weui-cell weui-cell_access weui-cell_link">
+        <div class="weui-cell weui-cell_access weui-cell_link" @click="handleScore">
           <div class="weui-cell__bd">查看更多</div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
