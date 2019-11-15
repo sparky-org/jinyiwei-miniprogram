@@ -29,6 +29,27 @@
       </swiper>
     </div>
 
+    <!--跑马灯 Linyufan.com-->
+    <view class='horizontal happnews'>
+      <view class='item happy_tui'>
+        <swiper vertical :autoplay="autoplay" :interval="interval" :duration="duration" circular>
+          <block v-for="(item, index) in news" :key="index">
+            <swiper-item>
+              <view class='show-text-1 '>
+                <text class='tui_text'>推荐</text>
+                <text class='tui_item'>{{item}}</text>
+              </view>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+
+      <!-- <view class='more'>
+        <text>更多</text>
+      </view> -->
+    </view>
+    <!--跑马灯-->
+
     <div class="weui-cells__title">营业动态</div>
     <div class="weui-cells weui-cells_after-title">
       <navigator url="/pages/my-appointment/main?date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
@@ -237,7 +258,16 @@ export default {
         {url:'https://www.zjliren520.com/jyw-resource/fc/04/fc04606a2b0fc629b85ee67f62f68058'},
         {url:'https://www.zjliren520.com/jyw-resource/d3/1c/d31cab8413663bfdd16db8e312213e4c'},
         {url:'https://www.zjliren520.com/jyw-resource/6b/e9/6be953c24858a3c2d787d57e6b77be1f'}
-      ]
+      ],
+
+      news:[
+        '平安夜，百人祝福领取苹果~',
+        '寒流来袭，你的秋裤准备好了吗？',
+        '快收下，新鲜出炉冬季实用穿搭指南~'
+      ],
+      autoplay: true,
+      interval: 3000,
+      duration: 1000,
       // channel: [],
       // newGoods: [],
       // hotGoods: [],
