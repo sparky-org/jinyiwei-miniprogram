@@ -34,19 +34,19 @@
       <navigator url="/pages/my-appointment/main?date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日预约客户</div>
-          <div class="weui-cell__ft" style="float: right;">36人</div>
+          <div class="weui-cell__ft" style="float: right;">86人</div>
         </div>
       </navigator>
       <navigator url="/pages/my-application/main?applyType=SALES_PERF&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日业绩</div>
-          <div class="weui-cell__ft" style="float: right;">24个</div>
+          <div class="weui-cell__ft" style="float: right;">20888元</div>
         </div>
       </navigator>
       <navigator url="/pages/my-application/main?applyType=SERVICE_ITEM&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日项目数量</div>
-          <div class="weui-cell__ft" style="float: right;">10个</div>
+          <div class="weui-cell__ft" style="float: right;">101个</div>
         </div>
       </navigator>
       <navigator url="/pages/my-application/main?applyType=VACATION&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
