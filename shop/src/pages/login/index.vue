@@ -173,11 +173,7 @@ export default {
         });
         return
       }
-      const data = await post(`/login`, {
-        "phone": this.form.phone,
-        "password": this.form.pwd,
-        "shopNo": this.shopNo
-      });
+      const data = await post(`/login?phone=${this.form.phone}&password=${this.form.pwd}&shopNo=${this.shopNo}`);
       if(data.success){
         wx.setStorageSync("userInfo", data.result);
         this.$store.commit('setUserInfo',data.result)
