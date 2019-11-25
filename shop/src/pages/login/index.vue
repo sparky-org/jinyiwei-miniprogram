@@ -98,7 +98,8 @@ export default {
             return item.shopName
           })
         }else if(data.result.length == 1){
-          this.shopNo = data.result[0].shopNo
+            this.shopList = data.result
+            this.shopNo = data.result[0].shopNo
         }else{
           wx.showModal({
             content: '不存在该用户',
@@ -173,9 +174,9 @@ export default {
         return
       }
       const data = await post(`/login`, {
-        "phone": this.phone,
-        "password": this.password,
-        shopNo: this.shopNo
+        "phone": this.form.phone,
+        "password": this.form.pwd,
+        "shopNo": this.shopNo
       });
       if(data.success){
         wx.setStorageSync("userInfo", data.result);
