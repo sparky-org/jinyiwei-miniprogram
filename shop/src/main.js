@@ -40,7 +40,7 @@ export default {
       "pages/workBench/main",
       "pages/task/main",
       "pages/customer/main",
-      "^pages/index/main",
+      "^pages/login/main",
       "pages/my-application/main",
 
 
