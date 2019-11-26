@@ -86,6 +86,6 @@ module.exports = merge(baseWebpackConfig, {
     //   inject: true
     // }),
     new FriendlyErrorsPlugin(),
-    new UglifyJsPlugin({ sourceMap: true })
+    // new UglifyJsPlugin({ sourceMap: true })
   ]
 })

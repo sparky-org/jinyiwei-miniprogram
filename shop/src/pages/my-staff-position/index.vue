@@ -13,32 +13,44 @@
       </div>
     </div>
     <div v-else>
-      <view
-        class="touch-item"
-        :class="{'touch-move-active': item.isTouchMove}"
-        @touchstart="touchstart"
-        @touchmove="touchmove"
-        v-for="(item, index) in items"
-        :data-index="index"
-        :key="item.id">
-          <view class='content' @click='showDetail' :data-index="index">
-            <view class='column'>
-              <!-- <view class='row full_width'>
-                <text style='font-weight: bold;line-height:60rpx;'>{{item.name}}</text>
-                <text style='margin-left:30rpx;color:gray;line-height:60rpx;'>{{item.unit}}</text>
-                <text style='margin-left:20rpx;color:gray;line-height:60rpx;'>{{item.job}}</text>
-              </view>
-              <text style='margin-top:10rpx;color:gray;'>{{item.phone}}</text> -->
-              <!-- <image :src="item.pictureUrl" class='item-image' /> -->
-              <view class='item-text' style="display: block; width: 100%; margin-right: 15px;">
-                <view>{{item.name}} <span style="float: right;">岗位编号：{{item.id}}</span></view>
-                <!-- <view>{{item.createDate}}</view> -->
-              </view>
+      <template v-if="items.length>0">
+        <view
+          class="touch-item"
+          :class="{'touch-move-active': item.isTouchMove}"
+          @touchstart="touchstart"
+          @touchmove="touchmove"
+          v-for="(item, index) in items"
+          :data-index="index"
+          :key="item.id">
+            <view class='content' @click='showDetail' :data-index="index">
+              <view class='column'>
+                <!-- <view class='row full_width'>
+                  <text style='font-weight: bold;line-height:60rpx;'>{{item.name}}</text>
+                  <text style='margin-left:30rpx;color:gray;line-height:60rpx;'>{{item.unit}}</text>
+                  <text style='margin-left:20rpx;color:gray;line-height:60rpx;'>{{item.job}}</text>
+                </view>
+                <text style='margin-top:10rpx;color:gray;'>{{item.phone}}</text> -->
+                <!-- <image :src="item.pictureUrl" class='item-image' /> -->
+                <view class='item-text' style="display: block; width: 100%; margin-right: 15px;">
+                  <view>{{item.name}} <span style="float: right;">岗位编号：{{item.id}}</span></view>
+                  <!-- <view>{{item.createDate}}</view> -->
+                </view>
 
+              </view>
             </view>
-          </view>
-          <view class="del" @click="del" :data-id="item.id">删除</view>
-      </view>
+            <view class="del" @click="del" :data-id="item.id">删除</view>
+        </view>
+      </template>
+      <div v-else>
+        <div class="page__bd" style="padding-top: 150rpx; text-align: center;">
+          <div class="icon-box">
+            <icon type="info" size="93"></icon>
+            <div class="icon-box__ctn">
+              <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px;">暂无数据</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="operate-btn">

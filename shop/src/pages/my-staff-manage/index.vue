@@ -143,33 +143,7 @@ export default {
       items: [{
         pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
         id: 1,
-        name: '方竹兵',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }],
-      items2: [{
-        pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
-        id: 2,
-        name: '曹丹',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
-        id: 1,
-        name: '谭新梅',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }],
-      items3: [{
-        pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
-        id: 2,
-        name: '许竹君',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3590935495,3256795874&fm=26&gp=0.jpg',
-        id: 3,
-        name: '张晶晶',
+        name: '方竹兵12三世2--zzh',
         createDate: 1550648810989,
         isTouchMove: false
       }]
