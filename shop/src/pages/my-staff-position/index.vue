@@ -7,7 +7,7 @@
             <div class="weui-label">岗位名称</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入要创建的岗位" />
+            <input class="weui-input" v-model="jobName" placeholder="请输入要创建的岗位" />
           </div>
         </div>
       </div>
@@ -30,9 +30,9 @@
               </view>
               <text style='margin-top:10rpx;color:gray;'>{{item.phone}}</text> -->
               <!-- <image :src="item.pictureUrl" class='item-image' /> -->
-              <view class='item-text'>
-                <view>店长:{{item.name}}</view>
-                <view>{{item.createDate}}</view>
+              <view class='item-text' style="display: block; width: 100%; margin-right: 15px;">
+                <view>{{item.name}} <span style="float: right;">岗位编号：{{item.id}}</span></view>
+                <!-- <view>{{item.createDate}}</view> -->
               </view>
 
             </view>
@@ -43,20 +43,20 @@
 
     <div class="operate-btn">
       <button class="weui-btn" type="primary" @click="handleAdd" v-if="!add">添加岗位</button>
-      <button class="weui-btn" type="primary" @click="handleAdd" v-if="add">创建岗位</button>
+      <button class="weui-btn" type="primary" @click="handleCreate" v-if="add" :disabled="jobName==''">创建岗位</button>
     </div>
   </div>
 </template>
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 import Touch from '../../utils/touch.js'
 // import { mapState, mapMutations } from "vuex";
 
 export default {
   onShow() {
-
+    this.getData();
   },
   components: {
 
@@ -84,65 +84,24 @@ export default {
       // score: enumScore[0],
       // startDate: '',
       // endDate: ''
+      jobName: '',
       add: false,
       touch: null,
-      items: [{
-        pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
-        id: 1,
-        name: '店长：岗位编号1001',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
-        id: 2,
-        name: '美容顾问：岗位编号1003',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
-        id: 3,
-        name: '员工：岗位编号1005',
-        createDate: 1550648810989,
-        isTouchMove: false
-      },
-      {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
-        id: 1,
-        name: '店长：岗位编号1001',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
-        id: 2,
-        name: '美容顾问：岗位编号1003',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
-        id: 3,
-        name: '员工：岗位编号1005',
-        createDate: 1550648810989,
-        isTouchMove: false
-      },
-      {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
-        id: 1,
-        name: '店长：岗位编号1001',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
-        id: 2,
-        name: '美容顾问：岗位编号1003',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }, {
-        pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
-        id: 3,
-        name: '员工：岗位编号1005',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }]
+      items: [
+        // {
+        //   pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
+        //   id: 1,
+        //   name: '店长：岗位编号1001',
+        //   createDate: 1550648810989,
+        //   isTouchMove: false
+        // }, {
+        //   pictureUrl: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3613977709,2622536583&fm=26&gp=0.jpg',
+        //   id: 2,
+        //   name: '美容顾问：岗位编号1003',
+        //   createDate: 1550648810989,
+        //   isTouchMove: false
+        // }
+      ]
     };
   },
 
@@ -150,7 +109,7 @@ export default {
     this.touch = new Touch()
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role);
-    // this.getData();
+
   },
   computed: {
 
@@ -167,6 +126,26 @@ export default {
       this.add = true
     },
 
+    async handleCreate(){
+      const data = await post("/employee/createShopJob",{
+        jobName: this.jobName,
+        empNo: this.$store.state.userInfo.shopEmployee.id
+      });
+      if(data.success){
+        wx.showToast({
+          title: '创建成功',
+          icon: 'success',
+          duration: 2000,
+          success(){
+
+          }
+        })
+        this.add = false
+        this.jobName = ''
+        this.getData();
+      }
+
+    },
 
     // 手指触摸动作开始 记录起点X坐标
     touchstart: function (e) {
@@ -192,7 +171,7 @@ export default {
       var that = this
       wx.showModal({
         title: '提示',
-        content: '确认要删除此人吗？',
+        content: '确认要删除此岗位吗？',
         success: function (res) {
           if (res.confirm) {
             console.log('用户点击确定')
@@ -219,7 +198,7 @@ export default {
           }
         }
       })
-    }
+    },
 
 
 
@@ -242,16 +221,16 @@ export default {
     //   });
     // }
 
-    // async getData() {
-    //   const data = await get("/index/index");
-    //   this.banner = data.banner;
-    //   this.channel = data.channel;
-    //   this.brandList = data.brandList;
-    //   this.newGoods = data.newGoods;
-    //   this.hotGoods = data.hotGoods;
-    //   this.topicList = data.topicList;
-    //   this.newCategoryList = data.newCategoryList;
-    // },
+    async getData() {
+      const data = await post("/employee/getShopJob?shopNo="+ this.$store.state.userInfo.shopEmployee.shopNo);
+       if(data.success){
+        console.info(data)
+        data.result.forEach(item => {
+          item.isTouchMove = false
+        })
+        this.items = data.result
+       }
+    },
     // goodsDetail(id) {
     //   wx.navigateTo({
     //     url: "/pages/goods/main?id=" + id

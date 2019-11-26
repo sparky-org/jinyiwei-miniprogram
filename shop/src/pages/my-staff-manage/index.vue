@@ -17,7 +17,7 @@
             :class="{'touch-move-active': item.isTouchMove}"
             @touchstart="touchstart"
             @touchmove="touchmove"
-            v-for="(item, index) in items1"
+            v-for="(item, index) in items"
             :data-index="index"
             :key="item.id">
               <view class='content' @click='handleOperate(3)' :data-index="index">
@@ -46,7 +46,7 @@
             :class="{'touch-move-active': item.isTouchMove}"
             @touchstart="touchstart"
             @touchmove="touchmove"
-            v-for="(item, index) in items2"
+            v-for="(item, index) in items"
             :data-index="index"
             :key="item.id">
               <view class='content' @click='handleOperate(1)' :data-index="index">
@@ -75,7 +75,7 @@
             :class="{'touch-move-active': item.isTouchMove}"
             @touchstart="touchstart"
             @touchmove="touchmove"
-            v-for="(item, index) in items3"
+            v-for="(item, index) in items"
             :data-index="index"
             :key="item.id">
               <view class='content' @click='handleOperate(5)' :data-index="index">
@@ -140,7 +140,7 @@ export default {
       tabs: ['店长', '美容顾问', '美容师'],
       activeIndex: 0,
       touch: null,
-      items1: [{
+      items: [{
         pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
         id: 1,
         name: '方竹兵',

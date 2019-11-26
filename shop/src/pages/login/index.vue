@@ -23,7 +23,7 @@
           <div class="weui-label">密&#12288;码</div>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" v-model="form.pwd" placeholder="请输入密码" />
+          <input class="weui-input" type="password" v-model="form.pwd" placeholder="请输入密码" />
         </div>
         <!-- <div class="weui-cell__ft">
           <image class="weui-vcode-img" src="/static/images/vcode.jpg" style="width: 108px" />
@@ -44,7 +44,7 @@
 
     </div>
     <div style="padding: 50rpx 20rpx;">
-      <button class="weui-btn" type="primary" @click="handleLogin" :disabled="loginState">登 录</button>
+      <button class="weui-btn" type="primary" @click="handleLogin" :disabled="shopList.length == 0">登 录</button>
     </div>
   </div>
 </template>

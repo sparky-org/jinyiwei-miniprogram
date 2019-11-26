@@ -204,16 +204,16 @@ export default {
   onShow() {
 
     // 判断是否登录
-    // let userInfo = wx.getStorageSync("userInfo")
-    // if(!userInfo){
-    //   wx.reLaunch({
-    //     url: '/pages/login/main'
-    //   })
-    //   return
-    // }else{
-    //   wx.setStorageSync("userInfo", userInfo);
-    //   this.$store.commit('setUserInfo', userInfo)
-    // }
+    let userInfo = wx.getStorageSync("userInfo")
+    if(!userInfo){
+      wx.reLaunch({
+        url: '/pages/login/main'
+      })
+      return
+    }else{
+      wx.setStorageSync("userInfo", userInfo);
+      this.$store.commit('setUserInfo', userInfo)
+    }
 
 
 
