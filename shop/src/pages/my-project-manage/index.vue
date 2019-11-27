@@ -264,7 +264,8 @@ export default {
           "itemName": "",
           "point": ''
         }
-         this.add = false
+        this.getServiceItem()
+        this.add = false
        }
     },
 
