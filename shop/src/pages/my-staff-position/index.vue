@@ -194,7 +194,7 @@ export default {
             //   items: that.data.items
             // })
             console.info(e.currentTarget.dataset.id)
-            const data = await post(`/employee/deleteJob?empNo=${this.$store.state.userInfo.shopEmployee.id}&shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}&jobNo=${this.$store.state.userInfo.shopEmployee.jobNo}`);
+            const data = await post(`/employee/deleteJob?empNo=${this.$store.state.userInfo.shopEmployee.id}&shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}&jobNo=${e.currentTarget.dataset.id}`);
             if(data.success){
               wx.showToast({
                 title: '删除成功',

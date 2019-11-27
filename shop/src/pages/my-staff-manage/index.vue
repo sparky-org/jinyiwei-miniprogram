@@ -20,7 +20,7 @@
             v-for="(item, index) in items"
             :data-index="index"
             :key="item.id">
-              <view class='content' @click='handleOperate(3)' :data-index="index">
+              <view class='content' @click='handleOperate(item.id)' :data-index="index">
                 <view class='column'>
                   <!-- <view class='row full_width'>
                     <text style='font-weight: bold;line-height:60rpx;'>{{item.name}}</text>

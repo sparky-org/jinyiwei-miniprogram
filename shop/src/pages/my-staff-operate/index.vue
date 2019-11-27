@@ -124,6 +124,10 @@ export default {
       title: this.id ? '修改员工信息' : '添加员工'
     })
     this.getPositionList()
+
+    if(this.id > 0){
+      this.getCustomerDetail()
+    }
   },
   components: {
 
@@ -177,6 +181,26 @@ export default {
 
   },
   methods: {
+    async getCustomerDetail(){
+      const data = await post("/employee/getEmployeeInfo?empNo="+this.$store.state.userInfo.shopEmployee.id);
+      if(data.success){
+        console.info('员工信息',data)
+        this.form = {
+          // position: '',
+          // sj: '',
+          "admin": data.result.isAdmin,
+          "age": data.result.age,
+          "birthday": data.result.birthday?data.result.birthday:'',
+          "creator": data.result.creator,
+          "jobNo": data.result.jobNo,
+          "managerNo": data.result.managerNo,
+          "name": data.result.name,
+          "phone": data.result.phone,
+          "shopNo": data.result.shopNo,
+          "sex": data.result.sex
+        }
+      };
+    },
     async getPositionList(){
       console.info('this.$store.state.userInfo.shopEmployee.shopNo',this.$store.state.userInfo.shopEmployee.shopNo)
       const data = await post("/employee/getShopJob?shopNo="+this.$store.state.userInfo.shopEmployee.shopNo);
