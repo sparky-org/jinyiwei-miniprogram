@@ -111,7 +111,7 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
-import moment from 'moment'
+// import moment from 'moment'
 
 // import { mapState, mapMutations } from "vuex";
 

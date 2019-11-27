@@ -6,5 +6,6 @@ app.$mount()
 export default {
   config: {
     navigationBarTitleText: '项目管理',
+    "enablePullDownRefresh": true 
   }
 }
