@@ -188,7 +188,7 @@ export default {
         content: '确认要删除此岗位吗？',
         success: async (res) => {
           if (res.confirm) {
-            console.log('用户点击确定')
+            console.log('用户点击确定', e)
             // that.data.items.splice(e.currentTarget.dataset.id, 1)
             // that.setData({
             //   items: that.data.items
