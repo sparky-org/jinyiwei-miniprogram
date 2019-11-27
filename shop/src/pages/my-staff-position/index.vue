@@ -42,14 +42,15 @@
         </view>
       </template>
       <div v-else>
-        <div class="page__bd" style="padding-top: 150rpx; text-align: center;">
+        <!-- <div class="page__bd" style="padding-top: 150rpx; text-align: center;">
           <div class="icon-box">
             <icon type="info" size="93"></icon>
             <div class="icon-box__ctn">
               <div class="icon-box__desc" style="padding-top: 20rpx; font-size: 16px;">暂无数据</div>
             </div>
           </div>
-        </div>
+        </div> -->
+        <no-data></no-data>
       </div>
     </div>
 
@@ -64,6 +65,7 @@
 import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
 import Touch from '../../utils/touch.js'
+import noData from '../../components/no-data'
 // import { mapState, mapMutations } from "vuex";
 
 export default {
@@ -71,7 +73,7 @@ export default {
     this.getData();
   },
   components: {
-
+    noData
   },
   watch: {
     add(val){
@@ -240,7 +242,7 @@ export default {
         data.result.forEach(item => {
           item.isTouchMove = false
         })
-        this.items = data.result
+        // this.items = data.result
        }
     },
     // goodsDetail(id) {

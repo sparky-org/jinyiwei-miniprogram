@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "echarts": "^4.4.0",
+    "moment": "^2.24.0",
     "mpvue": "1.0.18",
     "mpvue-calendar": "^2.3.1",
     "mpvue-echarts": "^0.3.1",

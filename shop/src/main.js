@@ -7,6 +7,10 @@ Vue.use(MyPlugin)
 
 import '../static/weui/weui.css'
 
+// import noData from './components/no-data'
+// console.info('noData',noData)
+// Vue.component('no-data',noData)
+
 
 //引入store
 import store from './store/index'
@@ -37,10 +41,10 @@ export default {
 
 
       // "^pages/index/main",
-      "pages/workBench/main",
+      "^pages/workBench/main",
       "pages/task/main",
       "pages/customer/main",
-      "^pages/index/main",
+      "pages/my-staff-manage/main",
       "pages/my-application/main",
 
 

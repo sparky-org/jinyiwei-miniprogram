@@ -1,7 +1,7 @@
 <template>
   <div class="customer-operate">
 
-    <!-- <div class="weui-toptips weui-toptips_warn" v-if="showTopTips">错误提示</div> -->
+    <div class="weui-toptips weui-toptips_warn" v-if="showTopTips">{{tipsMessage}}</div>
 
     <div class="weui-cells weui-cells_after-title">
 
@@ -46,10 +46,10 @@
           <div class="weui-label"><span class="required">*</span>爱&#12288;&#12288;好</div>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请添加客户爱好" />
+          <input class="weui-input" placeholder="请添加客户爱好" v-model="favor" />
         </div>
         <div class="weui-cell__ft">
-           <button class="weui-btn mini-btn add" type="primary" size="mini">添加爱好</button>
+           <button class="weui-btn mini-btn add" @click="handleAddFavor" :disabled="!favor" type="primary" size="mini">添加爱好</button>
         </div>
       </div>
       <div class="weui-cell weui-cell_input weui-cell_vcode" style="border-bottom: 1rpx solid #d9d9d9;">
@@ -57,15 +57,15 @@
           <div class="weui-label"></div>
         </div>
         <div class="weui-cell__bd love">
-          <span>打篮球</span>
-          <span>唱歌</span>
+          <span v-for="(item, index) in favorList" :key="index" @click="handleRemoveFavor(index)">{{item}}</span>
+          <!-- <span>唱歌</span>
           <span>旅游</span>
           <span>打篮球</span>
           <span>唱歌</span>
           <span>旅游</span>
           <span>打篮球</span>
           <span>唱歌</span>
-          <span>旅游</span>
+          <span>旅游</span> -->
         </div>
       </div>
 
@@ -133,7 +133,10 @@ export default {
     return {
       // role: ''
       id: null,
-      showTopTips: true,
+      favor: '',
+      favorList: [],
+      showTopTips: false,
+      tipsMessage: '',
       radioItems: [
         { name: '男', value: '1', checked: true},
         { name: '女', value: '2' }
@@ -150,6 +153,24 @@ export default {
       }
       this.radioItems = radioItems;
     },
+
+    handleAddFavor(){
+      if(this.favorList.indexOf(this.favor) > -1){
+        this.tipsMessage = '添加爱好重复!'
+        this.showTopTips = true
+        setTimeout(()=>{
+          this.showTopTips = false
+        },3000)
+        this.favor = ''
+        return
+      }
+      this.favorList.push(this.favor)
+      this.favor = ''
+    },
+
+    handleRemoveFavor(index){
+      this.favorList.splice(index,1)
+    }
 
     // async getData() {
     //   const data = await get("/index/index");

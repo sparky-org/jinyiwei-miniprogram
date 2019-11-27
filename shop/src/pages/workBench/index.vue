@@ -155,6 +155,17 @@ export default {
 
   },
   mounted() {
+    // 判断是否登录  ------可以去掉  index 已经写了  测试用
+    let userInfo = wx.getStorageSync("userInfo")
+    if(!userInfo){
+      wx.reLaunch({
+        url: '/pages/login/main'
+      })
+      return
+    }else{
+      wx.setStorageSync("userInfo", userInfo);
+      this.$store.commit('setUserInfo', userInfo)
+    }
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role)
   },
