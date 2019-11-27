@@ -125,9 +125,7 @@ export default {
     })
     this.getPositionList()
 
-    if(this.id > 0){
-      this.getCustomerDetail()
-    }
+
   },
   components: {
 
@@ -182,15 +180,15 @@ export default {
   },
   methods: {
     async getCustomerDetail(){
-      const data = await post("/employee/getEmployeeInfo?empNo="+this.$store.state.userInfo.shopEmployee.id);
+      const data = await post("/employee/getEmployeeInfo?empNo="+this.id);
       if(data.success){
         console.info('员工信息',data)
-        this.form = {
-          // position: '',
-          // sj: '',
+        let obj = {
+          position: '',
+          sj: '',
           "admin": data.result.isAdmin,
           "age": data.result.age,
-          "birthday": data.result.birthday?data.result.birthday:'',
+          "birthday": data.result.birthday?data.result.birthday.split(' ')[0]:'',
           "creator": data.result.creator,
           "jobNo": data.result.jobNo,
           "managerNo": data.result.managerNo,
@@ -199,6 +197,19 @@ export default {
           "shopNo": data.result.shopNo,
           "sex": data.result.sex
         }
+
+        // console.info('this.form',this.form)
+        let a = this.positionList.find(item => {
+          return item.id == obj.jobNo
+        })
+        obj.position = a.name
+
+        let b = this.staffList.find(item => {
+          return item.id == obj.managerNo
+        })
+        obj.sj = b.name
+
+        this.form = obj
       };
     },
     async getPositionList(){
@@ -221,6 +232,10 @@ export default {
           })
         }
       };
+
+      if(this.id > 0){
+        this.getCustomerDetail()
+      }
 
     },
     bindPickerChange(e) {
@@ -283,26 +298,68 @@ export default {
         return
       }
 
-
-      const data = await post("/employee/createEmployee", {
-        shopNo: this.$store.state.userInfo.shopEmployee.shopNo,
-        "admin": this.form.admin == 1 ? true : false,
-        "age": this.form.age,
-        // "birthday": moment(this.form.birthday).format(),
-        birthday:this.form.birthday,
-        "creator": this.$store.state.userInfo.shopEmployee.id,
-        "jobNo": this.form.jobNo,
-        "managerNo": this.form.managerNo,
-        "name": this.form.name,
-        "phone": this.form.phone,
-        sex: this.form.sex == 1 ? 'MALE' : 'FEMALE'
-      });
-      if(data.success){
-        wx.navigateTo({
-          url: "/pages/my-staff-manage/main"
+      if(this.id > 0){
+        // 编辑
+        const data = await post("/employee/modifyEmployee", {
+          shopNo: this.form.shopNo,
+          "admin": this.form.admin == 1 ? true : false,
+          "age": this.form.age,
+          // "birthday": moment(this.form.birthday).format(),
+          birthday:this.form.birthday,
+          "creator": this.form.id,
+          "jobNo": this.form.jobNo,
+          "managerNo": this.form.managerNo,
+          "name": this.form.name,
+          "phone": this.form.phone,
+          sex: this.form.sex == 1 ? 'MALE' : 'FEMALE',
+          id: this.id
         });
-        console.info(data)
-      };
+        if(data.success){
+          wx.showToast({
+            title: '修改成功',
+            icon: 'success',
+            duration: 1000,
+            success(){
+
+            }
+          })
+          setTimeout(()=>{
+            wx.navigateTo({
+              url: "/pages/my-staff-manage/main"
+            });
+          },1000)
+        };
+      }else{
+        const data = await post("/employee/createEmployee", {
+          shopNo: this.$store.state.userInfo.shopEmployee.shopNo,
+          "admin": this.form.admin == 1 ? true : false,
+          "age": this.form.age,
+          // "birthday": moment(this.form.birthday).format(),
+          birthday:this.form.birthday,
+          "creator": this.$store.state.userInfo.shopEmployee.id,
+          "jobNo": this.form.jobNo,
+          "managerNo": this.form.managerNo,
+          "name": this.form.name,
+          "phone": this.form.phone,
+          sex: this.form.sex == 1 ? 'MALE' : 'FEMALE'
+        });
+        if(data.success){
+          wx.showToast({
+            title: '添加成功',
+            icon: 'success',
+            duration: 1000,
+            success(){
+
+            }
+          })
+          setTimeout(()=>{
+            wx.navigateTo({
+              url: "/pages/my-staff-manage/main"
+            });
+          },1000)
+        };
+      }
+
     }
 
     // handleEditTask(){

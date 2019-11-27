@@ -132,13 +132,15 @@ export default {
       mrs:null,
       activeIndex: 0,
       touch: null,
-      items: [{
-        pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
-        id: 1,
-        name: '方竹兵12三世2--zzh',
-        createDate: 1550648810989,
-        isTouchMove: false
-      }]
+      items: [
+      //   {
+      //   pictureUrl: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3702470579,1489904025&fm=26&gp=0.jpg',
+      //   id: 1,
+      //   name: '方竹兵12三世2--zzh',
+      //   createDate: 1550648810989,
+      //   isTouchMove: false
+      // },
+      ]
     };
   },
 
