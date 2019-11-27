@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <!-- <div class="weui-toptips weui-toptips_warn" v-if="showTopTips">错误提示</div> -->
+    <div class="weui-toptips weui-toptips_warn" v-if="showTopTips">{{tipsMessage}}</div>
     <div class="weui-cells weui-cells_after-title">
 
       <div class="weui-cell weui-cell_input">
@@ -131,8 +131,9 @@ export default {
   data() {
     return {
       // role: '',
+      tipsMessage: '',
       id: '',
-      showTopTips: true,
+      showTopTips: false,
       radioItems: [
         { name: '男', value: '1', checked: true},
         { name: '女', value: '2' }
@@ -150,14 +151,15 @@ export default {
       form: {
         position: '',
         sj: '',
+
         "admin": true,
-        "age": 10,
-        "birthday": "2019-11-12",
-        "creator": 0,
-        "jobNo": 0,
-        "managerNo": 0,
-        "name": "娃哈哈",
-        "phone": "18201668238",
+        "age": '',
+        "birthday": "",
+        "creator": 'sd',
+        "jobNo": '',
+        "managerNo": '',
+        "name": "",
+        "phone": "",
         "shopNo": '',
         sex: '1'
       }
@@ -244,13 +246,26 @@ export default {
       // let d = new Date(time)
       // console.info(d.getFullYear(), d.getMonth(), d.getDate());
       // return
+      let result = ['age','birthday','name','phone','jobNo','managerNo'].some(item =>{
+        return this.form[item] == ''
+      })
+
+      if(result){
+        this.tipsMessage = '请填写完整的信息!'
+        this.showTopTips = true
+        setTimeout(()=>{
+          this.showTopTips = false
+        },3000)
+        return
+      }
+
 
       const data = await post("/employee/createEmployee", {
         shopNo: this.$store.state.userInfo.shopEmployee.shopNo,
         "admin": this.form.admin == 1 ? true : false,
         "age": this.form.age,
-        "birthday": new Date(moment(this.form.birthday).format()),
-        // birthday:this.form.birthday,
+        // "birthday": moment(this.form.birthday).format(),
+        birthday:this.form.birthday,
         "creator": this.$store.state.userInfo.shopEmployee.id,
         "jobNo": this.form.jobNo,
         "managerNo": this.form.managerNo,
@@ -259,7 +274,9 @@ export default {
         sex: this.form.sex == 1 ? 'MALE' : 'FEMALE'
       });
       if(data.success){
-
+        wx.navigateTo({
+          url: "/pages/my-staff-manage/main"
+        });
         console.info(data)
       };
     }

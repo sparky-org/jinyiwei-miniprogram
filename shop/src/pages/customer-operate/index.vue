@@ -10,7 +10,7 @@
           <div class="weui-label"><span class="required">*</span>客户姓名</div>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入客户姓名" />
+          <input class="weui-input" v-model="form.customerName" placeholder="请输入客户姓名" />
         </div>
       </div>
 
@@ -33,10 +33,21 @@
 
       <div class="weui-cell weui-cell_input weui-cell_vcode">
         <div class="weui-cell__hd">
+          <div class="weui-label"><span class="required">*</span>出生日期</div>
+        </div>
+        <div class="weui-cell__bd">
+          <picker class="weui-btn" mode="date" :value="form.birthDay"  @change="bindDateChange">
+            <input class="weui-input" disabled="disabled" placeholder="请选择出生日期" v-model="form.birthDay" />
+          </picker>
+        </div>
+      </div>
+
+      <div class="weui-cell weui-cell_input weui-cell_vcode">
+        <div class="weui-cell__hd">
           <div class="weui-label"><span class="required">*</span>首选联系电话</div>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入首选联系电话" />
+          <input class="weui-input" v-model="form.phone" placeholder="请输入首选联系电话" />
         </div>
       </div>
 
@@ -76,7 +87,7 @@
       <div class="weui-cells weui-cells_after-title">
         <div class="weui-cell">
           <div class="weui-cell__bd">
-            <textarea class="" placeholder="请输入备注" style="height: 3.3em" />
+            <textarea class="" placeholder="请输入备注" v-model="form.remark" style="height: 3.3em" />
             <!-- <div class="weui-textarea-counter">0/200</div> -->
           </div>
         </div>
@@ -88,7 +99,7 @@
       <div class="weui-cells weui-cells_after-title">
         <div class="weui-cell">
           <div class="weui-cell__bd">
-            <textarea class="" placeholder="请输入年度规划" style="height: 3.3em" />
+            <textarea class="" placeholder="请输入年度规划" v-model="form.yearPlan" style="height: 3.3em" />
             <!-- <div class="weui-textarea-counter">0/200</div> -->
           </div>
         </div>
@@ -105,14 +116,14 @@
 
 
     <div class="add-customer">
-      <button class="weui-btn" type="primary">提交</button>
+      <button class="weui-btn" type="primary" @click="handleSubmit">提交</button>
     </div>
   </div>
 </template>
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 export default {
   onShow() {
     this.id = this.$root.$mp.query.id;
@@ -141,6 +152,16 @@ export default {
         { name: '男', value: '1', checked: true},
         { name: '女', value: '2' }
       ],
+      form: {
+        "birthDay": "",
+        "customerName": "",
+        "empNo": '',
+        "favor": "",
+        "phone": "",
+        "remark": "",
+        "sex": "1",
+        "yearPlan": ""
+      }
     };
   },
   components: {},
@@ -152,8 +173,15 @@ export default {
         radioItems[i].checked = radioItems[i].value === e.mp.detail.value;
       }
       this.radioItems = radioItems;
+      let result = this.radioItems.find(item => {
+        return item.checked
+      })
+      this.form.sex = result.value
     },
-
+    bindDateChange(e) {
+      console.log('选中的日期为：' + e.mp.detail.value);
+      this.form.birthDay = e.mp.detail.value
+    },
     handleAddFavor(){
       if(this.favorList.indexOf(this.favor) > -1){
         this.tipsMessage = '添加爱好重复!'
@@ -165,11 +193,45 @@ export default {
         return
       }
       this.favorList.push(this.favor)
+      this.form.favor = this.favorList.join(',')
       this.favor = ''
     },
 
     handleRemoveFavor(index){
       this.favorList.splice(index,1)
+    },
+
+
+    async handleSubmit(){
+
+      let result = ['favor','birthDay','customerName','phone'].some(item =>{
+        return this.form[item] == ''
+      })
+
+      if(result){
+        this.tipsMessage = '请填写完整的信息!'
+        this.showTopTips = true
+        setTimeout(()=>{
+          this.showTopTips = false
+        },3000)
+        return
+      }
+
+
+      const data = await post("/myCustomer/addCustomer", {
+        "birthDay": this.form.birthDay,
+        "customerName": this.form.customerName,
+        "empNo": this.$store.state.userInfo.shopEmployee.id,
+        "favor": this.favorList.join(','),
+        "phone": this.form.phone,
+        "remark": this.form.remark,
+        "sex": this.form.sex == 1 ? 'MALE' : 'FEMALE',
+        "yearPlan": this.form.yearPlan
+      });
+      if(data.success){
+
+        console.info(data)
+      };
     }
 
     // async getData() {

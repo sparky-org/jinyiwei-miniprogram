@@ -121,7 +121,7 @@ import Touch from '../../utils/touch.js'
 
 export default {
   onShow() {
-
+    console.info('getdata')
   },
   components: {
 

@@ -242,7 +242,7 @@ export default {
         data.result.forEach(item => {
           item.isTouchMove = false
         })
-        // this.items = data.result
+        this.items = data.result
        }
     },
     // goodsDetail(id) {
