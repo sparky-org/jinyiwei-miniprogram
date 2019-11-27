@@ -186,7 +186,7 @@ export default {
       wx.showModal({
         title: '提示',
         content: '确认要删除此岗位吗？',
-        success: function (res) {
+        success: async (res) => {
           if (res.confirm) {
             console.log('用户点击确定')
             // that.data.items.splice(e.currentTarget.dataset.id, 1)
@@ -194,19 +194,18 @@ export default {
             //   items: that.data.items
             // })
             console.info(e.currentTarget.dataset.id)
-            http({
-              url: 'bookmark/' + e.currentTarget.dataset.id,
-              method: 'DELETE'
-            }, (data) => {
-              if (data.success) {
-                wx.showToast({
-                  title: '删除成功',
-                  icon: 'success',
-                  duration: 3000
-                })
-                that.getList()
-              }
-            })
+            const data = await post(`/employee/deleteJob?empNo=${this.$store.state.userInfo.shopEmployee.id}&shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}&jobNo=${this.$store.state.userInfo.shopEmployee.jobNo}`);
+            if(data.success){
+              wx.showToast({
+                title: '删除成功',
+                icon: 'success',
+                duration: 2000,
+                success(){
+
+                }
+              })
+              this.getData();
+            }
           } else if (res.cancel) {
             console.log('用户点击取消')
           }

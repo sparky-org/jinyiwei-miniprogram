@@ -199,6 +199,7 @@ export default {
 
     handleRemoveFavor(index){
       this.favorList.splice(index,1)
+      this.form.favor = this.favorList.join(',')
     },
 
 
@@ -229,8 +230,20 @@ export default {
         "yearPlan": this.form.yearPlan
       });
       if(data.success){
-
         console.info(data)
+        wx.showToast({
+          title: '添加成功',
+          icon: 'success',
+          duration: 1000,
+          success(){
+
+          }
+        })
+        setTimeout(()=>{
+          wx.navigateBack({
+            url: '/pages/workBench/main'
+          })
+        },1000)
       };
     }
 
