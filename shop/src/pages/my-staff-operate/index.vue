@@ -198,6 +198,16 @@ export default {
           "sex": data.result.sex
         }
 
+        if(obj.sex == 'MALE'){
+          obj.sex = 1
+          this.radioItems[0].checked = true
+          this.radioItems[1].checked = false
+        }else{
+          obj.sex = 2
+          this.radioItems[0].checked = false
+          this.radioItems[1].checked = true
+        }
+
         // console.info('this.form',this.form)
         let a = this.positionList.find(item => {
           return item.id == obj.jobNo
@@ -300,6 +310,7 @@ export default {
 
       if(this.id > 0){
         // 编辑
+        console.info('this.form.sex ',this.form.sex )
         const data = await post("/employee/modifyEmployee", {
           shopNo: this.form.shopNo,
           "admin": this.form.admin == 1 ? true : false,
