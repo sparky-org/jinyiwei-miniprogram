@@ -56,7 +56,7 @@
             <div class="weui-label"><span class="required">*</span>审批人</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入审批人" />
+            <input class="weui-input" disabled="disabled" @click="handleApproval" placeholder="请输入审批人" />
           </div>
         </div>
 
@@ -83,7 +83,7 @@
                   <div class="weui-uploader__bd">
                     <div class="weui-uploader__files">
                       <div class="weui-uploader__file">袁凯,李德华</div>
-                      <i class="iconfont iconjia"></i>
+                      <i class="iconfont iconjia" @click="handleCopy"></i>
                     </div>
                   </div>
                 </div>
@@ -100,23 +100,28 @@
       <button class="weui-btn" type="primary" @click="handleAdd">确 定</button>
     </div>
 
+    <select-staff :multiple="multiple" :has-select="hasSelect" :visible.sync="selectStaffVisible" @selectStaff="getSelectStaff"></select-staff>
   </div>
 </template>
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
+import selectStaff from '../../components/select-staff';
 
 export default {
   onShow() {
 
   },
   components: {
-
+    selectStaff
   },
   data() {
     return {
+      selectStaffVisible: false,
+      multiple: true,
+      hasSelect: [],
       // role: '',
       noticeText: '',
       date: ''
@@ -134,6 +139,20 @@ export default {
 
   },
   methods: {
+    getSelectStaff(data){
+      console.info('data',data)
+      this.hasSelect = JSON.parse(JSON.stringify(data))
+    },
+
+    handleApproval(){
+      this.multiple = false
+      this.selectStaffVisible = true
+    },
+
+    handleCopy(){
+      this.multiple = true
+      this.selectStaffVisible = true
+    },
 
     bindTimeChange(e) {
       console.log('选中的时间为：' + e.mp.detail.value);
