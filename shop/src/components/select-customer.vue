@@ -161,7 +161,7 @@ export default {
         // })
         // console.info(result)
         // this.checkboxItems = result
-        
+
         if(!this.multiple){
           this.checkboxItems.forEach(item => {
             item.checked = false
@@ -277,14 +277,15 @@ export default {
       this.$emit("update:visible", false)
     },
     async getData(){
-      const data = await post(`/employee/queryEmpOfShop?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`);
+      const data = await post(`/myCustomer/myCustomers?empNo=${this.$store.state.userInfo.shopEmployee.id}&currentPage=1&pageSize=100000`);
       // console.info(data)
       if(data.success){
         let d = JSON.parse(JSON.stringify(data.result))
         d.forEach(item => {
           item.show = true
           item.checked = false
-          item.value = item.id
+          item.value = item.customerNo
+          item.id = item.customerNo
         })
         this.checkboxItems = JSON.parse(JSON.stringify(d))
         this.data.forEach(item => {

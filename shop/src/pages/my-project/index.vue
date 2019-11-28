@@ -27,7 +27,7 @@
             <div class="weui-label"><span class="required">*</span>客户姓名</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入客户姓名" />
+            <input class="weui-input" disabled="disabled" :value="customerSelectData[0]?customerSelectData[0].name:''" @click="selectCustomerVisible=true" placeholder="请输入客户姓名" />
           </div>
         </div>
 
@@ -102,7 +102,11 @@
       <button class="weui-btn" type="primary" @click="handleAdd">确 定</button>
     </div>
 
-    <select-staff :multiple="multiple" :data="selectData" :visible.sync="selectStaffVisible" @selectStaff="getSelectStaff"></select-staff>
+    <select-staff :multiple="multiple" :data="selectData" :visible.sync="selectStaffVisible" @getSelectData="getSelectStaff"></select-staff>
+
+    <select-customer :multiple="false" :data="customerSelectData" :visible.sync="selectCustomerVisible" @getSelectData="getSelectCustomer"></select-customer>
+
+
   </div>
 </template>
 
@@ -110,26 +114,31 @@
 import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
-import selectStaff from '../../components/select-staff';
+import selectStaff from '@/components/select-staff';
+import selectCustomer from '@/components/select-customer';
 
 export default {
   onShow() {
 
   },
   components: {
-    selectStaff
+    selectStaff,
+    selectCustomer
   },
   data() {
     return {
       sp: null,
       selectStaffVisible: false,
+      selectCustomerVisible: false,
       multiple: true,
       selectData: [],
       spData: [],
       csData: [],
       // role: '',
       noticeText: '',
-      date: ''
+      date: '',
+
+      customerSelectData:[]
     };
   },
 
@@ -152,6 +161,11 @@ export default {
         this.spData = JSON.parse(JSON.stringify(data))
       }
       // this.hasSelect = JSON.parse(JSON.stringify(data))
+    },
+
+    getSelectCustomer(data){
+      console.info('选择的顾客是',data)
+      this.customerSelectData = JSON.parse(JSON.stringify(data))
     },
 
     handleApproval(){
