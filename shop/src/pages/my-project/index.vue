@@ -56,7 +56,7 @@
             <div class="weui-label"><span class="required">*</span>审批人</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" disabled="disabled" @click="handleApproval" placeholder="请输入审批人" />
+            <input class="weui-input" disabled="disabled" :value="spData[0]?spData[0].name:''" @click="handleApproval" placeholder="请输入审批人" />
           </div>
         </div>
 
@@ -82,8 +82,10 @@
                   </div>
                   <div class="weui-uploader__bd">
                     <div class="weui-uploader__files">
-                      <div class="weui-uploader__file">袁凯,李德华</div>
-                      <i class="iconfont iconjia" @click="handleCopy"></i>
+                      <div class="weui-uploader__file">
+                        <span v-for="(item,index) in csData" :key="index">{{item.name}}<template v-if="index<csData.length-1">，</template></span>
+                        <i class="iconfont iconjia" style="display: inline-block; position: relative; top: 6rpx; left: 10rpx;" @click="handleCopy"></i>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -100,7 +102,7 @@
       <button class="weui-btn" type="primary" @click="handleAdd">确 定</button>
     </div>
 
-    <select-staff :multiple="multiple" :has-select="hasSelect" :visible.sync="selectStaffVisible" @selectStaff="getSelectStaff"></select-staff>
+    <select-staff :multiple="multiple" :data="selectData" :visible.sync="selectStaffVisible" @selectStaff="getSelectStaff"></select-staff>
   </div>
 </template>
 
@@ -119,9 +121,12 @@ export default {
   },
   data() {
     return {
+      sp: null,
       selectStaffVisible: false,
       multiple: true,
-      hasSelect: [],
+      selectData: [],
+      spData: [],
+      csData: [],
       // role: '',
       noticeText: '',
       date: ''
@@ -141,16 +146,23 @@ export default {
   methods: {
     getSelectStaff(data){
       console.info('data',data)
-      this.hasSelect = JSON.parse(JSON.stringify(data))
+      if(this.multiple){
+        this.csData = JSON.parse(JSON.stringify(data))
+      }else{
+        this.spData = JSON.parse(JSON.stringify(data))
+      }
+      // this.hasSelect = JSON.parse(JSON.stringify(data))
     },
 
     handleApproval(){
       this.multiple = false
+      this.selectData = this.spData
       this.selectStaffVisible = true
     },
 
     handleCopy(){
       this.multiple = true
+      this.selectData = this.csData
       this.selectStaffVisible = true
     },
 

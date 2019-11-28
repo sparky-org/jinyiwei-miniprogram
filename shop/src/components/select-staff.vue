@@ -102,7 +102,7 @@ export default {
     visible: {
       default: false
     },
-    hasSelect: {
+    data: {
       default: []
     }
   },
@@ -201,14 +201,14 @@ export default {
           item.value = item.id
         })
         this.checkboxItems = JSON.parse(JSON.stringify(d))
-        this.hasSelect.forEach(item => {
+        this.data.forEach(item => {
           this.checkboxItems.forEach(it => {
             if(it.id == item.id){
               it.checked = true
             }
           })
         })
-        this.hasSearchTextSelect = this.hasSelect.map(item => {
+        this.hasSearchTextSelect = this.data.map(item => {
           return item.id
         })
       }
