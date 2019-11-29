@@ -358,7 +358,7 @@ export default {
     top: 0;
     bottom: 0;
     right: 0;
-    z-index: 200;
+    z-index: 10;
     background-color: #fff;
     padding-bottom: 120rpx;
     .sureBth{
