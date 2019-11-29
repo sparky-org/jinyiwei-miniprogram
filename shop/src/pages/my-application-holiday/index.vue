@@ -2,6 +2,8 @@
   <div class="page">
     <div class="weui-toptips weui-toptips_warn" v-if="showTopTips">{{tipsMessage}}</div>
 
+    <template v-if="!selectStaffVisible">
+
     <div class="weui-cells weui-cells_after-title">
 
       <div class="weui-cell weui-cell_input">
@@ -9,7 +11,7 @@
           <div class="weui-label"><span class="required">*</span>开始日期</div>
         </div>
         <div class="weui-cell__bd">
-          <picker class="weui-btn" mode="date" :value="beginDate" @change="bindBeginDateChange">
+          <picker class="weui-btn" mode="date" :value="beginDate" :end="endDate" @change="bindBeginDateChange">
             <input class="weui-input" v-model="beginDate" placeholder="请选择开始日期" disabled="disabled" />
           </picker>
         </div>
@@ -21,7 +23,7 @@
           <div class="weui-label"><span class="required">*</span>结束日期</div>
         </div>
         <div class="weui-cell__bd">
-          <picker class="weui-btn" mode="date" :value="endDate" @change="bindEndDateChange">
+          <picker class="weui-btn" mode="date" :value="endDate" :start="beginDate" @change="bindEndDateChange">
             <input class="weui-input" v-model="endDate" placeholder="请选择结束日期" disabled="disabled" />
           </picker>
         </div>
@@ -70,13 +72,13 @@
 
     </div>
 
-    <div class="weui-cells weui-cells_after-title no-t">
+    <div class="weui-cells weui-cells_after-title no-t" style="position:relative; z-index: 0;">
       <div class="weui-cell weui-cell_input">
         <div class="weui-cell__hd">
           <div class="weui-label"><span class="required">*</span>请假事由</div>
         </div>
         <div class="weui-cell__bd" style="padding: 20rpx 0;">
-           <textarea class="" placeholder="请输入请假事由" v-model="reason" style="height: 3.3em; width: 100%;" />
+           <textarea placeholder="请输入请假事由" v-model="reason" style="height: 3.3em; width: 100%;" />
         </div>
       </div>
     </div>
@@ -138,7 +140,7 @@
       </div>
     </div>
 
-
+    </template>
 
     <div class="operate-btn">
       <button class="weui-btn" type="primary" @click="handleSubmit">提 交</button>
