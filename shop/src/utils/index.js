@@ -22,8 +22,7 @@ export function formatTime(date) {
 
 // const host = "http://118.25.222.68:5757/heyushuo"
 // const host = 'https://www.zjliren520.com/liren-admin'
-const host = "http://118.25.104.232:8088/liren-admin"
-export { host };
+export const host = "http://118.25.104.232:8088/liren-admin"
 
 export function msToDate(_ms, _format) {
   let ms = _ms

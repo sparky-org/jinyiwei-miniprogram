@@ -142,9 +142,10 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get, post } from "../../utils";
+import { get, post, host } from "../../utils";
 import selectStaff from '@/components/select-staff';
 // import { mapState, mapMutations } from "vuex";
+
 export default {
   onShow() {
 
@@ -165,7 +166,7 @@ export default {
       errorTips: false,
       beginDate: '2016-09-01',
       endDate: '2016-09-01',
-      files: ['https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4133574179,304311957&fm=26&gp=0.jpg']
+      files: []
     };
   },
 
@@ -263,46 +264,63 @@ export default {
 
 
     upload(list) {
+      console.info('host',host,list,host + "/file/upload")
       wx.showToast({
         icon: "loading",
         title: "正在上传"
-      }),
-      wx.uploadFile({
-        url: "/file/upload",
-        filePath: list,
-        name: 'file',
-        header: { "Content-Type": "multipart/form-data" },
-        // formData: {
-        //   //和服务器约定的token, 一般也可以放在header中
-        //   'session_token': wx.getStorageSync('session_token')
-        // },
-        success: function (res) {
-          console.log(res);
-          if (res.statusCode != 200) {
+      })
+      let i = 0
+      list.forEach(item => {
+        wx.uploadFile({
+          url: host + "/file/upload",
+          filePath: item,
+          name: 'file',
+          header: {
+            "Content-Type": "multipart/form-data",
+            "token" : this.$store.state.userInfo.token,
+          },
+          // formData: {
+          //   //和服务器约定的token, 一般也可以放在header中
+          //   'session_token': wx.getStorageSync('session_token')
+          // },
+          success: function (res) {
+            i++
+            let result = JSON.parse(res.data)
+            console.info(111111111,res,res.data.success,result)
+            if (res.statusCode != 200) {
+              if(!result.success){
+                wx.showModal({
+                  title: '提示',
+                  content: '上传失败',
+                  showCancel: false
+                })
+                return;
+              }
+            }
+            // var data = res.data
+            // page.setData({  //上传成功修改显示头像
+            //   src: list[0]
+            // })
+          },
+          fail: function (e) {
+            i++
+            console.log('222222222222');
             wx.showModal({
               title: '提示',
               content: '上传失败',
               showCancel: false
             })
-            return;
+          },
+          complete: function () {
+            if(i == list.length){
+              wx.hideToast();  //隐藏Toast
+            }
           }
-          // var data = res.data
-          // page.setData({  //上传成功修改显示头像
-          //   src: list[0]
-          // })
-        },
-        fail: function (e) {
-          console.log(e);
-          wx.showModal({
-            title: '提示',
-            content: '上传失败',
-            showCancel: false
-          })
-        },
-        complete: function () {
-          wx.hideToast();  //隐藏Toast
-        }
+        })
       })
+
+
+
     }
 
     // handleAreaSelect(){
