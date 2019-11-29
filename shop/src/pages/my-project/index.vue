@@ -209,7 +209,7 @@ export default {
         this.showTopTips = true
         setTimeout(()=>{
           this.showTopTips = false
-        },3000)
+        },1500)
         return
       }
 
