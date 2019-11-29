@@ -6,5 +6,6 @@ app.$mount()
 export default {
   config: {
     navigationBarTitleText: '我的申请',
+    "enablePullDownRefresh": true
   }
 }
