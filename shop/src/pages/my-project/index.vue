@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    <div class="weui-toptips weui-toptips_warn" v-if="showTopTips">{{tipsMessage}}</div>
     <div class="weui-form-preview" style="margin-bottom: 20rpx;">
       <div class="weui-cells weui-cells_after-title">
         <div class="weui-cell weui-cell_input">
@@ -7,7 +8,7 @@
             <div class="weui-label"><span class="required">*</span>申报标题</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入申报标题" />
+            <input class="weui-input" v-model="title" placeholder="请输入申报标题" />
           </div>
         </div>
 
@@ -18,7 +19,9 @@
             <div class="weui-label"><span class="required">*</span>申报项目</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入申报目标" />
+            <picker @change="bindPickerChange" :value="index" :range="array">
+              <input class="weui-input" disabled="disabled" :value="xmName" placeholder="请输入申报目标" />
+            </picker>
           </div>
         </div>
 
@@ -37,7 +40,7 @@
           </div>
           <div class="weui-cell__bd">
             <picker class="weui-btn" mode="date" :value="date" @change="bindTimeChange">
-              <input class="weui-input" placeholder="请输入完成时间" />
+              <input class="weui-input" disabled="disabled" :value="date" placeholder="请输入完成时间" />
             </picker>
           </div>
         </div>
@@ -47,7 +50,7 @@
             <div class="weui-label"><span class="required">*</span>申报奖励</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入申报奖励" />
+            <input class="weui-input" v-model="point" placeholder="请输入申报奖励" />
           </div>
         </div>
 
@@ -127,7 +130,9 @@ export default {
   },
   data() {
     return {
-      sp: null,
+      showTopTips: false,
+      tipsMessage:'',
+      // sp: null,
       selectStaffVisible: false,
       selectCustomerVisible: false,
       multiple: true,
@@ -137,8 +142,16 @@ export default {
       // role: '',
       noticeText: '',
       date: '',
+      title:'',
+      point: '',
 
-      customerSelectData:[]
+      customerSelectData:[],
+      // array: ['美国', '中国', '巴西', '日本'],
+      array: [],
+      xmList: [],
+      xmName: '',
+      xmId: '',
+      index: 0
     };
   },
 
@@ -147,12 +160,18 @@ export default {
     // console.info(this.id)
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role);
-    // this.getData();
+    this.getData();
   },
   computed: {
 
   },
   methods: {
+    bindPickerChange(e) {
+      console.info(this.array)
+      console.log('选中的值为：' + e.mp.detail.value);
+      this.xmName = this.array[e.mp.detail.value]
+      this.xmId = this.xmList[e.mp.detail.value].id
+    },
     getSelectStaff(data){
       console.info('data',data)
       if(this.multiple){
@@ -164,7 +183,6 @@ export default {
     },
 
     getSelectCustomer(data){
-      console.info('选择的顾客是',data)
       this.customerSelectData = JSON.parse(JSON.stringify(data))
     },
 
@@ -182,24 +200,64 @@ export default {
 
     bindTimeChange(e) {
       console.log('选中的时间为：' + e.mp.detail.value);
+      this.date = e.mp.detail.value
     },
-    handleAdd(){
-      // 测试用 我的目标申报的详情页面是从我的申请里面跳转过来的
-      wx.navigateTo({
-        url: "/pages/my-project-state/main"
-      });
-    }
+    async handleAdd(){
 
-    // async getData() {
-    //   const data = await get("/index/index");
-    //   this.banner = data.banner;
-    //   this.channel = data.channel;
-    //   this.brandList = data.brandList;
-    //   this.newGoods = data.newGoods;
-    //   this.hotGoods = data.hotGoods;
-    //   this.topicList = data.topicList;
-    //   this.newCategoryList = data.newCategoryList;
-    // },
+      if(!this.point || !this.xmId || !this.title || !this.spData.length || !this.date || !this.customerSelectData.length || !this.noticeText){
+        this.tipsMessage = '请填写完整的信息!'
+        this.showTopTips = true
+        setTimeout(()=>{
+          this.showTopTips = false
+        },3000)
+        return
+      }
+
+      let ccEmpList = this.csData.map(item => {
+        return item.id
+      })
+      const data = await post(`/service/applyItem`,{
+        "auditor": this.spData[0].id,
+        "ccEmpList": ccEmpList.join(','),
+        "completeTime": this.date,
+        "content": this.noticeText,
+        "customerNo": this.customerSelectData[0].customerNo,
+        "empNo": this.$store.state.userInfo.shopEmployee.id,
+        "point": this.point,
+        "serviceItemNo": this.xmId,
+        "title": this.title
+      });
+      if(data.success){
+        wx.showToast({
+          title: '提交成功',
+          icon: 'success',
+          duration: 1000,
+          success(){
+
+          }
+        })
+        setTimeout(()=>{
+          wx.navigateBack({
+            url: '/pages/my-application/main'
+          })
+        },1000)
+      }
+
+      // 测试用 我的目标申报的详情页面是从我的申请里面跳转过来的
+      // wx.navigateTo({
+      //   url: "/pages/my-project-state/main"
+      // });
+    },
+
+    async getData() {
+      const data = await post(`/serviceItem/queryServiceItems?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`);
+      if(data.success){
+        this.xmList = data.result
+        this.array = this.xmList.map(item => {
+          return item.itemName
+        })
+      }
+    },
     // goodsDetail(id) {
     //   wx.navigateTo({
     //     url: "/pages/goods/main?id=" + id
