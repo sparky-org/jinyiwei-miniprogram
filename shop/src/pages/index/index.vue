@@ -238,6 +238,7 @@ export default {
     //     url: '/pages/adminIndex/main'
     //   })
     // }
+    // wx.redirectTo
 
     this.getData()
   },

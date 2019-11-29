@@ -237,7 +237,7 @@ export default {
           }
         })
         setTimeout(()=>{
-          wx.navigateBack({
+          wx.redirectTo({
             url: '/pages/my-application/main'
           })
         },1000)

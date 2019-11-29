@@ -270,8 +270,8 @@ import amapFile from "../../utils/amap-wx";
 import { get } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 
-let enumApplication = ['全部申请','请假申请', '项目申请', '业绩申请','其它申请'];
-let enumState = ['全部状态','待审批', '已通过','未通过', '已撤回']
+let enumApplication = ['全部申请','任务完成','业绩完成', '项目完成','请假申请','申请','外勤打卡'];
+let enumState = ['全部状态','待审批', '已撤回', '已通过','已拒绝']
 let enumApplicationType = ['请假申请','其它申请']
 export default {
   onShow() {
