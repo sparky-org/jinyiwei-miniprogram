@@ -74,7 +74,8 @@
           <button class="weui-btn" type="default" @click="handleCancel" style="border: 1px solid #ccc;">取消选择</button>
         </div>
         <div class="weui-flex__item" style="padding-left: 10rpx;">
-          <button class="weui-btn" type="primary" :disabled="submitDisabled" @click="handleSelect">确认选择</button>
+          <!-- <button class="weui-btn" type="primary" :disabled="submitDisabled" @click="handleSelect">确认选择</button> -->
+          <button class="weui-btn" type="primary" @click="handleSelect">确认选择</button>
         </div>
       </div>
     </div>
