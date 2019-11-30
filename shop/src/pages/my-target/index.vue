@@ -349,6 +349,8 @@ export default {
         // selectData: [],
         // spData: [],
         // csData: [],
+
+
         this.status = data.result.status
 
         if(data.result.completeTime){
@@ -356,11 +358,19 @@ export default {
           this.date = d[0]
           this.time = d[1]
         }
+
         this.noticeText = data.result.content
         this.title = data.result.title
         this.point = data.result.applyPoint
         this.targetAmount = data.result.targetAmount
 
+        if(data.result.ccEmpNames){
+          this.csData = data.result.ccEmpNames.map(item => {
+            return {
+              name: item
+            }
+          })
+        }
         this.spData = [{
           name:data.result.auditor
         }]
