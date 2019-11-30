@@ -33,7 +33,7 @@
       <template v-if="list.length">
         <div v-for="(item, index) in list" :key="index">
 
-          <navigator v-if="item.applyType=='VACATION'" url="/pages/my-application-holiday-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+          <navigator v-if="item.applyType=='VACATION'" :url="'/pages/my-application-holiday-detail/main?id='+item.applyNo" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
             <div class="weui-form-preview">
               <div class="weui-form-preview__hd">
                 <div class="weui-form-preview__item">
