@@ -1,20 +1,30 @@
 <template>
-  <div class="page">
-    <div class="weui-cells weui-cells_after-title">
+  <div class="page" v-if="form">
+    <!-- <div class="weui-cells weui-cells_after-title">
       <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
         <div class="weui-cell__bd"><i class="iconfont iconai-user" style="display: inline-block; color: #10AEFF;"></i> 已提交，待[<span style="color: #10AEFF; margin: 0 8rpx;">张总</span>]审批</div>
         <div class="weui-cell__ft weui-cell__ft_in-access">2019-10-11 19:12:38</div>
       </navigator>
+    </div> -->
+
+    <div class="weui-cells weui-cells_after-title">
+      <div class="weui-cell weui-cell_access">
+        <div class="weui-cell__bd"><i class="iconfont iconai-user" style="display: inline-block; color: #10AEFF;"></i> {{enumState[form.status]}}
+        <template v-if="form.status=='NEW'">，待[<span style="color: #10AEFF; margin: 0 8rpx;">{{form.auditor}}</span>]审批</template>
+        </div>
+        <div class="weui-cell__ft ">{{form.applyCreateTime}}</div>
+      </div>
     </div>
+
     <div class="weui-form-preview" style="margin-bottom: 20rpx;">
 
       <div class="weui-cells weui-cells_after-title no-t">
         <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
-            <div class="weui-label"><span class="required">*</span>申报标题</div>
+            <div class="weui-label">申报标题</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入申报标题" value="1" />
+            <input class="weui-input" :value="form.title" />
           </div>
         </div>
 
@@ -22,39 +32,46 @@
 
         <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
-            <div class="weui-label"><span class="required">*</span>申报项目</div>
+            <div class="weui-label">申报项目</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入申报目标" value="1" />
+            <input class="weui-input" :value="form.serviceItemName" />
           </div>
         </div>
 
         <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
-            <div class="weui-label"><span class="required">*</span>客户姓名</div>
+            <div class="weui-label">客户姓名</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入客户姓名" value="1" />
+            <input class="weui-input" :value="form.customerName" />
           </div>
         </div>
 
         <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
-            <div class="weui-label"><span class="required">*</span>完成时间</div>
+            <div class="weui-label">完成日期</div>
           </div>
           <div class="weui-cell__bd">
-            <picker class="weui-btn" mode="date" :value="date" @change="bindTimeChange">
-              <input class="weui-input" placeholder="请输入完成时间" value="1" />
-            </picker>
+              <input class="weui-input" :value="form.date" />
           </div>
         </div>
 
         <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
-            <div class="weui-label"><span class="required">*</span>申报奖励</div>
+            <div class="weui-label">完成时间</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入申报奖励" value="1" />
+              <input class="weui-input" :value="form.time" />
+          </div>
+        </div>
+
+        <div class="weui-cell weui-cell_input">
+          <div class="weui-cell__hd">
+            <div class="weui-label">申报奖励</div>
+          </div>
+          <div class="weui-cell__bd">
+            <input class="weui-input" :value="form.applyPoint" />
           </div>
         </div>
 
@@ -73,24 +90,24 @@
               <div class="weui-label"><span class="required">*</span>申报内容</div>
             </div>
             <div class="weui-cell__bd" style="padding: 20rpx 0;">
-              <textarea class="" placeholder="请输入申报内容" style="height: 3.3em; width: 100%;" v-model="noticeText" />
+              <textarea style="height: 3.3em; width: 100%;" v-model="form.content" />
             </div>
           </div>
         </div>
 
-        <div class="page__bd">
+        <div class="page__bd" v-if="ccListStr">
           <div class="weui-cells no-t" style="margin-top: 0;">
             <div class="weui-cell">
               <div class="weui-cell__bd">
                 <div class="weui-uploader">
                   <div class="weui-uploader__hd">
-                    <div class="weui-uploader__title">抄送人(默认不抄送)</div>
+                    <div class="weui-uploader__title">抄送人</div>
                     <!-- <div class="weui-uploader__info">{{files.length}}/2</div> -->
                   </div>
                   <div class="weui-uploader__bd">
                     <div class="weui-uploader__files">
-                      <div class="weui-uploader__file">袁凯,李德华</div>
-                      <i class="iconfont iconjia"></i>
+                      <div class="weui-uploader__file">{{ccListStr}}</div>
+                      <!-- <i class="iconfont iconjia"></i> -->
                     </div>
                   </div>
                 </div>
@@ -104,7 +121,7 @@
     </div>
 
     <div class="operate-btn">
-      <button class="weui-btn" type="warn" @click="handleAdd">撤 回</button>
+      <button class="weui-btn" type="warn" v-if="form.status=='NEW'" @click="handleBack">撤 回</button>
     </div>
 
   </div>
@@ -112,21 +129,34 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 
 export default {
   onShow() {
-
+    this.id = this.$root.$mp.query.id;
+    console.info(this.id)
+    if(this.id){
+      this.getData()
+    }
   },
   components: {
 
   },
   data() {
     return {
+		  id: '',
       // role: '',
       noticeText: '1212',
-      date: ''
+      date: '',
+
+      form: null,
+      enumState: {
+        'NEW': '已提交',
+        'REVERTED': '已撤回',
+        'PASSED': '审批通过',
+        'REFUSED': '审批拒绝'
+      },
     };
   },
 
@@ -149,18 +179,60 @@ export default {
       // wx.navigateTo({
       //   url: "/pages/my-score-operate/main"
       // });
-    }
+    },
 
-    // async getData() {
-    //   const data = await get("/index/index");
-    //   this.banner = data.banner;
-    //   this.channel = data.channel;
-    //   this.brandList = data.brandList;
-    //   this.newGoods = data.newGoods;
-    //   this.hotGoods = data.hotGoods;
-    //   this.topicList = data.topicList;
-    //   this.newCategoryList = data.newCategoryList;
-    // },
+    async getData() {
+      const data = await post("/service/getItemApply?serviceRecordNo="+this.id);
+
+      if(data.success){
+        if(data.result.ccEmpNames){
+          data.result.ccListStr = JSON.parse(data.result.ccEmpNames).join(',')
+        }
+        // if(data.result.picList){
+        //   this.files = data.result.picList.split(',')
+        // }
+        if(data.result.completeTime){
+          let d = data.result.completeTime.split(' ')
+          data.result.date = d[0]
+          data.result.time = d[1]
+        }
+        this.form = data.result
+      }
+    },
+
+    handleBack(){
+
+      wx.showModal({
+        title: '提示',
+        content: '确认要撤销该申请吗？',
+        // confirmText: "主操作",
+        // cancelText: "辅助操作",
+        success: async (res) => {
+          console.log(res);
+          if (res.confirm) {
+            console.log('用户点击主操作')
+            const data = await post(`/service/revertServiceRecord?serviceRecordNo=${this.id}`);
+            if(data.success){
+              wx.showToast({
+                title: '撤销成功',
+                icon: 'success',
+                duration: 2000,
+                success(){
+
+                }
+              })
+              setTimeout(()=>{
+                wx.reLaunch({
+                  url: "/pages/my-application/main"
+                });
+              },1000)
+            }
+          } else {
+            console.log('用户点击辅助操作')
+          }
+        }
+      });
+    }
     // goodsDetail(id) {
     //   wx.navigateTo({
     //     url: "/pages/goods/main?id=" + id

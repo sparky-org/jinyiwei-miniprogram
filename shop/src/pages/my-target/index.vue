@@ -30,7 +30,28 @@
             <div class="weui-label"><span class="required" v-if="!id">*</span>客户姓名</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" disabled="disabled" :value="customerSelectData[0]?customerSelectData[0].name:''" @click="selectCustomerVisible=true" placeholder="请输入客户姓名" />
+            <template v-if="id">
+              <input class="weui-input" disabled="disabled" :value="customerSelectData[0]?customerSelectData[0].name:''" />
+            </template>
+            <template v-else>
+              <input class="weui-input" disabled="disabled" :value="customerSelectData[0]?customerSelectData[0].name:''" @click="selectCustomerVisible=true" placeholder="请输入客户姓名" />
+            </template>
+          </div>
+        </div>
+
+        <div class="weui-cell weui-cell_input">
+          <div class="weui-cell__hd">
+            <div class="weui-label"><span class="required" v-if="!id">*</span>完成日期</div>
+          </div>
+          <div class="weui-cell__bd">
+            <template v-if="id">
+              <input class="weui-input" disabled="disabled" :value="date" />
+            </template>
+            <template v-else>
+              <picker class="weui-btn" mode="date" :value="date" @change="bindDateChange">
+                <input class="weui-input" disabled="disabled" :value="date" placeholder="请输入完成日期" />
+              </picker>
+            </template>
           </div>
         </div>
 
@@ -39,9 +60,14 @@
             <div class="weui-label"><span class="required" v-if="!id">*</span>完成时间</div>
           </div>
           <div class="weui-cell__bd">
-            <picker class="weui-btn" mode="date" :value="date" @change="bindTimeChange">
-              <input class="weui-input" disabled="disabled" :value="date" placeholder="请输入完成时间" />
-            </picker>
+            <template v-if="id">
+              <input class="weui-input" disabled="disabled" :value="time" />
+            </template>
+            <template v-else>
+              <picker class="weui-btn" mode="time" :value="time" @change="bindTimeChange">
+                <input class="weui-input" disabled="disabled" :value="time" placeholder="请输入完成时间" />
+              </picker>
+            </template>
           </div>
         </div>
 
@@ -50,7 +76,12 @@
             <div class="weui-label"><span class="required" v-if="!id">*</span>申报奖励</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" :disabled="id" v-model="point" placeholder="请输入申报奖励" />
+            <template v-if="id">
+              <input class="weui-input" :disabled="id" v-model="point" />
+            </template>
+            <template v-else>
+              <input class="weui-input" :disabled="id" v-model="point" placeholder="请输入申报奖励" />
+            </template>
           </div>
         </div>
 
@@ -59,7 +90,12 @@
             <div class="weui-label"><span class="required" v-if="!id">*</span>审批人</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" disabled="disabled" :value="spData[0]?spData[0].name:''" @click="handleApproval" placeholder="请输入审批人" />
+            <template v-if="id">
+              <input class="weui-input" disabled="disabled" :value="spData[0]?spData[0].name:''" />
+            </template>
+            <template v-else>
+              <input class="weui-input" disabled="disabled" :value="spData[0]?spData[0].name:''" @click="handleApproval" placeholder="请输入审批人" />
+            </template>
           </div>
         </div>
 
@@ -87,7 +123,7 @@
                     <div class="weui-uploader__files">
                       <div class="weui-uploader__file">
                         <span v-for="(item,index) in csData" :key="index">{{item.name}}<template v-if="index<csData.length-1">，</template></span>
-                        <i class="iconfont iconjia" style="display: inline-block; position: relative; top: 6rpx; left: 10rpx;" @click="handleCopy"></i>
+                        <i class="iconfont iconjia" v-if="!id" style="display: inline-block; position: relative; top: 6rpx; left: 10rpx;" @click="handleCopy"></i>
                       </div>
                     </div>
                   </div>
@@ -103,6 +139,7 @@
 
     <div class="operate-btn">
       <button class="weui-btn" type="primary" @click="handleAdd" v-if="!id">确 定</button>
+      <button class="weui-btn" type="warn" @click="handleBack" v-if="id && status=='NEW'">撤 销</button>
     </div>
 
     <select-staff :multiple="multiple" :data="selectData" :visible.sync="selectStaffVisible" @getSelectData="getSelectStaff"></select-staff>
@@ -134,6 +171,16 @@ export default {
   },
   data() {
     return {
+      enumState: {
+        'NEW': '已提交',
+        'REVERTED': '已撤回',
+        'PASSED': '审批通过',
+        'REFUSED': '审批拒绝'
+      },
+
+      status: '',
+
+
       id: null,
       showTopTips: false,
       tipsMessage:'',
@@ -149,16 +196,17 @@ export default {
       date: '',
       title:'',
       point: '',
+      time: '',
 
       targetAmount: '',
 
       customerSelectData:[],
       // array: ['美国', '中国', '巴西', '日本'],
-      array: [],
-      xmList: [],
-      xmName: '',
-      xmId: '',
-      index: 0
+      // array: [],
+      // xmList: [],
+      // xmName: '',
+      // xmId: '',
+      // index: 0
     };
   },
 
@@ -173,6 +221,38 @@ export default {
 
   },
   methods: {
+    handleBack(){
+      wx.showModal({
+        title: '提示',
+        content: '确认要撤销该申请吗？',
+        // confirmText: "主操作",
+        // cancelText: "辅助操作",
+        success: async (res) => {
+          console.log(res);
+          if (res.confirm) {
+            console.log('用户点击主操作')
+            const data = await post(`/sales/revertSalesPerf?salesPerfNo=${this.id}`);
+            if(data.success){
+              wx.showToast({
+                title: '撤销成功',
+                icon: 'success',
+                duration: 2000,
+                success(){
+
+                }
+              })
+              setTimeout(()=>{
+                wx.reLaunch({
+                  url: "/pages/my-application/main"
+                });
+              },1000)
+            }
+          } else {
+            console.log('用户点击辅助操作')
+          }
+        }
+      });
+    },
     bindPickerChange(e) {
       console.info(this.array)
       console.log('选中的值为：' + e.mp.detail.value);
@@ -205,13 +285,13 @@ export default {
       this.selectStaffVisible = true
     },
 
-    bindTimeChange(e) {
+    bindDateChange(e) {
       console.log('选中的时间为：' + e.mp.detail.value);
       this.date = e.mp.detail.value
     },
     async handleAdd(){
 
-      if(!this.point || !this.targetAmount || !this.title || !this.spData.length || !this.date || !this.customerSelectData.length || !this.noticeText){
+      if(!this.point || !this.targetAmount || !this.title || !this.spData.length || !this.date || !this.time || !this.customerSelectData.length || !this.noticeText){
         this.tipsMessage = '请填写完整的信息!'
         this.showTopTips = true
         setTimeout(()=>{
@@ -226,7 +306,7 @@ export default {
       const data = await post(`/sales/applySalesPerf`,{
         "auditor": this.spData[0].id,
         "ccEmpList": ccEmpList.join(','),
-        "completeTime": this.date,
+        "completeTime": this.date + ' ' + this.time,
         "content": this.noticeText,
         "customerNo": this.customerSelectData[0].customerNo,
         "empNo": this.$store.state.userInfo.shopEmployee.id,
@@ -266,8 +346,32 @@ export default {
       // }
       const data = await post(`/sales/getSalesPerfApply?salesPerfNo=${this.id}`);
       if(data.success){
+        // selectData: [],
+        // spData: [],
+        // csData: [],
+        this.status = data.result.status
 
+        if(data.result.completeTime){
+          let d = data.result.completeTime.split(' ')
+          this.date = d[0]
+          this.time = d[1]
+        }
+        this.noticeText = data.result.content
+        this.title = data.result.title
+        this.point = data.result.applyPoint
+        this.targetAmount = data.result.targetAmount
+
+        this.spData = [{
+          name:data.result.auditor
+        }]
+        this.customerSelectData = [{
+          name: data.result.customerName
+        }]
       }
+    },
+    bindTimeChange(e) {
+      console.log('选中的时间为：' + e.mp.detail.value);
+      this.time = e.mp.detail.value
     },
     // goodsDetail(id) {
     //   wx.navigateTo({

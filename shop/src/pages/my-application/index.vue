@@ -74,7 +74,7 @@
           </navigator>
 
 
-          <navigator v-if="item.applyType=='SERVICE_ITEM'" url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+          <navigator v-if="item.applyType=='SERVICE_ITEM'" :url="'/pages/my-project-state/main?id='+item.serviceItem.serviceRecordNo" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
             <div class="weui-form-preview">
               <div class="weui-form-preview__hd">
                 <div class="weui-form-preview__item">
@@ -132,6 +132,10 @@
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">业绩金额</div>
                   <div class="weui-form-preview__value">{{item.salesPerformance.targetAmount}}元</div>
+                </div>
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">状态</div>
+                  <div class="weui-form-preview__value">{{enumState[item.status]}}</div>
                 </div>
               </div>
               <!-- <div>

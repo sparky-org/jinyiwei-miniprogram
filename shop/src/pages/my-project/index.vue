@@ -138,14 +138,16 @@ export default {
       multiple: true,
       selectData: [],
       spData: [],
+      customerSelectData:[],
       csData: [],
+      
       // role: '',
       noticeText: '',
       date: '',
       title:'',
       point: '',
 
-      customerSelectData:[],
+      
       // array: ['美国', '中国', '巴西', '日本'],
       array: [],
       xmList: [],

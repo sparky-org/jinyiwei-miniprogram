@@ -71,7 +71,7 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 
 import Calendar from 'mpvue-calendar'
@@ -79,8 +79,14 @@ import 'mpvue-calendar/src/style.css'
 
 export default {
   onShow() {
-
+    let d = new Date()
+    console.info(d.getFullYear()+'-'+(d.getMonth()+1))
+    this.getData(d.getFullYear()+'-'+(d.getMonth()+1))
+    if(this.$refs.calendar){
+      this.$refs.calendar.renderer(d.getFullYear(), d.getMonth()+1);
+    }
   },
+
   components: {
     Calendar
   },
@@ -98,14 +104,15 @@ export default {
   },
 
   mounted() {
-    setTimeout(()=>{
+    // setTimeout(()=>{
       // this.events = {
       //   '2019-11-15':'预约',
       //   '2019-11-18':'预约'
       // }
       // this.tileContent.push({date: '2019-11-12', className: 'holiday', content: '预约'},{date: '2019-11-19', className: 'errorDate', content: '异常'}, {date: '2019-11-13', className: 'holiday', content: '预约'})
-      this.tileContent.push({date: '2019-11-15', className: 'holiday', content: '预约'}, {date: '2019-11-18', className: 'holiday', content: '预约'}, {date: '2019-11-8', className: 'holiday', content: '预约'}, {date: '2019-11-6', className: 'holiday', content: '预约'}, {date: '2019-11-10', className: 'holiday', content: '预约'},{date: '2019-11-12', className: 'holiday', content: '预约'})
-    },500)
+
+      // this.tileContent.push({date: '2019-11-15', className: 'holiday', content: '预约'}, {date: '2019-11-18', className: 'holiday', content: '预约'}, {date: '2019-11-8', className: 'holiday', content: '预约'}, {date: '2019-11-6', className: 'holiday', content: '预约'}, {date: '2019-11-10', className: 'holiday', content: '预约'},{date: '2019-11-12', className: 'holiday', content: '预约'})
+    // },500)
     // this.calendar.jump(2021, 10);
     // this.id = this.$root.$mp.query.id;
     // console.info(this.id)
@@ -119,15 +126,18 @@ export default {
   methods: {
 
     prev(year, month, weekIndex) {
+      this.getData(year +'-'+ month)
       console.log(year, month, weekIndex)
     },
     next(year, month, weekIndex) {
+      this.getData(year +'-'+ month)
       console.log(year, month, weekIndex)
     },
     selectYear(year) {
       console.log(year)
     },
     selectMonth(month, year) {
+      this.getData(year +'-'+ month)
       console.log(year, month)
     },
     setToday() {
@@ -141,20 +151,31 @@ export default {
       this.$refs.calendar.renderer(2018, 8); //渲染2018年8月份
     },
     select(val, val2) {
-      console.log(val)
+      console.log(val,1111111)
       console.log(val2)
+      this.getDetail(val2)
     },
 
-    // async getData() {
-    //   const data = await get("/index/index");
-    //   this.banner = data.banner;
-    //   this.channel = data.channel;
-    //   this.brandList = data.brandList;
-    //   this.newGoods = data.newGoods;
-    //   this.hotGoods = data.hotGoods;
-    //   this.topicList = data.topicList;
-    //   this.newCategoryList = data.newCategoryList;
-    // },
+    async getData(date) {
+      const data = await post(`/myAppointment/queryAppointmentDays?empNo=${this.$store.state.userInfo.shopEmployee.id}&month=${date}`);
+      if(data.success){
+        if(data.result.length){
+          this.tileContent = data.result.map(item => {
+            return {
+              date: item.split(' ')[0], className: 'holiday', content: '预约'
+            }
+          })
+        }
+      }
+    },
+
+    async getDetail(date) {
+      const data = await post(`/myAppointment/queryAppointmentDays?empNo=${this.$store.state.userInfo.shopEmployee.id}&date=${date.date}&pageSize=10000&currentPage=1`);
+      if(data.success){
+
+      }
+    },
+
     handleSign() {
       wx.navigateTo({
         url: "/pages/my-appointment-create/main"
