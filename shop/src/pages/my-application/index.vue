@@ -45,15 +45,19 @@
               <div class="weui-form-preview__bd">
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">状态</div>
-                  <div class="weui-form-preview__value">待审批</div>
+                  <div class="weui-form-preview__value">{{enumState[item.status]}}</div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">开始时间</div>
-                  <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
+                  <div class="weui-form-preview__value">{{item.vacation.begin}}</div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">结束时间</div>
-                  <div class="weui-form-preview__value">2019-10-11 18:12:23</div>
+                  <div class="weui-form-preview__value">{{item.vacation.end}}</div>
+                </div>
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">共计</div>
+                  <div class="weui-form-preview__value">{{item.vacation.days}}天</div>
                 </div>
               </div>
               <!-- <div>
@@ -82,19 +86,19 @@
               <div class="weui-form-preview__bd">
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">状态</div>
-                  <div class="weui-form-preview__value">待审批</div>
+                  <div class="weui-form-preview__value">{{enumState[item.status]}}</div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">项目名称</div>
-                  <div class="weui-form-preview__value">颈部护理按摩</div>
+                  <div class="weui-form-preview__value">{{item.serviceItem.itemName}}</div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">项目日期</div>
-                  <div class="weui-form-preview__value">2019-10-11</div>
+                  <div class="weui-form-preview__value">{{item.serviceItem.itemDate}}</div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">申报积分</div>
-                  <div class="weui-form-preview__value">50</div>
+                  <div class="weui-form-preview__value">{{item.serviceItem.applyPoint}}</div>
                 </div>
               </div>
               <!-- <div>
@@ -144,31 +148,31 @@
           </navigator>
 
 
-          <navigator v-if="item.applyType=='ElSE'" url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+          <navigator v-if="item.applyType=='NORMAL'" :url="'/pages/my-application-else-detail/main?id='+item.applyNo" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
             <div class="weui-form-preview">
               <div class="weui-form-preview__hd">
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">申请类型</div>
-                  <div class="weui-form-preview__value_in-hd">出差申请</div>
+                  <div class="weui-form-preview__value_in-hd">申请</div>
                   <div class="weui-cell__ft weui-cell__ft_in-access"></div>
                 </div>
               </div>
               <div class="weui-form-preview__bd">
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">状态</div>
-                  <div class="weui-form-preview__value" style="color: #f00;">已拒绝</div>
+                  <div class="weui-form-preview__value" style="color: #f00;">{{enumState[item.status]}}</div>
                 </div>
-                <div class="weui-form-preview__item">
+                <!-- <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">开始日期</div>
                   <div class="weui-form-preview__value">2019-10-11</div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">结束日期</div>
                   <div class="weui-form-preview__value">2019-10-11</div>
-                </div>
+                </div> -->
                 <div class="weui-form-preview__item">
-                  <div class="weui-form-preview__label">出差人数</div>
-                  <div class="weui-form-preview__value">5</div>
+                  <div class="weui-form-preview__label">申请内容</div>
+                  <div class="weui-form-preview__value">{{item.normal.content}}</div>
                 </div>
               </div>
               <!-- <div>
@@ -287,6 +291,12 @@ export default {
       enumApplicationType,
       applyType:'',
 
+      enumState: {
+        'NEW': '待审批',
+        'REVERTED': '已撤回',
+        'PASSED': '审批通过',
+        'REFUSED': '审批拒绝'
+      },
 
       startDate: null,
       endDate: null,

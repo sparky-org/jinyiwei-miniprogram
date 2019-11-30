@@ -178,6 +178,7 @@ export default {
       beginDate: '',
       endDate: '',
       reason:'',
+
       files: [],
       myFiles: [],
 
@@ -245,7 +246,7 @@ export default {
           }
         })
         setTimeout(()=>{
-          wx.navigateBack({
+          wx.reLaunch({
             url: '/pages/my-application/main'
           })
         },1000)

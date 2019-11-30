@@ -2,7 +2,9 @@
   <div class="page" v-if="form">
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell weui-cell_access">
-        <div class="weui-cell__bd"><i class="iconfont iconai-user" style="display: inline-block; color: #10AEFF;"></i> {{enumState[form.status]}}，待[<span style="color: #10AEFF; margin: 0 8rpx;">{{form.auditEmp}}</span>]审批</div>
+        <div class="weui-cell__bd"><i class="iconfont iconai-user" style="display: inline-block; color: #10AEFF;"></i> {{enumState[form.status]}}
+        <template v-if="form.status=='NEW'">，待[<span style="color: #10AEFF; margin: 0 8rpx;">{{form.auditEmp}}</span>]审批</template>
+        </div>
         <div class="weui-cell__ft ">{{form.createTime}}</div>
       </div>
     </div>
@@ -153,7 +155,7 @@ export default {
         'REFUSED': '审批拒绝'
       },
       // role: '',
-      noticeText: '1212',
+      // noticeText: '1212',
       files: [],
       date: ''
     };
@@ -224,8 +226,10 @@ export default {
     async getData() {
       const data = await post("/myApply/vacationApplyDetail?vacationApplyNo="+this.id);
       if(data.success){
-        data.result.ccListStr = JSON.parse(data.result.ccList).join(',')
-        if(data.result.picList != ''){
+        if(data.result.ccList){
+          data.result.ccListStr = JSON.parse(data.result.ccList).join(',')
+        }
+        if(data.result.picList){
           this.files = data.result.picList.split(',')
         }
         this.form = data.result
