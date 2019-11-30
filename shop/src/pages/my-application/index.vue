@@ -115,7 +115,7 @@
           </navigator>
 
 
-          <navigator v-if="item.applyType=='SAL_PERF'" :url="'/pages/my-target/main?id='+item.applyNo" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+          <navigator v-if="item.applyType=='SAL_PERF'" :url="'/pages/my-target/main?id='+item.salesPerformance.salesPerfNo" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
             <div class="weui-form-preview">
               <div class="weui-form-preview__hd">
                 <div class="weui-form-preview__item">
