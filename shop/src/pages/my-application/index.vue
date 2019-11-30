@@ -115,7 +115,7 @@
           </navigator>
 
 
-          <navigator v-if="item.applyType=='SALES_PERF'" url="/pages/my-application-else-detail/main" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+          <navigator v-if="item.applyType=='SAL_PERF'" :url="'/pages/my-target/main?id='+item.applyNo" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
             <div class="weui-form-preview">
               <div class="weui-form-preview__hd">
                 <div class="weui-form-preview__item">
@@ -126,12 +126,12 @@
               </div>
               <div class="weui-form-preview__bd">
                 <div class="weui-form-preview__item">
-                  <div class="weui-form-preview__label">顾客姓名</div>
-                  <div class="weui-form-preview__value">李香洲</div>
+                  <div class="weui-form-preview__label">业绩名称</div>
+                  <div class="weui-form-preview__value">{{item.salesPerformance.name}}</div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">业绩金额</div>
-                  <div class="weui-form-preview__value">5000元</div>
+                  <div class="weui-form-preview__value">{{item.salesPerformance.targetAmount}}元</div>
                 </div>
               </div>
               <!-- <div>

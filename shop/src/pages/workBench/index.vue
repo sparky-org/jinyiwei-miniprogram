@@ -38,7 +38,7 @@
       </navigator>
       <navigator url="/pages/my-target/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
-        <div class="weui-grid__label">目标申报</div>
+        <div class="weui-grid__label">业绩申报</div>
       </navigator>
     </div>
 

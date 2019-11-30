@@ -5,6 +5,6 @@ const app = new Vue(App)
 app.$mount()
 export default {
   config: {
-    navigationBarTitleText: '目标申报',
+    navigationBarTitleText: '业绩申报',
   }
 }
