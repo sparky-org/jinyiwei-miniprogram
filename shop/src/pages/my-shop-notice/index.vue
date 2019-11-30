@@ -1,7 +1,7 @@
 <template>
   <div class="page">
 
-    <div class="weui-toptips weui-toptips_warn" v-if="errorTips">错误提示</div>
+    <div class="weui-toptips weui-toptips_warn" v-if="errorTips">请填写公告内容</div>
 
     <div class="weui-cells__title"><span class="required">*</span>公告</div>
     <div class="weui-cells weui-cells_after-title">
@@ -14,7 +14,7 @@
     </div>
 
     <div class="operate-btn">
-      <button class="weui-btn" type="primary">保 存</button>
+      <button class="weui-btn" type="primary" @click="handleSubmit">保 存</button>
     </div>
 
   </div>
@@ -22,7 +22,7 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
@@ -35,7 +35,7 @@ export default {
     return {
       // role: '',
       errorTips: false,
-      noticeText: '为了迎接双十一，凡11月1号到11月11号进店新用户预存1万送1000；老客户预存1万送15000. 请大家相互转告。'
+      noticeText: ''
     };
   },
 
@@ -48,6 +48,32 @@ export default {
 
   },
   methods: {
+
+    async handleSubmit(){
+      if(!this.noticeText){
+        this.errorTips = true
+        return
+      }
+      const data = await post(`/notice/publishNotice`,{
+        "content": this.noticeText,
+        "empNo": this.$store.state.userInfo.shopEmployee.id
+      });
+      if(data.success){
+        wx.showToast({
+          title: '发布成功',
+          icon: 'success',
+          duration: 2000,
+          success(){
+
+          }
+        })
+        setTimeout(()=>{
+          wx.reLaunch({
+            url: "/pages/workBench/main"
+          });
+        },1000)
+      }
+    }
 
 
     // handleAreaSelect(){

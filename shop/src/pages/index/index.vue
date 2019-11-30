@@ -3,12 +3,12 @@
 
     <div class="swiper">
       <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="500">
-        <!-- <block v-for="(item, index) in data.posters" :key="index">
+        <block v-for="(item, index) in posters" :key="index">
           <swiper-item class="swiper-item">
             <image :src="item.picUrl" class="slide-image" />
           </swiper-item>
-        </block> -->
-        <swiper-item class="swiper-item">
+        </block>
+       <!-- <swiper-item class="swiper-item">
           <image style="width: 100%; height: 100%;" src="https://www.zjliren520.com/jyw-resource/18/50/18509052e68889168422e7f387e654f9" class="slide-image" />
         </swiper-item>
         <swiper-item class="swiper-item">
@@ -25,7 +25,7 @@
         </swiper-item>
         <swiper-item class="swiper-item">
           <image style="width: 100%; height: 100%;" src="https://www.zjliren520.com/jyw-resource/6b/e9/6be953c24858a3c2d787d57e6b77be1f" class="slide-image" />
-        </swiper-item>
+        </swiper-item> -->
       </swiper>
     </div>
 
@@ -250,6 +250,7 @@ export default {
   },
   data() {
     return {
+      posters:[],
       // userInfo: null,
       data:null,
       brandList: [
@@ -280,11 +281,11 @@ export default {
     // ...mapMutations(["update"]),
     async getData(){
       // console.info(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.agencyId}`)
-      // const data = post(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.agencyId}`).then((data)=>{
-      //   if(data.success){
-      //     this.data = data.result
-      //   }
-      // });
+      const data = post(`/poster/viewPosters?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}&empNo=${this.$store.state.userInfo.shopEmployee.id}`).then((data)=>{
+        if(data.success){
+          this.posters = data.result.content.split(',')
+        }
+      });
 
     },
 
