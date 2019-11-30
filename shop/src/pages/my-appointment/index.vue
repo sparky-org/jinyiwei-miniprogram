@@ -41,11 +41,11 @@
 
     <div class="weui-cells__title">我的预约</div>
     <div class="weui-cells weui-cells_after-title">
-      <div class="weui-cell">
-        <div class="weui-cell__bd">09:30</div>
-        <div class="weui-cell__ft">张小姐第五次面部护理</div>
+      <div class="weui-cell" v-for="(item, index) in yyList" :key="index">
+        <div class="weui-cell__bd">{{item.timeStr}}</div>
+        <div class="weui-cell__ft">{{item.info}}</div>
       </div>
-      <div class="weui-cell">
+      <!-- <div class="weui-cell">
         <div class="weui-cell__bd">14:30</div>
         <div class="weui-cell__ft">王小姐第三次背部按摩</div>
       </div>
@@ -56,7 +56,7 @@
       <div class="weui-cell">
         <div class="weui-cell__bd">18:30</div>
         <div class="weui-cell__ft">李小姐第一次面部护理</div>
-      </div>
+      </div> -->
     </div>
 
 
@@ -92,6 +92,7 @@ export default {
   },
   data() {
     return {
+      yyList: [],
       // months: ['一月', '二月', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       // disabledArray: ['2018-6-27','2018-6-25'],
       // value: [2018,6,7],
@@ -170,9 +171,14 @@ export default {
     },
 
     async getDetail(date) {
-      const data = await post(`/myAppointment/queryAppointmentDays?empNo=${this.$store.state.userInfo.shopEmployee.id}&date=${date.date}&pageSize=10000&currentPage=1`);
+      const data = await post(`/myAppointment/queryAppointment?empNo=${this.$store.state.userInfo.shopEmployee.id}&date=${date.date}&pageSize=10000&currentPage=1`);
       if(data.success){
-
+        if(data.result && data.result.length){
+          data.result.forEach(item => {
+            item.timeStr = item.time.split(' ')[1]
+          })
+          this.yyList = data.result
+        }
       }
     },
 
