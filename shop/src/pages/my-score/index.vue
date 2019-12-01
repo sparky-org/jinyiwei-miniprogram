@@ -1,17 +1,18 @@
 <template>
-  <div class="page">
-    <div class="weui-flex tab-wrapper">
+<div class="page">
+  <div style="position: fixed; top: 0; left: 0; width: 100%;">
+    <div class="weui-flex tab-wrapper" >
       <div class="weui-flex__item">
-        <div class="tab-title" :class="{current: index==1}" @click="handelTabClick(1)">当日<em></em></div>
+        <div class="tab-title" :class="{current: index==1}" @click="handelTabClick(1,'DAY')">当日<em></em></div>
       </div>
       <div class="weui-flex__item">
-        <div class="tab-title" :class="{current: index==2}" @click="handelTabClick(2)">当月<em></em></div>
+        <div class="tab-title" :class="{current: index==2}" @click="handelTabClick(2,'MONTH')">当月<em></em></div>
       </div>
       <div class="weui-flex__item">
-        <div class="tab-title" :class="{current: index==3}" @click="handelTabClick(3)">当季<em></em></div>
+        <div class="tab-title" :class="{current: index==3}" @click="handelTabClick(3,'QUARTER')">当季<em></em></div>
       </div>
       <div class="weui-flex__item">
-        <div class="tab-title" :class="{current: index==4}" @click="handelTabClick(4)">当年<em></em></div>
+        <div class="tab-title" :class="{current: index==4}" @click="handelTabClick(4,'YEAR')">当年<em></em></div>
       </div>
       <div class="item" style="border-left: 1rpx solid #fff;">
         <picker class="weui-btn" mode="date" :value="startDate" @change="bindStartDateChange">
@@ -24,16 +25,96 @@
         </picker>
       </div>
     </div>
-
     <div class="content weui-flex-wrapper">
-      <div class="weui-flex">
+      <div class="weui-flex" style="background: #fcfcfc;">
         <div class="weui-flex__item">排名</div>
         <div class="weui-flex__item">姓名</div>
         <div class="weui-flex__item">加分</div>
         <div class="weui-flex__item">扣分</div>
         <div class="weui-flex__item">总分</div>
       </div>
+    </div>
+  </div>
 
+  <div style="padding-top: 81px;">
+
+    <div class="content weui-flex-wrapper">
+      <div class="weui-flex list" @click="handleDetail(1)">
+        <div class="weui-flex__item">1</div>
+        <div class="weui-flex__item">邹志辉</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">0</div>
+        <div class="weui-flex__item">100</div>
+      </div>
+      <div class="weui-flex list" @click="handleDetail(1)">
+        <div class="weui-flex__item">1</div>
+        <div class="weui-flex__item">邹志辉</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">0</div>
+        <div class="weui-flex__item">100</div>
+      </div>
+
+      <div class="weui-flex list" @click="handleDetail(2)">
+        <div class="weui-flex__item">2</div>
+        <div class="weui-flex__item">李德华</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">10</div>
+        <div class="weui-flex__item">90</div>
+      </div>
+
+      <div class="weui-flex list" @click="handleDetail(3)">
+        <div class="weui-flex__item">3</div>
+        <div class="weui-flex__item">李本山</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">20</div>
+        <div class="weui-flex__item">80</div>
+      </div>
+      <div class="weui-flex list" @click="handleDetail(1)">
+        <div class="weui-flex__item">1</div>
+        <div class="weui-flex__item">邹志辉</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">0</div>
+        <div class="weui-flex__item">100</div>
+      </div>
+
+      <div class="weui-flex list" @click="handleDetail(2)">
+        <div class="weui-flex__item">2</div>
+        <div class="weui-flex__item">李德华</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">10</div>
+        <div class="weui-flex__item">90</div>
+      </div>
+
+      <div class="weui-flex list" @click="handleDetail(3)">
+        <div class="weui-flex__item">3</div>
+        <div class="weui-flex__item">李本山</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">20</div>
+        <div class="weui-flex__item">80</div>
+      </div>
+      <div class="weui-flex list" @click="handleDetail(1)">
+        <div class="weui-flex__item">1</div>
+        <div class="weui-flex__item">邹志辉</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">0</div>
+        <div class="weui-flex__item">100</div>
+      </div>
+
+      <div class="weui-flex list" @click="handleDetail(2)">
+        <div class="weui-flex__item">2</div>
+        <div class="weui-flex__item">李德华</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">10</div>
+        <div class="weui-flex__item">90</div>
+      </div>
+
+      <div class="weui-flex list" @click="handleDetail(3)">
+        <div class="weui-flex__item">3</div>
+        <div class="weui-flex__item">李本山</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">20</div>
+        <div class="weui-flex__item">80</div>
+      </div>
       <div class="weui-flex list" @click="handleDetail(1)">
         <div class="weui-flex__item">1</div>
         <div class="weui-flex__item">邹志辉</div>
@@ -58,9 +139,26 @@
         <div class="weui-flex__item">80</div>
       </div>
 
+      <div class="weui-flex list" @click="handleDetail(2)">
+        <div class="weui-flex__item">2</div>
+        <div class="weui-flex__item">李德华</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">10</div>
+        <div class="weui-flex__item">90</div>
+      </div>
+
+      <div class="weui-flex list" @click="handleDetail(3)">
+        <div class="weui-flex__item">3</div>
+        <div class="weui-flex__item">李本山</div>
+        <div class="weui-flex__item">80</div>
+        <div class="weui-flex__item">20</div>
+        <div class="weui-flex__item">80</div>
+      </div>
+
 
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -78,11 +176,17 @@ export default {
   },
   data() {
     return {
+      list: [],
       // role: '',
-      index: 1,
+      type: 'DEFINE',
+      index: -1,
       title: enumTaskState[0],
       startDate: '',
-      endDate: ''
+      endDate: '',
+
+      pageSize: 10,
+      currentPage: 1,
+      totalCount: 1000
     };
   },
 
@@ -94,14 +198,39 @@ export default {
   computed: {
 
   },
+  watch: {
+    startDate(){
+      this.getData()
+    },
+    endDate(){
+      this.getData()
+    },
+    type(){
+      this.getData()
+    }
+  },
+
+  //上拉加载
+  onReachBottom() {
+    if(this.list.length < this.totalCount) {
+      this.getData(true)
+    }
+  },
+  // 下拉刷新
+  onPullDownRefresh () {
+    wx.stopPullDownRefresh()
+    this.getData()
+  },
+
   methods: {
     handleDetail(id){
       wx.navigateTo({
         url: "/pages/my-score-detail/main?id="+id
       });
     },
-    handelTabClick(index){
+    handelTabClick(index, type){
       this.index = index
+      this.type = type
     },
 
     bindStartDateChange(e) {
@@ -111,19 +240,29 @@ export default {
       this.endDate = e.mp.detail.value;
     },
 
-    bindPickerChange(e) {
-      this.area = this.enumArea[e.mp.detail.value];
-    },
+    // bindPickerChange(e) {
+    //   this.area = this.enumArea[e.mp.detail.value];
+    // },
 
-    bindScoreChange(e) {
-      this.score = this.enumScore[e.mp.detail.value];
-    },
+    // bindScoreChange(e) {
+    //   this.score = this.enumScore[e.mp.detail.value];
+    // },
 
-    async getData() {
-      // const data = await post(`/main/pagingQueryPointTrace?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}&currentPage=1&pageSize=10`);
-      // if(data.success){
-
-      // }
+    async getData(append) {
+      let params = {
+        "beginDate": this.startDate,
+        "currentPage": append? this.currentPage++ : 1,
+        "empNo": this.$store.state.userInfo.shopEmployee.id,
+        "endDate": this.endDate,
+        "interval": this.type,
+        "pageSize": this.pageSize,
+        "shopNo": this.$store.state.userInfo.shopEmployee.shopNo
+      }
+      const data = await post(`/point/getPointTable`, params);
+      if(data.success){
+        this.totalCount = data.totalCount
+        this.list = append ? this.list.concat((data.result) || []) : (data.result || [])
+      }
     },
     // goodsDetail(id) {
     //   wx.navigateTo({
@@ -133,7 +272,8 @@ export default {
   },
   created() {
 
-  }
+  },
+
 };
 </script>
 

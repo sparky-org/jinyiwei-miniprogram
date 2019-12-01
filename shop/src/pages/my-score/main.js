@@ -6,5 +6,6 @@ app.$mount()
 export default {
   config: {
     navigationBarTitleText: '积分榜',
+    "enablePullDownRefresh": true
   }
 }
