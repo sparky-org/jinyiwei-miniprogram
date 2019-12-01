@@ -45,7 +45,7 @@
               <div class="weui-form-preview__bd">
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">状态</div>
-                  <div class="weui-form-preview__value">{{enumState[item.status]}}</div>
+                  <div class="weui-form-preview__value">{{enumStateObj[item.status]}}</div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">开始时间</div>
@@ -86,7 +86,7 @@
               <div class="weui-form-preview__bd">
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">状态</div>
-                  <div class="weui-form-preview__value">{{enumState[item.status]}}</div>
+                  <div class="weui-form-preview__value">{{enumStateObj[item.status]}}</div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">项目名称</div>
@@ -135,7 +135,7 @@
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">状态</div>
-                  <div class="weui-form-preview__value">{{enumState[item.status]}}</div>
+                  <div class="weui-form-preview__value">{{enumStateObj[item.status]}}</div>
                 </div>
               </div>
               <!-- <div>
@@ -164,7 +164,7 @@
               <div class="weui-form-preview__bd">
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">状态</div>
-                  <div class="weui-form-preview__value" style="color: #f00;">{{enumState[item.status]}}</div>
+                  <div class="weui-form-preview__value" style="color: #f00;">{{enumStateObj[item.status]}}</div>
                 </div>
                 <!-- <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">开始日期</div>
@@ -295,7 +295,7 @@ export default {
       enumApplicationType,
       applyType:'',
 
-      enumState: {
+      enumStateObj: {
         'NEW': '待审批',
         'REVERTED': '已撤回',
         'PASSED': '审批通过',
@@ -393,7 +393,7 @@ export default {
     },
 
     bindStateChange(e) {
-      this.stateStr = this.enumState[e.mp.detail.value];
+      this.stateStr = enumStateList[e.mp.detail.value].text;
       this.state = enumStateList[e.mp.detail.value].value;
     },
 

@@ -95,7 +95,7 @@
           </div>
         </div>
 
-        <div class="page__bd" v-if="ccListStr">
+        <div class="page__bd" v-if="form.ccListStr">
           <div class="weui-cells no-t" style="margin-top: 0;">
             <div class="weui-cell">
               <div class="weui-cell__bd">
@@ -106,7 +106,7 @@
                   </div>
                   <div class="weui-uploader__bd">
                     <div class="weui-uploader__files">
-                      <div class="weui-uploader__file">{{ccListStr}}</div>
+                      <div class="weui-uploader__file">{{form.ccListStr}}</div>
                       <!-- <i class="iconfont iconjia"></i> -->
                     </div>
                   </div>
@@ -120,8 +120,21 @@
 
     </div>
 
-    <div class="operate-btn">
+    <div class="operate-btn" v-if="!type">
       <button class="weui-btn" type="warn" v-if="form.status=='NEW'" @click="handleBack">撤 回</button>
+    </div>
+
+    <div class="operate-btn" v-if="type=='approval' && form.status=='NEW' ">
+      <div class="operate-btn">
+        <div class="weui-flex">
+          <div class="weui-flex__item" style="padding-right: 10rpx;">
+            <button class="weui-btn" type="warn" @click="handleApproval(false)">拒 绝</button>
+          </div>
+          <div class="weui-flex__item" style="padding-left: 10rpx;">
+            <button class="weui-btn" type="primary" @click="handleApproval(true)">同 意</button>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -135,6 +148,8 @@ import { get, post } from "../../utils";
 export default {
   onShow() {
     this.id = this.$root.$mp.query.id;
+    this.type = this.$root.$mp.query.type;
+    this.applyNo =this.$root.$mp.query.applyNo;
     console.info(this.id)
     if(this.id){
       this.getData()
@@ -145,6 +160,8 @@ export default {
   },
   data() {
     return {
+      applyNo: '',
+      type: '',
 		  id: '',
       // role: '',
       noticeText: '1212',
@@ -172,6 +189,39 @@ export default {
   },
   methods: {
 
+    handleApproval(state){
+      wx.showModal({
+        title: '提示',
+        content: state ? '确认同意该申请吗？' : '确认拒绝该申请吗？',
+        // confirmText: "主操作",
+        // cancelText: "辅助操作",
+        success: async (res) => {
+          console.log(res);
+          if (res.confirm) {
+            console.log('用户点击主操作')
+            const data = await post(`/myApply/approve?auditEmpNo=${this.$store.state.userInfo.shopEmployee.id}&applyNo=${this.applyNo}&result=${state}`);
+            if(data.success){
+              wx.showToast({
+                title: '操作成功',
+                icon: 'success',
+                duration: 2000,
+                success(){
+
+                }
+              })
+              setTimeout(()=>{
+                wx.reLaunch({
+                  url: "/pages/my-approval/main"
+                });
+              },1000)
+            }
+          } else {
+            console.log('用户点击辅助操作')
+          }
+        }
+      });
+    },
+
     bindTimeChange(e) {
       console.log('选中的时间为：' + e.mp.detail.value);
     },
@@ -185,8 +235,10 @@ export default {
       const data = await post("/service/getItemApply?serviceRecordNo="+this.id);
 
       if(data.success){
+
+        console.info('data.result.ccEmpNames',data.result.ccEmpNames)
         if(data.result.ccEmpNames){
-          data.result.ccListStr = JSON.parse(data.result.ccEmpNames).join(',')
+          data.result.ccListStr = data.result.ccEmpNames.join(',')
         }
         // if(data.result.picList){
         //   this.files = data.result.picList.split(',')

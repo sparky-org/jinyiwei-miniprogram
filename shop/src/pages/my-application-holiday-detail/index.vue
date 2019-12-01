@@ -122,8 +122,20 @@
 
     </div>
 
-    <div class="operate-btn">
+    <div class="operate-btn" v-if="!type">
       <button class="weui-btn" type="warn" v-if="form.status=='NEW'" @click="handleBack">撤 回</button>
+    </div>
+    <div class="operate-btn" v-if="type=='approval' && form.status=='NEW' ">
+      <div class="operate-btn">
+        <div class="weui-flex">
+          <div class="weui-flex__item" style="padding-right: 10rpx;">
+            <button class="weui-btn" type="warn" @click="handleApproval(false)">拒 绝</button>
+          </div>
+          <div class="weui-flex__item" style="padding-left: 10rpx;">
+            <button class="weui-btn" type="primary" @click="handleApproval(true)">同 意</button>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
@@ -138,14 +150,19 @@ import { get, post } from "../../utils";
 export default {
   onShow() {
     this.id = this.$root.$mp.query.id;
+    this.type = this.$root.$mp.query.type;
     console.info(this.id)
-    this.getData()
+    if(this.id){
+      this.getData()
+    }
+    
   },
   components: {
 
   },
   data() {
     return {
+      type: '',
       id: null,
       form: null,
       enumState: {
@@ -172,6 +189,41 @@ export default {
 
   },
   methods: {
+
+    handleApproval(state){
+      wx.showModal({
+        title: '提示',
+        content: state ? '确认同意该申请吗？' : '确认拒绝该申请吗？',
+        // confirmText: "主操作",
+        // cancelText: "辅助操作",
+        success: async (res) => {
+          console.log(res);
+          if (res.confirm) {
+            console.log('用户点击主操作')
+            const data = await post(`/myApply/approve?auditEmpNo=${this.$store.state.userInfo.shopEmployee.id}&applyNo=${this.id}&result=${state}`);
+            if(data.success){
+              wx.showToast({
+                title: '操作成功',
+                icon: 'success',
+                duration: 2000,
+                success(){
+
+                }
+              })
+              setTimeout(()=>{
+                wx.reLaunch({
+                  url: "/pages/my-approval/main"
+                });
+              },1000)
+            }
+          } else {
+            console.log('用户点击辅助操作')
+          }
+        }
+      });
+    },
+
+
     handleBack(){
 
       wx.showModal({

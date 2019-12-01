@@ -137,9 +137,22 @@
 
     </div>
 
-    <div class="operate-btn">
+    <div class="operate-btn" v-if="!type">
       <button class="weui-btn" type="primary" @click="handleAdd" v-if="!id">确 定</button>
       <button class="weui-btn" type="warn" @click="handleBack" v-if="id && status=='NEW'">撤 销</button>
+    </div>
+
+    <div class="operate-btn" v-if="type=='approval' && status=='NEW' ">
+      <div class="operate-btn">
+        <div class="weui-flex">
+          <div class="weui-flex__item" style="padding-right: 10rpx;">
+            <button class="weui-btn" type="warn" @click="handleApprovalAction(false)">拒 绝</button>
+          </div>
+          <div class="weui-flex__item" style="padding-left: 10rpx;">
+            <button class="weui-btn" type="primary" @click="handleApprovalAction(true)">同 意</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <select-staff :multiple="multiple" :data="selectData" :visible.sync="selectStaffVisible" @getSelectData="getSelectStaff"></select-staff>
@@ -160,6 +173,8 @@ import selectCustomer from '@/components/select-customer';
 export default {
   onShow() {
     this.id = this.$root.$mp.query.id;
+    this.type = this.$root.$mp.query.type;
+    this.applyNo = this.$root.$mp.query.applyNo;
     // console.info(this.id)
     if(this.id){
       this.getData()
@@ -171,6 +186,7 @@ export default {
   },
   data() {
     return {
+      type: '',
       enumState: {
         'NEW': '已提交',
         'REVERTED': '已撤回',
@@ -180,7 +196,7 @@ export default {
 
       status: '',
 
-
+      applyNo: '',
       id: null,
       showTopTips: false,
       tipsMessage:'',
@@ -221,6 +237,40 @@ export default {
 
   },
   methods: {
+
+    handleApprovalAction(state){
+      wx.showModal({
+        title: '提示',
+        content: state ? '确认同意该申请吗？' : '确认拒绝该申请吗？',
+        // confirmText: "主操作",
+        // cancelText: "辅助操作",
+        success: async (res) => {
+          console.log(res);
+          if (res.confirm) {
+            console.log('用户点击主操作')
+            const data = await post(`/myApply/approve?auditEmpNo=${this.$store.state.userInfo.shopEmployee.id}&applyNo=${this.applyNo}&result=${state}`);
+            if(data.success){
+              wx.showToast({
+                title: '操作成功',
+                icon: 'success',
+                duration: 2000,
+                success(){
+
+                }
+              })
+              setTimeout(()=>{
+                wx.reLaunch({
+                  url: "/pages/my-approval/main"
+                });
+              },1000)
+            }
+          } else {
+            console.log('用户点击辅助操作')
+          }
+        }
+      });
+    },
+
     handleBack(){
       wx.showModal({
         title: '提示',

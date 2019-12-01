@@ -91,4 +91,9 @@ text {
 .required{
   color: #f00;
 }
+
+.no-more{
+  text-align: center;
+  color: #ccc;
+}
 </style>
