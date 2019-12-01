@@ -120,8 +120,10 @@ export default {
     },
 
     async getData() {
-      const data = await get(`/main/pagingQueryPointTrace?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`);
+      // const data = await post(`/main/pagingQueryPointTrace?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}&currentPage=1&pageSize=10`);
+      // if(data.success){
 
+      // }
     },
     // goodsDetail(id) {
     //   wx.navigateTo({
