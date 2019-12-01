@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    <div class="weui-toptips weui-toptips_warn" v-if="errorTips">请填写完整信息</div>
     <div class="weui-form-preview" style="margin-bottom: 20rpx;">
       <div class="weui-cells weui-cells_after-title">
         <div class="weui-cell weui-cell_input">
@@ -7,7 +8,9 @@
             <div class="weui-label"><span class="required">*</span>积分类型</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入积分类型" />
+            <picker @change="bindPickerChange" :value="index" :range="textList">
+              <input class="weui-input" disabled="disabled" :value="textList[index]" placeholder="请选择积分类型" />
+            </picker>
           </div>
         </div>
 
@@ -16,7 +19,7 @@
             <div class="weui-label"><span class="required">*</span>分值</div>
           </div>
           <div class="weui-cell__bd">
-            <input class="weui-input" placeholder="请输入分值" />
+            <input class="weui-input" v-model="form.value" placeholder="请输入分值" />
           </div>
         </div>
 
@@ -26,7 +29,7 @@
               <div class="weui-label"><span class="required">*</span>使用描述</div>
             </div>
             <div class="weui-cell__bd" style="padding: 20rpx 0;">
-              <textarea class="" placeholder="请输入使用描述" style="height: 3.3em; width: 100%;" v-model="noticeText" />
+              <textarea placeholder="请输入使用描述" style="height: 6.6em; width: 100%;" v-model="form.content" />
             </div>
           </div>
         </div>
@@ -34,7 +37,7 @@
     </div>
 
     <div class="operate-btn">
-      <button class="weui-btn" type="primary">确 定</button>
+      <button class="weui-btn" type="primary" @click="handleSubmit">确 定</button>
     </div>
 
   </div>
@@ -42,20 +45,48 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 
 export default {
   onShow() {
+    let item = wx.getStorageSync('score-item')
+    console.info(item,'item')
+    if(item){
+      wx.removeStorageSync('score-item')
+      let o = JSON.parse(item)
+      this.form.content = o.pointDesc
+      this.form.value = o.point
+      this.form.pointName = o.pointName
+      this.form.pointType = o.pointType
 
+      this.index = this.enumList.findIndex(item => {
+        return item == this.form.pointType
+      })
+      // 添加pointConfigNo
+      this.form.pointConfigNo = o.id
+    }
   },
   components: {
 
   },
   data() {
     return {
+      errorTips: false,
+      enumList: ["CHARACTER","ACTION","DAILY_RECORD","APPOINTMENT","ATTENDANCE"],
+      textList: ['品德积分','行为积分','日记奖励','预约客户奖励','按时打卡奖励'],
       // role: '',
-      noticeText: ''
+      index: 0,
+      // value: null,
+
+      form: {
+        "content": "",
+        // "empNo": '', // this.$store.state.userInfo.shopEmployee.id
+        // "pointConfigNo": 0,
+        "pointName": '品德积分',
+        "pointType": 'CHARACTER',
+        "value": ''
+      }
     };
   },
 
@@ -70,6 +101,51 @@ export default {
 
   },
   methods: {
+
+    async handleSubmit(){
+
+      if(!this.form.content || !this.form.value || !this.form.pointType){
+        this.errorTips = true
+        setTimeout(()=>{
+          this.errorTips = false
+        },1000)
+        return
+      }
+
+      let param = {
+        ...this.form,
+        "empNo": this.$store.state.userInfo.shopEmployee.id
+      }
+      const data = await post(`/point/createOrModifyPointConfig`,param);
+
+      if(data.success){
+        wx.showToast({
+          title: this.form.pointConfigNo?'修改成功':'创建成功',
+          icon: 'success',
+          duration: 1000,
+          success(){
+
+          }
+        })
+        setTimeout(()=>{
+          wx.navigateBack({
+            url: '/pages/my-score-rules/main'
+          })
+        },1000)
+      }
+    },
+
+
+
+    bindPickerChange(e) {
+      console.log('选中的值为：' + this.textList[e.mp.detail.value]);
+      this.index = e.mp.detail.value
+      this.form.pointName = this.textList[this.index]
+      this.form.pointType = this.enumList[e.mp.detail.value]
+
+    },
+
+
     handleEditTask(id){
       wx.navigateTo({
         url: "/pages/my-score-operate/main?id="+id
