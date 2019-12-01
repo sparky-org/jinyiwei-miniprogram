@@ -7,14 +7,14 @@
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea class="" placeholder="请输入店内制度" v-model="ruleText" style="height: 9.9em; width: 100%;" />
+          <textarea :disabled="!canEdit" placeholder="请输入店内制度" v-model="ruleText" style="height: 9.9em; width: 100%;" />
           <!-- <div class="weui-textarea-counter">0/200</div> -->
         </div>
       </div>
     </div>
 
     <div class="operate-btn">
-      <button class="weui-btn" type="primary" @click="handleSubmit">保 存</button>
+      <button class="weui-btn" type="primary" v-if="canEdit" @click="handleSubmit">保 存</button>
     </div>
 
   </div>
@@ -26,7 +26,7 @@ import { get, post} from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
-
+    this.getPoster()
   },
   components: {
 
@@ -35,7 +35,10 @@ export default {
     return {
       // role: '',
       errorTips: false,
-      ruleText: ''
+      ruleText: '',
+
+      canEdit: false,
+      companySystemNo: null
     };
   },
 
@@ -49,15 +52,30 @@ export default {
   },
   methods: {
 
+    async getPoster(){
+      const data = await post(`/companySystem/viewSystem?empNo=${this.$store.state.userInfo.shopEmployee.id}&shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`);
+      if(data.success){
+        this.canEdit = data.result.canEdit
+        this.ruleText = data.result.content
+        this.companySystemNo = data.result.companySystemNo
+      }
+    },
+
     async handleSubmit(){
       if(!this.ruleText){
         this.errorTips = true
         return
       }
-      const data = await post(`/companySystem/publishSystem`,{
+
+      let param = {
         "content": this.ruleText,
         "empNo": this.$store.state.userInfo.shopEmployee.id
-      });
+      }
+      if(this.companySystemNo){
+        param.noticeNo = this.companySystemNo
+      }
+
+      const data = await post(`/companySystem/publishSystem`,param);
       if(data.success){
         wx.showToast({
           title: '发布成功',

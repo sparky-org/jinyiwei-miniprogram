@@ -75,12 +75,12 @@
 
                     <div class="weui-uploader__file" v-if="item.state">
                       <image class="weui-uploader__img" :src="files[index]" mode="aspectFill" @click="predivImage" :id="files[index]" />
-                      <div class="delete-icon" @click="deleteImg" :id="files[index]"></div>
+                      <div class="delete-icon" v-if="canEdit" @click="deleteImg" :id="files[index]"></div>
                     </div>
 
                     <div class="weui-uploader__file weui-uploader__file_status" v-else>
                       <image class="weui-uploader__img" :src="files[index]" mode="aspectFill" @click="predivImage" :id="files[index]" />
-                      <div class="delete-icon" @click="deleteImg" :id="files[index]"></div>
+                      <div class="delete-icon" @click="deleteImg" v-if="canEdit" :id="files[index]"></div>
                       <div class="weui-uploader__file-content">
                         <icon type="warn" size="23" color="#F43530"></icon>
                       </div>
@@ -107,7 +107,7 @@
                     <div class="weui-uploader__file-content">50%</div>
                   </div> -->
                 </div>
-                <div class="weui-uploader__input-box">
+                <div class="weui-uploader__input-box" v-if="canEdit">
                   <div class="weui-uploader__input" @click="chooseImage"></div>
                 </div>
               </div>
@@ -130,7 +130,7 @@ import { get, post, host } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
-
+    this.getPoster()
   },
   components: {
 
@@ -144,6 +144,10 @@ export default {
 
       tipsMessage:'',
       showTopTips: false,
+
+
+      canEdit: false,
+      posterNo: null
       // files: ['https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=4133574179,304311957&fm=26&gp=0.jpg']
     };
   },
@@ -157,6 +161,25 @@ export default {
 
   },
   methods: {
+
+    async getPoster(){
+      const data = await post(`/poster/viewPosters?empNo=${this.$store.state.userInfo.shopEmployee.id}&shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`);
+      if(data.success){
+        this.canEdit = data.result.canEdit
+        if(data.result.content){
+          this.files = data.result.content.split(',')
+          // this.files = [...this.files,'https://csdnimg.cn/pubfooter/images/csdn-zx.png']
+          this.myFiles = this.files.map(item => {
+            return {
+              state: true,
+              key: item,
+              url: item
+            }
+          })
+        }
+        this.posterNo = data.result.posterNo
+      }
+    },
 
     async handleSubmit(){
       // if(!this.content){
@@ -180,22 +203,29 @@ export default {
           },1500)
           return
         }
-      }else{
-        this.tipsMessage = '请先选择图片!'
-        this.showTopTips = true
-        setTimeout(()=>{
-          this.showTopTips = false
-        },1500)
-        return
       }
+      // else{
+      //   this.tipsMessage = '请先选择图片!'
+      //   this.showTopTips = true
+      //   setTimeout(()=>{
+      //     this.showTopTips = false
+      //   },1500)
+      //   return
+      // }
 
       let attachmentPicList = this.myFiles.map(item => {
         return item.url
       })
-      const data = await post(`/poster/publishPoster`,{
+
+      let param = {
         "content": attachmentPicList.join(','),
         "empNo": this.$store.state.userInfo.shopEmployee.id
-      });
+      }
+      if(this.posterNo){
+        param.posterNo = this.posterNo
+      }
+
+      const data = await post(`/poster/publishPoster`,param);
       if(data.success){
         wx.showToast({
           title: '提交成功',
