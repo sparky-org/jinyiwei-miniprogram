@@ -117,7 +117,6 @@ export default {
         "empNo": this.$store.state.userInfo.shopEmployee.id
       }
       const data = await post(`/point/createOrModifyPointConfig`,param);
-
       if(data.success){
         wx.showToast({
           title: this.form.pointConfigNo?'修改成功':'创建成功',
