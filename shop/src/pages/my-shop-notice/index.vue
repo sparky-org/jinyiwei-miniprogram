@@ -64,6 +64,9 @@ export default {
     async handleSubmit(){
       if(!this.noticeText){
         this.errorTips = true
+        setTimeout(()=>{
+          this.errorTips = false
+        },1000)
         return
       }
 

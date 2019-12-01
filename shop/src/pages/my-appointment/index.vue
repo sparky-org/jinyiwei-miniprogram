@@ -92,6 +92,7 @@ export default {
   },
   data() {
     return {
+      month: new Date().getMonth() + 1,
       yyList: [],
       // months: ['一月', '二月', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       // disabledArray: ['2018-6-27','2018-6-25'],
@@ -126,21 +127,43 @@ export default {
   },
   methods: {
 
+    // prev(year, month, weekIndex) {
+    //   this.getData(year +'-'+ month)
+    //   console.log(year, month, weekIndex)
+    // },
+    // next(year, month, weekIndex) {
+    //   this.getData(year +'-'+ month)
+    //   console.log(year, month, weekIndex)
+    // },
+    // selectYear(year) {
+    //   console.log(year)
+    // },
+    // selectMonth(month, year) {
+    //   this.getData(year +'-'+ month)
+    //   console.log(year, month)
+    // },
+
     prev(year, month, weekIndex) {
-      this.getData(year +'-'+ month)
       console.log(year, month, weekIndex)
+      this.month = month
+      this.getData(year +'-'+ month)
     },
     next(year, month, weekIndex) {
-      this.getData(year +'-'+ month)
       console.log(year, month, weekIndex)
+      this.month = month
+      this.getData(year +'-'+ month)
     },
     selectYear(year) {
-      console.log(year)
+      console.log(year +'-'+ this.month)
+      this.getData(year +'-'+ this.month)
     },
     selectMonth(month, year) {
-      this.getData(year +'-'+ month)
       console.log(year, month)
+      this.month = month
+      this.getData(year +'-'+ month)
     },
+
+
     setToday() {
       this.$refs.calendar.setToday()
     },

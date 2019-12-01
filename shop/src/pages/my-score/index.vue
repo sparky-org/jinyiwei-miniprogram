@@ -65,13 +65,13 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 
 let enumTaskState = ['任务状态','进行中','审核中','已奖励'];
 export default {
   onShow() {
-
+    this.getData()
   },
   components: {
 
@@ -119,16 +119,10 @@ export default {
       this.score = this.enumScore[e.mp.detail.value];
     },
 
-    // async getData() {
-    //   const data = await get("/index/index");
-    //   this.banner = data.banner;
-    //   this.channel = data.channel;
-    //   this.brandList = data.brandList;
-    //   this.newGoods = data.newGoods;
-    //   this.hotGoods = data.hotGoods;
-    //   this.topicList = data.topicList;
-    //   this.newCategoryList = data.newCategoryList;
-    // },
+    async getData() {
+      const data = await get(`/main/pagingQueryPointTrace?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`);
+
+    },
     // goodsDetail(id) {
     //   wx.navigateTo({
     //     url: "/pages/goods/main?id=" + id
