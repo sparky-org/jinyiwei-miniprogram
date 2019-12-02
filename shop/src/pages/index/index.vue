@@ -181,7 +181,9 @@ export default {
 
 
 
-
+    // wx.navigateTo({
+    //   url: "/pages/my-score/main"
+    // });
 
     // this.$store.commit('setUserInfo',userInfo)
     // if( userInfo.role == "EMPLOY"){

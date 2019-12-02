@@ -95,7 +95,15 @@ import selectCustomer from '@/components/select-customer';
 
 export default {
   onShow() {
-
+    this.name = this.$root.$mp.query.name;
+    this.id = this.$root.$mp.query.id;
+    console.info('customerNo', this.id, this.name)
+    this.customerSelectData = [{
+      customerNo: this.id,
+      id: this.id,
+      value: this.id,
+      name: this.name
+    }]
   },
   components: {
     selectStaff,
@@ -103,6 +111,9 @@ export default {
   },
   data() {
     return {
+      id: null,
+      name:'',
+
       date: '',
       time: '',
       remark: '',
@@ -218,9 +229,14 @@ export default {
           }
         })
         setTimeout(()=>{
-          wx.redirectTo({
-            url: '/pages/my-appointment/main'
-          })
+          if(this.id){
+            wx.navigateBack()
+          }else{
+            wx.redirectTo({
+              url: '/pages/my-appointment/main'
+            })
+          }
+
         },1000)
       }
     },

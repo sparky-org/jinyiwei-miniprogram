@@ -101,7 +101,7 @@
 
 
     <div class="add-customer">
-      <button class="weui-btn" type="primary">预约</button>
+      <button class="weui-btn" type="primary" @click="handleYy">预约</button>
       <button class="weui-btn modify" type="default" style="margin-top: 20rpx;" @click="handleToOperate">修改</button>
     </div>
   </template>
@@ -223,6 +223,12 @@ export default {
   },
 
   methods: {
+
+    handleYy(){
+      wx.navigateTo({
+        url: `/pages/my-appointment-create/main?name=${this.customerData.name}&id=${this.customerData.customerNo}`
+      });
+    },
 
     handleCall(phone){
       wx.makePhoneCall({
