@@ -1,7 +1,8 @@
 <template>
-  <div class="page">
+  <div class="page" style="background-color: #fff;">
+    <template v-if="!isSelectArea">
 
-     <div class="weui-toptips weui-toptips_warn" v-if="errorTips">错误提示</div>
+     <div class="weui-toptips weui-toptips_warn" v-if="errorTips">{{errMsg}}</div>
 
      <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell weui-cell_input">
@@ -9,7 +10,7 @@
           <div class="weui-label"><span class="required">*</span>任务标题</div>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请输入任务标题" />
+          <input class="weui-input" v-model="form.taskTitle" placeholder="请输入任务标题" />
         </div>
       </div>
 
@@ -18,29 +19,44 @@
           <div class="weui-label"><span class="required">*</span>积分类型</div>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请选择积分类型" />
+          <picker @change="bindPickerChange" :value="index" :range="array">
+            <input class="weui-input" disabled="disabled" :value="array[index]" placeholder="请选择积分类型" />
+          </picker>
           <div class="weui-cell__ft weui-cell__ft_in-access" style="top: -35rpx"></div>
         </div>
       </div>
 
-      <div class="weui-cell weui-cell_input">
+      <!-- <div class="weui-cell weui-cell_input">
         <div class="weui-cell__hd">
           <div class="weui-label"><span class="required">*</span>个数限制</div>
         </div>
         <div class="weui-cell__bd">
           <input class="weui-input" placeholder="请输入个数限制" />
         </div>
-      </div>
+      </div> -->
 
-      <div class="weui-cell weui-cell_input">
+      <!-- <div class="weui-cell weui-cell weui-cell_input"> -->
+        <div class="weui-cell weui-cell_switch">
+          <div class="weui-cell__bd">是否全选</div>
+          <div class="weui-cell__ft">
+            <switch :checked="checkAllState" @change="switchChange"/>
+          </div>
+        </div>
+      <!-- </div> -->
+
+      <div class="weui-cell weui-cell_input" v-if="!checkAllState">
         <div class="weui-cell__hd">
           <div class="weui-label">可见范围</div>
         </div>
         <div class="weui-cell__bd">
-          <input class="weui-input" placeholder="请选择可见范围" />
+          <!-- <picker @change="bindPickerChange" :value="index" :range="array"> -->
+            <input class="weui-input" style="padding-right: 20rpx;" @click="isSelectArea=true" :value="selectEmpNames" disabled="disabled" placeholder="请选择可见范围" />
+          <!-- </picker> -->
           <div class="weui-cell__ft weui-cell__ft_in-access" style="top: -35rpx"></div>
         </div>
       </div>
+
+
 
 
     </div>
@@ -49,23 +65,111 @@
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea class="" placeholder="请输入任务描述" style="height: 3.3em" />
+          <textarea v-model="form.taskDesc" placeholder="请输入任务描述" style="height: 3.3em" />
           <!-- <div class="weui-textarea-counter">0/200</div> -->
         </div>
       </div>
     </div>
 
     <div class="operate-btn" v-if="type!='see'">
-      <button class="weui-btn" type="primary" v-if="type=='add'">提交</button>
+      <button class="weui-btn" type="primary" v-if="type=='add'" @click="handleSubmit(1)">提交</button>
       <button class="weui-btn" type="primary" v-if="type=='edit'">修改</button>
     </div>
+
+
+    </template>
+
+    <template v-else>
+      <div style="padding: 0 10rpx;">
+      <div class="weui-cells weui-cells_after-title" v-if="typeItems.length>=3 && groupData.length>=3">
+
+      <checkbox-group @change="checkDZChange">
+        <label class="weui-cell weui-check__label" style="border-bottom: 1rpx solid #ccc; background-color: #E5E5E5;">
+          <checkbox class="weui-check" :value="typeItems[0].value" :checked="typeItems[0].checked" />
+          <div class="weui-cell__hd weui-check__hd_in-checkbox">
+            <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!typeItems[0].checked"></icon>
+            <icon class="weui-icon-checkbox_success" type="success" size="23" v-if="typeItems[0].checked"></icon>
+          </div>
+          <div class="weui-cell__bd">{{typeItems[0].name}}</div>
+        </label>
+      </checkbox-group>
+      <checkbox-group @change="checkDZChildChange">
+        <label class="weui-cell weui-check__label" v-for="(it,idx) in groupData[0]" :key="idx">
+          <checkbox class="weui-check" :value="it.value" :checked="it.checked" />
+          <div class="weui-cell__hd weui-check__hd_in-checkbox">
+            <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!it.checked"></icon>
+            <icon class="weui-icon-checkbox_success" type="success" size="23" v-if="it.checked"></icon>
+          </div>
+          <div class="weui-cell__bd">{{it.name}}</div>
+        </label>
+      </checkbox-group>
+
+      <checkbox-group @change="checkGWChange">
+        <label class="weui-cell weui-check__label" style="border-bottom: 1rpx solid #ccc; background-color: #E5E5E5;">
+          <checkbox class="weui-check" :value="typeItems[1].value" :checked="typeItems[1].checked" />
+          <div class="weui-cell__hd weui-check__hd_in-checkbox">
+            <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!typeItems[1].checked"></icon>
+            <icon class="weui-icon-checkbox_success" type="success" size="23" v-if="typeItems[1].checked"></icon>
+          </div>
+          <div class="weui-cell__bd">{{typeItems[1].name}}</div>
+        </label>
+      </checkbox-group>
+      <checkbox-group @change="checkGWChildChange">
+        <label class="weui-cell weui-check__label" v-for="(it,idx) in groupData[1]" :key="idx">
+          <checkbox class="weui-check" :value="it.value" :checked="it.checked" />
+          <div class="weui-cell__hd weui-check__hd_in-checkbox">
+            <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!it.checked"></icon>
+            <icon class="weui-icon-checkbox_success" type="success" size="23" v-if="it.checked"></icon>
+          </div>
+          <div class="weui-cell__bd">{{it.name}}</div>
+        </label>
+      </checkbox-group>
+
+      <checkbox-group @change="checkMRSChange">
+        <label class="weui-cell weui-check__label" style="border-bottom: 1rpx solid #ccc; background-color: #E5E5E5;">
+          <checkbox class="weui-check" :value="typeItems[2].value" :checked="typeItems[2].checked" />
+          <div class="weui-cell__hd weui-check__hd_in-checkbox">
+            <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!typeItems[2].checked"></icon>
+            <icon class="weui-icon-checkbox_success" type="success" size="23" v-if="typeItems[2].checked"></icon>
+          </div>
+          <div class="weui-cell__bd">{{typeItems[2].name}}</div>
+        </label>
+      </checkbox-group>
+      <checkbox-group @change="checkMRSChildChange">
+        <label class="weui-cell weui-check__label" v-for="(it,idx) in groupData[2]" :key="idx">
+          <checkbox class="weui-check" :value="it.value" :checked="it.checked" />
+          <div class="weui-cell__hd weui-check__hd_in-checkbox">
+            <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!it.checked"></icon>
+            <icon class="weui-icon-checkbox_success" type="success" size="23" v-if="it.checked"></icon>
+          </div>
+          <div class="weui-cell__bd">{{it.name}}</div>
+        </label>
+      </checkbox-group>
+
+
+
+      </div>
+
+      </div>
+
+      <div class="operate-btn">
+        <div class="weui-flex">
+          <div class="weui-flex__item" style="padding-right: 10rpx;">
+            <button class="weui-btn" type="default" style="border: 1rpx solid #ccc;" @click="handleSelect(1)">取 消</button>
+          </div>
+          <div class="weui-flex__item" style="padding-left: 10rpx;">
+            <button class="weui-btn" type="primary" @click="handleSelect(2)">确认选择</button>
+          </div>
+        </div>
+      </div>
+    </template>
 
   </div>
 </template>
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
@@ -87,16 +191,65 @@ export default {
         title: '任务详情'
       })
     }
+
+    this.getGroupData()
+    this.getJfConfig()
   },
   components: {
 
   },
+  watch: {
+    checkAllState(val){
+      if(!val){
+        this.groupData.forEach(item => {
+          item.forEach(it => {
+            it.checked = false
+          })
+        })
+        this.typeItems.forEach(it => {
+          it.checked = false
+        })
+        this.selectEmpNames = ''
+        this.form.empList = []
+        this.form.jobList = []
+      }else{
+        // 全选
+        this.selectEmpNames = ''
+        this.form.empList = []
+        this.form.jobList = this.typeItems.map(item=>{
+          return item.value
+        })
+      }
+    }
+  },
   data() {
     return {
+      errMsg:'',
+      checkAllState: true,
+      isSelectArea: false,
+      groupData: [],
       // role: '',
+      jfList:[],
+      array: [],
+      index: 0,
+
       type: '',
       id: null,
-      errorTips: false
+      errorTips: false,
+
+      typeItems: [],
+      checkboxItems: [
+        // { name: 'standard is dealt for u.', value: '0', checked: true },
+        // { name: 'standard is dealicient for u.', value: '1', checked: false }
+      ],
+      selectEmpNames: '',
+      form: {
+        "empList": [],
+        "jobList":[],
+        "pointConfigNo": null,
+        "taskDesc": "",
+        "taskTitle": ""
+      }
     };
   },
 
@@ -109,6 +262,244 @@ export default {
 
   },
   methods: {
+
+    switchChange(e) {
+      console.log("switch发生change事件，携带value值为："+ e.mp.detail.value);
+      this.checkAllState = e.mp.detail.value
+    },
+
+    checkDZChange(e) {
+      console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
+      this.typeItems[0].checked = e.mp.detail.value!='' ? true : false;
+      if(this.typeItems[0].checked){
+        this.groupData[0].forEach(item => {
+          item.checked = true
+        })
+      }else{
+        this.groupData[0].forEach(item => {
+          item.checked = false
+        })
+      }
+    },
+    checkGWChange(e) {
+      console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
+      this.typeItems[1].checked = e.mp.detail.value!='' ? true : false;
+      if(this.typeItems[1].checked){
+        this.groupData[1].forEach(item => {
+          item.checked = true
+        })
+      }else{
+        this.groupData[1].forEach(item => {
+          item.checked = false
+        })
+      }
+    },
+    checkMRSChange(e) {
+      console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
+      this.typeItems[2].checked = e.mp.detail.value!='' ? true : false;
+      if(this.typeItems[2].checked){
+        this.groupData[2].forEach(item => {
+          item.checked = true
+        })
+      }else{
+        this.groupData[2].forEach(item => {
+          item.checked = false
+        })
+      }
+    },
+
+    checkDZChildChange(e){
+      console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
+      var checkboxItems = this.groupData[0];
+      var values = e.mp.detail.value;
+      for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+        checkboxItems[i].checked = false;
+
+        for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+          if (String(checkboxItems[i].value) === String(values[j])) {
+            checkboxItems[i].checked = true;
+            break;
+          }
+        }
+      }
+      this.groupData[0] = checkboxItems;
+      let state = this.groupData[0].every(item=>{
+        return item.checked
+      })
+      if(state){
+        this.typeItems[0].checked = true
+      }else{
+        this.typeItems[0].checked = false
+      }
+    },
+    checkGWChildChange(e){
+      console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
+      var checkboxItems = this.groupData[1];
+      var values = e.mp.detail.value;
+      for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+        checkboxItems[i].checked = false;
+
+        for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+          if (String(checkboxItems[i].value) === String(values[j])) {
+            checkboxItems[i].checked = true;
+            break;
+          }
+        }
+      }
+      this.groupData[1] = checkboxItems;
+      let state = this.groupData[1].every(item=>{
+        return item.checked
+      })
+      if(state){
+        this.typeItems[1].checked = true
+      }else{
+        this.typeItems[1].checked = false
+      }
+    },
+    checkMRSChildChange(e){
+      console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
+      var checkboxItems = this.groupData[2];
+      var values = e.mp.detail.value;
+      for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+        checkboxItems[i].checked = false;
+
+        for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+          if (String(checkboxItems[i].value) === String(values[j])) {
+            checkboxItems[i].checked = true;
+            break;
+          }
+        }
+      }
+      this.groupData[2] = checkboxItems;
+      let state = this.groupData[2].every(item=>{
+        return item.checked
+      })
+      if(state){
+        this.typeItems[2].checked = true
+      }else{
+        this.typeItems[2].checked = false
+      }
+    },
+
+
+    getJfConfig(){
+      const data = post(`/point/getPointConfig?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`).then((data)=>{
+        if(data.success){
+          if(data.result){
+            this.jfList = data.result
+            this.array = data.result.map(item => {
+              return item.pointName
+            })
+            this.form.pointConfigNo = this.jfList[this.index].id
+          }
+        }
+      });
+    },
+
+    getGroupData(){
+      const data = post(`/employee/queryEmpGroupByJob?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`).then((data)=>{
+        if(data.success){
+          let arr = []
+          let res = []
+          data.result.forEach(item => {
+            arr.push({
+              checked: false,
+              name: item.jobName,
+              value: item.jobNo
+            })
+            if(item.empInfos){
+              item.empInfos.forEach(it => {
+                it.name = it.empName
+                it.value = it.empNo
+                it.checked = false
+              })
+              res.push(item.empInfos)
+            }
+          })
+          this.typeItems = JSON.parse(JSON.stringify(arr))
+          this.form.jobList = this.typeItems.map(item=>{
+            return item.value
+          })
+          this.groupData = JSON.parse(JSON.stringify(res))
+        }
+      });
+    },
+
+    handleSelect(type){
+      // 取消
+      if(type == '1'){
+        this.isSelectArea = false
+      }
+      // 确定
+      if(type == '2'){
+        let arr = []
+        let names = []
+        this.groupData.map(item => {
+          item.forEach(it => {
+            if(it.checked){
+              arr.push(it.value)
+              names.push(it.name)
+            }
+          })
+        })
+        this.form.empList = arr
+        this.selectEmpNames = names.join(',')
+
+        this.isSelectArea = false
+      }
+
+    },
+
+    bindPickerChange(e) {
+      console.log('选中的值为：' + this.array[e.mp.detail.value]);
+      this.index = e.mp.detail.value
+      this.form.pointConfigNo = this.jfList[this.index].id
+    },
+
+    handleSubmit(){
+      if(!this.form.taskDesc || !this.form.taskTitle){
+        this.errMsg = '请填写完整信息'
+        this.errorTips = true
+        setTimeout(()=>{
+          this.errorTips = false
+        },1000)
+        return
+      }
+
+      if(!this.checkAllState){
+        if(this.form.empList.length==0){
+          this.errMsg = '请选择可见范围'
+          this.errorTips = true
+          setTimeout(()=>{
+            this.errorTips = false
+          },1000)
+          return
+        }
+      }
+
+
+      let params = {
+        ...this.form,
+        empNo: this.$store.state.userInfo.shopEmployee.id
+      }
+      const data = post(`/myTask/publishTask`, params).then((data)=>{
+        if(data.success){
+          wx.showToast({
+            title: '创建成功',
+            icon: 'success',
+            duration: 1000,
+            success(){
+
+            }
+          })
+          setTimeout(()=>{
+            wx.redirectTo({
+              url: '/pages/my-task-manage/main'
+            })
+          },1000)
+        }
+      });
+    }
 
 
     // handleAreaSelect(){

@@ -247,7 +247,7 @@ export default {
         this.showTopTips = true
         setTimeout(()=>{
           this.showTopTips = false
-        },3000)
+        },1000)
         return
       }
 
