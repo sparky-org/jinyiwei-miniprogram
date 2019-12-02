@@ -39,123 +39,24 @@
   <div style="padding-top: 81px;">
 
     <div class="content weui-flex-wrapper">
-      <div class="weui-flex list" @click="handleDetail(1)">
+      <template v-if="list.length">
+        <div class="weui-flex list" v-for="(item, index) in list" :key="index" @click="handleDetail">
+          <div class="weui-flex__item">{{index+1}}</div>
+          <div class="weui-flex__item">{{item.name}}</div>
+          <div class="weui-flex__item">{{item.increase}}</div>
+          <div class="weui-flex__item">{{item.decrease}}</div>
+          <div class="weui-flex__item">{{item.total}}</div>
+        </div>
+        <div style="padding-top: 30rpx;" class="no-more" v-if="list.length >= totalCount">没有更多了</div>
+      </template>
+      <no-data v-else></no-data>
+      <!-- <div class="weui-flex list" @click="handleDetail(1)">
         <div class="weui-flex__item">1</div>
         <div class="weui-flex__item">邹志辉</div>
         <div class="weui-flex__item">80</div>
         <div class="weui-flex__item">0</div>
         <div class="weui-flex__item">100</div>
-      </div>
-      <div class="weui-flex list" @click="handleDetail(1)">
-        <div class="weui-flex__item">1</div>
-        <div class="weui-flex__item">邹志辉</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">0</div>
-        <div class="weui-flex__item">100</div>
-      </div>
-
-      <div class="weui-flex list" @click="handleDetail(2)">
-        <div class="weui-flex__item">2</div>
-        <div class="weui-flex__item">李德华</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">10</div>
-        <div class="weui-flex__item">90</div>
-      </div>
-
-      <div class="weui-flex list" @click="handleDetail(3)">
-        <div class="weui-flex__item">3</div>
-        <div class="weui-flex__item">李本山</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">20</div>
-        <div class="weui-flex__item">80</div>
-      </div>
-      <div class="weui-flex list" @click="handleDetail(1)">
-        <div class="weui-flex__item">1</div>
-        <div class="weui-flex__item">邹志辉</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">0</div>
-        <div class="weui-flex__item">100</div>
-      </div>
-
-      <div class="weui-flex list" @click="handleDetail(2)">
-        <div class="weui-flex__item">2</div>
-        <div class="weui-flex__item">李德华</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">10</div>
-        <div class="weui-flex__item">90</div>
-      </div>
-
-      <div class="weui-flex list" @click="handleDetail(3)">
-        <div class="weui-flex__item">3</div>
-        <div class="weui-flex__item">李本山</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">20</div>
-        <div class="weui-flex__item">80</div>
-      </div>
-      <div class="weui-flex list" @click="handleDetail(1)">
-        <div class="weui-flex__item">1</div>
-        <div class="weui-flex__item">邹志辉</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">0</div>
-        <div class="weui-flex__item">100</div>
-      </div>
-
-      <div class="weui-flex list" @click="handleDetail(2)">
-        <div class="weui-flex__item">2</div>
-        <div class="weui-flex__item">李德华</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">10</div>
-        <div class="weui-flex__item">90</div>
-      </div>
-
-      <div class="weui-flex list" @click="handleDetail(3)">
-        <div class="weui-flex__item">3</div>
-        <div class="weui-flex__item">李本山</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">20</div>
-        <div class="weui-flex__item">80</div>
-      </div>
-      <div class="weui-flex list" @click="handleDetail(1)">
-        <div class="weui-flex__item">1</div>
-        <div class="weui-flex__item">邹志辉</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">0</div>
-        <div class="weui-flex__item">100</div>
-      </div>
-
-      <div class="weui-flex list" @click="handleDetail(2)">
-        <div class="weui-flex__item">2</div>
-        <div class="weui-flex__item">李德华</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">10</div>
-        <div class="weui-flex__item">90</div>
-      </div>
-
-      <div class="weui-flex list" @click="handleDetail(3)">
-        <div class="weui-flex__item">3</div>
-        <div class="weui-flex__item">李本山</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">20</div>
-        <div class="weui-flex__item">80</div>
-      </div>
-
-      <div class="weui-flex list" @click="handleDetail(2)">
-        <div class="weui-flex__item">2</div>
-        <div class="weui-flex__item">李德华</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">10</div>
-        <div class="weui-flex__item">90</div>
-      </div>
-
-      <div class="weui-flex list" @click="handleDetail(3)">
-        <div class="weui-flex__item">3</div>
-        <div class="weui-flex__item">李本山</div>
-        <div class="weui-flex__item">80</div>
-        <div class="weui-flex__item">20</div>
-        <div class="weui-flex__item">80</div>
-      </div>
-
-
+      </div> -->
     </div>
   </div>
 </div>
@@ -165,6 +66,7 @@
 import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
+import noData from '@/components/no-data'
 
 let enumTaskState = ['任务状态','进行中','审核中','已奖励'];
 export default {
@@ -172,14 +74,14 @@ export default {
     this.getData()
   },
   components: {
-
+    noData
   },
   data() {
     return {
       list: [],
       // role: '',
-      type: 'DEFINE',
-      index: -1,
+      type: 'DAY',
+      index: 1,
       title: enumTaskState[0],
       startDate: '',
       endDate: '',
@@ -224,13 +126,29 @@ export default {
 
   methods: {
     handleDetail(id){
+      let params = {
+        "beginDate": this.startDate,
+        "currentPage": this.currentPage,
+        "empNo": this.$store.state.userInfo.shopEmployee.id,
+        "endDate": this.endDate,
+        "interval": this.type,
+        "pageSize": this.pageSize,
+        "shopNo": this.$store.state.userInfo.shopEmployee.shopNo
+      }
+      wx.setStorageSync('score-item-detail',JSON.stringify(params))
       wx.navigateTo({
-        url: "/pages/my-score-detail/main?id="+id
+        url: "/pages/my-score-detail/main"
       });
     },
     handelTabClick(index, type){
-      this.index = index
-      this.type = type
+      if((this.index == index) &&  (this.startDate && this.endDate)){
+        this.index = -1
+        this.type = 'DEFINE'
+      }else{
+        this.index = index
+        this.type = type
+      }
+
     },
 
     bindStartDateChange(e) {
@@ -260,7 +178,7 @@ export default {
       }
       const data = await post(`/point/getPointTable`, params);
       if(data.success){
-        this.totalCount = data.totalCount
+        this.totalCount = data.total
         this.list = append ? this.list.concat((data.result) || []) : (data.result || [])
       }
     },
