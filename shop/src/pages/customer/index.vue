@@ -47,83 +47,48 @@
         <div class="weui-search-bar__text">搜索顾客</div>
         </label>
       </div>
-      <div class="weui-search-bar__cancel-btn" :hidden="!inputShowed" @click="hideInput">取消</div>
+      <!-- <div class="weui-search-bar__cancel-btn" :hidden="!inputShowed" @click="hideInput">取消</div> -->
       </div>
-      <div class="weui-cells searchbar-result" v-if="inputVal.length > 0">
-      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-        <div class="weui-cell__bd">
-        <div>实时搜索文本</div>
-        </div>
-      </navigator>
-      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-        <div class="weui-cell__bd">
-        <div>实时搜索文本</div>
-        </div>
-      </navigator>
-      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-        <div class="weui-cell__bd">
-        <div>实时搜索文本</div>
-        </div>
-      </navigator>
-      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
-        <div class="weui-cell__bd">
-        <div>实时搜索文本</div>
-        </div>
-      </navigator>
-      </div>
+      <!-- <div class="weui-cells searchbar-result" v-if="inputVal.length > 0">
+        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+          <div class="weui-cell__bd">
+          <div>实时搜索文本</div>
+          </div>
+        </navigator>
+        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+          <div class="weui-cell__bd">
+          <div>实时搜索文本</div>
+          </div>
+        </navigator>
+        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+          <div class="weui-cell__bd">
+          <div>实时搜索文本</div>
+          </div>
+        </navigator>
+        <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+          <div class="weui-cell__bd">
+          <div>实时搜索文本</div>
+          </div>
+        </navigator>
+      </div> -->
     </div>
 
 
     <div class="weui-cells weui-cells_after-title no-t">
-      <navigator url="/pages/customer-detail/main?customerId=1" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <!-- <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-        </div> -->
-        <div class="weui-cell__bd">陈菊&#12288;<span style="color: #ccc;">182****8238</span></div>
-        <div class="weui-cell__ft">2019-11-18</div>
-      </navigator>
-      <navigator url="/pages/customer-detail/main?customerId=2" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <!-- <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-        </div> -->
-        <div class="weui-cell__bd">杨华&#12288;<span style="color: #ccc;">171****0217</span></div>
-        <div class="weui-cell__ft">2019-01-16</div>
-      </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <!-- <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-        </div> -->
-        <div class="weui-cell__bd">李本山&#12288;<span style="color: #ccc;">152****8643</span></div>
-        <div class="weui-cell__ft">2019-10-16</div>
-      </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <!-- <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-        </div> -->
-        <div class="weui-cell__bd">李俊杰&#12288;<span style="color: #ccc;">181****3212</span></div>
-        <div class="weui-cell__ft">2019-10-16</div>
-      </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <!-- <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-        </div> -->
-        <div class="weui-cell__bd">陈小平&#12288;<span style="color: #ccc;">171****0217</span></div>
-        <div class="weui-cell__ft">2019-10-16</div>
-      </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <!-- <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-        </div> -->
-        <div class="weui-cell__bd">张磊&#12288;<span style="color: #ccc;">152****8643</span></div>
-        <div class="weui-cell__ft">2019-10-16</div>
-      </navigator>
-      <navigator url="/pages/customer-detail/main" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
-        <!-- <div class="weui-cell__hd">
-          <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-        </div> -->
-        <div class="weui-cell__bd">李杰&#12288;<span style="color: #ccc;">181****3212</span></div>
-        <div class="weui-cell__ft">2019-10-16</div>
-      </navigator>
+
+      <template v-if="list.length">
+        <navigator v-for="(item, index) in list" :key="index" url="/pages/customer-detail/main?customerId=1" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+          <!-- <div class="weui-cell__hd">
+            <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+          </div> -->
+          <div class="weui-cell__bd">{{item.name}}&#12288;<span style="color: #ccc;">{{item.phone}}</span></div>
+          <div class="weui-cell__ft">{{item.addDate}}</div>
+        </navigator>
+        <div style="padding: 30rpx 0; margin-top:-20rpx;" class="no-more" v-if="list.length >= totalCount">没有更多了</div>
+      </template>
+      <no-data v-else></no-data>
+      <div v-if="inputVal && list.length==0" style="color: #ccc; padding: 20rpx 0; text-align: center;">搜索不到此顾客</div>
+
     </div>
 
     <div class="add-customer">
@@ -136,8 +101,8 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get, post } from "../../utils";
-
+import { get, post, queryParams } from "../../utils";
+import noData from '@/components/no-data'
 import * as echarts from 'echarts/dist/echarts.simple.min'
 import mpvueEcharts from 'mpvue-echarts'
 
@@ -148,6 +113,7 @@ export default {
   onShow() {
     this.getDetail()
     this.getEchartData()
+    this.getMyCustomer()
   },
   computed: {
 
@@ -160,6 +126,7 @@ export default {
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role)
     // this.getData();
 
+
   },
   data() {
     return {
@@ -169,9 +136,42 @@ export default {
       echarts,
       onInit: null,
       inputShowed: false,
-      inputVal: ''
+      inputVal: '',
+
+      currentPage: 1,
+      pageSize: 10,
+      totalCount: 0,
+      list: [],
+      copyList: []
     };
   },
+
+  //上拉加载
+  onReachBottom() {
+    if(this.copyList.length < this.totalCount) {
+      this.getMyCustomer(true)
+    }
+  },
+  // 下拉刷新
+  onPullDownRefresh () {
+    wx.stopPullDownRefresh()
+    this.getDetail()
+    this.getEchartData()
+    this.getMyCustomer()
+  },
+
+  watch: {
+    inputVal(val){
+      if(val){
+        this.list = this.copyList.filter(item => {
+          return item.name.indexOf(val) > -1
+        })
+      }else{
+        this.list = this.copyList
+      }
+    }
+  },
+
   methods: {
     initChart (canvas, width, height) {
 
@@ -248,6 +248,25 @@ export default {
       if(data.success){
         this.echartData = data.result
         this.onInit = this.initChart
+      }
+    },
+    async getMyCustomer(append){
+      if(append){
+        this.currentPage++
+      }else{
+        this.currentPage = 1
+      }
+      let params = {
+        "currentPage": this.currentPage,
+        "pageSize": this.pageSize,
+        "empNo": this.$store.state.userInfo.shopEmployee.id
+      }
+      console.info('queryParams(params)',queryParams(params))
+      const data = await post(`/myCustomer/myCustomers?${queryParams(params)}`);
+      if(data.success){
+        this.totalCount = data.total
+        this.list = append ? this.list.concat((data.result) || []) : (data.result || [])
+        this.copyList = JSON.parse(JSON.stringify(this.list))
       }
 
     }
