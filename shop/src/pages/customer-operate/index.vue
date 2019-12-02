@@ -139,6 +139,34 @@ export default {
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role)
     // this.getData();
+
+    if(this.id){
+      let data = wx.getStorageSync('customer-detail-data')
+      console.info('kehuxiangq',data)
+
+      this.form = {
+        "birthDay": data.baseInfo.birthDay,
+        "customerName": data.name,
+        "favor": data.baseInfo.favor,
+        "phone": data.phone,
+        "remark": data.baseInfo.remark,
+        "sex": data.sex=='FEMALE'? 2 : 1,
+        "yearPlan": data.baseInfo.yearPlan
+      }
+
+      this.favorList = data.baseInfo.favor.split(',')
+      if(data.sex=='FEMALE'){
+        this.radioItems[0].checked = false
+        this.radioItems[1].checked = true
+      }else{
+        this.radioItems[0].checked = true
+        this.radioItems[1].checked = false
+      }
+
+      //form.sex == 1 ? 'MALE' : 'FEMALE',
+
+      wx.removeStorageSync('customer-detail-data')
+    }
   },
   data() {
     return {
@@ -166,6 +194,11 @@ export default {
   },
   components: {},
   methods: {
+
+    setData(){
+
+    },
+
     radioChange(e) {
       console.log('radio发生change事件，携带value值为：' + e.mp.detail.value);
       let radioItems = this.radioItems;
@@ -218,21 +251,28 @@ export default {
         return
       }
 
-
-      const data = await post("/myCustomer/addCustomer", {
+      let params = {
         "birthDay": this.form.birthDay,
         "customerName": this.form.customerName,
         "empNo": this.$store.state.userInfo.shopEmployee.id,
-        "favor": this.favorList.join(','),
+        "favor": this.form.favor,
         "phone": this.form.phone,
         "remark": this.form.remark,
         "sex": this.form.sex == 1 ? 'MALE' : 'FEMALE',
         "yearPlan": this.form.yearPlan
-      });
+      }
+      let url = '/myCustomer/addCustomer'
+
+      if(this.id){
+        params.customerNo = this.id
+        url = '/myCustomer/modifyCustomer'
+      }
+
+      const data = await post(url, params);
       if(data.success){
         console.info(data)
         wx.showToast({
-          title: '添加成功',
+          title: this.id ? '修改成功' : '添加成功',
           icon: 'success',
           duration: 1000,
           success(){

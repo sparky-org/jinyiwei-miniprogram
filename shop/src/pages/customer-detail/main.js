@@ -6,5 +6,6 @@ app.$mount()
 export default {
   config: {
     navigationBarTitleText: '客户详情',
+    "enablePullDownRefresh": true
   }
 }
