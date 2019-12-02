@@ -77,7 +77,7 @@
     <div class="weui-cells weui-cells_after-title no-t">
 
       <template v-if="list.length">
-        <navigator v-for="(item, index) in list" :key="index" :url="'/pages/customer-detail/main?customerNo=32'" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <navigator v-for="(item, index) in list" :key="index" :url="'/pages/customer-detail/main?customerNo='+item.customerNo" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
           <!-- <div class="weui-cell__hd">
             <image :src="icon" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
           </div> -->
