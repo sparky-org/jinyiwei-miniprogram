@@ -116,7 +116,7 @@
 
 
     <div class="add-customer">
-      <button class="weui-btn" type="primary" @click="handleSubmit">提交</button>
+      <button class="weui-btn" type="primary" @click="handleSubmit">提 交</button>
     </div>
   </div>
 </template>
