@@ -51,29 +51,29 @@
     <!--跑马灯-->
 
     <div class="weui-cells__title">营业动态</div>
-    <div class="weui-cells weui-cells_after-title">
+    <div class="weui-cells weui-cells_after-title" v-if="todayBusiness">
       <navigator url="/pages/my-appointment/main?date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日预约客户</div>
-          <div class="weui-cell__ft" style="float: right;">86人</div>
+          <div class="weui-cell__ft" style="float: right;">{{todayBusiness.appointmentCustomerNum}}人</div>
         </div>
       </navigator>
       <navigator url="/pages/my-application/main?applyType=SALES_PERF&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日业绩</div>
-          <div class="weui-cell__ft" style="float: right;">20888元</div>
+          <div class="weui-cell__ft" style="float: right;">{{todayBusiness.salesPerformanceNum}}元</div>
         </div>
       </navigator>
       <navigator url="/pages/my-application/main?applyType=SERVICE_ITEM&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日项目数量</div>
-          <div class="weui-cell__ft" style="float: right;">2个</div>
+          <div class="weui-cell__ft" style="float: right;">{{todayBusiness.serviceItemRecordNum}}个</div>
         </div>
       </navigator>
       <navigator url="/pages/my-application/main?applyType=VACATION&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日休息员工</div>
-          <div class="weui-cell__ft" style="float: right;">3人</div>
+          <div class="weui-cell__ft" style="float: right;">{{todayBusiness.restEmployeeNum}}人</div>
         </div>
       </navigator>
     </div>
@@ -81,12 +81,12 @@
 
     <div class="weui-panel weui-panel_access">
       <div class="weui-panel__hd">今日积分排名</div>
-      <div class="weui-panel__bd">
+      <div class="weui-panel__bd" v-if="todayBusiness">
         <div class="weui-flex">
           <div class="weui-flex__item">
             <div class="placeholder">
               <dl class="ph-dl">
-                <dt>1</dt>
+                <dt>{{todayBusiness.yourRank}}</dt>
                 <dd>排名</dd>
               </dl>
             </div>
@@ -94,16 +94,16 @@
           <div class="weui-flex__item">
             <div class="placeholder">
               <dl class="ph-dl">
-                <dt>200</dt>
+                <dt>{{todayBusiness.obtainPoint}}</dt>
                 <dd>今日积分</dd>
               </dl>
             </div>
           </div>
         </div>
       </div>
-      <div class="weui-panel__ft">
+      <div class="weui-panel__ft" v-if="todayBusiness">
         <div class="weui-cell weui-cell_access weui-cell_link" @click="handleScore">
-          <div class="weui-cell__bd" style="color: #10AEFF;">方竹兵夺得今日排行榜冠军</div>
+          <div class="weui-cell__bd" style="color: #10AEFF;">{{todayBusiness.championName}}夺得今日排行榜冠军</div>
           <div class="weui-cell__ft weui-cell__ft_in-access"></div>
         </div>
       </div>
@@ -114,62 +114,22 @@
     <div class="weui-panel weui-panel_access">
       <div class="weui-panel__hd">积分动态</div>
       <div class="weui-panel__bd">
-        <navigator style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" :src="icon60" />
-          </div> -->
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title">方竹兵 <span class="score-num">+20分</span></div>
-            <!-- <div class="weui-media-box__desc">
-              招聘任务完成奖励
+        <template v-if="list.length">
+          <div v-for="(item, index) in list" :key="index" style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+            <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+              <image class="weui-media-box__thumb" :src="icon60" />
             </div> -->
+            <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+              <div class="weui-media-box__title">{{item.empName}} <span class="score-num">{{item.point}}分</span></div>
+              <!-- <div class="weui-media-box__desc">
+                招聘任务完成奖励
+              </div> -->
+            </div>
           </div>
-        </navigator>
-        <!--注意这个跳转方式  switchTab方式-->
-        <navigator style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" :src="icon60" />
-          </div> -->
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title">曹丹 <span class="score-num">+20分</span></div>
-            <!-- <div class="weui-media-box__desc">
-              打扫卫生奖励
-            </div> -->
-          </div>
-        </navigator>
-        <navigator style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" :src="icon60" />
-          </div> -->
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title">胡燕群 <span class="score-num">+3分</span></div>
-            <!-- <div class="weui-media-box__desc">
-              考勤正常打卡
-            </div> -->
-          </div>
-        </navigator>
-        <navigator style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" :src="icon60" />
-          </div> -->
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title">谭新梅 <span class="score-num">+3分</span></div>
-            <!-- <div class="weui-media-box__desc">
-              获得品德积分奖励
-            </div> -->
-          </div>
-        </navigator>
-        <navigator style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
-          <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
-            <image class="weui-media-box__thumb" :src="icon60" />
-          </div> -->
-          <div class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <div class="weui-media-box__title">许竹君 <span class="score-num">+20分</span></div>
-            <!-- <div class="weui-media-box__desc">
-              提交工作日志
-            </div> -->
-          </div>
-        </navigator>
+          <div style="padding-bottom: 30rpx; margin-top:-20rpx;" class="no-more" v-if="list.length >= totalCount">没有更多了</div>
+        </template>
+        <no-data v-else></no-data>
+
       </div>
       <div class="weui-panel__ft">
         <div class="weui-cell weui-cell_access weui-cell_link" @click="handleScore">
@@ -198,7 +158,8 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get, post } from "../../utils";
+import { get, post, queryParams } from "../../utils";
+import noData from '@/components/no-data'
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
@@ -240,8 +201,25 @@ export default {
     // }
     // wx.redirectTo
 
+    this.getBanner()
+    this.getInfo()
     this.getData()
   },
+
+  //上拉加载
+  onReachBottom() {
+    if(this.list.length < this.totalCount) {
+      this.getData(true)
+    }
+  },
+  // 下拉刷新
+  onPullDownRefresh () {
+    wx.stopPullDownRefresh()
+    this.getBanner()
+    this.getInfo()
+    this.getData()
+  },
+
   computed: {
     // ...mapState(["cityName"])
   },
@@ -250,17 +228,24 @@ export default {
   },
   data() {
     return {
+      todayBusiness: null,
       posters:[],
       // userInfo: null,
       data:null,
       brandList: [
-        {url:'https://www.zjliren520.com/jyw-resource/18/50/18509052e68889168422e7f387e654f9'},
-        {url:'https://www.zjliren520.com/jyw-resource/c6/6f/c66f8ec914539d73c5eb277bd4f8d244'},
-        {url:'https://www.zjliren520.com/jyw-resource/49/41/49415a3a3a17d035b824e3065384196c'},
-        {url:'https://www.zjliren520.com/jyw-resource/fc/04/fc04606a2b0fc629b85ee67f62f68058'},
-        {url:'https://www.zjliren520.com/jyw-resource/d3/1c/d31cab8413663bfdd16db8e312213e4c'},
-        {url:'https://www.zjliren520.com/jyw-resource/6b/e9/6be953c24858a3c2d787d57e6b77be1f'}
+        // {url:'https://www.zjliren520.com/jyw-resource/18/50/18509052e68889168422e7f387e654f9'},
+        // {url:'https://www.zjliren520.com/jyw-resource/c6/6f/c66f8ec914539d73c5eb277bd4f8d244'},
+        // {url:'https://www.zjliren520.com/jyw-resource/49/41/49415a3a3a17d035b824e3065384196c'},
+        // {url:'https://www.zjliren520.com/jyw-resource/fc/04/fc04606a2b0fc629b85ee67f62f68058'},
+        // {url:'https://www.zjliren520.com/jyw-resource/d3/1c/d31cab8413663bfdd16db8e312213e4c'},
+        // {url:'https://www.zjliren520.com/jyw-resource/6b/e9/6be953c24858a3c2d787d57e6b77be1f'}
       ],
+
+      currentPage: 1,
+      pageSize: 10,
+      totalCount: 0,
+      list: [],
+
 
       news:[
         '为了迎接双十一，凡11月1号到11月11号进店新用户预存1万',
@@ -278,15 +263,43 @@ export default {
   },
   components: {},
   methods: {
+
+    async getData(append) {
+      if(append){
+        this.currentPage++
+      }else{
+        this.currentPage = 1
+      }
+      let params = {
+        "currentPage": this.currentPage,
+        "pageSize": this.pageSize,
+        "shopNo": this.$store.state.userInfo.shopEmployee.shopNo
+      }
+      console.info(append,this.currentPage,'12812812')
+      const data = await post(`/main/pagingQueryPointTrace?${queryParams(params)}`);
+      if(data.success){
+        this.totalCount = data.total
+        this.list = append ? this.list.concat((data.result) || []) : (data.result || [])
+      }
+    },
+
+
     // ...mapMutations(["update"]),
-    async getData(){
+    async getBanner(){
       // console.info(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.agencyId}`)
       const data = post(`/poster/viewPosters?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}&empNo=${this.$store.state.userInfo.shopEmployee.id}`).then((data)=>{
         if(data.success){
           this.posters = data.result.content.split(',')
         }
       });
+    },
 
+    async getInfo(){
+      const data = post(`/main/findTodayBusiness?empNo=${this.$store.state.userInfo.shopEmployee.id}`).then((data)=>{
+        if(data.success){
+          this.todayBusiness = data.result
+        }
+      });
     },
 
     handleScore(){
