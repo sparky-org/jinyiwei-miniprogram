@@ -3,21 +3,21 @@
 
 
     <div class="weui-cells__title">数据统计</div>
-    <div class="count">
+    <div class="count" v-if="info">
       <div class="weui-flex ">
         <div class="weui-flex__item">
-          <div class="placeholder">&#12288;今日新增：10人</div>
+          <div class="placeholder">&#12288;今日新增：{{info.today}}人</div>
         </div>
         <div class="weui-flex__item">
-          <div class="placeholder">本月新增：100人</div>
+          <div class="placeholder">本月新增：{{info.thisMonth}}人</div>
         </div>
       </div>
       <div class="weui-flex">
         <div class="weui-flex__item">
-          <div class="placeholder">本季度新增：200人</div>
+          <div class="placeholder">本季度新增：{{info.thisSeason}}人</div>
         </div>
         <div class="weui-flex__item">
-          <div class="placeholder">今年新增：1010人</div>
+          <div class="placeholder">今年新增：{{info.thisYear}}人</div>
         </div>
       </div>
     </div>
@@ -136,59 +136,18 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post } from "../../utils";
 
 import * as echarts from 'echarts/dist/echarts.simple.min'
 import mpvueEcharts from 'mpvue-echarts'
 
-function initChart (canvas, width, height) {
-  const chart = echarts.init(canvas, null, {
-    width: width,
-    height: height
-  })
-  canvas.setChart(chart)
-  var option = {
-    backgroundColor: '#fff',
-    color: ['#37A2DA', '#67E0E3'],
 
-    legend: {
-      data: ['A', 'B']
-    },
-    grid: {
-      containLabel: true
-    },
-    xAxis: {
-      type: 'category',
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-    },
-    yAxis: {
-      x: 'center',
-      type: 'value',
-      splitLine: {
-        lineStyle: {
-          type: 'dashed'
-        }
-      }
-    },
-    series: [{
-      name: 'A',
-      type: 'line',
-      smooth: true,
-      data: [18, 36, 65, 30, 78, 40, 33]
-    }, {
-      name: 'B',
-      type: 'line',
-      smooth: true,
-      data: [12, 50, 51, 35, 70, 30, 20]
-    }]
-  }
-  chart.setOption(option)
-  return chart
-};
 
 
 export default {
   onShow() {
+    this.getDetail()
+    this.getEchartData()
   },
   computed: {
 
@@ -200,17 +159,69 @@ export default {
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role)
     // this.getData();
+
   },
   data() {
     return {
+      info: null,
+      echartData: null,
       // role: ''
       echarts,
-      onInit: initChart,
+      onInit: null,
       inputShowed: false,
       inputVal: ''
     };
   },
   methods: {
+    initChart (canvas, width, height) {
+
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height
+      })
+      canvas.setChart(chart)
+
+      let xData = this.echartData.map(item => {
+        return item.yearMonth.split('-')[1]+'月'
+      })
+      let yData = this.echartData.map(item => {
+        return item.count
+      })
+
+      console.info(xData,yData)
+      var option = {
+        backgroundColor: '#fff',
+        color: ['#37A2DA'],
+
+        // legend: {
+          // data: ['A', 'B']
+        // },
+        // grid: {
+        //   containLabel: true
+        // },
+        xAxis: {
+          type: 'category',
+          // data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+          data: xData
+        },
+        yAxis: {
+          // x: 'center',
+          type: 'value',
+          // splitLine: {
+          //   lineStyle: {
+          //     type: 'dashed'
+          //   }
+          // }
+        },
+        series: [{
+          data: yData,
+          type: 'line'
+        }]
+
+      }
+      chart.setOption(option)
+      return chart
+    },
     showInput() {
       this.inputShowed = true;
     },
@@ -225,17 +236,21 @@ export default {
       console.log(e);
       this.inputVal = e.mp.detail.value;
       console.log('输入信息为：'+e.mp.detail.value);
+    },
+    async getDetail() {
+      const data = await post("/myCustomer/getGrowthStatistics?empNo="+this.$store.state.userInfo.shopEmployee.id);
+      if(data.success){
+        this.info = data.result
+      }
+    },
+    async getEchartData(){
+      const data = await post("/myCustomer/activeCustomerStatistics?empNo="+this.$store.state.userInfo.shopEmployee.id);
+      if(data.success){
+        this.echartData = data.result
+        this.onInit = this.initChart
+      }
+
     }
-    // async getData() {
-    //   const data = await get("/index/index");
-    //   this.banner = data.banner;
-    //   this.channel = data.channel;
-    //   this.brandList = data.brandList;
-    //   this.newGoods = data.newGoods;
-    //   this.hotGoods = data.hotGoods;
-    //   this.topicList = data.topicList;
-    //   this.newCategoryList = data.newCategoryList;
-    // }
   },
   created() {
 
