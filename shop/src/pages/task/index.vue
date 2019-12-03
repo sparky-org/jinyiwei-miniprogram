@@ -122,20 +122,24 @@ export default {
         success: async (res) => {
           console.log(res);
           if (res.confirm) {
-            const data = await post(`/myTask/completeTask`, {
+            let params = {
               "empNo": this.$store.state.userInfo.shopEmployee.id,
               "taskNo": item.taskNo
-            });
+            }
+            const data = await post(`/myTask/completeTask?${queryParams(params)}`);
             if(data.success){
               wx.showToast({
                 title: '操作成功',
                 icon: 'success',
                 duration: 1000,
                 success: () => {
-                  
+
                 }
               })
-              this.getData()
+              setTimeout(()=>{
+                this.getData()
+              },1000)
+              
             }
           } else {
             console.log('用户点击辅助操作')
