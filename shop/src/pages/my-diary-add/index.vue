@@ -211,7 +211,7 @@ export default {
           }
         })
         setTimeout(()=>{
-          wx.navigateTo({
+          wx.redirectTo({
             url: '/pages/my-diary/main'
           })
         },1000)
