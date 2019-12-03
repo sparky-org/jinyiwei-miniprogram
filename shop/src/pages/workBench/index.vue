@@ -128,10 +128,10 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">修改资料</div>
       </navigator>
-      <!--<navigator url="/pages/my-change-password/main" class="weui-grid" hover-class="weui-grid_active">-->
+      <navigator url="/pages/my-change-password/main" class="weui-grid" hover-class="weui-grid_active">
         <!--&lt;!&ndash; <image class="weui-grid__icon" :src="item.src" /> &ndash;&gt;-->
-        <!--<div class="weui-grid__label">修改密码</div>-->
-      <!--</navigator>-->
+        <div class="weui-grid__label">修改密码</div>
+      </navigator>
       <navigator url="/pages/my-sign/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">签到</div>
