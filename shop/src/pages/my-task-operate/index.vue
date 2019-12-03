@@ -1,5 +1,5 @@
 <template>
-  <div class="page" style="background-color: #fff;">
+  <div class="page">
     <template v-if="!isSelectArea">
 
      <div class="weui-toptips weui-toptips_warn" v-if="errorTips">{{errMsg}}</div>
@@ -26,6 +26,15 @@
         </div>
       </div>
 
+      <div class="weui-cell weui-cell_input">
+        <div class="weui-cell__hd">
+          <div class="weui-label"><span class="required">*</span>奖励积分</div>
+        </div>
+        <div class="weui-cell__bd">
+          <input class="weui-input" v-model="form.rewardPoint" placeholder="请输入奖励积分" />
+        </div>
+      </div>
+
       <!-- <div class="weui-cell weui-cell_input">
         <div class="weui-cell__hd">
           <div class="weui-label"><span class="required">*</span>个数限制</div>
@@ -37,7 +46,7 @@
 
       <!-- <div class="weui-cell weui-cell weui-cell_input"> -->
         <div class="weui-cell weui-cell_switch">
-          <div class="weui-cell__bd">是否全选</div>
+          <div class="weui-cell__bd"><span class="required">*</span>默认全部员工可见</div>
           <div class="weui-cell__ft">
             <switch :checked="checkAllState" @change="switchChange"/>
           </div>
@@ -46,7 +55,7 @@
 
       <div class="weui-cell weui-cell_input" v-if="!checkAllState">
         <div class="weui-cell__hd">
-          <div class="weui-label">可见范围</div>
+          <div class="weui-label"><span class="required">*</span>可见范围</div>
         </div>
         <div class="weui-cell__bd">
           <!-- <picker @change="bindPickerChange" :value="index" :range="array"> -->
@@ -61,11 +70,11 @@
 
     </div>
 
-    <div class="weui-cells__title"><span class="required">*</span>任务描述</div>
+    <div class="weui-cells__title" style="padding-top:20rpx;"><span class="required">*</span>任务描述</div>
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea v-model="form.taskDesc" placeholder="请输入任务描述" style="height: 3.3em" />
+          <textarea v-model="form.taskDesc" style="width:100%; height: 6.6em" placeholder="请输入任务描述" />
           <!-- <div class="weui-textarea-counter">0/200</div> -->
         </div>
       </div>
@@ -248,7 +257,8 @@ export default {
         "jobList":[],
         "pointConfigNo": null,
         "taskDesc": "",
-        "taskTitle": ""
+        "taskTitle": "",
+        "rewardPoint": ""
       }
     };
   },
@@ -457,7 +467,7 @@ export default {
     },
 
     handleSubmit(){
-      if(!this.form.taskDesc || !this.form.taskTitle){
+      if(!this.form.taskDesc || !this.form.taskTitle || !this.form.rewardPoint){
         this.errMsg = '请填写完整信息'
         this.errorTips = true
         setTimeout(()=>{
@@ -480,9 +490,10 @@ export default {
 
       let params = {
         ...this.form,
-        empNo: this.$store.state.userInfo.shopEmployee.id
+        empNo: this.$store.state.userInfo.shopEmployee.id,
+        selectAll: this.checkAllState
       }
-      const data = post(`/myTask/publishTask`, params).then((data)=>{
+      const data = post(`/manage/task/publishTask`, params).then((data)=>{
         if(data.success){
           wx.showToast({
             title: '创建成功',

@@ -66,7 +66,7 @@
               <button class="weui-btn" type="warn" plain="true">删除</button>
             </div>
             <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+              <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">查看</button>
             </div>
           </div>
         </div>
@@ -108,7 +108,7 @@
               <button class="weui-btn" type="warn" plain="true">删除</button>
             </div>
             <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true">修改</button>
+              <button class="weui-btn" type="primary" plain="true">查看</button>
             </div>
           </div>
         </div>
@@ -151,7 +151,7 @@
               <button class="weui-btn" type="warn" plain="true">删除</button>
             </div>
             <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true">修改</button>
+              <button class="weui-btn" type="primary" plain="true">查看</button>
             </div>
           </div>
         </div>

@@ -30,7 +30,7 @@
     </div>
 
     <!--跑马灯 Linyufan.com-->
-    <view class='horizontal happnews'>
+    <!-- <view class='horizontal happnews'>
       <view class='item happy_tui'>
         <swiper vertical :autoplay="autoplay" :interval="interval" :duration="duration" circular>
           <block v-for="(item, index) in news" :key="index">
@@ -42,13 +42,17 @@
             </swiper-item>
           </block>
         </swiper>
-      </view>
+      </view> -->
 
       <!-- <view class='more'>
         <text>更多</text>
       </view> -->
-    </view>
+    <!-- </view> -->
     <!--跑马灯-->
+    <!-- 跑马灯效果 -->
+
+
+
 
     <div class="weui-cells__title">营业动态</div>
     <div class="weui-cells weui-cells_after-title" v-if="todayBusiness">
@@ -181,6 +185,7 @@ export default {
 
 
 
+
     // wx.navigateTo({
     //   url: "/pages/my-score/main"
     // });
@@ -230,6 +235,18 @@ export default {
   },
   data() {
     return {
+
+
+      text: '为了迎接双十一，凡11月1号到11月11号进店新用户预存1万为了迎接双十一，凡11月1号到11月11号进店新用户预存1万',
+      marqueePace: 1,//滚动速度
+      marqueeDistance: 0,//初始滚动距离
+      size: 14,
+      orientation: 'left',//滚动方向
+      intervals: 20, // 时间间隔—
+
+
+
+
       todayBusiness: null,
       posters:[],
       // userInfo: null,
@@ -265,6 +282,24 @@ export default {
   },
   components: {},
   methods: {
+
+    runMarquee: function () {
+      var that = this;
+      var interval = setInterval( () => {
+        //文字一直移动到末端
+        if (-that.marqueeDistance < that.length) {
+          this.marqueeDistance = that.marqueeDistance - that.marqueePace
+        }else{
+          clearInterval(interval);
+          this.marqueeDistance = that.windowWidth
+          that.runMarquee();
+        }
+      }, that.intervals);
+
+
+
+
+    },
 
     async getData(append) {
       if(append){
@@ -303,6 +338,22 @@ export default {
         }
       });
     },
+    async getInfo(){
+      const data = post(`/notice/viewNotice?empNo=${this.$store.state.userInfo.shopEmployee.id}&shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`).then((data)=>{
+        if(data.success){
+          if(data.result){
+            this.text = data.result.content
+            // // 跑马灯
+            // var length = this.text.length * this.size;//文字长度
+            // var windowWidth = wx.getSystemInfoSync().windowWidth;// 屏幕宽度
+            // this.length = length
+            // this.windowWidth = windowWidth
+            // this.runMarquee();
+          }
+        }
+      });
+    },
+
 
     handleScore(){
       wx.navigateTo({
