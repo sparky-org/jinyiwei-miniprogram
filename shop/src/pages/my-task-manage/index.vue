@@ -5,161 +5,76 @@
     <div class="tab-wrapper">
       <div class="weui-flex tab-fixed">
         <div class="weui-flex__item">
-          <picker class="weui-btn" mode="date" :value="startDate" @change="bindStartDateChange">
+          <picker class="weui-btn" mode="date" :end="endDate" :value="startDate" @change="bindStartDateChange">
             <div class="tab-title" style="font-size: 13px;">{{startDate?startDate:'开始日期'}}<ins></ins></div>
           </picker>
         </div>
         <div class="weui-flex__item">
-          <picker class="weui-btn" mode="date" :value="endDate" @change="bindEndDateChange">
+          <picker class="weui-btn" mode="date" :start="startDate" :value="endDate" @change="bindEndDateChange">
             <div class="tab-title"  style="font-size: 13px;">{{endDate?endDate:'结束日期'}}<ins></ins></div>
           </picker>
         </div>
         <div class="weui-flex__item">
           <picker @change="bindPickerChange" :value="index" :range="enumArea">
-            <div class="tab-title" style="font-size: 13px;">{{area}}<ins></ins></div>
+            <div class="tab-title" style="font-size: 13px;">{{enumArea[index]}}<ins></ins></div>
           </picker>
         </div>
-        <div class="weui-flex__item">
-          <!-- <div class="tab-title" @click="handleScorSelect">{{score}}<ins></ins></div> -->
+        <!-- <div class="weui-flex__item">
           <picker @change="bindScoreChange" :value="index" :range="enumScore">
             <div class="tab-title" style="font-size: 13px;">{{score}}<ins></ins></div>
           </picker>
-        </div>
+        </div> -->
       </div>
     </div>
 
 
     <div class="content">
 
-      <div class="weui-form-preview">
-        <!-- <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">付款金额</div>
-            <div class="weui-form-preview__value_in-hd">¥2400.00</div>
-          </div>
-        </div> -->
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务名称</div>
-            <div class="weui-form-preview__value">打扫卫生</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务内容</div>
-            <div class="weui-form-preview__value">每天搞好卫生拍视频发到群里。</div>
-          </div>
-<!--          <div class="weui-form-preview__item">-->
-<!--            <div class="weui-form-preview__label">创建时间</div>-->
-<!--            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>-->
-<!--          </div>-->
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务积分</div>
-            <div class="weui-form-preview__value">3积分</div>
-          </div>
-<!--          <div class="weui-form-preview__item">-->
-<!--            <div class="weui-form-preview__label">剩余个数</div>-->
-<!--            <div class="weui-form-preview__value">无限制</div>-->
-<!--          </div>-->
-        </div>
-        <div>
-          <div class="weui-flex">
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="warn" plain="true">删除</button>
-            </div>
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">查看</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <template v-if="list.length">
 
-
-      <div class="weui-form-preview">
-        <!-- <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">付款金额</div>
-            <div class="weui-form-preview__value_in-hd">¥2400.00</div>
-          </div>
-        </div> -->
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务名称</div>
-            <div class="weui-form-preview__value">每日学习</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务内容</div>
-            <div class="weui-form-preview__value">专业每天在群里学习2遍，增加我们学习价值。</div>
-          </div>
-<!--          <div class="weui-form-preview__item">-->
-<!--            <div class="weui-form-preview__label">创建时间</div>-->
-<!--            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>-->
-<!--          </div>-->
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务积分</div>
-            <div class="weui-form-preview__value">3积分</div>
-          </div>
-<!--          <div class="weui-form-preview__item">-->
-<!--            <div class="weui-form-preview__label">剩余个数</div>-->
-<!--            <div class="weui-form-preview__value">无限制</div>-->
-<!--          </div>-->
-        </div>
-        <div>
-          <div class="weui-flex">
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="warn" plain="true">删除</button>
+        <div class="weui-form-preview" v-for="(item, index) in list" :key="index">
+          <!-- <div class="weui-form-preview__hd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">付款金额</div>
+              <div class="weui-form-preview__value_in-hd">¥2400.00</div>
             </div>
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true">查看</button>
+          </div> -->
+          <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">任务名称</div>
+              <div class="weui-form-preview__value">{{item.taskName}}</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">任务内容</div>
+              <div class="weui-form-preview__value">{{item.content}}。</div>
+            </div>
+  <!--          <div class="weui-form-preview__item">-->
+  <!--            <div class="weui-form-preview__label">创建时间</div>-->
+  <!--            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>-->
+  <!--          </div>-->
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">任务积分</div>
+              <div class="weui-form-preview__value">{{item.rewardPoint}}积分</div>
+            </div>
+  <!--          <div class="weui-form-preview__item">-->
+  <!--            <div class="weui-form-preview__label">剩余个数</div>-->
+  <!--            <div class="weui-form-preview__value">无限制</div>-->
+  <!--          </div>-->
+          </div>
+          <div>
+            <div class="weui-flex">
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="warn" plain="true" @click="handleDelete(item)">删除</button>
+              </div>
+              <div class="weui-flex__item" style="padding: 20rpx;">
+                <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">查看</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-
-
-      <div class="weui-form-preview">
-        <!-- <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">付款金额</div>
-            <div class="weui-form-preview__value_in-hd">¥2400.00</div>
-          </div>
-        </div> -->
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务名称</div>
-            <div class="weui-form-preview__value">接待演练</div>
-          </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务内容</div>
-            <div class="weui-form-preview__value">每天演练接待流程2遍，让客户拥有愉悦的接待过程。</div>
-          </div>
-<!--          <div class="weui-form-preview__item">-->
-<!--            <div class="weui-form-preview__label">创建时间</div>-->
-<!--            <div class="weui-form-preview__value">2019-10-11 18:12:23</div>-->
-<!--          </div>-->
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务积分</div>
-            <div class="weui-form-preview__value">3积分</div>
-          </div>
-<!--          <div class="weui-form-preview__item">-->
-<!--            <div class="weui-form-preview__label">剩余个数</div>-->
-<!--            <div class="weui-form-preview__value">无限制</div>-->
-<!--          </div>-->
-        </div>
-        <div>
-          <div class="weui-flex">
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="warn" plain="true">删除</button>
-            </div>
-            <div class="weui-flex__item" style="padding: 20rpx;">
-              <button class="weui-btn" type="primary" plain="true">查看</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
+        <div style="padding-top: 6rpx;" class="no-more" v-if="list.length >= totalCount">没有更多了</div>
+      </template>
+      <no-data v-else></no-data>
 
     </div>
   </div>
@@ -167,29 +82,53 @@
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post, queryParams } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
+import noData from '@/components/no-data'
 
-let enumArea = ['可见范围','店长','店长','顾问'];
-let enumScore = ['积分范围','<=50', '<100','>100']
+// let enumArea = ['可见范围(全部)','店长','店长','顾问'];
+// let enumScore = ['积分范围','<=50', '<100','>100']
 export default {
   onShow() {
-
+    this.getShopJobList()
+    this.getData()
   },
   components: {
-
+    noData
   },
   data() {
     return {
       // role: '',
-      index: 1,
-      enumArea,
-      enumScore,
-      area: enumArea[0],
-      score: enumScore[0],
-      startDate: '',
-      endDate: ''
+      index: 0,
+      enumArea: [],
+
+      // enumScore: [],
+      // score: enumScore[0],
+      startDate: null,
+      endDate: null,
+      jobNo: '',
+
+      currentPage: 1,
+      pageSize: 10,
+      totalCount: 0,
+      list: [],
+
+
+
+      shopJobList: []
     };
+  },
+
+  watch: {
+    startDate(){
+      this.getData()
+    },
+    endDate(){
+      this.getData()
+    },
+    jobNo(){
+      this.getData()
+    }
   },
 
   mounted() {
@@ -200,7 +139,82 @@ export default {
   computed: {
 
   },
+
+  //上拉加载
+  onReachBottom() {
+    if(this.list.length < this.totalCount) {
+      this.getData(true)
+    }
+  },
+  // 下拉刷新
+  onPullDownRefresh () {
+    wx.stopPullDownRefresh()
+    this.getData()
+  },
+
   methods: {
+
+    handleDelete(item){
+      wx.showModal({
+        title: '提示',
+        content: '确定要删除该任务吗？',
+        success: async (res) => {
+          console.log(res);
+          if (res.confirm) {
+            // console.log('用户点击主操作')
+            const data = await post(`/manage/task/deleteTask?empNo=${this.$store.state.userInfo.shopEmployee.id}&taskNo=${item.taskNo}`);
+            if(data.success){
+              wx.showToast({
+                title: '删除成功',
+                icon: 'success',
+                duration: 1000,
+                success: ()=>{
+                  this.getData()
+                }
+              })
+            }
+          } else {
+            // console.log('用户点击辅助操作')
+          }
+        }
+      });
+    },
+
+    async getShopJobList(){
+      const data = await post(`/employee/getShopJob?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`);
+      if(data.success){
+        let arr = [{
+          name: '可见范围(不限)',
+          id: ''
+         }]
+        this.shopJobList = [...arr,...data.result]
+        this.enumArea = this.shopJobList.map(item => {
+          return item.name
+        })
+      }
+    },
+
+    async getData(append) {
+      if(append){
+        this.currentPage++
+      }else{
+        this.currentPage = 1
+      }
+      let params = {
+        "currentPage": this.currentPage,
+        "pageSize": this.pageSize,
+        "empNo": this.$store.state.userInfo.shopEmployee.id,
+        "jobNo": this.jobNo,
+        beginDate: this.startDate,
+        endDate: this.endDate
+      }
+      console.info(append,this.currentPage,'12812812')
+      const data = await post(`/manage/task/queryTask?${queryParams(params)}`);
+      if(data.success){
+        this.totalCount = data.total
+        this.list = append ? this.list.concat((data.result) || []) : (data.result || [])
+      }
+    },
 
     handleEditTask(){
       wx.navigateTo({
@@ -217,11 +231,12 @@ export default {
 
     bindPickerChange(e) {
       this.area = this.enumArea[e.mp.detail.value];
+      this.jobNo = this.shopJobList[e.mp.detail.value].id
     },
 
-    bindScoreChange(e) {
-      this.score = this.enumScore[e.mp.detail.value];
-    },
+    // bindScoreChange(e) {
+    //   this.score = this.enumScore[e.mp.detail.value];
+    // },
 
 
 
