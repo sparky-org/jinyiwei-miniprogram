@@ -6,5 +6,6 @@ app.$mount()
 export default {
   config: {
     navigationBarTitleText: '奖扣记录',
+    "enablePullDownRefresh": true
   }
 }
