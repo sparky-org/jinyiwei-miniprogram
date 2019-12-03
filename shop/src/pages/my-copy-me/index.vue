@@ -64,7 +64,7 @@ export default {
       beginDate: '',
 
       currentPage: 1,
-      pageSize: 4,
+      pageSize: 10,
       totalCount: 0,
       list: []
     };
