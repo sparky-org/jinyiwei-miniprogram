@@ -44,7 +44,7 @@ export default {
       "^pages/workBench/main",
       "pages/index/main",
       "pages/customer/main",
-      "pages/my-staff-manage/main",
+      "pages/my-task-manage/main",
       "pages/my-application/main",
 
 
