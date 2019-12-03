@@ -13,162 +13,83 @@
     </div>
 
     <div class="content">
-      <div class="weui-form-preview" v-for="(item, index) in taskList">
-        <!-- <div class="weui-form-preview__hd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">付款金额</div>
-            <div class="weui-form-preview__value_in-hd">¥2400.00</div>
+
+
+      <template v-if="list.length">
+        <div class="weui-form-preview" v-for="(item, index) in list" :key="index">
+          <div class="weui-form-preview__bd">
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">任务名称</div>
+              <div class="weui-form-preview__value">{{item.taskName}}</div>
+            </div>
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">任务内容</div>
+              <div class="weui-form-preview__value">{{item.content}}</div>
+            </div>
+            <!--<div class="weui-form-preview__item">-->
+              <!--<div class="weui-form-preview__label">创建时间</div>-->
+              <!--<div class="weui-form-preview__value">2019-10-11 18:12:23</div>-->
+            <!--</div>-->
+            <div class="weui-form-preview__item">
+              <div class="weui-form-preview__label">任务积分</div>
+              <div class="weui-form-preview__value">{{item.rewardPoint}}积分</div>
+            </div>
+            <!--<div class="weui-form-preview__item">-->
+              <!--<div class="weui-form-preview__label">剩余个数</div>-->
+              <!--<div class="weui-form-preview__value">无限制</div>-->
+            <!--</div>-->
           </div>
-        </div> -->
-        <div class="weui-form-preview__bd">
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务名称</div>
-            <div class="weui-form-preview__value">{{item.name}}</div>
+          <div class="weui-form-preview__ft">
+            <button class="weui-btn" type="primary" @click="handleAction(item)" :disabled="item.status=='COMPLETE'">{{item.status=='COMPLETE'?'已完成':'完 成'}}</button>
           </div>
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务内容</div>
-            <div class="weui-form-preview__value">{{item.content}}</div>
-          </div>
-          <!--<div class="weui-form-preview__item">-->
-            <!--<div class="weui-form-preview__label">创建时间</div>-->
-            <!--<div class="weui-form-preview__value">2019-10-11 18:12:23</div>-->
-          <!--</div>-->
-          <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">任务积分</div>
-            <div class="weui-form-preview__value">{{item.point}}积分</div>
-          </div>
-          <!--<div class="weui-form-preview__item">-->
-            <!--<div class="weui-form-preview__label">剩余个数</div>-->
-            <!--<div class="weui-form-preview__value">无限制</div>-->
-          <!--</div>-->
         </div>
-        <div class="weui-form-preview__ft">
-          <button class="weui-btn" type="primary" :disabled="item.statusDisable">{{item.statusDesc}}</button>
-        </div>
-      </div>
+        <div class="no-more" v-if="list.length >= totalCount">没有更多了</div>
+      </template>
+      <no-data v-else></no-data>
+
     </div>
   </div>
 </template>
 
 <script>
 import amapFile from "../../utils/amap-wx";
-import { get } from "../../utils";
+import { get, post, queryParams } from "../../utils";
+import noData from '@/components/no-data'
 // import { mapState, mapMutations } from "vuex";
 
-let enumTaskState = ['任务状态','未完成','审核中','已奖励'];
+let enumTaskText = ['全部状态','已完成','未完成']
+let enumTaskValue = [ null, 'COMPLETE','UNCOMPLETE']
 export default {
   onShow() {
-
+    this.getData()
   },
   components: {
-
+    noData
   },
   data() {
     return {
       // role: '',
       index: 1,
-      title: enumTaskState[0],
-      taskList1:[{
-       name:'每天演练接待流程',
-       content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
-       point:3,
-       statusDesc:'未完成',
-        statusDisable:false
-      },{
-        name:'每天演练接待流程',
-        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
-        point:3,
-        statusDesc:'审核中',
-        statusDisable:true
-      },{
-        name:'每天演练接待流程',
-        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      },{
-        name:'每天演练接待流程',
-        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      },{
-        name:'每天演练接待流程',
-        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      },{
-        name:'每天演练接待流程',
-        content:'美容师每天演练接待流程2遍，让客户拥有预约的接待过程。',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      }],
-      taskList2:[{
-        name:'培训新人',
-        content:'培训新人一个手法奖励3积分',
-        point:3,
-        statusDesc:'未完成',
-        statusDisable:false
-      },{
-        name:'培训新人',
-        content:'培训新人一个手法奖励3积分',
-        point:3,
-        statusDesc:'审核中',
-        statusDisable:true
-      },{
-        name:'培训新人',
-        content:'培训新人一个手法奖励3积分',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      },{
-        name:'培训新人',
-        content:'培训新人一个手法奖励3积分',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      },{
-        name:'培训新人',
-        content:'培训新人一个手法奖励3积分',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      },{
-        name:'培训新人',
-        content:'培训新人一个手法奖励3积分',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      },{
-        name:'培训新人',
-        content:'培训新人一个手法奖励3积分',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      },{
-        name:'培训新人',
-        content:'培训新人一个手法奖励3积分',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      },{
-        name:'培训新人',
-        content:'培训新人一个手法奖励3积分',
-        point:3,
-        statusDesc:'已奖励',
-        statusDisable:true
-      }],
-      taskList3:[{
-        name:'培训新人',
-        content:'培训新人一个手法奖励3积分',
-        point:3,
-        statusDesc:'已完成',
-        statusDisable:true
-      }],
-      taskList: this.taskList1
+      list:[],
+      type: 'ACTION',
+      title: enumTaskText[0],
+      state: enumTaskValue[0],
+
+
+      currentPage: 1,
+      pageSize: 10,
+      totalCount: 0,
+      list: []
     };
+  },
+
+  watch: {
+    type(val){
+      this.getData()
+    },
+    state(val){
+      this.getData()
+    }
   },
 
   mounted() {
@@ -179,40 +100,91 @@ export default {
   computed: {
 
   },
+
+  //上拉加载
+  onReachBottom() {
+    if(this.list.length < this.totalCount) {
+      this.getData(true)
+    }
+  },
+  // 下拉刷新
+  onPullDownRefresh () {
+    wx.stopPullDownRefresh()
+    this.getData()
+  },
+
   methods: {
+
+    handleAction(item){
+      wx.showModal({
+        title: '提示',
+        content: '确定完成该任务？',
+        success: async (res) => {
+          console.log(res);
+          if (res.confirm) {
+            const data = await post(`/myTask/completeTask`, {
+              "empNo": this.$store.state.userInfo.shopEmployee.id,
+              "taskNo": item.taskNo
+            });
+            if(data.success){
+              wx.showToast({
+                title: '操作成功',
+                icon: 'success',
+                duration: 1000,
+                success: () => {
+                  
+                }
+              })
+              this.getData()
+            }
+          } else {
+            console.log('用户点击辅助操作')
+          }
+        }
+      });
+    },
+
+
     handelTabClick(index){
       this.index = index;
       if (index == 1){
-        this.taskList = this.taskList1;
+        this.type = 'ACTION'
       }
       if (index == 2){
-        this.taskList = this.taskList2;
+        this.type = 'CHARACTER'
       }
-      if (index == 3){
-        this.taskList = this.taskList3;
-      }
-      console.log("task list is :", taskList)
     },
     handleStateSelect(){
       wx.showActionSheet({
-        itemList: enumTaskState,
+        itemList: enumTaskText,
         success: (res) => {
           console.log(res.tapIndex)
-          this.title = enumTaskState[res.tapIndex]
+          this.title = enumTaskText[res.tapIndex]
+          this.state = enumTaskValue[res.tapIndex]
         }
       });
-    }
+    },
 
-    // async getData() {
-    //   const data = await get("/index/index");
-    //   this.banner = data.banner;
-    //   this.channel = data.channel;
-    //   this.brandList = data.brandList;
-    //   this.newGoods = data.newGoods;
-    //   this.hotGoods = data.hotGoods;
-    //   this.topicList = data.topicList;
-    //   this.newCategoryList = data.newCategoryList;
-    // },
+    async getData(append) {
+      if(append){
+        this.currentPage++
+      }else{
+        this.currentPage = 1
+      }
+      let params = {
+        "currentPage": this.currentPage,
+        "pageSize": this.pageSize,
+        "empNo": this.$store.state.userInfo.shopEmployee.id,
+        pointType: this.type,
+        taskStatus: this.state
+      }
+      console.info('queryParams(params)',queryParams(params))
+      const data = await post(`/myTask/queryMyTask?${queryParams(params)}`);
+      if(data.success){
+        this.totalCount = data.total
+        this.list = append ? this.list.concat((data.result) || []) : (data.result || [])
+      }
+    },
     // goodsDetail(id) {
     //   wx.navigateTo({
     //     url: "/pages/goods/main?id=" + id
