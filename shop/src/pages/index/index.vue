@@ -211,6 +211,7 @@ export default {
     this.getBanner()
     this.getInfo()
     this.getData()
+    this.getViewNotice() //跑马灯
   },
 
   //上拉加载
@@ -338,7 +339,7 @@ export default {
         }
       });
     },
-    async getInfo(){
+    async getViewNotice(){
       const data = post(`/notice/viewNotice?empNo=${this.$store.state.userInfo.shopEmployee.id}&shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`).then((data)=>{
         if(data.success){
           if(data.result){
