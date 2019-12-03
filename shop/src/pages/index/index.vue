@@ -5,7 +5,7 @@
       <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="500">
         <block v-for="(item, index) in posters" :key="index">
           <swiper-item class="swiper-item">
-            <image :src="item.picUrl" class="slide-image" />
+            <image :src="item" class="slide-image" style="width: 100%; height: 100%;" />
           </swiper-item>
         </block>
        <!-- <swiper-item class="swiper-item">
