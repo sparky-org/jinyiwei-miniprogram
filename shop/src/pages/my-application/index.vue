@@ -192,6 +192,48 @@
             </div>
           </navigator>
 
+
+          <div v-if="item.applyType=='TASK_RECORD'" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+            <div class="weui-form-preview">
+              <div class="weui-form-preview__hd">
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">申请类型</div>
+                  <div class="weui-form-preview__value_in-hd">任务完成申请</div>
+                  <div class="weui-cell__ft weui-cell__ft_in-access"></div>
+                </div>
+              </div>
+              <div class="weui-form-preview__bd">
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">状态</div>
+                  <div class="weui-form-preview__value" style="color: #f00;">{{enumStateObj[item.status]}}</div>
+                </div>
+                <!-- <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">开始日期</div>
+                  <div class="weui-form-preview__value">2019-10-11</div>
+                </div>
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">结束日期</div>
+                  <div class="weui-form-preview__value">2019-10-11</div>
+                </div> -->
+                <div class="weui-form-preview__item">
+                  <div class="weui-form-preview__label">申请内容</div>
+                  <div class="weui-form-preview__value" v-html="item.normal.content"></div>
+                </div>
+              </div>
+              <!-- <div>
+                <div class="weui-flex">
+                  <div class="weui-flex__item" style="padding: 20rpx;">
+                    <button class="weui-btn" type="warn" plain="true">删除</button>
+                  </div>
+                  <div class="weui-flex__item" style="padding: 20rpx;">
+                    <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">修改</button>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+          </div>
+
+
         </div>
         <div class="no-more" v-if="list.length >= totalCount">没有更多了</div>
       </template>
