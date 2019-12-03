@@ -6,5 +6,6 @@ app.$mount()
 export default {
   config: {
     navigationBarTitleText: '我的日记',
+    "enablePullDownRefresh": true
   }
 }
