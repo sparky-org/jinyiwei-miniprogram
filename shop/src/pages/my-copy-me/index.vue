@@ -24,7 +24,7 @@
             <div class="weui-form-preview__value">{{item.statusDesc}}</div>
           </div>
           <div class="weui-form-preview__item">
-            <div class="weui-form-preview__label">日期</div>
+            <div class="weui-form-preview__label">最后更新时间</div>
             <div class="weui-form-preview__value" style="color: #999;">{{item.lastModify}}</div>
           </div>
         </div>
