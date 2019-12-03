@@ -81,8 +81,8 @@
     </div>
 
     <div class="operate-btn" v-if="type!='see'">
-      <button class="weui-btn" type="primary" v-if="type=='add'" @click="handleSubmit(1)">提交</button>
-      <button class="weui-btn" type="primary" v-if="type=='edit'">修改</button>
+      <button class="weui-btn" type="primary" v-if="!id" @click="handleSubmit(1)">提交</button>
+      <button class="weui-btn" type="primary" v-if="id" @click="handleSubmit(2)">修改</button>
     </div>
 
 
@@ -183,25 +183,31 @@ import { get, post } from "../../utils";
 export default {
   onShow() {
     this.id = this.$root.$mp.query.id;
-    this.type = this.$root.$mp.query.type;
-    console.info(this.type)
-    if(this.type == 'edit'){
+    if(this.id){
       wx.setNavigationBarTitle({
         title: '修改任务'
       })
     }
-    if(this.type == 'add'){
-      wx.setNavigationBarTitle({
-        title: '发布任务'
-      })
-    }
-    if(this.type == 'see'){
-      wx.setNavigationBarTitle({
-        title: '任务详情'
-      })
-    }
 
-    this.getGroupData()
+    // this.type = this.$root.$mp.query.type;
+    // console.info(this.type)
+    // if(this.type == 'edit'){
+    //   wx.setNavigationBarTitle({
+    //     title: '修改任务'
+    //   })
+    // }
+    // if(this.type == 'add'){
+    //   wx.setNavigationBarTitle({
+    //     title: '发布任务'
+    //   })
+    // }
+    // if(this.type == 'see'){
+    //   wx.setNavigationBarTitle({
+    //     title: '任务详情'
+    //   })
+    // }
+
+
     this.getJfConfig()
   },
   components: {
@@ -221,6 +227,9 @@ export default {
         this.selectEmpNames = ''
         this.form.empList = []
         this.form.jobList = []
+
+
+
       }else{
         // 全选
         this.selectEmpNames = ''
@@ -230,6 +239,7 @@ export default {
         })
       }
     }
+
   },
   data() {
     return {
@@ -251,6 +261,7 @@ export default {
         // { name: 'standard is dealt for u.', value: '0', checked: true },
         // { name: 'standard is dealicient for u.', value: '1', checked: false }
       ],
+      empList:[],
       selectEmpNames: '',
       form: {
         "empList": [],
@@ -272,6 +283,127 @@ export default {
 
   },
   methods: {
+
+    handleRender(){
+      // setTimeout(()=>{
+        if(this.empList && this.empList.length){
+          this.empList.forEach(item => {
+            this.groupData.forEach((it,index) => {
+              it.forEach(i => {
+                if(String(item) == String(i.empNo)){
+                  i.checked = true
+                }
+              })
+            })
+          })
+
+          this.groupData.forEach((it,index) => {
+            let num = 0
+            it.forEach(i => {
+              if(i.checked){
+                num++
+              }
+            })
+            if(num == it.length){
+              this.typeItems[index].checked = true
+            }else{
+              this.typeItems[index].checked = false
+            }
+          })
+
+
+
+          this.form.empList = this.empList
+
+
+          let names = []
+          this.groupData.map(item => {
+            item.forEach(it => {
+              if(it.checked){
+                // arr.push(it.value)
+                names.push(it.name)
+              }
+            })
+          })
+          // this.form.empList = arr
+          this.selectEmpNames = names.join(',')
+          // console.info('this.form-last',this.form)
+        }
+      // },500)
+    },
+
+    getTaskDetail(){
+      const data = post(`/manage/task/viewTask?empNo=${this.$store.state.userInfo.shopEmployee.id}&taskNo=${this.id}`).then((data)=>{
+        if(data.success){
+          if(data.result){
+            this.checkAllState = data.result.selectAll
+
+
+
+            let obj = {
+              "pointConfigNo": data.result.pointNo,
+              "taskDesc": data.result.content,
+              "taskTitle": data.result.title,
+              "rewardPoint": data.result.rewardPoint,
+              empList: [],
+              jobList:[]
+            }
+
+            this.index = this.jfList.findIndex(item => {
+              return item.id == data.result.pointNo
+            })
+              // console.info('data.result',data.result.selectAll)
+
+            // console.info('this.checkAllState',this.checkAllState)
+            // console.info(typeof(data.result.selectAll),'typeof')
+            if(data.result.selectAll == true){
+              // 全选
+              this.selectEmpNames = ''
+              obj.empList = []
+              obj.jobList = this.typeItems.map(item=>{
+                return item.value
+              })
+            }else{
+
+              this.$nextTick(()=>{
+                console.info('data.result.empNoList',data.result.empNoList)
+                this.empList = data.result.empNoList
+                this.handleRender()
+              })
+
+              // if(data.result.empNoList){
+              //   data.result.empNoList.forEach(item => {
+              //     this.groupData.forEach(it => {
+              //       it.forEach(i => {
+              //         console.info('item == i.empNo',item , i.empNo)
+              //         if(item == i.empNo){
+              //           i.checked = true
+              //         }else{
+              //           i.checked = false
+              //         }
+              //         console.info('i----',i)
+              //       })
+              //     })
+              //   })
+              // }
+              // this.typeItems.forEach(it => {
+              //   it.checked = false
+              // })
+              // this.selectEmpNames = ''
+              // this.form.empList = []
+              // this.form.jobList = []
+            }
+
+
+            // console.info('obj', obj)
+
+            this.form = obj
+
+            // console.info('this.form',this.form)
+          }
+        }
+      });
+    },
 
     switchChange(e) {
       console.log("switch发生change事件，携带value值为："+ e.mp.detail.value);
@@ -401,6 +533,8 @@ export default {
               return item.pointName
             })
             this.form.pointConfigNo = this.jfList[this.index].id
+
+            this.getGroupData()
           }
         }
       });
@@ -431,6 +565,10 @@ export default {
             return item.value
           })
           this.groupData = JSON.parse(JSON.stringify(res))
+
+          if(this.id){
+            this.getTaskDetail()
+          }
         }
       });
     },
@@ -466,7 +604,11 @@ export default {
       this.form.pointConfigNo = this.jfList[this.index].id
     },
 
-    handleSubmit(){
+    handleSubmit(type){
+
+      console.info('submit',this.form )
+
+
       if(!this.form.taskDesc || !this.form.taskTitle || !this.form.rewardPoint){
         this.errMsg = '请填写完整信息'
         this.errorTips = true
@@ -488,15 +630,24 @@ export default {
       }
 
 
+
       let params = {
         ...this.form,
         empNo: this.$store.state.userInfo.shopEmployee.id,
         selectAll: this.checkAllState
       }
-      const data = post(`/manage/task/publishTask`, params).then((data)=>{
+
+      let url = '/manage/task/publishTask'
+      if(type==2){
+        params.taskNo = this.id
+        url = '/manage/task/modifyTask'
+      }
+
+
+      const data = post(url, params).then((data)=>{
         if(data.success){
           wx.showToast({
-            title: '创建成功',
+            title: this.id?'修改成功':'创建成功',
             icon: 'success',
             duration: 1000,
             success(){

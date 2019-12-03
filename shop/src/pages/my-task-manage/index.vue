@@ -46,7 +46,7 @@
             </div>
             <div class="weui-form-preview__item">
               <div class="weui-form-preview__label">任务内容</div>
-              <div class="weui-form-preview__value">{{item.content}}。</div>
+              <div class="weui-form-preview__value">{{item.content}}</div>
             </div>
   <!--          <div class="weui-form-preview__item">-->
   <!--            <div class="weui-form-preview__label">创建时间</div>-->
@@ -67,7 +67,7 @@
                 <button class="weui-btn" type="warn" plain="true" @click="handleDelete(item)">删除</button>
               </div>
               <div class="weui-flex__item" style="padding: 20rpx;">
-                <button class="weui-btn" type="primary" plain="true" @click="handleEditTask">查看</button>
+                <button class="weui-btn" type="primary" plain="true" @click="handleEditTask(item)">查看</button>
               </div>
             </div>
           </div>
@@ -216,9 +216,9 @@ export default {
       }
     },
 
-    handleEditTask(){
+    handleEditTask(item){
       wx.navigateTo({
-        url: "/pages/my-task-operate/main?id=2&type=edit"
+        url: "/pages/my-task-operate/main?id="+ item.taskNo
       });
     },
 
