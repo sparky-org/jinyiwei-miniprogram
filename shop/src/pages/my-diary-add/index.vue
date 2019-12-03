@@ -210,7 +210,7 @@ export default {
 
           }
         })
-        setTimeout(()=>{
+        setTimeout(() => {
           wx.redirectTo({
             url: '/pages/my-diary/main'
           })
