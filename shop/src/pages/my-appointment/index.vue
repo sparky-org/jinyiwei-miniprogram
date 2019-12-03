@@ -196,11 +196,13 @@ export default {
     async getDetail(date) {
       const data = await post(`/myAppointment/queryAppointment?empNo=${this.$store.state.userInfo.shopEmployee.id}&date=${date.date}&pageSize=10000&currentPage=1`);
       if(data.success){
-        if(data.result && data.result.length){
+        if(data.result.length){
           data.result.forEach(item => {
             item.timeStr = item.time.split(' ')[1]
           })
           this.yyList = data.result
+        }else{
+          this.yyList=[]
         }
       }
     },
