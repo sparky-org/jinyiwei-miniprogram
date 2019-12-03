@@ -85,7 +85,6 @@ export default {
     // wx.setNavigationBarTitle({
     //   title: this.type ? '修改个人信息' : '个人信息'
     // })
-
   },
   computed: {
 
