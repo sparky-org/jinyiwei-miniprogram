@@ -231,8 +231,8 @@
             </div>
           </navigator>
 
-          
-          <div v-if="item.applyType=='TASK_RECORD'" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
+
+          <navigator v-if="item.applyType=='TASK_RECORD'" :url="'/pages/my-application-else-detail/main?id='+item.applyNo+'&type=approval'" class="weui-cell weui-cell_access nav-p0" hover-class="weui-cell_active">
             <div class="weui-form-preview">
               <div class="weui-form-preview__hd">
                 <div class="weui-form-preview__item">
@@ -270,8 +270,8 @@
                 </div>
               </div> -->
             </div>
-          </div>
-          
+          </navigator>
+
 
         </div>
         <div class="no-more" v-if="list.length >= totalCount">没有更多了</div>
