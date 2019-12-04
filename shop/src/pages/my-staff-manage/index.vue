@@ -12,32 +12,35 @@
       <div class="weui-tab__panel" style="padding-bottom: 120rpx;">
         <div class="weui-tab__content">
           <!-- 选项一的内容 -->
-          <view
-            class="touch-item"
-            :class="{'touch-move-active': item.isTouchMove}"
-            @touchstart="touchstart"
-            @touchmove="touchmove"
-            v-for="(item, index) in items"
-            :data-index="index"
-            :key="item.id">
-              <view class='content' @click='handleOperate(item.id)' :data-index="index">
-                <view class='column'>
-                  <!-- <view class='row full_width'>
-                    <text style='font-weight: bold;line-height:60rpx;'>{{item.name}}</text>
-                    <text style='margin-left:30rpx;color:gray;line-height:60rpx;'>{{item.unit}}</text>
-                    <text style='margin-left:20rpx;color:gray;line-height:60rpx;'>{{item.job}}</text>
-                  </view>
-                  <text style='margin-top:10rpx;color:gray;'>{{item.phone}}</text> -->
-                  <!-- <image :src="item.pictureUrl" class='item-image' /> -->
-                  <view class='item-text' style="width:100%;">
-                    <view>{{item.name}}<span style="float: right; display: inline-block; height:100%; margin-right: 30rpx;" @click.stop="handleCall(item.phone)">{{item.phone}}</span></view>
-                    <!-- <view></view> -->
-                  </view>
+          <template v-if="items.length">
+            <view
+              class="touch-item"
+              :class="{'touch-move-active': item.isTouchMove}"
+              @touchstart="touchstart"
+              @touchmove="touchmove"
+              v-for="(item, index) in items"
+              :data-index="index"
+              :key="item.id">
+                <view class='content' @click='handleOperate(item.id)' :data-index="index">
+                  <view class='column'>
+                    <!-- <view class='row full_width'>
+                      <text style='font-weight: bold;line-height:60rpx;'>{{item.name}}</text>
+                      <text style='margin-left:30rpx;color:gray;line-height:60rpx;'>{{item.unit}}</text>
+                      <text style='margin-left:20rpx;color:gray;line-height:60rpx;'>{{item.job}}</text>
+                    </view>
+                    <text style='margin-top:10rpx;color:gray;'>{{item.phone}}</text> -->
+                    <!-- <image :src="item.pictureUrl" class='item-image' /> -->
+                    <view class='item-text' style="width:100%;">
+                      <view>{{item.name}}<span style="float: right; display: inline-block; height:100%; margin-right: 30rpx;" @click.stop="handleCall(item.phone)">{{item.phone}}</span></view>
+                      <!-- <view></view> -->
+                    </view>
 
+                  </view>
                 </view>
-              </view>
-              <view class="del" @click="del" :data-id="item.id">删除</view>
-          </view>
+                <view class="del" @click="del" :data-id="item.id">删除</view>
+            </view>
+          </template>
+          <no-data v-else></no-data>
         </div>
         <!-- <div class="weui-tab__content" :hidden="activeIndex != 1"> -->
           <!-- 选项二的内容 -->
@@ -105,6 +108,7 @@
 import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
 import Touch from '../../utils/touch.js'
+import noData from "@/components/no-data.vue"
 // import { mapState, mapMutations } from "vuex";
 
 export default {
@@ -113,7 +117,7 @@ export default {
     this.getData()
   },
   components: {
-
+    noData
   },
   data() {
     return {
@@ -127,9 +131,15 @@ export default {
       // endDate: ''
 
       tabs: ['店长', '美容顾问', '美容师'],
-      dz:null,
-      gw:null,
-      mrs:null,
+      dz: {
+        empInfos: []
+      },
+      gw: {
+        empInfos: []
+      },
+      mrs:{
+        empInfos: []
+      },
       activeIndex: 0,
       touch: null,
       items: [
@@ -306,7 +316,7 @@ export default {
                 this.dz = item
               }
             }
-            if(item.jobName == '顾问'){
+            if(item.jobName == '美容顾问'){
               if(item.empInfos){
                 item.empInfos.forEach(i => {
                   i.isTouchMove = false
@@ -329,13 +339,13 @@ export default {
           })
 
           if(this.activeIndex == 0){
-            this.items = this.dz.empInfos
+            this.items = this.dz ? this.dz.empInfos : []
           }
           if(this.activeIndex == 1){
-            this.items = this.gw.empInfos
+            this.items = this.gw ? this.gw.empInfos : []
           }
           if(this.activeIndex == 2){
-            this.items = this.mrs.empInfos
+            this.items = this.mrs ? this.mrs.empInfos : []
           }
         }
       };
