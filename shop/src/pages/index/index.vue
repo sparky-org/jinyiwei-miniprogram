@@ -168,7 +168,7 @@ import noData from '@/components/no-data'
 export default {
   onShow() {
 
-    // 判断是否登录
+    // 判断是否登录 login有
     let userInfo = wx.getStorageSync("userInfo")
     if(!userInfo){
       wx.reLaunch({

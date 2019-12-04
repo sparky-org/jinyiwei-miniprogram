@@ -3,7 +3,23 @@
 //   getOpenid
 // } from './utils'
 export default {
-  created() {
+  mounted() {
+    this.$nextTick(()=>{
+      let userInfo = wx.getStorageSync("userInfo")
+      if(!userInfo){
+        wx.reLaunch({
+          url: '/pages/login/main'
+        })
+      }
+    })
+
+
+    // else{
+    //   wx.setStorageSync("userInfo", userInfo);
+    //   this.$store.commit('setUserInfo', userInfo)
+    // }
+
+
     // 调用API从本地缓存中获取数据
     /*
     const logs = wx.getStorageSync("logs") || [];
