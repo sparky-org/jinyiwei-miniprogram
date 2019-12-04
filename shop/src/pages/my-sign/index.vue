@@ -2,7 +2,7 @@
   <div class="staff_sign">
 
     <div class="map" v-if="latitude && longitude">
-      <map id="map" :markers="markers" :circles="circles" :longitude="longitude" :latitude="latitude" scale="20" show-location style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;"></map>
+      <map id="map" :markers="markers" :circles="circles" :longitude="longitude" :latitude="latitude" scale="16" show-location style="position: absolute; left: 0; top: 0; width: 100%; height: 100%;"></map>
     </div>
 
     <div class="weui-form-preview">
