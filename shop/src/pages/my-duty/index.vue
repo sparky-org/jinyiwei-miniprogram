@@ -353,20 +353,24 @@ export default {
       }
     },
     async handleSign() {
-      // wx.navigateTo({
-      //   url: "/pages/my-sign/main?"
-      // });
-      const data = await post(`/vacation/clockIn?empNo=${this.$store.state.userInfo.shopEmployee.id}&longitude=${this.longitude}&latitude=${this.latitude}&isOutSide=${!this.isIn}`);
-      if(data.success){
-        wx.showToast({
-          title: '打卡成功',
-          icon: 'success',
-          duration: 1000,
-          success(){
+      if(this.isIn){
+        const data = await post(`/vacation/clockIn?empNo=${this.$store.state.userInfo.shopEmployee.id}&longitude=${this.longitude}&latitude=${this.latitude}&isOutSide=${!this.isIn}`);
+        if(data.success){
+          wx.showToast({
+            title: '打卡成功',
+            icon: 'success',
+            duration: 1000,
+            success(){
 
-          }
-        })
+            }
+          })
+        }
+      }else{
+        wx.navigateTo({
+          url: `/pages/my-sign/main`
+        });
       }
+
     }
   },
   created() {
