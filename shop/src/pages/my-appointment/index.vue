@@ -41,10 +41,13 @@
 
     <div class="weui-cells__title">我的预约</div>
     <div class="weui-cells weui-cells_after-title">
-      <div class="weui-cell" v-for="(item, index) in yyList" :key="index">
-        <div class="weui-cell__bd">{{item.timeStr}}</div>
-        <div class="weui-cell__ft">{{item.info}}</div>
-      </div>
+      <template v-if="yyList.length">
+        <div class="weui-cell" v-for="(item, index) in yyList" :key="index">
+          <div class="weui-cell__bd">{{item.timeStr}}</div>
+          <div class="weui-cell__ft">{{item.info}}</div>
+        </div>
+      </template>
+      <div v-else style="padding: 20rpx; text-align: center; color: #ccc;">今日暂无预约</div>
       <!-- <div class="weui-cell">
         <div class="weui-cell__bd">14:30</div>
         <div class="weui-cell__ft">王小姐第三次背部按摩</div>
@@ -185,8 +188,11 @@ export default {
       if(data.success){
         if(data.result.length){
           this.tileContent = data.result.map(item => {
+            let arr = item.split('-')
             return {
-              date: item.split(' ')[0], className: 'holiday', content: '预约'
+              date: arr[0] + '-' + (arr[1]<10?Number(arr[1]):arr[1]) +'-' + (arr[2]<10?Number(arr[2]):arr[2]),
+              className: 'holiday',
+              content: '预约'
             }
           })
         }
