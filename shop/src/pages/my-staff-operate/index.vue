@@ -65,7 +65,7 @@
         </div>
         <div class="weui-cell__bd">
           <picker @change="bindPickerChange" :value="form.position" :range="array">
-            <input class="weui-input" placeholder="请选择员工岗位" v-model="form.position" />
+            <input class="weui-input" disabled="disabled" placeholder="请选择员工岗位" v-model="form.position" />
           </picker>
         </div>
       </div>
@@ -93,7 +93,7 @@
         </div>
         <div class="weui-cell__bd">
           <picker @change="bindStaffChange" :value="form.sj" :range="staffArray">
-            <input class="weui-input" placeholder="请选择上级" v-model="form.sj" />
+            <input class="weui-input" disabled="disabled" placeholder="请选择上级" v-model="form.sj" />
           </picker>
         </div>
       </div>
@@ -335,7 +335,7 @@ export default {
             }
           })
           setTimeout(()=>{
-            wx.navigateTo({
+            wx.navigateBack({
               url: "/pages/my-staff-manage/main"
             });
           },1000)
@@ -364,7 +364,7 @@ export default {
             }
           })
           setTimeout(()=>{
-            wx.navigateTo({
+            wx.navigateBack({
               url: "/pages/my-staff-manage/main"
             });
           },1000)

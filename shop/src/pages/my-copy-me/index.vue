@@ -7,7 +7,7 @@
         <div class="weui-form-preview__hd">
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">类型</div>
-            <div class="weui-form-preview__value_in-hd">{{item.name}}</div>
+            <div class="weui-form-preview__value_in-hd">{{item.title}}</div>
           </div>
         </div>
         <div class="weui-form-preview__bd">
@@ -22,6 +22,10 @@
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">状态</div>
             <div class="weui-form-preview__value">{{item.statusDesc}}</div>
+          </div>
+          <div class="weui-form-preview__item">
+            <div class="weui-form-preview__label">内容</div>
+            <div class="weui-form-preview__value" v-html="item.content"></div>
           </div>
           <div class="weui-form-preview__item">
             <div class="weui-form-preview__label">最后更新时间</div>

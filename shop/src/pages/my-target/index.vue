@@ -1,7 +1,8 @@
 <template>
   <div class="page">
+
     <div class="weui-toptips weui-toptips_warn" v-if="showTopTips">{{tipsMessage}}</div>
-    <div class="weui-form-preview" style="margin-bottom: 20rpx;">
+    <div class="weui-form-preview" style="margin-bottom: 20rpx;" v-if="!selectStaffVisible && !selectCustomerVisible">
       <div class="weui-cells weui-cells_after-title">
         <div class="weui-cell weui-cell_input">
           <div class="weui-cell__hd">
@@ -154,6 +155,7 @@
         </div>
       </div>
     </div>
+
 
     <select-staff :multiple="multiple" :data="selectData" :visible.sync="selectStaffVisible" @getSelectData="getSelectStaff"></select-staff>
 
