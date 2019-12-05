@@ -424,14 +424,15 @@ export default {
     if(applyType){
       if(applyType == 'SERVICE_ITEM'){
         this.index = 3
-        this.typeStr = this.enumApplication[ this.index];
-        this.type = enumApplicationList[ this.index].value
       }
       if(applyType == 'VACATION'){
         this.index = 4
-        this.typeStr = this.enumApplication[ this.index];
-        this.type = enumApplicationList[ this.index].value
       }
+      if(applyType == 'SAL_PERF'){
+        this.index = 2
+      }
+      this.typeStr = this.enumApplication[this.index];
+      this.type = enumApplicationList[this.index].value
     }else{
       this.getData()
     }
