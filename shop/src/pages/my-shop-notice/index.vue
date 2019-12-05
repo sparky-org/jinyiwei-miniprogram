@@ -3,11 +3,11 @@
 
     <div class="weui-toptips weui-toptips_warn" v-if="errorTips">请填写公告内容</div>
 
-    <div class="weui-cells__title"><span class="required">*</span>公告</div>
+    <div class="weui-cells__title"><span class="required" v-if="canEdit">*</span>公告</div>
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea :disabled="!canEdit" placeholder="请输入公告" style="height: 9.9em; width: 100%;" v-model="noticeText" />
+          <textarea :disabled="!canEdit" :placeholder="canEdit?'请输入公告':''" style="height: 9.9em; width: 100%;" v-model="noticeText" />
           <!-- <div class="weui-textarea-counter">0/200</div> -->
         </div>
       </div>

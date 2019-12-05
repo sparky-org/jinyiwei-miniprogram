@@ -3,11 +3,11 @@
 
     <div class="weui-toptips weui-toptips_warn" v-if="errorTips">请输入店内制度</div>
 
-    <div class="weui-cells__title"><span class="required">*</span>店内制度</div>
+    <div class="weui-cells__title"><span class="required" v-if="canEdit">*</span>店内制度</div>
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea :disabled="!canEdit" placeholder="请输入店内制度" v-model="ruleText" style="height: 9.9em; width: 100%;" />
+          <textarea :disabled="!canEdit" :placeholder="canEdit?'请输入店内制度':''" v-model="ruleText" style="height: 9.9em; width: 100%;" />
           <!-- <div class="weui-textarea-counter">0/200</div> -->
         </div>
       </div>
