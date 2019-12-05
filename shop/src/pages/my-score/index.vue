@@ -40,7 +40,7 @@
 
     <div class="content weui-flex-wrapper">
       <template v-if="list.length">
-        <div class="weui-flex list" v-for="(item, index) in list" :key="index" @click="handleDetail(item.empId)">
+        <div class="weui-flex list" v-for="(item, index) in list" :key="index" @click="handleDetail(item.empNo)">
           <div class="weui-flex__item">{{index+1}}</div>
           <div class="weui-flex__item">{{item.name}}</div>
           <div class="weui-flex__item">{{item.increase}}</div>
