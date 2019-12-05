@@ -153,7 +153,9 @@ export default {
   },
   computed: {
     isAdmin(){
-      return this.$store.state.userInfo.shopEmployee.isAdmin
+      if(this.$store.state.userInfo){
+        return this.$store.state.userInfo.shopEmployee.isAdmin
+      }
     }
   },
   mounted() {

@@ -91,6 +91,9 @@ export default {
   components: {},
   methods: {
     async handlePhoneBlur(){
+      if(!this.form.phone){
+        return
+      }
       const data = await post(`/listMyShop?phone=${this.form.phone}`);
       // console.info(data)
       if(data.success){
