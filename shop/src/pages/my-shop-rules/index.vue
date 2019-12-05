@@ -38,7 +38,7 @@ export default {
       ruleText: '',
 
       canEdit: false,
-      companySystemNo: null
+      companySystemNo: ''
     };
   },
 
@@ -55,9 +55,11 @@ export default {
     async getPoster(){
       const data = await post(`/companySystem/viewSystem?empNo=${this.$store.state.userInfo.shopEmployee.id}&shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`);
       if(data.success){
-        this.canEdit = data.result.canEdit
-        this.ruleText = data.result.content
-        this.companySystemNo = data.result.companySystemNo
+        if(data.result){
+          this.canEdit = data.result.canEdit
+          this.ruleText = data.result.content
+          this.companySystemNo = data.result.companySystemNo
+        }
       }
     },
 

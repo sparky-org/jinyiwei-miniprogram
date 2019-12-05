@@ -79,15 +79,15 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">美容院制度</div>
       </navigator>
-      <navigator url="/pages/my-shop-poster/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator v-if="isAdmin" url="/pages/my-shop-poster/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">店内海报</div>
       </navigator>
-      <navigator url="/pages/my-staff-position/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator v-if="isAdmin" url="/pages/my-staff-position/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">岗位管理</div>
       </navigator>
-      <navigator url="/pages/my-project-manage/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator v-if="isAdmin" url="/pages/my-project-manage/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">项目管理</div>
       </navigator>
@@ -95,11 +95,11 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">公告</div>
       </navigator>
-      <navigator url="/pages/my-task-operate/main?type=add" class="weui-grid" hover-class="weui-grid_active">
+      <navigator v-if="isAdmin" url="/pages/my-task-operate/main?type=add" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">发布任务</div>
       </navigator>
-      <navigator url="/pages/my-task-manage/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator v-if="isAdmin" url="/pages/my-task-manage/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">任务管理</div>
       </navigator>
@@ -107,11 +107,11 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <!-- <div class="weui-grid__label">发布项目</div>
       </navigator> -->
-      <navigator url="/pages/my-score-rules/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator v-if="isAdmin" url="/pages/my-score-rules/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">积分制度</div>
       </navigator>
-      <navigator url="/pages/my-duty-set/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator v-if="isAdmin" url="/pages/my-duty-set/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">设置考勤</div>
       </navigator>
@@ -152,7 +152,9 @@ export default {
   onShow() {
   },
   computed: {
-
+    isAdmin(){
+      return this.$store.state.userInfo.shopEmployee.isAdmin
+    }
   },
   mounted() {
     // 判断是否登录  ------可以去掉  index 已经写了  测试用
