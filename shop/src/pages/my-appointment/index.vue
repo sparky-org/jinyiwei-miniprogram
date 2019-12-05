@@ -84,7 +84,11 @@ export default {
   onShow() {
     let d = new Date()
     console.info(d.getFullYear()+'-'+(d.getMonth()+1))
+    console.info(d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate())
     this.getData(d.getFullYear()+'-'+(d.getMonth()+1))
+    this.getDetail({
+      date: d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()
+    })
     if(this.$refs.calendar){
       this.$refs.calendar.renderer(d.getFullYear(), d.getMonth()+1);
     }
@@ -94,12 +98,13 @@ export default {
     Calendar
   },
   data() {
+    let d = new Date()
     return {
       month: new Date().getMonth() + 1,
       yyList: [],
       // months: ['一月', '二月', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
       // disabledArray: ['2018-6-27','2018-6-25'],
-      // value: [2018,6,7],
+      value: [d.getFullYear() , (d.getMonth()+1), d.getDate()],
       // begin:[2016,1,1],
       // end:[2020,1,1],
       events: {}, //events为自定义备注，例如备注2018年6月21日为{'2018-6-21': '今日备注', '2018-6-22':'明日备注'}，在clean模式下备注为圆点，lunar农历模式下备注会替代农历优先展示
