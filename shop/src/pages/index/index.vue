@@ -62,12 +62,12 @@
           <div class="weui-cell__ft" style="float: right;">{{todayBusiness.appointmentCustomerNum}}人</div>
         </div>
       </navigator>
-      <navigator url="/pages/my-application/main?applyType=SALES_PERF&date=2019-11-15" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
+      <div @click="handleToMyApplication" url="/pages/my-application/main?applyType=SALES_PERF" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日业绩</div>
           <div class="weui-cell__ft" style="float: right;">{{todayBusiness.salesPerformanceNum}}元</div>
         </div>
-      </navigator>
+      </div>
       <navigator url="/pages/my-approval/main?type=SERVICE_ITEM" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
           <div class="weui-cell__bd">今日项目数量</div>
@@ -284,6 +284,13 @@ export default {
   },
   components: {},
   methods: {
+
+    handleToMyApplication(){
+      wx.setStorageSync('application-type', 'SAL_PERF')
+      wx.navigateTo({
+        url: '/pages/my-application/main'
+      })
+    },
 
     runMarquee: function () {
       var that = this;
