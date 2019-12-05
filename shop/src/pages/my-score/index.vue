@@ -40,7 +40,7 @@
 
     <div class="content weui-flex-wrapper">
       <template v-if="list.length">
-        <div class="weui-flex list" v-for="(item, index) in list" :key="index" @click="handleDetail">
+        <div class="weui-flex list" v-for="(item, index) in list" :key="index" @click="handleDetail(item.empId)">
           <div class="weui-flex__item">{{index+1}}</div>
           <div class="weui-flex__item">{{item.name}}</div>
           <div class="weui-flex__item">{{item.increase}}</div>
@@ -129,7 +129,7 @@ export default {
       let params = {
         "beginDate": this.startDate,
         "currentPage": this.currentPage,
-        "empNo": this.$store.state.userInfo.shopEmployee.id,
+        "empNo": id,
         "endDate": this.endDate,
         "interval": this.type,
         "pageSize": this.pageSize,

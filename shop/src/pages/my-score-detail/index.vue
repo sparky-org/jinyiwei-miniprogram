@@ -13,7 +13,7 @@
           <span class="score-num">{{item.point+'分'}}</span>
         </div>
       </div>
-      <div style="padding-top: 30rpx; border-top: 1rpx solid #d9d9d9;" class="no-more" v-if="list.length >= totalCount">没有更多了</div>
+      <div style="padding-top: 20rpx; border-top: 1rpx solid #d9d9d9; padding-bottom: 10rpx;" class="no-more" v-if="list.length >= totalCount">没有更多了</div>
     </template>
     <no-data v-else></no-data>
 
