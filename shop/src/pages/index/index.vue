@@ -50,9 +50,9 @@
     <!-- </view> -->
     <!--跑马灯-->
     <!-- 跑马灯效果 -->
-    <navigator url="/pages/my-shop-notice/main?from=index" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
+    <navigator v-if="noticeText" url="/pages/my-shop-notice/main?from=index" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
       <dl class="notice-wrapper">
-        <dt>公告：</dt>
+        <!-- <dt>公告：</dt> -->
         <dd>{{noticeText}}</dd>
       </dl>
     </navigator>

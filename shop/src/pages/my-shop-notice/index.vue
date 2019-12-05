@@ -48,7 +48,9 @@ export default {
     // this.getData();
   },
   computed: {
-
+    isAdmin(){
+      return this.$store.state.userInfo.shopEmployee.isAdmin
+    }
   },
   methods: {
 
