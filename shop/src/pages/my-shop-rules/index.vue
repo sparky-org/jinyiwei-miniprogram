@@ -38,7 +38,7 @@ export default {
       ruleText: '',
 
       canEdit: false,
-      companySystemNo: ''
+      companySystemNo: null
     };
   },
 
