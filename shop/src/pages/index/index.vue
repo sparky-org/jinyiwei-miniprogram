@@ -135,12 +135,13 @@
         <no-data v-else></no-data>
 
       </div>
-      <div class="weui-panel__ft">
-        <div class="weui-cell weui-cell_access weui-cell_link" @click="handleScore">
-          <div class="weui-cell__bd">查看更多</div>
-          <div class="weui-cell__ft weui-cell__ft_in-access"></div>
-        </div>
-      </div>
+      <!--难看，注释掉，积分榜从积分排名栏位进入-->
+      <!--<div class="weui-panel__ft">-->
+        <!--<div class="weui-cell weui-cell_access weui-cell_link" @click="handleScore">-->
+          <!--<div class="weui-cell__bd">查看更多</div>-->
+          <!--<div class="weui-cell__ft weui-cell__ft_in-access"></div>-->
+        <!--</div>-->
+      <!--</div>-->
     </div>
 
 
