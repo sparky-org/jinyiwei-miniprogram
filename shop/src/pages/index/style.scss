@@ -1,4 +1,24 @@
 .index {
+
+  .notice-wrapper{
+    background-color: #fcfcfc;
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+    dt{
+      padding:0 10rpx 0  20rpx;
+      float: left;
+      color: #666;
+    }
+    dd{
+      margin-bottom: 50px;
+      color: #999;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+    }
+  }
+
   .ph-dl{
     display: block;
     text-align: center;
@@ -79,5 +99,5 @@
     padding: 4px 10px;
     background: #fff;
   }
-  
+
 }

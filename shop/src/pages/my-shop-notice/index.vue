@@ -88,6 +88,12 @@ export default {
           }
         })
         setTimeout(()=>{
+          if(this.$root.$mp.query.from){
+            wx.reLaunch({
+              url: "/pages/index/main"
+            });
+            return;
+          }
           wx.reLaunch({
             url: "/pages/workBench/main"
           });

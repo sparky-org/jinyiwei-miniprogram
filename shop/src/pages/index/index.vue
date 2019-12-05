@@ -50,6 +50,12 @@
     <!-- </view> -->
     <!--跑马灯-->
     <!-- 跑马灯效果 -->
+    <navigator url="/pages/my-shop-notice/main?from=index" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
+      <dl class="notice-wrapper">
+        <dt>公告：</dt>
+        <dd>{{noticeText}}</dd>
+      </dl>
+    </navigator>
 
 
 
@@ -239,12 +245,7 @@ export default {
     return {
 
 
-      text: '为了迎接双十一，凡11月1号到11月11号进店新用户预存1万为了迎接双十一，凡11月1号到11月11号进店新用户预存1万',
-      marqueePace: 1,//滚动速度
-      marqueeDistance: 0,//初始滚动距离
-      size: 14,
-      orientation: 'left',//滚动方向
-      intervals: 20, // 时间间隔—
+      noticeText: '',
 
 
 
@@ -333,7 +334,7 @@ export default {
       const data = post(`/notice/viewNotice?empNo=${this.$store.state.userInfo.shopEmployee.id}&shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`).then((data)=>{
         if(data.success){
           if(data.result){
-            this.text = data.result.content
+            this.noticeText = data.result.content
             // // 跑马灯
             // var length = this.text.length * this.size;//文字长度
             // var windowWidth = wx.getSystemInfoSync().windowWidth;// 屏幕宽度
