@@ -130,7 +130,7 @@ import { get, post, host } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
-    this.getPoster()
+
   },
   components: {
 
@@ -156,6 +156,7 @@ export default {
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role);
     // this.getData();
+    this.getPoster()
   },
   computed: {
 
@@ -163,18 +164,34 @@ export default {
   methods: {
 
     async getPoster(){
+      console.info('getPoster')
       const data = await post(`/poster/viewPosters?empNo=${this.$store.state.userInfo.shopEmployee.id}&shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`);
       if(data.success){
         this.canEdit = data.result.canEdit
         if(data.result.content){
-          this.files = data.result.content.split(',')
           // this.files = [...this.files,'https://csdnimg.cn/pubfooter/images/csdn-zx.png']
-          this.myFiles = this.files.map(item => {
-            return {
-              state: true,
-              key: item,
-              url: item
-            }
+
+          // this.files = data.result.content.split(',')
+          // this.myFiles = this.files.map(item => {
+          //   return {
+          //     state: true,
+          //     key: item,
+          //     url: item
+          //   }
+          // })
+          data.result.content.split(',').forEach(item => {
+            wx.getImageInfo({
+              src: item,
+              success: res => {
+                console.info('resimg', res)
+                this.files.push(res.path)
+                this.myFiles.push({
+                  state: true,
+                  key: res.path,
+                  url: item
+                })
+              }
+            })
           })
         }
         this.posterNo = data.result.posterNo
@@ -254,7 +271,15 @@ export default {
           console.log('成功上传：' + res.tempFilePaths);
           // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
           this.files = this.files.concat(res.tempFilePaths);
-          this.upload(this.files)
+          this.upload(res.tempFilePaths)
+          // res.tempFilePaths.forEach(item => {
+          //   this.myFiles.push({
+          //     state: true,
+          //     key: item,
+          //     url: item
+          //   })
+          // })
+
         },
         fail: function() {
           // console.log('fail');
@@ -306,7 +331,7 @@ export default {
 
 
     upload(list) {
-      console.info('host',host,list,host + "/file/upload")
+      console.info('host',host + "/file/upload", list)
       wx.showToast({
         icon: "loading",
         title: "正在上传"
@@ -381,8 +406,8 @@ export default {
 
     }
 
-    
-    
+
+
     // handleAreaSelect(){
     //   wx.showActionSheet({
     //     itemList: enumArea,
