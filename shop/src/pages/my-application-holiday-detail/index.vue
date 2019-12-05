@@ -211,7 +211,7 @@ export default {
                 }
               })
               setTimeout(()=>{
-                wx.reLaunch({
+                wx.navigateBack({
                   url: "/pages/my-approval/main"
                 });
               },1000)

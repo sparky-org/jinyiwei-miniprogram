@@ -140,14 +140,14 @@ export default {
       spData: [],
       customerSelectData:[],
       csData: [],
-      
+
       // role: '',
       noticeText: '',
       date: '',
       title:'',
       point: '',
 
-      
+
       // array: ['美国', '中国', '巴西', '日本'],
       array: [],
       xmList: [],
@@ -238,6 +238,9 @@ export default {
 
           }
         })
+
+        
+        wx.setStorageSync('application-type', 'SERVICE_ITEM')
         setTimeout(()=>{
           wx.redirectTo({
             url: '/pages/my-application/main'

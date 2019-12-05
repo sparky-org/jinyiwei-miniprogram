@@ -159,13 +159,15 @@ import selectStaff from '@/components/select-staff';
 
 export default {
   onShow() {
-
+    this.applyType = this.$root.$mp.query.type;
+    console.info('this.applyType', this.applyType)
   },
   components: {
     selectStaff
   },
   data() {
     return {
+      applyType:'',
       // role: '',
       multiple: true,
       csData: [],
@@ -245,8 +247,11 @@ export default {
 
           }
         })
+        if(this.applyType){
+          wx.setStorageSync('application-type', this.applyType)
+        }
         setTimeout(()=>{
-          wx.reLaunch({
+          wx.navigateBack({
             url: '/pages/my-application/main'
           })
         },1000)

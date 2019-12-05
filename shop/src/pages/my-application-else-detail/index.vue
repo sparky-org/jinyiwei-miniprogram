@@ -262,7 +262,7 @@ export default {
                 }
               })
               setTimeout(()=>{
-                wx.reLaunch({
+                wx.navigateBack({
                   url: "/pages/my-application/main"
                 });
               },1000)

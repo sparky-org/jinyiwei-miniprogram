@@ -420,7 +420,7 @@ export default {
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role);
     // this.getData();
 
-    let applyType = this.$root.$mp.query.applyType;
+    let applyType = this.$root.$mp.query.type;
     if(applyType){
       if(applyType == 'SERVICE_ITEM'){
         this.index = 3

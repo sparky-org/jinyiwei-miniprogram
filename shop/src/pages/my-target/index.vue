@@ -375,11 +375,17 @@ export default {
 
           }
         })
+        wx.setStorageSync('application-type', 'SAL_PERF')
         setTimeout(()=>{
           wx.redirectTo({
             url: '/pages/my-application/main'
           })
         },1000)
+        // setTimeout(()=>{
+        //   wx.redirectTo({
+        //     url: '/pages/my-application/main'
+        //   })
+        // },1000)
       }
 
       // 测试用 我的目标申报的详情页面是从我的申请里面跳转过来的

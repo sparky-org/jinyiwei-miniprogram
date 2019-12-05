@@ -157,13 +157,16 @@ import selectStaff from '@/components/select-staff';
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
-
+    this.applyType = this.$root.$mp.query.type;
   },
   components: {
     selectStaff
   },
   data() {
     return {
+      applyType:'',
+
+
       multiple: true,
       csData: [],
       spData: [],
@@ -241,8 +244,11 @@ export default {
 
           }
         })
+        if(this.applyType){
+          wx.setStorageSync('application-type', this.applyType)
+        }
         setTimeout(()=>{
-          wx.reLaunch({
+          wx.navigateBack({
             url: '/pages/my-application/main'
           })
         },1000)

@@ -11,7 +11,7 @@
         </div>
         <div class="weui-flex__item">
           <!-- <div class="tab-title" @click="handleScorSelect">{{score}}<ins></ins></div> -->
-          <picker @change="bindStateChange" :value="index" :range="enumState">
+          <picker @change="bindStateChange" :value="stateIndex" :range="enumState">
             <div class="tab-title" style="font-size: 13px;">{{stateStr}}<ins></ins></div>
           </picker>
         </div>
@@ -310,7 +310,30 @@ let enumState = ['全部状态','待审批', '已撤回', '已通过','已拒绝
 let enumApplicationType = ['请假申请','其它申请']
 export default {
   onShow() {
-    this.getData()
+    let applyType = wx.getStorageSync('application-type')
+    wx.removeStorageSync('application-type')
+    if(applyType){
+      this.$nextTick(()=>{
+        if(applyType == 'VACATION'){
+          this.index = 4
+        }
+        if(applyType == 'NORMAL'){
+          this.index = 5
+        }
+        if(applyType == 'SERVICE_ITEM'){
+          this.index = 3
+        }
+        if(applyType == 'SAL_PERF'){
+          this.index = 2
+        }
+        this.typeStr = this.enumApplication[this.index];
+        this.type = enumApplicationList[this.index].value
+
+        this.getData()
+      })
+    }else{
+      this.getData()
+    }
   },
   components: {
     noData
@@ -328,6 +351,8 @@ export default {
   },
   data() {
     return {
+      getDataState: false,
+      stateIndex : 0,
       // role: '',
       index: 0,
       enumApplication,
@@ -364,6 +389,9 @@ export default {
       this.getData()
     },
     type(){
+      if(this.getDataState){
+        return
+      }
       this.getData()
     },
     state(){
@@ -389,6 +417,7 @@ export default {
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role);
     // this.getData();
+
   },
   computed: {
 
@@ -400,11 +429,11 @@ export default {
         success: function (res) {
           if(res.tapIndex == 0){
             wx.navigateTo({
-              url: "/pages/my-application-holiday/main"
+              url: "/pages/my-application-holiday/main?type=VACATION"
             });
           }else{
             wx.navigateTo({
-              url: "/pages/my-application-else/main"
+              url: "/pages/my-application-else/main?type=NORMAL"
             });
           }
         }
@@ -461,6 +490,7 @@ export default {
     // }
 
     async getData(append) {
+      this.getDataState = true
       append?(this.currentPage++):(this.currentPage=1)
       let queryObj = {
         empNo: this.$store.state.userInfo.shopEmployee.id,
@@ -476,6 +506,7 @@ export default {
       if(data.success){
         this.list = append ? this.list.concat((data.result) || []) : (data.result || [])
         this.totalCount = data.total
+        this.getDataState = false
       }
     },
     // goodsDetail(id) {
