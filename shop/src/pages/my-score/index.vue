@@ -36,7 +36,7 @@
     </div>
   </div>
 
-  <div style="padding-top: 81px;">
+  <div style="padding-top: 162rpx;">
 
     <div class="content weui-flex-wrapper">
       <template v-if="list.length">
