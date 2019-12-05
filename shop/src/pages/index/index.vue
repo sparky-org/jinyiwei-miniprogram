@@ -292,24 +292,6 @@ export default {
       })
     },
 
-    runMarquee: function () {
-      var that = this;
-      var interval = setInterval( () => {
-        //文字一直移动到末端
-        if (-that.marqueeDistance < that.length) {
-          this.marqueeDistance = that.marqueeDistance - that.marqueePace
-        }else{
-          clearInterval(interval);
-          this.marqueeDistance = that.windowWidth
-          that.runMarquee();
-        }
-      }, that.intervals);
-
-
-
-
-    },
-
     async getData(append) {
       if(append){
         this.currentPage++
