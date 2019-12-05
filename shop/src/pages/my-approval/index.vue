@@ -11,7 +11,7 @@
         </div>
         <div class="weui-flex__item">
           <!-- <div class="tab-title" @click="handleScorSelect">{{score}}<ins></ins></div> -->
-          <picker @change="bindStateChange" :value="index" :range="enumState">
+          <picker @change="bindStateChange" :value="stateIndex" :range="enumState">
             <div class="tab-title" style="font-size: 13px;">{{stateStr}}<ins></ins></div>
           </picker>
         </div>
@@ -352,6 +352,7 @@ let enumState = ['全部状态','待审批', '已撤回', '已通过','已拒绝
 export default {
   onShow() {
 
+
   },
   components: {
     noData
@@ -359,6 +360,7 @@ export default {
   data() {
     return {
       // role: '',
+      stateIndex: 0,
       index: 0,
       enumApplication,
       enumState,
@@ -417,7 +419,22 @@ export default {
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role);
     // this.getData();
-    this.getData()
+
+    let applyType = this.$root.$mp.query.applyType;
+    if(applyType){
+      if(applyType == 'SERVICE_ITEM'){
+        this.index = 3
+        this.typeStr = this.enumApplication[ this.index];
+        this.type = enumApplicationList[ this.index].value
+      }
+      if(applyType == 'VACATION'){
+        this.index = 4
+        this.typeStr = this.enumApplication[ this.index];
+        this.type = enumApplicationList[ this.index].value
+      }
+    }else{
+      this.getData()
+    }
   },
   computed: {
 
