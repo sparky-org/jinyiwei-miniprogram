@@ -6,6 +6,7 @@ import MyPlugin from './minxins'
 Vue.use(MyPlugin)
 
 import '../static/weui/weui.css'
+import '../static/animate.min.css'
 
 // import noData from './components/no-data'
 // console.info('noData',noData)
@@ -19,8 +20,9 @@ Vue.prototype.$store = store;
 
 Vue.config.productionTip = false
 App.mpType = 'app'
-import '../static/weui/weui.css'
+// import '../static/weui/weui.css'
 // import '../static/weui.css'
+
 
 const app = new Vue(App)
 app.$mount()

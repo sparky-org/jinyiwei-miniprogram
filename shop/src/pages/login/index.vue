@@ -2,7 +2,7 @@
   <div class="login">
     <div class="weui-cells weui-cells_after-title">
       <div class="logo">
-        <img :src="logoImg">
+        <img :src="logoImg" class="animated flip">
       </div>
       <div class="weui-cell weui-cell_input weui-cell_vcode">
         <div class="weui-cell__hd">
