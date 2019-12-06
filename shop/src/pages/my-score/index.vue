@@ -41,7 +41,20 @@
     <div class="content weui-flex-wrapper">
       <template v-if="list.length">
         <div class="weui-flex list" v-for="(item, index) in list" :key="index" @click="handleDetail(item.empNo)">
-          <div class="weui-flex__item">{{index+1}}</div>
+          <div class="weui-flex__item">
+            <template v-if="index == 0">
+            	<i class="iconfont iconguanjun1" style="font-size: 60rpx; color: #e4b53f;"></i>
+            </template>
+            <template v-else-if="index == 1">
+            	<i class="iconfont iconyajun1" style="font-size: 60rpx; color: #d4d0c0;"></i>
+            </template>
+            <template v-else-if="index == 2">
+            	<i class="iconfont iconjijun1" style="font-size: 60rpx; color: #bd903b;"></i>
+            </template>
+            <template v-else>
+            	{{index+1}}
+            </template>
+          </div>
           <div class="weui-flex__item">{{item.name}}</div>
           <div class="weui-flex__item">{{item.increase}}</div>
           <div class="weui-flex__item">{{item.decrease}}</div>
