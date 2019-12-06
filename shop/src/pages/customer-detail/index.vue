@@ -7,7 +7,13 @@
       <div class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 20rpx 0;">
         <div class="weui-media-box__hd weui-media-box__hd_in-appmsg" style="width: 80rpx; margin-right: 20rpx; text-align: right;">
           <!-- <image class="weui-media-box__thumb" :src="icon60" /> -->
-          <i class="iconfont iconai-user weui-media-box__thumb" style="color: #999; font-size: 50rpx;"></i>
+          <!-- <i class="iconfont iconai-user weui-media-box__thumb" style="color: #999; font-size: 50rpx;"></i> -->
+          <template v-if="customerData.sex=='FEMALE'">
+            <i class="iconfont iconnv" style="color: #999; font-size: 70rpx;"></i>
+          </template>
+          <template v-else>
+            <i class="iconfont iconnan" style="color: #999; font-size: 60rpx;"></i>
+          </template>
         </div>
         <div class="weui-media-box__bd weui-media-box__bd_in-appmsg" style="position: relative;" @click="handleCall(customerData.phone)">
           <div class="weui-media-box__title">{{customerData.name?customerData.name:''}}</div>
