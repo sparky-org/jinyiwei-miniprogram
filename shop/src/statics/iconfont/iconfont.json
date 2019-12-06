@@ -27,6 +27,41 @@
       "unicode_decimal": 59024
     },
     {
+      "icon_id": "4965376",
+      "name": "女",
+      "font_class": "nv",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "6108515",
+      "name": "冠军",
+      "font_class": "guanjun",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "6119783",
+      "name": "亚军",
+      "font_class": "yajun",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "6154720",
+      "name": "男",
+      "font_class": "nan",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "7475474",
+      "name": "季军",
+      "font_class": "jijun",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
       "icon_id": "9826663",
       "name": "拨打电话",
       "font_class": "bodadianhua",
