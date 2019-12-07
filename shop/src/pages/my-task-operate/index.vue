@@ -533,6 +533,7 @@ export default {
       const data = post(`/point/getPointConfig?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`).then((data)=>{
         if(data.success){
           if(data.result){
+            console.info('获取积分配置成功')
             this.jfList = data.result
             this.array = data.result.map(item => {
               return item.pointName
