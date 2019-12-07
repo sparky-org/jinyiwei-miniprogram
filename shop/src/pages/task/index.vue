@@ -32,16 +32,21 @@
             <!--</div>-->
             <div class="weui-form-preview__item">
               <div class="weui-form-preview__label">任务积分</div>
-              <div class="weui-form-preview__value">{{item.rewardPoint}}积分</div>
+              <div class="weui-form-preview__value">
+                {{item.rewardPoint}}积分
+                <button class="weui-btn custom-btn" type="primary" @click="handleAction(item)" :disabled="item.status=='COMPLETE'">{{item.status=='COMPLETE'?'已完成':'完 成'}}</button>
+              </div>
             </div>
             <!--<div class="weui-form-preview__item">-->
               <!--<div class="weui-form-preview__label">剩余个数</div>-->
               <!--<div class="weui-form-preview__value">无限制</div>-->
             <!--</div>-->
           </div>
-          <div class="weui-form-preview__ft">
+
+
+          <!-- <div class="weui-form-preview__ft">
             <button class="weui-btn" type="primary" @click="handleAction(item)" :disabled="item.status=='COMPLETE'">{{item.status=='COMPLETE'?'已完成':'完 成'}}</button>
-          </div>
+          </div> -->
         </div>
         <div class="no-more" v-if="list.length >= totalCount">没有更多了</div>
       </template>
@@ -139,7 +144,7 @@ export default {
               setTimeout(()=>{
                 this.getData()
               },1000)
-              
+
             }
           } else {
             console.log('用户点击辅助操作')
@@ -202,5 +207,16 @@ export default {
 </script>
 
 <style lang='scss' scoped>
+  .custom-btn{
+    float: right;
+    padding: 6rpx;
+    width: 100rpx;
+    height: 46rpx;
+    line-height: 46rpx;
+    font-size: 13px;
+    /* &::after{
+      font-size: ;
+    } */
+  }
 @import "./style.scss";
 </style>
