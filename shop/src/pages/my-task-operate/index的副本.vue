@@ -90,20 +90,20 @@
 
     <template v-else>
       <div style="padding: 0 10rpx;">
-      <div class="weui-cells weui-cells_after-title">
-      <div v-for="(itx, idx) in typeItems" :key="idx">
-      <checkbox-group @change="checkDZChange($event,typeItems[idx],idx)">
+      <div class="weui-cells weui-cells_after-title" v-if="typeItems.length>=3 && groupData.length>=3">
+
+      <checkbox-group @change="checkDZChange">
         <label class="weui-cell weui-check__label" style="border-bottom: 1rpx solid #ccc; background-color: #E5E5E5;">
-          <checkbox class="weui-check" :value="typeItems[0].value" :checked="typeItems[idx].checked" />
+          <checkbox class="weui-check" :value="typeItems[0].value" :checked="typeItems[0].checked" />
           <div class="weui-cell__hd weui-check__hd_in-checkbox">
-            <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!typeItems[idx].checked"></icon>
-            <icon class="weui-icon-checkbox_success" type="success" size="23" v-if="typeItems[idx].checked"></icon>
+            <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!typeItems[0].checked"></icon>
+            <icon class="weui-icon-checkbox_success" type="success" size="23" v-if="typeItems[0].checked"></icon>
           </div>
-          <div class="weui-cell__bd">{{typeItems[idx].name}}</div>
+          <div class="weui-cell__bd">{{typeItems[0].name}}</div>
         </label>
       </checkbox-group>
-      <checkbox-group @change="checkDZChildChange($event,groupData[idx],idx)">
-        <label class="weui-cell weui-check__label" v-for="(it,_index) in groupData[idx]" :key="_index">
+      <checkbox-group @change="checkDZChildChange">
+        <label class="weui-cell weui-check__label" v-for="(it,idx) in groupData[0]" :key="idx">
           <checkbox class="weui-check" :value="it.value" :checked="it.checked" />
           <div class="weui-cell__hd weui-check__hd_in-checkbox">
             <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!it.checked"></icon>
@@ -113,7 +113,7 @@
         </label>
       </checkbox-group>
 
-    <!--  <checkbox-group @change="checkGWChange">
+      <checkbox-group @change="checkGWChange">
         <label class="weui-cell weui-check__label" style="border-bottom: 1rpx solid #ccc; background-color: #E5E5E5;">
           <checkbox class="weui-check" :value="typeItems[1].value" :checked="typeItems[1].checked" />
           <div class="weui-cell__hd weui-check__hd_in-checkbox">
@@ -154,8 +154,7 @@
           <div class="weui-cell__bd">{{it.name}}</div>
         </label>
       </checkbox-group>
-      -->
-      </div>
+
 
 
       </div>
@@ -411,23 +410,49 @@ export default {
       this.checkAllState = e.mp.detail.value
     },
 
-    checkDZChange(e, arr, index) {
+    checkDZChange(e) {
       console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
-      arr.checked = e.mp.detail.value!='' ? true : false;
-      if(arr.checked){
-        arr.forEach(item => {
+      this.typeItems[0].checked = e.mp.detail.value!='' ? true : false;
+      if(this.typeItems[0].checked){
+        this.groupData[0].forEach(item => {
           item.checked = true
         })
       }else{
-        arr.forEach(item => {
+        this.groupData[0].forEach(item => {
+          item.checked = false
+        })
+      }
+    },
+    checkGWChange(e) {
+      console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
+      this.typeItems[1].checked = e.mp.detail.value!='' ? true : false;
+      if(this.typeItems[1].checked){
+        this.groupData[1].forEach(item => {
+          item.checked = true
+        })
+      }else{
+        this.groupData[1].forEach(item => {
+          item.checked = false
+        })
+      }
+    },
+    checkMRSChange(e) {
+      console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
+      this.typeItems[2].checked = e.mp.detail.value!='' ? true : false;
+      if(this.typeItems[2].checked){
+        this.groupData[2].forEach(item => {
+          item.checked = true
+        })
+      }else{
+        this.groupData[2].forEach(item => {
           item.checked = false
         })
       }
     },
 
-    checkDZChildChange(e, arr, index){
+    checkDZChildChange(e){
       console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
-      var checkboxItems = arr;
+      var checkboxItems = this.groupData[0];
       var values = e.mp.detail.value;
       for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
         checkboxItems[i].checked = false;
@@ -439,94 +464,64 @@ export default {
           }
         }
       }
-      arr = checkboxItems;
-      let state = arr.every(item=>{
+      this.groupData[0] = checkboxItems;
+      let state = this.groupData[0].every(item=>{
         return item.checked
       })
       if(state){
-        this.typeItems[index].checked = true
+        this.typeItems[0].checked = true
       }else{
-        this.typeItems[index].checked = false
+        this.typeItems[0].checked = false
       }
     },
+    checkGWChildChange(e){
+      console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
+      var checkboxItems = this.groupData[1];
+      var values = e.mp.detail.value;
+      for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+        checkboxItems[i].checked = false;
 
+        for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+          if (String(checkboxItems[i].value) === String(values[j])) {
+            checkboxItems[i].checked = true;
+            break;
+          }
+        }
+      }
+      this.groupData[1] = checkboxItems;
+      let state = this.groupData[1].every(item=>{
+        return item.checked
+      })
+      if(state){
+        this.typeItems[1].checked = true
+      }else{
+        this.typeItems[1].checked = false
+      }
+    },
+    checkMRSChildChange(e){
+      console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
+      var checkboxItems = this.groupData[2];
+      var values = e.mp.detail.value;
+      for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
+        checkboxItems[i].checked = false;
 
-    // checkGWChange(e) {
-    //   console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
-    //   this.typeItems[1].checked = e.mp.detail.value!='' ? true : false;
-    //   if(this.typeItems[1].checked){
-    //     this.groupData[1].forEach(item => {
-    //       item.checked = true
-    //     })
-    //   }else{
-    //     this.groupData[1].forEach(item => {
-    //       item.checked = false
-    //     })
-    //   }
-    // },
-    // checkMRSChange(e) {
-    //   console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
-    //   this.typeItems[2].checked = e.mp.detail.value!='' ? true : false;
-    //   if(this.typeItems[2].checked){
-    //     this.groupData[2].forEach(item => {
-    //       item.checked = true
-    //     })
-    //   }else{
-    //     this.groupData[2].forEach(item => {
-    //       item.checked = false
-    //     })
-    //   }
-    // },
-
-
-    // checkGWChildChange(e){
-    //   console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
-    //   var checkboxItems = this.groupData[1];
-    //   var values = e.mp.detail.value;
-    //   for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
-    //     checkboxItems[i].checked = false;
-
-    //     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-    //       if (String(checkboxItems[i].value) === String(values[j])) {
-    //         checkboxItems[i].checked = true;
-    //         break;
-    //       }
-    //     }
-    //   }
-    //   this.groupData[1] = checkboxItems;
-    //   let state = this.groupData[1].every(item=>{
-    //     return item.checked
-    //   })
-    //   if(state){
-    //     this.typeItems[1].checked = true
-    //   }else{
-    //     this.typeItems[1].checked = false
-    //   }
-    // },
-    // checkMRSChildChange(e){
-    //   console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
-    //   var checkboxItems = this.groupData[2];
-    //   var values = e.mp.detail.value;
-    //   for (var i = 0, lenI = checkboxItems.length; i < lenI; ++i) {
-    //     checkboxItems[i].checked = false;
-
-    //     for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
-    //       if (String(checkboxItems[i].value) === String(values[j])) {
-    //         checkboxItems[i].checked = true;
-    //         break;
-    //       }
-    //     }
-    //   }
-    //   this.groupData[2] = checkboxItems;
-    //   let state = this.groupData[2].every(item=>{
-    //     return item.checked
-    //   })
-    //   if(state){
-    //     this.typeItems[2].checked = true
-    //   }else{
-    //     this.typeItems[2].checked = false
-    //   }
-    // },
+        for (var j = 0, lenJ = values.length; j < lenJ; ++j) {
+          if (String(checkboxItems[i].value) === String(values[j])) {
+            checkboxItems[i].checked = true;
+            break;
+          }
+        }
+      }
+      this.groupData[2] = checkboxItems;
+      let state = this.groupData[2].every(item=>{
+        return item.checked
+      })
+      if(state){
+        this.typeItems[2].checked = true
+      }else{
+        this.typeItems[2].checked = false
+      }
+    },
 
 
     getJfConfig(){
