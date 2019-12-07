@@ -338,7 +338,9 @@ export default {
           if(data.result == null){
             this.posters = []
           }else{
-            this.posters = data.result.content.split(',')
+            this.posters = data.result.content.map(item => {
+              return item.absolutePath
+            })
           }
         }
       });
