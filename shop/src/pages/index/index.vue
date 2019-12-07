@@ -1,7 +1,7 @@
 <template>
   <div class="index">
 
-    <div class="swiper">
+    <div class="swiper" v-if="posters.length">
       <swiper class="swiper-container" indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="500">
         <block v-for="(item, index) in posters" :key="index">
           <swiper-item class="swiper-item">
@@ -335,7 +335,11 @@ export default {
       // console.info(`/agency/main/getMainPage?agencyId=${this.$store.state.userInfo.agencyId}`)
       const data = post(`/poster/viewPosters?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}&empNo=${this.$store.state.userInfo.shopEmployee.id}`).then((data)=>{
         if(data.success){
-          this.posters = data.result.content.split(',')
+          if(data.result == null){
+            this.posters = []
+          }else{
+            this.posters = data.result.content.split(',')
+          }
         }
       });
     },

@@ -92,7 +92,7 @@
       <div style="padding: 0 10rpx;">
       <div class="weui-cells weui-cells_after-title">
       <div v-for="(itx, idx) in typeItems" :key="idx">
-      <checkbox-group @change="checkDZChange($event,typeItems[idx],idx)">
+      <checkbox-group @change="checkDZChange($event,typeItems[idx],groupData[idx],idx)">
         <label class="weui-cell weui-check__label" style="border-bottom: 1rpx solid #ccc; background-color: #E5E5E5;">
           <checkbox class="weui-check" :value="typeItems[0].value" :checked="typeItems[idx].checked" />
           <div class="weui-cell__hd weui-check__hd_in-checkbox">
@@ -411,15 +411,17 @@ export default {
       this.checkAllState = e.mp.detail.value
     },
 
-    checkDZChange(e, arr, index) {
+    checkDZChange(e, item, subArr, index) {
       console.log('checkbox发生change事件，携带value值为：' + e.mp.detail.value);
-      arr.checked = e.mp.detail.value!='' ? true : false;
-      if(arr.checked){
-        arr.forEach(item => {
+      console.info('subArr',subArr)
+      console.info('item',item)
+      item.checked = e.mp.detail.value!='' ? true : false;
+      if(item.checked){
+        subArr.forEach(item => {
           item.checked = true
         })
       }else{
-        arr.forEach(item => {
+        subArr.forEach(item => {
           item.checked = false
         })
       }
