@@ -247,7 +247,9 @@ export default {
       const data = await post("/myCustomer/activeCustomerStatistics?empNo="+this.$store.state.userInfo.shopEmployee.id);
       if(data.success){
         this.echartData = data.result
-        this.onInit = this.initChart
+        this.$nextTick(() => {
+          this.onInit = this.initChart
+        })
       }
     },
     async getMyCustomer(append){
