@@ -663,7 +663,7 @@ export default {
             }
           })
           setTimeout(()=>{
-            wx.redirectTo({
+            wx.navigateBack({
               url: '/pages/my-task-manage/main'
             })
           },1000)
