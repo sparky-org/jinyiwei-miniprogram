@@ -251,7 +251,7 @@ export default {
   computed: {
     // ...mapState(["cityName"])
     isShop(){
-      return this.$store.state.userInfo.shopType == 'SHOP'
+      return (this.$store.state.userInfo && this.$store.state.userInfo.shopType == 'SHOP')
     }
   },
   mounted() {

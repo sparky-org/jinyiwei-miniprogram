@@ -175,6 +175,7 @@ export default {
   methods: {
     initChart (canvas, width, height) {
 
+    this.$nextTick(()=>{
       const chart = echarts.init(canvas, null, {
         width: width,
         height: height
@@ -221,6 +222,7 @@ export default {
       }
       chart.setOption(option)
       return chart
+      })
     },
     showInput() {
       this.inputShowed = true;
@@ -247,9 +249,7 @@ export default {
       const data = await post("/myCustomer/activeCustomerStatistics?empNo="+this.$store.state.userInfo.shopEmployee.id);
       if(data.success){
         this.echartData = data.result
-        this.$nextTick(() => {
-          this.onInit = this.initChart
-        })
+        this.onInit = this.initChart
       }
     },
     async getMyCustomer(append){
