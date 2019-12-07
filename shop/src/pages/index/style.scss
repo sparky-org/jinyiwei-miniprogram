@@ -1,22 +1,45 @@
 .index {
 
+  .jf-action-list{
+    .weui-media-box_appmsg{
+      padding-bottom: 0!important;
+      padding-top: 0!important;
+      height: 78rpx!important;
+      .weui-media-box__title, .score-num{
+        font-size: 14px!important;
+      }
+    }
+  }
+
   .notice-wrapper{
     background-color: #fcfcfc;
-    height: 40px;
+    height: 30px;
     width: 100%;
-    line-height: 40px;
+    line-height: 30px;
+    padding:  5px 0;
+    font-size: 14px;
+    overflow: hidden;
+    swiper {
+      height: 30px;
+      line-height:30px;
+    }
     dt{
-      padding:0 10rpx 0  20rpx;
+      // padding:0 10rpx 0  20rpx;
+      width: 55px;
+      height: 30px;
+      line-height: 30px;
       float: left;
+      text-align: right;
       color: #666;
     }
     dd{
       margin-bottom: 50px;
-      padding: 0 20rpx;
+      // padding: 0 20rpx;
       color: #999;
       overflow: hidden;
       text-overflow:ellipsis;
       white-space: nowrap;
+      color: #f00;
     }
   }
 
@@ -27,14 +50,14 @@
       padding: 20rpx 0 10rpx 0;
       // color: #10AEFF;
       color: #06AD56;
-      font-size: 18px;
+      font-size: 22px;
     }
     & > dd{
       padding: 0 0 20rpx 0;
     }
   }
   .score-num{
-    font-size: 18px;
+    font-size: 14px;
     color: #E64340;
     float: right;
   }

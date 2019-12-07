@@ -52,15 +52,24 @@
     <!-- 跑马灯效果 -->
     <navigator v-if="noticeText" url="/pages/my-shop-notice/main?from=index" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
       <dl class="notice-wrapper">
-        <!-- <dt>公告：</dt> -->
-        <dd>{{noticeText}}</dd>
+        <dt>公告：</dt>
+        <dd>
+        <!-- {{noticeText}} -->
+          <swiper vertical :autoplay="autoplay" :interval="interval" :duration="duration" circular>
+            <block v-for="(item, index) in noticeList" :key="index">
+              <swiper-item>
+                {{item}}
+              </swiper-item>
+            </block>
+          </swiper>
+        </dd>
       </dl>
     </navigator>
 
 
 
 
-    <div class="weui-cells__title">营业动态</div>
+    <div class="weui-cells__title">美容院营业动态</div>
     <div class="weui-cells weui-cells_after-title" v-if="todayBusiness">
       <navigator url="/pages/my-appointment/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
@@ -70,13 +79,13 @@
       </navigator>
       <div @click="handleToMyApplication" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
-          <div class="weui-cell__bd">今日业绩</div>
+          <div class="weui-cell__bd">今日目标业绩</div>
           <div class="weui-cell__ft" style="float: right;">{{todayBusiness.salesPerformanceNum}}元</div>
         </div>
       </div>
       <navigator url="/pages/my-approval/main?type=SERVICE_ITEM" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
-          <div class="weui-cell__bd">今日项目数量</div>
+          <div class="weui-cell__bd">今日顾客项目</div>
           <div class="weui-cell__ft" style="float: right;">{{todayBusiness.serviceItemRecordNum}}个</div>
         </div>
       </navigator>
@@ -123,7 +132,7 @@
 
     <div class="weui-panel weui-panel_access">
       <div class="weui-panel__hd">积分动态</div>
-      <div class="weui-panel__bd">
+      <div class="weui-panel__bd jf-action-list">
         <template v-if="list.length">
           <div v-for="(item, index) in list" :key="index" style="padding-top: 20rpx; padding-bottom: 20rpx;" url="/pages/task/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
             <!-- <div class="weui-media-box__hd weui-media-box__hd_in-appmsg">
@@ -246,6 +255,7 @@ export default {
 
 
       noticeText: '',
+      noticeList: [],
 
 
 
@@ -335,6 +345,15 @@ export default {
         if(data.success){
           if(data.result){
             this.noticeText = data.result.content
+            var strArr = [];
+            let n = parseInt((wx.getSystemInfoSync().windowWidth - 55) / 14) - 2
+            for (var i = 0, l = this.noticeText.length; i < l/n; i++) {
+            var a = this.noticeText.slice(n*i, n*(i+1));
+              strArr.push(a);
+            }
+            console.log(strArr);
+            this.noticeList = strArr
+
             // // 跑马灯
             // var length = this.text.length * this.size;//文字长度
             // var windowWidth = wx.getSystemInfoSync().windowWidth;// 屏幕宽度

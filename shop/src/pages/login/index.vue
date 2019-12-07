@@ -4,6 +4,9 @@
       <div class="logo">
         <img :src="logoImg" class="animated flip">
       </div>
+
+      <div class="login-text animated bounce">美业最实用经营管理系统</div>
+
       <div class="weui-cell weui-cell_input weui-cell_vcode">
         <div class="weui-cell__hd">
           <div class="weui-label">手机号</div>

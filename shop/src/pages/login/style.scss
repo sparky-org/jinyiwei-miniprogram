@@ -1,8 +1,14 @@
 .login {
+  .login-text{
+    font-size: 40rpx;
+    color: #BD6470;
+    text-align: center;
+    padding-bottom: 80rpx;
+  }
 	.logo{
 		width: 205rpx;
 		height: 255rpx;
-    padding: 50rpx 0 100rpx 0;
+    padding: 80rpx 0;
     margin: 0 auto;
     background-size: 100% 100%;
     img{
