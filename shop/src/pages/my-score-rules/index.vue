@@ -1,5 +1,6 @@
 <template>
   <div class="page">
+    <template v-if="pointRuleList.length > 0">
     <div v-for="(item ,index) in pointRuleList" :key="index">
       <div class="weui-form-preview" style="margin-bottom: 20rpx;">
         <div class="weui-cells weui-cells_after-title">
@@ -46,6 +47,8 @@
         </div>
       </div>
     </div>
+    </template>
+    <no-data v-else></no-data>
     <div class="operate-btn">
       <button class="weui-btn" type="primary" @click="handleAdd">添 加</button>
     </div>
@@ -55,6 +58,7 @@
 <script>
 import amapFile from "../../utils/amap-wx";
 import { get, post } from "../../utils";
+import noData from '@/components/no-data'
 // import { mapState, mapMutations } from "vuex";
 
 export default {
@@ -62,7 +66,7 @@ export default {
     this.getData()
   },
   components: {
-
+    noData
   },
   data() {
     return {

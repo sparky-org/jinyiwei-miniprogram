@@ -5,7 +5,7 @@
         <img :src="logoImg" class="animated flip">
       </div>
 
-      <div class="login-text animated bounce">美业最实用经营管理系统</div>
+      <div class="login-text animated bounce">快乐工作，认真生活</div>
 
       <div class="weui-cell weui-cell_input weui-cell_vcode">
         <div class="weui-cell__hd">

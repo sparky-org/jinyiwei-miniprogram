@@ -69,11 +69,11 @@
 
 
 
-    <div class="weui-cells__title">美容院营业动态</div>
+    <div class="weui-cells__title"><template v-if="!isShop">公司</template>营业动态</div>
     <div class="weui-cells weui-cells_after-title" v-if="todayBusiness">
       <navigator url="/pages/my-appointment/main" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
         <div class="weui-cell" style="width: 100%;">
-          <div class="weui-cell__bd">今日预约客户</div>
+          <div class="weui-cell__bd">今日<template v-if="isShop">预约</template><template v-else>服务</template>客户</div>
           <div class="weui-cell__ft" style="float: right;">{{todayBusiness.appointmentCustomerNum}}人</div>
         </div>
       </navigator>
@@ -194,6 +194,10 @@ export default {
     }else{
       wx.setStorageSync("userInfo", userInfo);
       this.$store.commit('setUserInfo', userInfo)
+
+      wx.setNavigationBarTitle({
+        title: userInfo.shopName
+      })
     }
 
 
@@ -246,6 +250,9 @@ export default {
 
   computed: {
     // ...mapState(["cityName"])
+    isShop(){
+      return this.$store.state.userInfo.shopType == 'SHOP'
+    }
   },
   mounted() {
     // this.getData()

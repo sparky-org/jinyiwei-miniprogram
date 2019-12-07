@@ -1,47 +1,95 @@
 <template>
   <div class="page">
-  <div v-if="newStaffList.length > 0" style="padding-bottom: 120rpx;">
-    <div class="weui-panel weui-panel_access no-t" style="background: #f4f4f4; margin-top: 0;" v-for="(item ,index) in newStaffList" :key="index">
-      <div class="weui-panel__hd" style="border-radius: 8rpx; color: #333; font-size: 36rpx;">
-      {{item.jobName}}<span style="float: right; font-size: 12px;">{{item.empInfos.length}}人</span>
-     </div>
-      <div class="weui-panel__bd" style="padding-top: 5px;padding-bottom: 5px;">
-        <template v-if="item.empInfos.length">
-          <view
-            class="touch-item"
-            :class="{'touch-move-active': it.isTouchMove}"
-            @touchstart="touchstart($event, item.empInfos)"
-            @touchmove="touchmove($event, item.empInfos)"
-            v-for="(it, idx) in item.empInfos"
-            :data-index="idx"
-            :key="it.id">
-              <view class='content' @click='handleOperate(it.id)' :data-index="idx">
-                <view class='column'>
-                  <!-- <view class='row full_width'>
-                    <text style='font-weight: bold;line-height:60rpx;'>{{item.name}}</text>
-                    <text style='margin-left:30rpx;color:gray;line-height:60rpx;'>{{item.unit}}</text>
-                    <text style='margin-left:20rpx;color:gray;line-height:60rpx;'>{{item.job}}</text>
+    <div class="weui-tab">
+      <div class="weui-navbar">
+        <block v-for="(item,index) in tabs" :key="index">
+          <div :id="index" :class="{'weui-bar__item_on':activeIndex == index}" class="weui-navbar__item" @click="tabClick">
+            <div class="weui-navbar__title">{{item}}</div>
+          </div>
+        </block>
+        <div class="weui-navbar__slider" :class="navbarSliderClass"></div>
+      </div>
+      <div class="weui-tab__panel" style="padding-bottom: 120rpx;">
+        <div class="weui-tab__content">
+          <!-- 选项一的内容 -->
+          <template v-if="items.length">
+            <view
+              class="touch-item"
+              :class="{'touch-move-active': item.isTouchMove}"
+              @touchstart="touchstart"
+              @touchmove="touchmove"
+              v-for="(item, index) in items"
+              :data-index="index"
+              :key="item.id">
+                <view class='content' @click='handleOperate(item.id)' :data-index="index">
+                  <view class='column'>
+                    <!-- <view class='row full_width'>
+                      <text style='font-weight: bold;line-height:60rpx;'>{{item.name}}</text>
+                      <text style='margin-left:30rpx;color:gray;line-height:60rpx;'>{{item.unit}}</text>
+                      <text style='margin-left:20rpx;color:gray;line-height:60rpx;'>{{item.job}}</text>
+                    </view>
+                    <text style='margin-top:10rpx;color:gray;'>{{item.phone}}</text> -->
+                    <!-- <image :src="item.pictureUrl" class='item-image' /> -->
+                    <view class='item-text' style="width:100%;">
+                      <view>{{item.name}}<span style="float: right; display: inline-block; height:100%; margin-right: 30rpx;" @click.stop="handleCall(item.phone)">{{item.phone}}</span></view>
+                      <!-- <view></view> -->
+                    </view>
+
                   </view>
-                  <text style='margin-top:10rpx;color:gray;'>{{item.phone}}</text> -->
-                  <!-- <image :src="item.pictureUrl" class='item-image' /> -->
-                  <view class='item-text' style="width:100%;">
-                    <view>{{it.name}} <span style="font-size: 12px; color: #ccc;">（员工编号:{{it.empNo}}）</span><span style="float: right; display: inline-block; height:100%; margin-right: 30rpx;" @click.stop="handleCall(it.phone)">{{it.phone}}</span></view>
-                    <!-- <view></view> -->
+                </view>
+                <view class="del" @click="del" :data-id="item.id">删除</view>
+            </view>
+          </template>
+          <no-data v-else></no-data>
+        </div>
+        <!-- <div class="weui-tab__content" :hidden="activeIndex != 1"> -->
+          <!-- 选项二的内容 -->
+          <!-- <view
+            class="touch-item"
+            :class="{'touch-move-active': item.isTouchMove}"
+            @touchstart="touchstart"
+            @touchmove="touchmove"
+            v-for="(item, index) in items"
+            :data-index="index"
+            :key="item.id">
+              <view class='content' @click='handleOperate(1)' :data-index="index">
+                <view class='column'>
+                  <image :src="item.pictureUrl" class='item-image' />
+                  <view class='item-text'>
+                    <view>美容顾问:{{item.name}}</view>
+                    <view>{{item.createDate}}</view>
                   </view>
 
                 </view>
               </view>
-              <view class="del" @click="del" :data-id="it.id">删除</view>
-          </view>
-        </template>
-        <no-data v-else></no-data>
+              <view class="del" @click="del" :data-id="item.id">删除</view>
+          </view> -->
+        <!-- </div> -->
+        <!-- <div class="weui-tab__content" :hidden="activeIndex != 2"> -->
+          <!-- 选项三的内容 -->
+          <!-- <view
+            class="touch-item"
+            :class="{'touch-move-active': item.isTouchMove}"
+            @touchstart="touchstart"
+            @touchmove="touchmove"
+            v-for="(item, index) in items"
+            :data-index="index"
+            :key="item.id">
+              <view class='content' @click='handleOperate(5)' :data-index="index">
+                <view class='column'>
+                  <image :src="item.pictureUrl" class='item-image' />
+                  <view class='item-text'>
+                    <view>员工:{{item.name}}</view>
+                    <view>{{item.createDate}}</view>
+                  </view>
+
+                </view>
+              </view>
+              <view class="del" @click="del" :data-id="item.id">删除</view>
+          </view> -->
+        <!-- </div> -->
       </div>
     </div>
-  </div>
-
-
-
-
 
     <div class="operate-btn">
       <div class="weui-flex">
@@ -73,7 +121,6 @@ export default {
   },
   data() {
     return {
-      newStaffList: [],
       // role: '',
       // index: 1,
       // enumArea,
@@ -179,22 +226,22 @@ export default {
     },
 
     // 手指触摸动作开始 记录起点X坐标
-    touchstart: function (e,items) {
+    touchstart: function (e) {
       console.info(e)
       let params = e.mp
       // 开始触摸时 重置所有删除
-      let data = this.touch._touchstart(params, items)
+      let data = this.touch._touchstart(params, this.items)
       console.info('data', data)
-      items = data
+      this.items = data
     },
 
     // 滑动事件处理
-    touchmove: function (e,items) {
+    touchmove: function (e) {
       console.log(2)
       let params = e.mp
-      let data = this.touch._touchmove(params, items)
+      let data = this.touch._touchmove(params, this.items)
       console.info('data', data)
-      items = data
+      this.items = data
     },
 
     // 删除事件
@@ -258,61 +305,48 @@ export default {
         console.info(data)
         if(data.result.length){
           data.result.forEach(item => {
-            if(item.empInfos){
-              item.empInfos.forEach(i => {
-                i.isTouchMove = false
-                i.id = i.empNo
-                i.name = i.empName
-              })
+            // item.isTouchMove = false
+            if(item.jobName == '店长'){
+              if(item.empInfos){
+                item.empInfos.forEach(i => {
+                  i.isTouchMove = false
+                  i.id = i.empNo
+                  i.name = i.empName
+                })
+                this.dz = item
+              }
+            }
+            if(item.jobName == '美容顾问'){
+              if(item.empInfos){
+                item.empInfos.forEach(i => {
+                  i.isTouchMove = false
+                  i.id = i.empNo
+                  i.name = i.empName
+                })
+                this.gw = item
+              }
+            }
+            if(item.jobName == '美容师'){
+              if(item.empInfos){
+                item.empInfos.forEach(i => {
+                  i.isTouchMove = false
+                  i.id = i.empNo
+                  i.name = i.empName
+                })
+                this.mrs = item
+              }
             }
           })
-          this.newStaffList = data.result
 
-          // 以下可以作废
-          return;
-          // data.result.forEach(item => {
-          //   // item.isTouchMove = false
-          //   if(item.jobName == '店长'){
-          //     if(item.empInfos){
-          //       item.empInfos.forEach(i => {
-          //         i.isTouchMove = false
-          //         i.id = i.empNo
-          //         i.name = i.empName
-          //       })
-          //       this.dz = item
-          //     }
-          //   }
-          //   if(item.jobName == '美容顾问'){
-          //     if(item.empInfos){
-          //       item.empInfos.forEach(i => {
-          //         i.isTouchMove = false
-          //         i.id = i.empNo
-          //         i.name = i.empName
-          //       })
-          //       this.gw = item
-          //     }
-          //   }
-          //   if(item.jobName == '美容师'){
-          //     if(item.empInfos){
-          //       item.empInfos.forEach(i => {
-          //         i.isTouchMove = false
-          //         i.id = i.empNo
-          //         i.name = i.empName
-          //       })
-          //       this.mrs = item
-          //     }
-          //   }
-          // })
-
-          // if(this.activeIndex == 0){
-          //   this.items = this.dz ? this.dz.empInfos : []
-          // }
-          // if(this.activeIndex == 1){
-          //   this.items = this.gw ? this.gw.empInfos : []
-          // }
-          // if(this.activeIndex == 2){
-          //   this.items = this.mrs ? this.mrs.empInfos : []
-          // }
+          if(this.activeIndex == 0){
+            this.items = this.dz ? this.dz.empInfos : []
+          }
+          if(this.activeIndex == 1){
+            this.items = this.gw ? this.gw.empInfos : []
+          }
+          if(this.activeIndex == 2){
+            this.items = this.mrs ? this.mrs.empInfos : []
+          }
         }
       };
     },
