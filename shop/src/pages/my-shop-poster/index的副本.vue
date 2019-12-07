@@ -171,29 +171,28 @@ export default {
         if(data.result.content){
           // this.files = [...this.files,'https://csdnimg.cn/pubfooter/images/csdn-zx.png']
 
-          data.result.content.forEach(item => {
-            this.files.push(item.absolutePath)
-            this.myFiles.push({
-              state: true,
-              key: item.absolutePath,
-              url: item.relativePath
+          // this.files = data.result.content.split(',')
+          // this.myFiles = this.files.map(item => {
+          //   return {
+          //     state: true,
+          //     key: item,
+          //     url: item
+          //   }
+          // })
+          data.result.content.split(',').forEach(item => {
+            wx.getImageInfo({
+              src: item,
+              success: res => {
+                console.info('resimg', res)
+                this.files.push(res.path)
+                this.myFiles.push({
+                  state: true,
+                  key: res.path,
+                  url: item
+                })
+              }
             })
           })
-
-          // data.result.content.split(',').forEach(item => {
-          //   wx.getImageInfo({
-          //     src: item,
-          //     success: res => {
-          //       console.info('resimg', res)
-          //       this.files.push(res.path)
-          //       this.myFiles.push({
-          //         state: true,
-          //         key: res.path,
-          //         url: item
-          //       })
-          //     }
-          //   })
-          // })
         }
         this.posterNo = data.result.posterNo
       }
