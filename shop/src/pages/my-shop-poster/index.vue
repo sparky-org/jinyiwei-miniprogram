@@ -130,7 +130,7 @@ import { get, post, host } from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
-    this.getPoster()
+
   },
   components: {
 
@@ -156,7 +156,8 @@ export default {
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role);
     // this.getData();
-    
+    this.getPoster()
+
   },
   computed: {
 
