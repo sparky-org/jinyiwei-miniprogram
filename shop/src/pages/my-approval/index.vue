@@ -351,7 +351,26 @@ let enumState = ['全部状态','待审批', '已撤回', '已通过','已拒绝
 
 export default {
   onShow() {
+    let applyType = this.$root.$mp.query.type;
+    if(applyType){
+      this.$nextTick(()=>{
+        if(applyType == 'SERVICE_ITEM'){
+          this.index = 3
+        }
+        if(applyType == 'VACATION'){
+          this.index = 4
+        }
+        if(applyType == 'SAL_PERF'){
+          this.index = 2
+        }
+        this.typeStr = this.enumApplication[this.index];
+        this.type = enumApplicationList[this.index].value
 
+        this.getData()
+      })
+    }else{
+      this.getData()
+    }
 
   },
   components: {
@@ -359,6 +378,7 @@ export default {
   },
   data() {
     return {
+      getDataState: false,
       // role: '',
       stateIndex: 0,
       index: 0,
@@ -408,6 +428,9 @@ export default {
       this.getData()
     },
     type(){
+      if(this.getDataState){
+        return
+      }
       this.getData()
     },
     state(){
@@ -420,22 +443,7 @@ export default {
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role);
     // this.getData();
 
-    let applyType = this.$root.$mp.query.type;
-    if(applyType){
-      if(applyType == 'SERVICE_ITEM'){
-        this.index = 3
-      }
-      if(applyType == 'VACATION'){
-        this.index = 4
-      }
-      if(applyType == 'SAL_PERF'){
-        this.index = 2
-      }
-      this.typeStr = this.enumApplication[this.index];
-      this.type = enumApplicationList[this.index].value
-    }else{
-      this.getData()
-    }
+
   },
   computed: {
 
@@ -516,6 +524,7 @@ export default {
     // }
 
     async getData(append) {
+      this.getDataState = true
       append?(this.currentPage++):(this.currentPage=1)
       let queryObj = {
         auditEmpNo: this.$store.state.userInfo.shopEmployee.id,
@@ -531,6 +540,7 @@ export default {
       if(data.success){
         this.list = append ? this.list.concat((data.result) || []) : (data.result || [])
         this.totalCount = data.total
+        this.getDataState = false
       }
     },
     // goodsDetail(id) {
