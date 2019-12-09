@@ -106,14 +106,92 @@ import noData from '@/components/no-data'
 import * as echarts from 'echarts/dist/echarts.simple.min'
 import mpvueEcharts from 'mpvue-echarts'
 
+  let chart = null;
+  let timer = null;
+  let monthArr = [12,11,10,9,8,7,6,5,4,3,2,1];
+  let _year = new Date().getFullYear();
 
+  // 初始化数据
+  let echartData = monthArr.map(item => {
+    return {
+     yearMonth: _year+ '-' + item,
+     count: 0
+    }
+  });
+
+  console.info('echartData--------',echartData)
+
+  let xData = echartData.map(item => {
+    return item.yearMonth.split('-')[1]+'月'
+  })
+  let yData = echartData.map(item => {
+    return item.count
+  })
+
+  function initChart (canvas, width, height) {
+
+    chart = echarts.init(canvas, null, {
+      width: width,
+      height: height
+    })
+    canvas.setChart(chart)
+
+    chart.showLoading(); // 首次显示加载动画
+
+    console.info(xData,yData)
+    var option = {
+      backgroundColor: '#fff',
+      color: ['#37A2DA'],
+
+      // legend: {
+        // data: ['A', 'B']
+      // },
+      // grid: {
+      //   containLabel: true
+      // },
+      grid: {
+        left: '5%',
+        top: '10%',
+        right: '5%',
+        bottom: '10%',
+        containLabel: true
+      },
+      xAxis: {
+        type: 'category',
+        // data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+        data: xData
+      },
+      yAxis: {
+        // x: 'center',
+        type: 'value',
+        // splitLine: {
+        //   lineStyle: {
+        //     type: 'dashed'
+        //   }
+        // }
+      },
+      series: [{
+        data: yData,
+        type: 'line'
+      }]
+
+    }
+    chart.setOption(option)
+    chart.hideLoading(); // 隐藏加载动画
+    return chart
+  }
 
 
 export default {
   onShow() {
     this.getDetail()
-    this.getEchartData()
     this.getMyCustomer()
+
+    timer = setInterval(() => {
+      if(chart){
+        this.getEchartData()
+      }
+    },10000)
   },
   computed: {
 
@@ -121,12 +199,27 @@ export default {
   components: {
     mpvueEcharts
   },
+  onReady(){
+
+  },
   mounted() {
     // this.role = this.$store.state.userInfo.role
     // console.info('v-show="$store.state.userInfo.role',this.$store.state.userInfo.role)
     // this.getData();
+    let mountedTimer = null
+    mountedTimer = setInterval(() => {
+      console.info('chart--mounted',chart)
+      if(chart){
+        this.getEchartData()
+        clearInterval(mountedTimer)
+      }
+    }, 200)
 
 
+
+  },
+  onHide(){
+    clearInterval(timer)
   },
   data() {
     return {
@@ -134,7 +227,7 @@ export default {
       echartData: null,
       // role: ''
       echarts,
-      onInit: null,
+      onInit: initChart,
       inputShowed: false,
       inputVal: '',
 
@@ -173,57 +266,7 @@ export default {
   },
 
   methods: {
-    initChart (canvas, width, height) {
 
-    this.$nextTick(()=>{
-      const chart = echarts.init(canvas, null, {
-        width: width,
-        height: height
-      })
-      canvas.setChart(chart)
-
-      let xData = this.echartData.map(item => {
-        return item.yearMonth.split('-')[1]+'月'
-      })
-      let yData = this.echartData.map(item => {
-        return item.count
-      })
-
-      console.info(xData,yData)
-      var option = {
-        backgroundColor: '#fff',
-        color: ['#37A2DA'],
-
-        // legend: {
-          // data: ['A', 'B']
-        // },
-        // grid: {
-        //   containLabel: true
-        // },
-        xAxis: {
-          type: 'category',
-          // data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
-          data: xData
-        },
-        yAxis: {
-          // x: 'center',
-          type: 'value',
-          // splitLine: {
-          //   lineStyle: {
-          //     type: 'dashed'
-          //   }
-          // }
-        },
-        series: [{
-          data: yData,
-          type: 'line'
-        }]
-
-      }
-      chart.setOption(option)
-      return chart
-      })
-    },
     showInput() {
       this.inputShowed = true;
     },
@@ -249,7 +292,27 @@ export default {
       const data = await post("/myCustomer/activeCustomerStatistics?empNo="+this.$store.state.userInfo.shopEmployee.id);
       if(data.success){
         this.echartData = data.result
-        this.onInit = this.initChart
+        // this.onInit = this.initChart
+        console.info('echart',chart)
+
+
+
+        let xData = data.result.map(item => {
+          return item.yearMonth.split('-')[1]+'月'
+        })
+        let yData = data.result.map(item => {
+          return item.count
+        })
+
+        chart.setOption({
+          xAxis: {
+            data: xData
+          },
+          series: [{
+            data: yData
+          }]
+        });
+
       }
     },
     async getMyCustomer(append){
