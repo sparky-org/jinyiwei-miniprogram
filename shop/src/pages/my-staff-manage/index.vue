@@ -2,10 +2,10 @@
   <div class="page">
   <div v-if="newStaffList.length > 0" style="padding-bottom: 120rpx;">
     <div class="weui-panel weui-panel_access no-t" style="background: #f4f4f4; margin-top: 0;" v-for="(item ,index) in newStaffList" :key="index">
-      <div class="weui-panel__hd" style="border-radius: 8rpx; color: #333; font-size: 36rpx;">
-      {{item.jobName}}<span style="float: right; font-size: 12px;">{{item.empInfos.length}}人</span>
+      <div class="weui-panel__hd" style="border-radius: 8rpx; color: #0BB20C; font-size: 36rpx; padding-top: 14rpx; padding-bottom: 6rpx;">
+      {{item.jobName}}<span style="float: right; color: #999; font-size: 30rpx;">共计：{{item.empInfos.length}}人</span>
      </div>
-      <div class="weui-panel__bd" style="padding-top: 5px;padding-bottom: 5px;">
+      <div class="weui-panel__bd" style="padding-top: 0;padding-bottom: 0;">
         <template v-if="item.empInfos.length">
           <view
             class="touch-item"
