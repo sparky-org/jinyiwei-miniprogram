@@ -83,7 +83,7 @@ export default {
         "content": "",
         // "empNo": '', // this.$store.state.userInfo.shopEmployee.id
         // "pointConfigNo": 0,
-        "pointName": '品德积分',
+        "pointName": '',
         "pointType": 'CHARACTER',
         "value": ''
       }
@@ -139,7 +139,7 @@ export default {
     bindPickerChange(e) {
       console.log('选中的值为：' + this.textList[e.mp.detail.value]);
       this.index = e.mp.detail.value
-      this.form.pointName = this.textList[this.index]
+      // this.form.pointName = this.textList[this.index]
       this.form.pointType = this.enumList[e.mp.detail.value]
 
     },
