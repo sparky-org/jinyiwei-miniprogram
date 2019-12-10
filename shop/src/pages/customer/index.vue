@@ -108,7 +108,7 @@ import mpvueEcharts from 'mpvue-echarts'
 
   let chart = null;
   let timer = null;
-  let monthArr = [12,11,10,9,8,7,6,5,4,3,2,1];
+  let monthArr = [1,2,3,4,5,6,7,8,9,10,11,12];
   let _year = new Date().getFullYear();
 
   // 初始化数据
@@ -294,9 +294,8 @@ export default {
         this.echartData = data.result
         // this.onInit = this.initChart
         console.info('echart',chart)
-
-
-
+        data.result.reverse()
+        console.info('data.result',data.result)
         let xData = data.result.map(item => {
           return item.yearMonth.split('-')[1]+'月'
         })
