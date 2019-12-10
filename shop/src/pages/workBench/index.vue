@@ -150,6 +150,17 @@ import { get } from "../../utils";
 
 export default {
   onShow() {
+    // 判断是否登录 login有
+    let userInfo = wx.getStorageSync("userInfo")
+    if(!userInfo){
+      wx.navigateTo({
+        url: '/pages/login/main'
+      })
+      return
+    }else{
+      wx.setStorageSync("userInfo", userInfo);
+      this.$store.commit('setUserInfo', userInfo)
+    }
   },
   computed: {
     isAdmin(){
@@ -190,7 +201,7 @@ export default {
 
     handleExit(){
       wx.clearStorageSync()
-      wx.reLaunch({
+      wx.navigateTo({
         url: "/pages/login/main"
       });
     },
