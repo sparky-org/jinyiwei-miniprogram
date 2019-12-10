@@ -18,7 +18,7 @@
               <div class="weui-label">积分类型</div>
             </div>
             <div class="weui-cell__bd">
-              <input class="weui-input" :value="item.pointType" disabled="true"/>
+              <input class="weui-input" :value="item.pointTypeDesc" disabled="true"/>
             </div>
           </div>
 
