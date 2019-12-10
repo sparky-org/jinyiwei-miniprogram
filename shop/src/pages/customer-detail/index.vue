@@ -52,11 +52,11 @@
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">备注</div>
-                  <div class="weui-form-preview__value tl">{{customerData.baseInfo.remark?customerData.baseInfo.remark:''}}</div>
+                  <div class="weui-form-preview__value tl" v-html="customerData.baseInfo.remark?customerData.baseInfo.remark:''"></div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">年度规划</div>
-                  <div class="weui-form-preview__value tl">{{customerData.baseInfo.yearPlan?customerData.baseInfo.yearPlan:''}}</div>
+                  <div class="weui-form-preview__value tl" v-html="customerData.baseInfo.yearPlan?customerData.baseInfo.yearPlan:''"></div>
                 </div>
                 <div class="weui-form-preview__item">
                   <div class="weui-form-preview__label">关联员工</div>

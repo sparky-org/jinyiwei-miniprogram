@@ -74,7 +74,7 @@ export default {
     return {
       errorTips: false,
       enumList: ["CHARACTER","ACTION","DAILY_RECORD","APPOINTMENT","ATTENDANCE"],
-      textList: ['品德积分','行为积分','日记奖励','预约客户奖励','按时打卡奖励'],
+      textList: ['品德积分','工作积分','日记奖励','预约客户奖励','按时打卡奖励'],
       // role: '',
       index: 0,
       // value: null,
