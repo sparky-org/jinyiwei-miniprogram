@@ -91,7 +91,7 @@ export default {
           }
         })
         setTimeout(()=>{
-          wx.reLaunch({
+          wx.navigateBack({
             url: "/pages/workBench/main"
           });
         },1000)

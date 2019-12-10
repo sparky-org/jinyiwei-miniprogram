@@ -91,12 +91,12 @@ export default {
         })
         setTimeout(()=>{
           if(this.$root.$mp.query.from){
-            wx.reLaunch({
+            wx.navigateBack({
               url: "/pages/index/main"
             });
             return;
           }
-          wx.reLaunch({
+          wx.navigateBack({
             url: "/pages/workBench/main"
           });
         },1000)
