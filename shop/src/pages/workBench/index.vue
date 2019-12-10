@@ -49,7 +49,7 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">我的考勤</div>
       </navigator>
-      <navigator url="/pages/my-staff-manage/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator v-if="isAdmin" url="/pages/my-staff-manage/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">员工管理</div>
       </navigator>
@@ -57,11 +57,11 @@
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">积分榜</div>
       </navigator>
-      <navigator url="/pages/my-score-action/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator v-if="isAdmin" url="/pages/my-score-action/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">积分奖扣</div>
       </navigator>
-      <navigator url="/pages/my-score-action-record/main" class="weui-grid" hover-class="weui-grid_active">
+      <navigator v-if="isAdmin" url="/pages/my-score-action-record/main" class="weui-grid" hover-class="weui-grid_active">
         <!-- <image class="weui-grid__icon" :src="item.src" /> -->
         <div class="weui-grid__label">奖扣记录</div>
       </navigator>
