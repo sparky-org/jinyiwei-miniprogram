@@ -24,7 +24,7 @@
             </div>
             <div class="weui-form-preview__item">
               <div class="weui-form-preview__label">任务内容</div>
-              <div class="weui-form-preview__value">{{item.content}}</div>
+              <div class="weui-form-preview__value" v-html="item.content"></div>
             </div>
             <!--<div class="weui-form-preview__item">-->
               <!--<div class="weui-form-preview__label">创建时间</div>-->

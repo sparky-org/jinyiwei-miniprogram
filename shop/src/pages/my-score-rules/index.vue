@@ -6,10 +6,19 @@
         <div class="weui-cells weui-cells_after-title">
           <div class="weui-cell weui-cell_input">
             <div class="weui-cell__hd">
-              <div class="weui-label">积分类型</div>
+              <div class="weui-label">积分名称</div>
             </div>
             <div class="weui-cell__bd">
               <input class="weui-input" :value="item.pointName" disabled="true"/>
+            </div>
+          </div>
+
+          <div class="weui-cell weui-cell_input">
+            <div class="weui-cell__hd">
+              <div class="weui-label">积分类型</div>
+            </div>
+            <div class="weui-cell__bd">
+              <input class="weui-input" :value="item.pointTypeDesc" disabled="true"/>
             </div>
           </div>
 
@@ -29,7 +38,7 @@
               </div>
               <div class="weui-cell__bd" style="padding: 20rpx 0;">
                 <!-- <textarea disabled="disabled" :value="item.pointDesc" style="height: 3.3em; width: 100%;" /> -->
-                <div style="word-break:break-all; word-wrap:break-word;">{{item.pointDesc}}</div>
+                <div style="word-break:break-all; word-wrap:break-word;" v-html="item.pointDesc"></div>
               </div>
             </div>
           </div>
@@ -112,7 +121,7 @@ export default {
     handleEditTask(item){
       wx.setStorageSync('score-item',JSON.stringify(item))
       wx.navigateTo({
-        url: "/pages/my-score-operate/main"
+        url: "/pages/my-score-operate/main?configNo="+item.id
       });
     },
 
