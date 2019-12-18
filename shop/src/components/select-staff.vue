@@ -29,7 +29,7 @@
                   <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!item.checked"></icon>
                   <icon class="weui-icon-checkbox_success" type="success" size="23" v-if="item.checked"></icon>
                 </div>
-                <div class="weui-cell__bd">{{item.name}}</div>
+                <div class="weui-cell__bd">{{item.name}}<span class="desc">总经理</span></div>
               </label>
             <!-- </template> -->
           </checkbox-group>
@@ -49,7 +49,7 @@
         <radio-group @change="radioChange">
           <label class="weui-cell weui-check__label" v-for="(item,index) in checkboxItems" :key="index" v-if="item.show">
             <radio class="weui-check" :value="item.value" :checked="item.checked" />
-            <div class="weui-cell__bd">{{item.name}}</div>
+            <div class="weui-cell__bd">{{item.name}}<span class="desc">总经理</span></div>
             <div class="weui-cell__ft weui-cell__ft_in-radio" v-if="item.checked">
               <icon class="weui-icon-radio" type="success_no_circle" size="16"></icon>
             </div>
@@ -162,7 +162,7 @@ export default {
         // })
         // console.info(result)
         // this.checkboxItems = result
-        
+
         if(!this.multiple){
           this.checkboxItems.forEach(item => {
             item.checked = false
@@ -341,6 +341,10 @@ export default {
 
 <style lang='scss' scoped>
   .select-staff{
+    span.desc{
+      float: right;
+      color: #ccc;
+    }
     .weui-search-bar__box{
       position: fixed;
       left: 0;

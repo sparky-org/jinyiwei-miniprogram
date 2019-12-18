@@ -109,7 +109,7 @@
             <icon class="weui-icon-checkbox_circle" type="circle" size="23" v-if="!it.checked"></icon>
             <icon class="weui-icon-checkbox_success" type="success" size="23" v-if="it.checked"></icon>
           </div>
-          <div class="weui-cell__bd">{{it.name}}</div>
+          <div class="weui-cell__bd">{{it.name}}<span class="desc">总经理</span></div>
         </label>
       </checkbox-group>
 

@@ -7,7 +7,7 @@
     <div class="weui-cells weui-cells_after-title">
       <div class="weui-cell">
         <div class="weui-cell__bd">
-          <textarea :disabled="!canEdit" :placeholder="canEdit?'请输入公告':''" style="height: 9.9em; width: 100%;" v-model="noticeText" />
+          <textarea :disabled="!canEdit" maxlength="10000000" :auto-height="true" :placeholder="canEdit?'请输入公告':''" style="height: 9.9em; width: 100%;" v-model="noticeText" />
           <!-- <div class="weui-textarea-counter">0/200</div> -->
         </div>
       </div>
