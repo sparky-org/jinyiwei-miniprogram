@@ -6,5 +6,8 @@ app.$mount()
 export default {
   config: {
     navigationBarTitleText: '公告',
+    "usingComponents": {
+
+    }
   }
 }
