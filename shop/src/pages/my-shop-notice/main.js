@@ -5,9 +5,6 @@ const app = new Vue(App)
 app.$mount()
 export default {
   config: {
-    navigationBarTitleText: '公告',
-    "usingComponents": {
-
-    }
+    navigationBarTitleText: '公告'
   }
 }
