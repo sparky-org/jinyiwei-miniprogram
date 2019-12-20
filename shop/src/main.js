@@ -48,6 +48,8 @@ export default {
       "pages/my-task-manage/main",
       "pages/my-application/main",
 
+      // "pages/test/main",
+      // "pages/t-index-bar/main",
 
 
       // "pages/adminOrder/main",

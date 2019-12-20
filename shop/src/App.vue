@@ -83,7 +83,7 @@ button::after {
 view,
 text {
   font-size: 28rpx;
-  color: #333;
+  /* color: #333; */
 }
 
 .wxParse .p {
