@@ -94,6 +94,13 @@ text {
   display: block !important;
 }
 
+.no-t-b::before{
+  border-top: 0 none!important;
+}
+.no-t-b::after{
+  border-bottom: 0 none!important;
+}
+
 /* this rule will be remove */
 
 /* * {
