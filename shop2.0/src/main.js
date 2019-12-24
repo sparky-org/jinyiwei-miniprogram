@@ -43,12 +43,12 @@ export default {
 
 
       // "^pages/index/main",
-      "pages/index/main",
+      "^pages/index/main",
       "pages/customer/main",
       "pages/my-task-manage/main",
       "pages/my-application/main",
 
-      "^pages/test/main",
+      "pages/test/main",
       "pages/t-index-bar/main",
 
 

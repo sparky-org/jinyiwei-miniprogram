@@ -54,24 +54,27 @@ Component({
 
     methods: {
         initAnimation() {
-            wx.createSelectorQuery().in(this).select('.i-noticebar-content-wrap').boundingClientRect((wrapRect) => {
-                wx.createSelectorQuery().in(this).select('.i-noticebar-content').boundingClientRect((rect) => {
-                    const duration = rect.width / 40 * this.data.speed;
-                    const animation = wx.createAnimation({
-                        duration: duration,
-                        timingFunction: "linear",
-                    });
-                    this.setData({
-                        wrapWidth: wrapRect.width,
-                        width: rect.width,
-                        duration: duration,
-                        animation: animation
-                    }, () => {
-                        this.startAnimation();
-                    });
-                }).exec();
+          wx.createSelectorQuery().in(this).select('.i-noticebar-content-wrap').boundingClientRect((wrapRect) => {
+              if(!wrapRect){
+                return
+              }
+              wx.createSelectorQuery().in(this).select('.i-noticebar-content').boundingClientRect((rect) => {
+                  const duration = rect.width / 40 * this.data.speed;
+                  const animation = wx.createAnimation({
+                      duration: duration,
+                      timingFunction: "linear",
+                  });
+                  this.setData({
+                      wrapWidth: wrapRect.width,
+                      width: rect.width,
+                      duration: duration,
+                      animation: animation
+                  }, () => {
+                      this.startAnimation();
+                  });
+              }).exec();
 
-            }).exec();
+          }).exec();
         },
         startAnimation() {
             //reset

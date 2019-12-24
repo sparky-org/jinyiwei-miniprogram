@@ -5,6 +5,10 @@ const app = new Vue(App)
 app.$mount()
 export default {
   config: {
-    "enablePullDownRefresh": true
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+      //通知
+      "i-notice-bar": "/static/iview/notice-bar/index"
+    }
   }
 }
