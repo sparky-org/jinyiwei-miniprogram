@@ -1,0 +1,48 @@
+.page {
+
+  padding-bottom: 120rpx;
+  position: relative;
+  & > .operate-btn{
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 120rpx;
+    padding: 20rpx;
+    z-index: 99;
+    border-top: 1rpx solid #eee;
+  }
+
+  .weui-navbar{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    // height: 51px;
+    .weui-navbar__item{
+      background-color: #fff!important;
+    }
+  }
+
+  .tl{
+    text-align: left;
+  }
+  .diary-content{
+    padding: 20rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+    & > div{
+      border: 1rpx solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 20rpx;
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+  .no-t::before{
+    border-top: 0 none!important;
+  }
+}

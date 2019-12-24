@@ -1,0 +1,30 @@
+.customer-detail {
+  .tl{
+    text-align: left;
+  }
+  .weui-tab__content{
+    padding: 20rpx 0;
+  }
+  .weui-form-preview:after{
+    border-bottom: 0 none;
+  }
+  .weui-form-preview:before{
+    border-top: 0 none;
+  }
+  padding-bottom: 220rpx;
+  & > .add-customer{
+    background-color: #f4f4f4;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 220rpx;
+    padding: 20rpx;
+  }
+
+  button.modify::after {
+    border: 1px solid #ccc;
+  }
+
+}

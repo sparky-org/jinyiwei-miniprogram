@@ -1,0 +1,16 @@
+.page {
+  padding-bottom: 120rpx;
+  position: relative;
+  & > .operate-btn{
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 120rpx;
+    padding: 20rpx;
+    z-index: 99;
+    border-top: 1rpx solid #eee;
+  }
+}

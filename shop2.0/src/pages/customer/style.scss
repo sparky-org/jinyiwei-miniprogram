@@ -1,0 +1,35 @@
+.customer {
+  .count{
+    padding: 20rpx;
+    border-top: 1rpx solid #e5e5e5;
+    border-bottom: 1rpx solid #e5e5e5;
+    text-align: center;
+    background-color: #FFFFFF;
+    .weui-flex__item{
+      height: 60rpx;
+      line-height: 60rpx;
+    }
+  }
+  .echart-area{
+    height: 250px;
+    width: 100%;
+    border-top: 1rpx solid #e5e5e5;
+    border-bottom: 1rpx solid #e5e5e5;
+  }
+  padding-bottom: 120rpx;
+  position: relative;
+  & > .add-customer{
+    box-shadow: 0px 0px 6rpx #e5e5e5;
+    background-color: #f4f4f4;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 120rpx;
+    padding: 20rpx;
+  }
+  .no-t::before{
+    border-top: 0 none;
+  }
+}

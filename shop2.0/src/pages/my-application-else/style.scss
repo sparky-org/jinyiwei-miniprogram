@@ -1,0 +1,30 @@
+.page {
+  // padding: 10rpx;
+
+  .check-staff{
+    height: 60rpx;
+    width: 60rpx;
+    border-radius: 50%!important;
+  }
+  .iconjia{
+    font-size: 20px;
+    position: relative;
+    top: -4px;
+  }
+  .no-t::before{
+    border-top: 0 none!important;
+    // border-bottom: 1rpx solid #ccc;
+  }
+  padding-bottom: 120rpx;
+  position: relative;
+  & > .operate-btn{
+    background-color: #f4f4f4;
+    width: 100%;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 120rpx;
+    padding: 20rpx;
+  }
+}

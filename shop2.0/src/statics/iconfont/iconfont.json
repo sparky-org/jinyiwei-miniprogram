@@ -1,0 +1,93 @@
+{
+  "id": "1425098",
+  "name": "小程序",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "721703",
+      "name": "用户",
+      "font_class": "ai-user",
+      "unicode": "e60c",
+      "unicode_decimal": 58892
+    },
+    {
+      "icon_id": "2570090",
+      "name": "采购",
+      "font_class": "caigou",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "2570215",
+      "name": "加",
+      "font_class": "jia",
+      "unicode": "e690",
+      "unicode_decimal": 59024
+    },
+    {
+      "icon_id": "2627539",
+      "name": "冠军",
+      "font_class": "guanjun1",
+      "unicode": "e66e",
+      "unicode_decimal": 58990
+    },
+    {
+      "icon_id": "2627540",
+      "name": "季军",
+      "font_class": "jijun1",
+      "unicode": "e66f",
+      "unicode_decimal": 58991
+    },
+    {
+      "icon_id": "2627541",
+      "name": "亚军",
+      "font_class": "yajun1",
+      "unicode": "e670",
+      "unicode_decimal": 58992
+    },
+    {
+      "icon_id": "4965376",
+      "name": "女",
+      "font_class": "nv",
+      "unicode": "e601",
+      "unicode_decimal": 58881
+    },
+    {
+      "icon_id": "6108515",
+      "name": "冠军",
+      "font_class": "guanjun",
+      "unicode": "e64d",
+      "unicode_decimal": 58957
+    },
+    {
+      "icon_id": "6119783",
+      "name": "亚军",
+      "font_class": "yajun",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "6154720",
+      "name": "男",
+      "font_class": "nan",
+      "unicode": "e679",
+      "unicode_decimal": 59001
+    },
+    {
+      "icon_id": "7475474",
+      "name": "季军",
+      "font_class": "jijun",
+      "unicode": "e600",
+      "unicode_decimal": 58880
+    },
+    {
+      "icon_id": "9826663",
+      "name": "拨打电话",
+      "font_class": "bodadianhua",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    }
+  ]
+}

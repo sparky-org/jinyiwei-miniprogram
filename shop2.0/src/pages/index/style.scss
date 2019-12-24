@@ -1,0 +1,127 @@
+.index {
+
+  .jf-action-list{
+    .weui-media-box_appmsg{
+      padding-bottom: 0!important;
+      padding-top: 0!important;
+      height: 78rpx!important;
+      .weui-media-box__title, .score-num{
+        font-size: 14px!important;
+      }
+    }
+  }
+
+  .notice-wrapper{
+    background-color: #fcfcfc;
+    height: 30px;
+    width: 100%;
+    line-height: 30px;
+    padding:  5px 0;
+    font-size: 14px;
+    overflow: hidden;
+    swiper {
+      height: 30px;
+      line-height:30px;
+    }
+    dt{
+      // padding:0 10rpx 0  20rpx;
+      width: 55px;
+      height: 30px;
+      line-height: 30px;
+      float: left;
+      text-align: right;
+      color: #666;
+    }
+    dd{
+      margin-bottom: 50px;
+      // padding: 0 20rpx;
+      color: #999;
+      overflow: hidden;
+      text-overflow:ellipsis;
+      white-space: nowrap;
+      color: #f00;
+    }
+  }
+
+  .ph-dl{
+    display: block;
+    text-align: center;
+    & > dt{
+      padding: 20rpx 0 10rpx 0;
+      // color: #10AEFF;
+      color: #06AD56;
+      font-size: 22px;
+    }
+    & > dd{
+      padding: 0 0 20rpx 0;
+    }
+  }
+  .score-num{
+    font-size: 14px;
+    color: #E64340;
+    float: right;
+  }
+
+
+
+  .horizontal{
+    display: flex;
+    flex-direction: row;
+
+    .item {
+      flex: 1;
+    }
+
+    .happy_tui{
+      // padding: 0 8px;
+    }
+
+    .happy_tui > swiper {
+      height: 30px;
+      line-height:30px;
+    }
+
+    .show-text-1{
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+    }
+
+    .tui_item{
+      font-size: 12px;
+      color: #000;
+      vertical-align: middle;
+    }
+
+    .tui_text{
+      border: 1px solid #ED2A22;
+      border-radius: 12px;
+      font-size: 9px;
+      color: #ED2A22;
+      padding: 0 3px;
+      margin: 0 5px 0 0;
+    }
+
+    .more{
+      padding: 0 0 0 8px;
+      border-left: 1px solid #333;
+      text-align:center;
+      line-height:18px;
+      margin:auto 0;
+    }
+
+    .more > text{
+      font-size: 12px;
+      color: #000;
+    }
+  }
+  .happnews{
+    // margin-top:10px;\
+    border-top: 1rpx solid #ccc;
+    border-bottom: 1rpx solid #ccc;
+    padding: 4px 10px;
+    background: #fff;
+  }
+
+}
