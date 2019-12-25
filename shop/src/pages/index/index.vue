@@ -50,11 +50,10 @@
     <!-- </view> -->
     <!--跑马灯-->
     <!-- 跑马灯效果 -->
-    <navigator v-if="noticeText" url="/pages/my-shop-notice/main?from=index" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
+    <!-- <navigator v-if="noticeText" url="/pages/my-shop-notice/main?from=index" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" style="padding: 0;">
       <dl class="notice-wrapper">
         <dt>公告：</dt>
         <dd>
-        <!-- {{noticeText}} -->
           <swiper vertical :autoplay="autoplay" :interval="interval" :duration="duration" circular>
             <block v-for="(item, index) in noticeList" :key="index">
               <swiper-item>
@@ -64,7 +63,14 @@
           </swiper>
         </dd>
       </dl>
-    </navigator>
+    </navigator> -->
+
+
+      <i-notice-bar icon="systemprompt" v-if="noticeText!=''" loop>
+        {{noticeText}}
+      </i-notice-bar>
+
+
 
 
 
@@ -358,14 +364,14 @@ export default {
         if(data.success){
           if(data.result){
             this.noticeText = data.result.content
-            var strArr = [];
-            let n = parseInt((wx.getSystemInfoSync().windowWidth - 55) / 14) - 2
-            for (var i = 0, l = this.noticeText.length; i < l/n; i++) {
-            var a = this.noticeText.slice(n*i, n*(i+1));
-              strArr.push(a);
-            }
-            console.log(strArr);
-            this.noticeList = strArr
+            // var strArr = [];
+            // let n = parseInt((wx.getSystemInfoSync().windowWidth - 55) / 14) - 2
+            // for (var i = 0, l = this.noticeText.length; i < l/n; i++) {
+            // var a = this.noticeText.slice(n*i, n*(i+1));
+            //   strArr.push(a);
+            // }
+            // console.log(strArr);
+            // this.noticeList = strArr
 
             // // 跑马灯
             // var length = this.text.length * this.size;//文字长度

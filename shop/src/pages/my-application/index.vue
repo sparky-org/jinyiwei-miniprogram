@@ -326,6 +326,7 @@ export default {
         if(applyType == 'SAL_PERF'){
           this.index = 2
         }
+        this.getDataState = true
         this.typeStr = this.enumApplication[this.index];
         this.type = enumApplicationList[this.index].value
 
@@ -490,7 +491,6 @@ export default {
     // }
 
     async getData(append) {
-      this.getDataState = true
       append?(this.currentPage++):(this.currentPage=1)
       let queryObj = {
         empNo: this.$store.state.userInfo.shopEmployee.id,

@@ -352,22 +352,22 @@ let enumState = ['全部状态','待审批', '已撤回', '已通过','已拒绝
 export default {
   onShow() {
     let applyType = this.$root.$mp.query.type;
+    console.info('applyType',applyType)
     if(applyType){
-      this.$nextTick(()=>{
-        if(applyType == 'SERVICE_ITEM'){
-          this.index = 3
-        }
-        if(applyType == 'VACATION'){
-          this.index = 4
-        }
-        if(applyType == 'SAL_PERF'){
-          this.index = 2
-        }
-        this.typeStr = this.enumApplication[this.index];
-        this.type = enumApplicationList[this.index].value
+      if(applyType == 'SERVICE_ITEM'){
+        this.index = 3
+      }
+      if(applyType == 'VACATION'){
+        this.index = 4
+      }
+      if(applyType == 'SAL_PERF'){
+        this.index = 2
+      }
+      this.getDataState = true
+      this.typeStr = this.enumApplication[this.index];
+      this.type = enumApplicationList[this.index].value
 
-        this.getData()
-      })
+      this.getData()
     }else{
       this.getData()
     }
@@ -429,9 +429,12 @@ export default {
     },
     type(){
       if(this.getDataState){
-        return
+        console.info(11111,this.getDataState)
+      }else{
+        console.info(22222,this.getDataState)
+        this.getData()
       }
-      this.getData()
+
     },
     state(){
       this.getData()
@@ -524,7 +527,7 @@ export default {
     // }
 
     async getData(append) {
-      this.getDataState = true
+
       append?(this.currentPage++):(this.currentPage=1)
       let queryObj = {
         auditEmpNo: this.$store.state.userInfo.shopEmployee.id,
