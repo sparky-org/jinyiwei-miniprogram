@@ -1,8 +1,8 @@
 <template>
-  <div class="page">
-    <div v-for="(item, index) in list" :key="index" @click="handleAdd(item.companySystemNo)">
+  <div class="page" :class="{'isAdmin': !isAdmin}">
+    <div v-for="(item, index) in list" :key="index">
       <i-swipeout  i-class="i-swipeout-relus-item" operateWidth="80" :unclosable="true" :toggle="toggle">
-        <view slot="content">
+        <view slot="content" @click="handleAdd(item.companySystemNo)">
            <dl>
              <dt style="color: #000; font-size: 36rpx; padding: 8rpx 0 2rpx 0;">{{item.title}}</dt>
              <dd style="color: #ccc;">{{item.createDate}}</dd>
@@ -16,8 +16,8 @@
       </i-swipeout>
     </div>
 
-    <div class="operate-btn">
-      <button class="weui-btn" type="primary" @click="handleAdd">新增制度</button>
+    <div class="operate-btn" v-if="isAdmin">
+      <button class="weui-btn" type="primary" @click="handleAdd(null)">新增制度</button>
     </div>
 
   </div>
@@ -39,11 +39,11 @@ export default {
       toggle: false,
       list: [],
       // role: '',
-      errorTips: false,
-      ruleText: '',
+      // errorTips: false,
+      // ruleText: '',
 
-      canEdit: false,
-      companySystemNo: null
+      // canEdit: false,
+      // companySystemNo: null
     };
   },
 
@@ -53,7 +53,9 @@ export default {
     // this.getData();
   },
   computed: {
-
+    isAdmin(){
+      return this.$store.state.userInfo.shopEmployee.isAdmin
+    }
   },
   methods: {
 
@@ -69,21 +71,16 @@ export default {
           if (res.confirm) {
             const data = await post("/companySystem/deleteSystem?empNo=" + this.$store.state.userInfo.shopEmployee.id+'&articleNo='+item.companySystemNo);
             if(data.success){
-             wx.showToast({
-               title: '删除成功',
-               icon: 'success',
-               duration: 1000,
-               success(){
+              wx.showToast({
+                title: '删除成功',
+                icon: 'success',
+                duration: 1000,
+                success(){
 
-               }
-             })
-
-
-            this.toggle = !this.toggle
-            setTimeout(()=>{
+                }
+              })
+              this.toggle = !this.toggle
               this.getPoster()
-            },1000)
-
             }
           } else {
             console.log('用户点击辅助操作')
@@ -119,40 +116,40 @@ export default {
       }
     },
 
-    async handleSubmit(){
-      if(!this.ruleText){
-        this.errorTips = true
-        setTimeout(()=>{
-          this.errorTips = false
-        },1000)
-        return
-      }
+    // async handleSubmit(){
+    //   if(!this.ruleText){
+    //     this.errorTips = true
+    //     setTimeout(()=>{
+    //       this.errorTips = false
+    //     },1000)
+    //     return
+    //   }
 
-      let param = {
-        "content": this.ruleText,
-        "empNo": this.$store.state.userInfo.shopEmployee.id
-      }
-      if(this.companySystemNo){
-        param.noticeNo = this.companySystemNo
-      }
+    //   let param = {
+    //     "content": this.ruleText,
+    //     "empNo": this.$store.state.userInfo.shopEmployee.id
+    //   }
+    //   if(this.companySystemNo){
+    //     param.noticeNo = this.companySystemNo
+    //   }
 
-      const data = await post(`/companySystem/publishSystem`,param);
-      if(data.success){
-        wx.showToast({
-          title: '发布成功',
-          icon: 'success',
-          duration: 2000,
-          success(){
+    //   const data = await post(`/companySystem/publishSystem`,param);
+    //   if(data.success){
+    //     wx.showToast({
+    //       title: '发布成功',
+    //       icon: 'success',
+    //       duration: 2000,
+    //       success(){
 
-          }
-        })
-        setTimeout(()=>{
-          wx.navigateBack({
-            url: "/pages/workBench/main"
-          });
-        },1000)
-      }
-    }
+    //       }
+    //     })
+    //     setTimeout(()=>{
+    //       wx.navigateBack({
+    //         url: "/pages/workBench/main"
+    //       });
+    //     },1000)
+    //   }
+    // }
 
 
     // handleAreaSelect(){
