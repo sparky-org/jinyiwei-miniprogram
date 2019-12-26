@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-
+  {{id}}==id
     <div class="weui-toptips weui-toptips_warn" v-if="errorTips">请输入店内制度</div>
 
     <!-- <div class="weui-cells__title"><span class="required" v-if="canEdit">*</span>店内制度</div> -->
@@ -26,6 +26,7 @@ import { get, post} from "../../utils";
 // import { mapState, mapMutations } from "vuex";
 export default {
   onShow() {
+    this.id = this.$root.$mp.query.id;
     this.getPoster()
   },
   components: {
@@ -33,6 +34,7 @@ export default {
   },
   data() {
     return {
+      id: null,
       // role: '',
       errorTips: false,
       ruleText: '',

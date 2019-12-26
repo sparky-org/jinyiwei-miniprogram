@@ -1,6 +1,6 @@
 <template>
   <div class="page">
-    <div v-for="(item, index) in list" :key="index">
+    <div v-for="(item, index) in list" :key="index" @click="handleAdd(item.companySystemNo)">
       <i-swipeout  i-class="i-swipeout-relus-item" operateWidth="80" :unclosable="true" :toggle="toggle">
         <view slot="content">
            <dl>
@@ -11,13 +11,13 @@
         <view slot="button" class="i-swipeout-button-group">
             <!-- <view class="i-swipeout-demo-button" style="width:60px"><i-icon size="32" type="like_fill" @click="handleClick(1)"></i-icon></view> -->
             <!-- <view class="i-swipeout-demo-button" style="width:60px"><i-icon size="32" type="share_fill" @click="handleClick(2)"></i-icon></view> -->
-            <view class="delete" style="width:80px" @click="handleClick(item)">删除</view>
+            <view class="delete" style="width:80px" @click="handleDelete(item)">删除</view>
         </view>
       </i-swipeout>
     </div>
 
     <div class="operate-btn">
-      <button class="weui-btn" type="primary" @click="handleSubmit">新增制度</button>
+      <button class="weui-btn" type="primary" @click="handleAdd">新增制度</button>
     </div>
 
   </div>
@@ -57,11 +57,42 @@ export default {
   },
   methods: {
 
-    handleClick(type){
-      console.info(type)
-      if(type == 3){
-        this.toggle = !this.toggle
-      }
+    handleDelete(item){
+
+      wx.showModal({
+        title: '提示',
+        content: '确定要删除此制度吗？',
+        // confirmText: "主操作",
+        // cancelText: "辅助操作",
+        success: async (res) => {
+          console.log(res);
+          if (res.confirm) {
+            const data = await post("/companySystem/deleteSystem?empNo=" + this.$store.state.userInfo.shopEmployee.id+'&articleNo='+item.companySystemNo);
+            if(data.success){
+             wx.showToast({
+               title: '删除成功',
+               icon: 'success',
+               duration: 1000,
+               success(){
+
+               }
+             })
+
+
+            this.toggle = !this.toggle
+            setTimeout(()=>{
+              this.getPoster()
+            },1000)
+
+            }
+          } else {
+            console.log('用户点击辅助操作')
+          }
+        }
+      });
+
+
+
     },
 
     async getPoster(){
@@ -73,6 +104,18 @@ export default {
           // this.companySystemNo = data.result.companySystemNo
           this.list = data.result || []
         }
+      }
+    },
+
+    handleAdd(id){
+      if(id){
+        wx.navigateTo({
+          url: "/pages/my-shop-rules-detail/main?id="+id
+        });
+      }else{
+        wx.navigateTo({
+          url: "/pages/my-shop-rules-detail/main"
+        });
       }
     },
 
