@@ -5,6 +5,6 @@ const app = new Vue(App)
 app.$mount()
 export default {
   config: {
-    navigationBarTitleText: '积分制度'
+    navigationBarTitleText: '美容院(店内)制度',
   }
 }

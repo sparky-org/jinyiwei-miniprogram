@@ -1,23 +1,20 @@
 <template>
   <div class="page">
-    <div v-for="(item, index) in list" :key="index">
-      <i-swipeout  i-class="i-swipeout-relus-item" operateWidth="80" :unclosable="true" :toggle="toggle">
-        <view slot="content">
-           <dl>
-             <dt style="color: #000; font-size: 36rpx; padding: 8rpx 0 2rpx 0;">{{item.title}}</dt>
-             <dd style="color: #ccc;">{{item.createDate}}</dd>
-           </dl>
-        </view>
-        <view slot="button" class="i-swipeout-button-group">
-            <!-- <view class="i-swipeout-demo-button" style="width:60px"><i-icon size="32" type="like_fill" @click="handleClick(1)"></i-icon></view> -->
-            <!-- <view class="i-swipeout-demo-button" style="width:60px"><i-icon size="32" type="share_fill" @click="handleClick(2)"></i-icon></view> -->
-            <view class="delete" style="width:80px" @click="handleClick(item)">删除</view>
-        </view>
-      </i-swipeout>
+
+    <div class="weui-toptips weui-toptips_warn" v-if="errorTips">请输入店内制度</div>
+
+    <!-- <div class="weui-cells__title"><span class="required" v-if="canEdit">*</span>店内制度</div> -->
+    <div class="weui-cells weui-cells_after-title no-t-b">
+      <div class="weui-cell">
+        <div class="weui-cell__bd">
+          <textarea :disabled="!canEdit" maxlength="10000000" :auto-height="true" :placeholder="canEdit?'请输入店内制度':''" v-model="ruleText"  style="min-height: 9.9em; width: 100%; font-size: 16px;" />
+          <!-- <div class="weui-textarea-counter">0/200</div> -->
+        </div>
+      </div>
     </div>
 
     <div class="operate-btn">
-      <button class="weui-btn" type="primary" @click="handleSubmit">新增制度</button>
+      <button class="weui-btn" type="primary" v-if="canEdit" @click="handleSubmit">保 存</button>
     </div>
 
   </div>
@@ -36,8 +33,6 @@ export default {
   },
   data() {
     return {
-      toggle: false,
-      list: [],
       // role: '',
       errorTips: false,
       ruleText: '',
@@ -57,21 +52,13 @@ export default {
   },
   methods: {
 
-    handleClick(type){
-      console.info(type)
-      if(type == 3){
-        this.toggle = !this.toggle
-      }
-    },
-
     async getPoster(){
       const data = await post(`/companySystem/listSystem?shopNo=${this.$store.state.userInfo.shopEmployee.shopNo}`);
       if(data.success){
         if(data.result){
-          // this.canEdit = data.result.canEdit
-          // this.ruleText = data.result.content
-          // this.companySystemNo = data.result.companySystemNo
-          this.list = data.result || []
+          this.canEdit = data.result.canEdit
+          this.ruleText = data.result.content
+          this.companySystemNo = data.result.companySystemNo
         }
       }
     },
